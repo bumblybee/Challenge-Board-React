@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Nav from "./components/Nav";
+import ChallengeSubmissionArea from "./components/ChallengeSubmissionArea";
+import DiscussionArea from "./components/DiscussionArea";
 
 function App() {
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://salty-anchorage-50289.herokuapp.com/questions`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setQuestions(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div role="main" className="App">
+      <Nav />
+      <div role="main" className="container">
+        <ChallengeSubmissionArea />
+        <DiscussionArea questions={questions} />
+      </div>
     </div>
   );
 }
