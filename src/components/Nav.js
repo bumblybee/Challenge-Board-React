@@ -1,29 +1,19 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
+import UserMenu from "./UserMenu";
 
 const Nav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="nav">
+      {isOpen && <UserMenu />}
       <i className="fas fa-chess-knight fa-lg"></i>
       <h3>CHALLENGE BOARD</h3>
-      <i id="user-menu-toggle" className="fas fa-user-circle fa-2x"></i>
-
-      <div className="user-menu-container">
-        <ul className="user-menu">
-          <li className="my-account">
-            <a href="#">My Account</a>
-          </li>
-          <li className="settings">
-            <a href="#">Settings</a>
-          </li>
-          <hr />
-          <li className="register">
-            <a href="#">Register</a>
-          </li>
-          <li className="login">
-            <a href="#">Login</a>
-          </li>
-        </ul>
-      </div>
+      <i
+        id="user-menu-toggle"
+        className="fas fa-user-circle fa-2x"
+        onClick={() => setIsOpen(!isOpen)}
+      ></i>
     </div>
   );
 };

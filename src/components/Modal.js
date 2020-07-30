@@ -1,11 +1,11 @@
 import React from "react";
 
-const modal = () => {
+const Modal = (props) => {
   return (
     <div className="modal">
-      <div className="modal-content"></div>
+      <div className="modal-content">{props.children}</div>
     </div>
   );
 };
 
-export default modal;
+export default Modal;

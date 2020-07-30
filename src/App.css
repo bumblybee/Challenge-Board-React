@@ -69,7 +69,6 @@ i:hover {
 }
 
 .modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -153,7 +152,6 @@ i:hover {
 }
 
 .user-menu-container {
-  display: none;
   background: #18191b;
   position: absolute;
   top: 3rem;
