@@ -3,6 +3,7 @@ import Modal from "./Modal";
 
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
     <div className="submission-container">
@@ -26,7 +27,7 @@ const SubmissionArea = () => {
                 placeholder="Additional Link (optional)"
               ></input>
               <textarea rows="5" placeholder="Comments (optional)"></textarea>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <a
                   className="close-modal"
                   href="#"
@@ -34,11 +35,40 @@ const SubmissionArea = () => {
                 >
                   Cancel
                 </a>
-                <button type="submit" id="submit-project-button">
+                <button
+                  type="submit"
+                  id="submit-project-button"
+                  onClick={() => setIsSubmitted(!isSubmitted)}
+                >
                   Submit
                 </button>
               </div>
             </form>
+          </div>
+        </Modal>
+      )}
+
+      {isSubmitted && (
+        <Modal>
+          <div
+            className="modal-body"
+            style={{ height: "18rem", padding: "2rem" }}
+          >
+            <h1 style={{ marginTop: "6rem" }}>
+              Your project has been Submitted!
+            </h1>
+            <p style={{ paddingTop: "5px" }}>
+              Look for an email confirmation shortly.
+            </p>
+          </div>
+          <div className="modal-footer">
+            <button
+              className="close-modal"
+              href="#"
+              onClick={() => setIsSubmitted(false)}
+            >
+              Close
+            </button>
           </div>
         </Modal>
       )}

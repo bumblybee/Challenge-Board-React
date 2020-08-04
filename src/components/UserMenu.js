@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const UserMenu = (props) => {
+const UserMenu = ({ handleClose }) => {
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
@@ -11,11 +12,16 @@ const UserMenu = (props) => {
           <a href="#">Settings</a>
         </li>
         <hr />
-        <li className="register">
-          <a href="#">Register</a>
+        <li className="signup-link">
+          {/* Handle close closes user menu */}
+          <Link to="/signup" onClick={() => handleClose(false)}>
+            Sign Up
+          </Link>
         </li>
         <li className="login">
-          <a href="#">Login</a>
+          <Link to="/login" onClick={() => handleClose(false)}>
+            Login
+          </Link>
         </li>
       </ul>
     </div>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { getQuestions } from "./api";
 import axios from "axios";
 import "./App.css";
 import Nav from "./components/Nav";
-import ChallengeSubmissionArea from "./components/ChallengeSubmissionArea";
-import DiscussionArea from "./components/DiscussionArea";
+import ChallengePage from "./pages/ChallengePage";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -14,74 +17,67 @@ function App() {
     axios.defaults.crossDomain = true;
     axios.defaults.withCredentials = true;
 
-    const getQuestions = async () => {
-      const res = await fetch(`http://localhost:9000/questions`);
-      const data = await res.json();
+    getQuestions().then((data) => setQuestions(data));
 
-      setQuestions(data);
-    };
+    // const signUpUser = async () => {
+    //   const data = {
+    //     username: "rogerrabbit",
+    //     email: "carrots@gmail.com",
+    //     password: "rascally",
+    //   };
 
-    const signUpUser = async () => {
-      const data = {
-        username: "bartsimpson",
-        email: "cowabunga@gmail.com",
-        password: "eatmyshorts",
-      };
+    //   const res = await fetch("http://localhost:9000/users/create", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      const res = await fetch("http://localhost:9000/users/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    //   return res;
+    // };
 
-      return res;
-    };
+    // const loginUser = async () => {
+    //   const data = {
+    //     email: "cowabunga@gmail.com",
+    //     password: "eatmyshorts",
+    //   };
 
-    const loginUser = async () => {
-      const data = {
-        email: "cowabunga@gmail.com",
-        password: "eatmyshorts",
-      };
-
-      return await axios.post("http://localhost:9000/users/login", data);
-    };
+    //   return await axios.post("http://localhost:9000/users/login", data);
+    // };
 
     const triggerPasswordReset = async (email) => {
-      return await axios.post(`http://localhost:3000/users/password-reset`, {
+      return await axios.post(`http://localhost:9000/users/password-reset`, {
         email,
       });
     };
 
     const resetPassword = async (token, newPassword) => {
       return await axios.post(
-        `http://localhost:3000/users/password-reset/${token}`,
+        `http://localhost:9000/users/password-reset/${token}`,
         { password: newPassword }
       );
     };
 
-    // signUpUser()
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.log(err));
+    // loginUser();
 
-    loginUser()
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-
-    getQuestions()
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    // getQuestions();
   }, []);
 
   return (
-    <div role="main" className="App">
-      <Nav />
-      <div role="main" className="container">
-        <ChallengeSubmissionArea />
-        <DiscussionArea questions={questions} />
+    <Router>
+      <div role="main" className="App">
+        <Nav />
+        <Switch>
+          <Route path="/signup" component={Signup}></Route>
+          <Route path="/login" component={Login} questions={questions}></Route>
+
+          <ChallengePage questions={questions} />
+
+          <Route path="/" component={ChallengePage} exact></Route>
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 

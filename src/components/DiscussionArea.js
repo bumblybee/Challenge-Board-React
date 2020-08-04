@@ -1,13 +1,37 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
+import { createQuestion, getQuestions } from "../api.js";
 import QuestionList from "./QuestionList";
 import Modal from "./Modal";
 
-const DiscussionArea = ({ questions }) => {
+const DiscussionArea = withRouter(({ questions, history }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [questionData, setQuestionData] = useState({
+    username: "Sara London",
+    question: "",
+    questionDetails: "",
+    isAnswered: false,
+    commentCount: 0,
+  });
 
-  const close = () => {
-    setIsOpen(false);
+  // TODO: fix so not reloading but question pops up
+  const handleSubmit = async (e) => {
+    const data = {
+      username: questionData.username,
+      question: questionData.question,
+      questionDetails: questionData.questionDetails,
+      isAnswered: questionData.isAnswered,
+      commentCount: questionData.commentCount,
+    };
+
+    createQuestion(data);
+
+    // setIsOpen(!isOpen);
+    // history.push("/");
   };
+
+  //TODO: create reusable component for form
 
   return (
     <div className="discussion-area">
@@ -18,25 +42,37 @@ const DiscussionArea = ({ questions }) => {
             <p>Make sure to add enough detail to provide context for others.</p>
           </div>
           <div className="modal-body">
-            <form id="question-form">
+            <form id="question-form" onSubmit={handleSubmit}>
               <input
+                onChange={(e) =>
+                  setQuestionData({
+                    ...questionData,
+                    question: e.target.value,
+                  })
+                }
+                value={questionData.question}
                 id="question-input"
+                name="question"
                 type="text"
                 placeholder="Question"
                 maxlength="100"
                 required
               ></input>
               <textarea
+                onChange={(e) =>
+                  setQuestionData({
+                    ...questionData,
+                    questionDetails: e.target.value,
+                  })
+                }
+                value={questionData.questionDetails}
                 id="question-details"
+                name="question-details"
                 rows="8"
                 placeholder="More Details"
               ></textarea>
               <div className="modal-footer">
-                <a
-                  className="close-modal"
-                  href="#"
-                  onClick={() => setIsOpen(!isOpen)}
-                >
+                <a className="close-modal" onClick={() => setIsOpen(!isOpen)}>
                   Cancel
                 </a>
                 <button id="post-question-button" type="submit">
@@ -67,6 +103,6 @@ const DiscussionArea = ({ questions }) => {
       </div>
     </div>
   );
-};
+});
 
 export default DiscussionArea;
