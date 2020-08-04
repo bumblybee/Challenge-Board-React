@@ -1,6 +1,6 @@
 import React from "react";
-import ChallengeSubmissionArea from "../components/ChallengeSubmissionArea";
-import DiscussionArea from "../components/DiscussionArea";
+import ChallengeSubmissionArea from "../challenge-submission/ChallengeSubmissionArea";
+import DiscussionArea from "../discussion/DiscussionArea";
 
 const ChallengePage = ({ questions, setQuestions }) => {
   return (

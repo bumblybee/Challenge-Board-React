@@ -121,6 +121,21 @@ i:hover {
   font-size: 1rem;
 }
 
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.modal-footer a {
+  color: var(--primary-text);
+  margin: 0 1.5rem 0.5rem 0;
+}
+
+.modal-footer a:hover {
+  cursor: pointer;
+}
+
 .signup-form-header,
 .login-form-header {
   text-align: center;
@@ -147,17 +162,6 @@ i:hover {
   background: #18191b;
   color: var(--primary-text);
   font-size: 1rem;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.modal-footer a {
-  color: var(--primary-text);
-  margin: 0 1.5rem 0.5rem 0;
 }
 
 .nav {

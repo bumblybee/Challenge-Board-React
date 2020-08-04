@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginUser } from "../api";
+import { loginUser } from "../../api";
 
 const Login = ({ history, questions, setQuestions }) => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -14,6 +14,7 @@ const Login = ({ history, questions, setQuestions }) => {
     loginUser(data);
 
     // TODO: handle unsuccessful login
+    //TODO: figure out how to get questions to render after login
     setQuestions(questions);
     history.push("/");
   };

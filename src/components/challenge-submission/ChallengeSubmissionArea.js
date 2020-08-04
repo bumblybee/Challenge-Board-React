@@ -1,11 +1,11 @@
 import React from "react";
-import ChallengeSection from "./ChallengeSection";
+import ChallengeArea from "./ChallengeArea";
 import SubmissionArea from "./SubmissionArea";
 
 const ChallengeSubmissionArea = () => {
   return (
     <div className="challenge-submission-area">
-      <ChallengeSection />
+      <ChallengeArea />
       <SubmissionArea />
     </div>
   );

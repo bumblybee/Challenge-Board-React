@@ -4,9 +4,9 @@ import { getQuestions } from "./api";
 import axios from "axios";
 import "./App.css";
 import Nav from "./components/Nav";
-import ChallengePage from "./pages/ChallengePage";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import ChallengePage from "./components/pages/ChallengePage";
+import Signup from "./components/pages/Signup";
+import Login from "./components/pages/Login";
 
 function App() {
   const [questions, setQuestions] = useState([]);

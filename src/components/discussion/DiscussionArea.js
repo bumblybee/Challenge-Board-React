@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import axios from "axios";
-import { createQuestion } from "../api.js";
+import { createQuestion } from "../../api.js";
 import QuestionList from "./QuestionList";
-import Modal from "./Modal";
+import Modal from "../Modal";
 
 const DiscussionArea = ({ questions, setQuestions, history }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,9 +12,10 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
     questionDetails: "",
     isAnswered: false,
     commentCount: 0,
-    createdAt: "2020-08-04T12:07:47.988-05",
+    createdAt: "2020-08-04T14:07:47.988-05",
   });
 
+  // Should this be passed up to App and the api called there?
   // TODO: Dynamic data; context(?) for handling setQuestions state
   // TODO: make sure isAuth before allowing access to submit question
   const handleSubmit = async (e) => {
@@ -29,6 +29,7 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
       createdAt: questionData.createdAt,
     };
     setIsOpen(!isOpen);
+    //Should this call be at app level?
     createQuestion(data);
 
     setQuestions([data, ...questions]);
