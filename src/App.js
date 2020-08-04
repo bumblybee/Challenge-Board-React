@@ -11,40 +11,12 @@ import Login from "./pages/Login";
 function App() {
   const [questions, setQuestions] = useState([]);
 
+  // TODO: Handle signup/login prompt on landing if not signed in
   useEffect(() => {
-    //https://salty-anchorage-50289.herokuapp.com/questions
-
     axios.defaults.crossDomain = true;
     axios.defaults.withCredentials = true;
 
     getQuestions().then((data) => setQuestions(data));
-
-    // const signUpUser = async () => {
-    //   const data = {
-    //     username: "rogerrabbit",
-    //     email: "carrots@gmail.com",
-    //     password: "rascally",
-    //   };
-
-    //   const res = await fetch("http://localhost:9000/users/create", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
-
-    //   return res;
-    // };
-
-    // const loginUser = async () => {
-    //   const data = {
-    //     email: "cowabunga@gmail.com",
-    //     password: "eatmyshorts",
-    //   };
-
-    //   return await axios.post("http://localhost:9000/users/login", data);
-    // };
 
     const triggerPasswordReset = async (email) => {
       return await axios.post(`http://localhost:9000/users/password-reset`, {
@@ -66,7 +38,16 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/signup" component={Signup}></Route>
-          <Route path="/login" component={Login} questions={questions}></Route>
+          <Route
+            path="/login"
+            render={(props) => (
+              <Login
+                {...props}
+                setQuestions={setQuestions}
+                questions={questions}
+              />
+            )}
+          ></Route>
 
           <ChallengePage questions={questions} setQuestions={setQuestions} />
 

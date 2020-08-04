@@ -16,7 +16,8 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
     createdAt: "2020-08-04T12:07:47.988-05",
   });
 
-  // TODO: Dynamic data, context(?) for handling setQuestions
+  // TODO: Dynamic data; context(?) for handling setQuestions state
+  // TODO: make sure isAuth before allowing access to submit question
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -29,8 +30,10 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
     };
     setIsOpen(!isOpen);
     createQuestion(data);
-    setQuestions([data, ...questions]);
 
+    setQuestions([data, ...questions]);
+    //clear input after submit
+    setQuestionData({ ...questionData, question: "", questionDetails: "" });
     history.push("/");
   };
 

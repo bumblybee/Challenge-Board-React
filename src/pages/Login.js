@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { loginUser, getQuestions } from "../api";
+import { loginUser } from "../api";
 
-const Login = ({ history, questions }) => {
+const Login = ({ history, questions, setQuestions }) => {
   const [user, setUser] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
@@ -13,8 +13,8 @@ const Login = ({ history, questions }) => {
 
     loginUser(data);
 
-    // handle unsuccessful login
-    getQuestions(questions);
+    // TODO: handle unsuccessful login
+    setQuestions(questions);
     history.push("/");
   };
 
