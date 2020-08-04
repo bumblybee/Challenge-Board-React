@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { createQuestion, getQuestions } from "../api.js";
+import { createQuestion } from "../api.js";
 import QuestionList from "./QuestionList";
 import Modal from "./Modal";
 
-const DiscussionArea = withRouter(({ questions, history }) => {
+const DiscussionArea = ({ questions, setQuestions, history }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [questionData, setQuestionData] = useState({
     username: "Sara London",
@@ -13,22 +13,25 @@ const DiscussionArea = withRouter(({ questions, history }) => {
     questionDetails: "",
     isAnswered: false,
     commentCount: 0,
+    createdAt: "2020-08-04T12:07:47.988-05",
   });
 
-  // TODO: fix so not reloading but question pops up
+  // TODO: Dynamic data, context(?) for handling setQuestions
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const data = {
       username: questionData.username,
       question: questionData.question,
       questionDetails: questionData.questionDetails,
       isAnswered: questionData.isAnswered,
       commentCount: questionData.commentCount,
+      createdAt: questionData.createdAt,
     };
-
+    setIsOpen(!isOpen);
     createQuestion(data);
+    setQuestions([data, ...questions]);
 
-    // setIsOpen(!isOpen);
-    // history.push("/");
+    history.push("/");
   };
 
   //TODO: create reusable component for form
@@ -103,6 +106,6 @@ const DiscussionArea = withRouter(({ questions, history }) => {
       </div>
     </div>
   );
-});
+};
 
-export default DiscussionArea;
+export default withRouter(DiscussionArea);

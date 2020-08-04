@@ -58,10 +58,6 @@ function App() {
         { password: newPassword }
       );
     };
-
-    // loginUser();
-
-    // getQuestions();
   }, []);
 
   return (
@@ -72,7 +68,7 @@ function App() {
           <Route path="/signup" component={Signup}></Route>
           <Route path="/login" component={Login} questions={questions}></Route>
 
-          <ChallengePage questions={questions} />
+          <ChallengePage questions={questions} setQuestions={setQuestions} />
 
           <Route path="/" component={ChallengePage} exact></Route>
         </Switch>
