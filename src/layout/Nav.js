@@ -12,7 +12,7 @@ const Nav = () => {
   return (
     <div className="nav">
       {isOpen && <UserMenu handleClose={handleClose} />}
-      <Link to="/">
+      <Link to="/challenge">
         <i className="fas fa-chess-knight fa-lg"></i>
       </Link>
       <h3>CHALLENGE BOARD</h3>

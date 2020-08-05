@@ -164,6 +164,15 @@ i:hover {
   font-size: 1rem;
 }
 
+.login-form-body a {
+  color: #809bff;
+  font-size: 0.9rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .nav {
   background: var(--secondary-background);
   display: flex;

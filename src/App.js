@@ -9,6 +9,8 @@ import Login from "./pages/Login";
 
 function App() {
   // TODO: Handle signup/login prompt on landing if not signed in
+  //TODO: password-reset route
+  //TODO: discord login/signup
 
   return (
     <Router>

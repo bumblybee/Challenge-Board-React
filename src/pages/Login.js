@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import loginUser from "../api/loginApi";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Login = () => {
   // const [loggedIn, setLoggedIn] = useState(false);
@@ -55,6 +55,7 @@ const Login = () => {
           </div>
           {/* <button type="submit">Log in with Discord</button> */}
           <button type="submit">Log In</button>
+          <Link to="/reset-password">Forgot password?</Link>
         </form>
       </div>
     </div>
