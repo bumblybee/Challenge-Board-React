@@ -2,6 +2,7 @@ import React from "react";
 
 const QuestionCard = ({ question }) => {
   const date = question.createdAt.split("T")[0];
+
   return (
     <li className="question-card">
       <div className="question-header">

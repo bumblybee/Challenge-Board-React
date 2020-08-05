@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import signupUser from "../../api/signupApi";
+import signupUser from "../api/signupApi";
+import { useHistory } from "react-router-dom";
 
-const Signup = ({ history }) => {
+const Signup = () => {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();

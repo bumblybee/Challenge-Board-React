@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import { createQuestion } from "../../api/questionsApi.js";
 import QuestionList from "./QuestionList";
 import Modal from "../../layout/Modal";
 
-const DiscussionArea = ({ questions, setQuestions, history }) => {
+const DiscussionArea = ({ questions, setQuestions }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [questionData, setQuestionData] = useState({
+  const history = useHistory();
+  const [newQuestion, setNewQuestion] = useState({
     username: "Sara London",
     question: "",
     questionDetails: "",
@@ -21,21 +22,22 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      username: questionData.username,
-      question: questionData.question,
-      questionDetails: questionData.questionDetails,
-      isAnswered: questionData.isAnswered,
-      commentCount: questionData.commentCount,
-      createdAt: questionData.createdAt,
+      username: newQuestion.username,
+      question: newQuestion.question,
+      questionDetails: newQuestion.questionDetails,
+      isAnswered: newQuestion.isAnswered,
+      commentCount: newQuestion.commentCount,
+      createdAt: newQuestion.createdAt,
     };
     setIsOpen(!isOpen);
-    //Should this call be at app level?
-    createQuestion(data);
 
-    setQuestions([data, ...questions]);
+    createQuestion(data);
+    // How should I be handling this? New api call instead of passing props up?
+    // setQuestions([data, ...questions]);
+
     //clear input after submit
-    setQuestionData({ ...questionData, question: "", questionDetails: "" });
-    history.push("/");
+    setNewQuestion({ ...newQuestion, question: "", questionDetails: "" });
+    history.push("/challenge");
   };
 
   //TODO: create reusable component for form
@@ -52,12 +54,12 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
             <form id="question-form" onSubmit={handleSubmit}>
               <input
                 onChange={(e) =>
-                  setQuestionData({
-                    ...questionData,
+                  setNewQuestion({
+                    ...newQuestion,
                     question: e.target.value,
                   })
                 }
-                value={questionData.question}
+                value={newQuestion.question}
                 id="question-input"
                 name="question"
                 type="text"
@@ -67,12 +69,12 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
               ></input>
               <textarea
                 onChange={(e) =>
-                  setQuestionData({
-                    ...questionData,
+                  setNewQuestion({
+                    ...newQuestion,
                     questionDetails: e.target.value,
                   })
                 }
-                value={questionData.questionDetails}
+                value={newQuestion.questionDetails}
                 id="question-details"
                 name="question-details"
                 rows="8"
@@ -106,7 +108,7 @@ const DiscussionArea = ({ questions, setQuestions, history }) => {
       </div>
 
       <div className="questions-container">
-        <QuestionList questions={questions} />
+        <QuestionList questions={questions} newQuestion={newQuestion} />
       </div>
     </div>
   );

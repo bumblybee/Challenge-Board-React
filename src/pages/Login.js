@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import loginUser from "../../api/loginApi";
+import loginUser from "../api/loginApi";
+import { useHistory } from "react-router-dom";
 
-const Login = ({ history, questions, setQuestions }) => {
+const Login = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({ email: "", password: "" });
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,10 +16,10 @@ const Login = ({ history, questions, setQuestions }) => {
 
     loginUser(data);
 
-    // TODO: handle unsuccessful login
-    //TODO: figure out how to get questions to render after login
-    setQuestions(questions);
-    history.push("/");
+    // TODO: handle logged in / unsuccessful login
+    //TODO: figure out how to get questions to render after login?
+
+    history.push("/challenge");
   };
 
   return (
