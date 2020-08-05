@@ -4,9 +4,10 @@ import { createQuestion } from "../../api/questionsApi.js";
 import QuestionList from "./QuestionList";
 import Modal from "../../layout/Modal";
 
-const DiscussionArea = ({ questions, setQuestions }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const QuestionArea = () => {
   const history = useHistory();
+
+  const [isOpen, setIsOpen] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     username: "Sara London",
     question: "",
@@ -64,7 +65,7 @@ const DiscussionArea = ({ questions, setQuestions }) => {
                 name="question"
                 type="text"
                 placeholder="Question"
-                maxlength="100"
+                maxLength="100"
                 required
               ></input>
               <textarea
@@ -108,10 +109,10 @@ const DiscussionArea = ({ questions, setQuestions }) => {
       </div>
 
       <div className="questions-container">
-        <QuestionList questions={questions} newQuestion={newQuestion} />
+        <QuestionList newQuestion={newQuestion} />
       </div>
     </div>
   );
 };
 
-export default withRouter(DiscussionArea);
+export default withRouter(QuestionArea);

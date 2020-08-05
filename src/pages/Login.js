@@ -3,18 +3,14 @@ import loginUser from "../api/loginApi";
 import { useHistory } from "react-router-dom";
 
 const Login = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState({ email: "", password: "" });
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = {
-      email: user.email,
-      password: user.password,
-    };
 
-    loginUser(data);
+    await loginUser(userDetails);
 
     // TODO: handle logged in / unsuccessful login
     //TODO: figure out how to get questions to render after login?
@@ -33,8 +29,10 @@ const Login = () => {
           <div className="input-area">
             <label htmlFor="login-email">Email</label>
             <input
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
-              value={user.email}
+              onChange={(e) =>
+                setUserDetails({ ...userDetails, email: e.target.value })
+              }
+              value={userDetails.email}
               type="email"
               id="login-email"
               name="login-email"
@@ -45,9 +43,9 @@ const Login = () => {
             <label htmlFor="login-password">Password</label>
             <input
               onChange={(e) => {
-                setUser({ ...user, password: e.target.value });
+                setUserDetails({ ...userDetails, password: e.target.value });
               }}
-              value={user.password}
+              value={userDetails.password}
               type="password"
               name="login-password"
               id="login-password"
