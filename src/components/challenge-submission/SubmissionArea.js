@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../../layout/Modal";
 
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);

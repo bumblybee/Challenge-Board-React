@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChallengeSection = () => {
+const ChallengeArea = () => {
   return (
     <div className="challenge-container">
       <div className="challenge-header">
@@ -26,4 +26,4 @@ const ChallengeSection = () => {
   );
 };
 
-export default ChallengeSection;
+export default ChallengeArea;

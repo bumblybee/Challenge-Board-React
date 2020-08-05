@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { createQuestion } from "../../api.js";
+import { createQuestion } from "../../api/questionsApi.js";
 import QuestionList from "./QuestionList";
-import Modal from "../Modal";
+import Modal from "../../layout/Modal";
 
 const DiscussionArea = ({ questions, setQuestions, history }) => {
   const [isOpen, setIsOpen] = useState(false);
