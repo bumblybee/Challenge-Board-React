@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import loginUser from "../api/loginApi";
+import { loginUser } from "../api/loginApi";
 import { useHistory, Link } from "react-router-dom";
 
-const Login = () => {
-  // const [loggedIn, setLoggedIn] = useState(false);
+const Login = ({ handleLogin }) => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await loginUser(userDetails);
+    const user = await loginUser(userDetails);
+    console.log(user);
+
+    user.data.id && handleLogin(true, user.data.id);
+    console.log(user.data.id);
 
     // TODO: handle logged in / unsuccessful login
-    //TODO: figure out how to get questions to render after login?
 
     history.push("/challenge");
   };
@@ -54,8 +56,10 @@ const Login = () => {
             ></input>
           </div>
           {/* <button type="submit">Log in with Discord</button> */}
+
           <button type="submit">Log In</button>
           <Link to="/reset-password">Forgot password?</Link>
+          <Link to="/signup">Need to Register?</Link>
         </form>
       </div>
     </div>

@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Fragment } from "react";
+import { Link } from "react-router-dom";
 import signupUser from "../api/signupApi";
+import { getDiscordUrl, discordSignup } from "../api/discordApi";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const [user, setUser] = useState({ username: "", email: "", password: "" });
+  const [discordUrl, setDiscordUrl] = useState(undefined);
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchDiscordUrl = async () => {
+      const discordUrl = await getDiscordUrl();
+      setDiscordUrl(discordUrl);
+    };
+    fetchDiscordUrl();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +27,7 @@ const Signup = () => {
 
     signupUser(data);
     history.push("/login");
-    // handle unsuccessful signup
+    //TODO: handle unsuccessful signup
   };
 
   return (
@@ -63,8 +74,16 @@ const Signup = () => {
               minLength="5"
             ></input>
           </div>
-          {/* <button type="submit">Sign up with Discord</button> */}
-          <button type="submit">Sign Up</button>
+
+          <button type="submit">Sign Up with Email</button>
+          {discordUrl && (
+            <Fragment>
+              <p>or</p>
+              <a className="discord-signup-button" href={discordUrl}>
+                Sign Up with Discord
+              </a>
+            </Fragment>
+          )}
         </form>
       </div>
     </div>

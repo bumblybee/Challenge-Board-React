@@ -4,7 +4,7 @@ import { createQuestion } from "../../api/questionsApi.js";
 import QuestionList from "./QuestionList";
 import Modal from "../../layout/Modal";
 
-const QuestionArea = () => {
+const QuestionArea = ({ loggedIn }) => {
   const history = useHistory();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +14,9 @@ const QuestionArea = () => {
     questionDetails: "",
     isAnswered: false,
     commentCount: 0,
-    createdAt: "2020-08-04T14:07:47.988-05",
+    createdAt: "2020-08-07T14:07:47.988-05",
   });
 
-  // Should this be passed up to App and the api called there?
-  // TODO: Dynamic data; context(?) for handling setQuestions state
   // TODO: make sure isAuth before allowing access to submit question
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,8 +29,7 @@ const QuestionArea = () => {
       createdAt: newQuestion.createdAt,
     };
     setIsOpen(!isOpen);
-
-    createQuestion(data);
+    loggedIn && createQuestion(data);
     // How should I be handling this? New api call instead of passing props up?
     // setQuestions([data, ...questions]);
 
@@ -99,13 +96,23 @@ const QuestionArea = () => {
           <h4 className="heading">DISCUSSION</h4>
           <h1>Ask a Question</h1>
         </div>
-        <button
-          className="modal-button"
-          id="question-button"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          Post a Question
-        </button>
+        {loggedIn ? (
+          <button
+            className="modal-button"
+            id="question-button"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            Post a Question
+          </button>
+        ) : (
+          <button
+            className="modal-button"
+            id="question-button"
+            onClick={() => history.push("/login")}
+          >
+            Log in to Post a Question
+          </button>
+        )}
       </div>
 
       <div className="questions-container">

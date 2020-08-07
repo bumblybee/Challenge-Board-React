@@ -41,7 +41,8 @@ h1 {
   margin: 0;
 }
 
-button {
+button,
+.discord-signup-button {
   margin-top: 1rem;
   background: #6271c0;
   color: #fff;
@@ -51,6 +52,7 @@ button {
   font-size: 0.95rem;
   font-family: "Roboto Slab", serif;
   font-weight: 300;
+  text-align: center;
 }
 
 button:hover {
@@ -162,6 +164,10 @@ i:hover {
   background: #18191b;
   color: var(--primary-text);
   font-size: 1rem;
+}
+.signup-form-body p {
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .login-form-body a {

@@ -1,13 +1,13 @@
 import React from "react";
 
 const QuestionCard = ({ question }) => {
-  const date = question.createdAt.split("T")[0];
+  // const date = question.createdAt.split("T")[0];
 
   return (
     <li className="question-card">
       <div className="question-header">
         <div className="name">{question.username}</div>
-        <div className="created-at">{date}</div>
+        <div className="created-at"></div>
         {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
       </div>
       <div className="question-body">

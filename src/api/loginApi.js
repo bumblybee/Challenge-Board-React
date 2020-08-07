@@ -1,7 +1,14 @@
 import instance from "./baseApi";
 
 const loginUser = async (data) => {
-  await instance.post("/users/login", data);
+  const res = await instance.post("/users/login", data);
+
+  return res;
 };
 
-export default loginUser;
+const checkLogin = async (data) => {
+  const res = await instance.get("/users/login", data);
+  return res;
+};
+
+export { loginUser, checkLogin };

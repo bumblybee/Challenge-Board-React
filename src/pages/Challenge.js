@@ -3,14 +3,14 @@ import ChallengeArea from "../components/challenge-submission/ChallengeArea";
 import SubmissionArea from "../components/challenge-submission/SubmissionArea";
 import QuestionArea from "../components/questions/QuestionArea";
 
-const Challenge = ({ questions, setQuestions }) => {
+const Challenge = ({ loggedIn }) => {
   return (
     <div role="main" className="container">
       <div className="challenge-submission-area">
         <ChallengeArea />
         <SubmissionArea />
       </div>
-      <QuestionArea questions={questions} setQuestions={setQuestions} />
+      <QuestionArea loggedIn={loggedIn} />
     </div>
   );
 };
