@@ -14,7 +14,6 @@ const DiscordLogin = () => {
 
     const postDiscordSignup = async () => {
       const user = await discordSignup(code, state);
-      console.log(user);
       if (user.id) setLoggedIn(true);
     };
     postDiscordSignup();

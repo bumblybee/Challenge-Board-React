@@ -6,8 +6,8 @@ const getDiscordUrl = async () => {
 };
 
 const discordSignup = async (code, state) => {
-  const res = await instance.post("/discord/signup", { state, code });
-  return res;
+  const res = await instance.post("/discord/signup", { code, state });
+  return res.data;
 };
 
 export { getDiscordUrl, discordSignup };

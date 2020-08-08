@@ -28,6 +28,7 @@ const Signup = () => {
     signupUser(data);
     history.push("/login");
     //TODO: handle unsuccessful signup
+    //TODO: Login user on signup and push to /challenge
   };
 
   return (
@@ -75,12 +76,12 @@ const Signup = () => {
             ></input>
           </div>
 
-          <button type="submit">Email</button>
+          <button type="submit">Submit</button>
           {discordUrl && (
             <Fragment>
               <p>or sign up with Discord</p>
               <a className="discord-signup-button" href={discordUrl}>
-                <i class="fab fa-discord fa-lg"></i>
+                <i className="fab fa-discord fa-lg"></i>
               </a>
             </Fragment>
           )}
