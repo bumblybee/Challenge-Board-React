@@ -34,7 +34,7 @@ const Signup = () => {
     <div className="signup-form-content">
       <div className="signup-form-header">
         <h1>Sign Up</h1>
-        <p>Sign up with your email or Discord login</p>
+        <p>Sign up with your email</p>
       </div>
       <div className="signup-form-body">
         <form id="submit-form" onSubmit={handleSubmit}>
@@ -75,12 +75,12 @@ const Signup = () => {
             ></input>
           </div>
 
-          <button type="submit">Sign Up with Email</button>
+          <button type="submit">Email</button>
           {discordUrl && (
             <Fragment>
-              <p>or</p>
+              <p>or sign up with Discord</p>
               <a className="discord-signup-button" href={discordUrl}>
-                Sign Up with Discord
+                <i class="fab fa-discord fa-lg"></i>
               </a>
             </Fragment>
           )}
