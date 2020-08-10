@@ -6,10 +6,10 @@ const triggerPasswordReset = async (email) => {
   });
 };
 
-const resetPassword = async (token, newPassword) => {
+const passwordReset = async (token, newPassword) => {
   return await instance.post(`/users/password-reset/${token}`, {
     password: newPassword,
   });
 };
 
-export { triggerPasswordReset, resetPassword };
+export { triggerPasswordReset, passwordReset };

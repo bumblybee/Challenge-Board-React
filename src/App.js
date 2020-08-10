@@ -14,19 +14,20 @@ import Signup from "./pages/Signup";
 import DiscordLogin from "./pages/DiscordLogin";
 import Login from "./pages/Login";
 import ResetPasswordRequest from "./pages/ResetPasswordRequest";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   //TODO: password-reset route
 
   const [user, setUser] = useState(null);
-  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
     <Router>
       <div role="main" className="App">
         <Nav />
         <Switch>
-          <UserContext.Provider value={value}>
+          <UserContext.Provider value={userValue}>
             <Route path="/signup">
               <Signup />
             </Route>
@@ -39,6 +40,9 @@ function App() {
 
             <Route path="/reset-password-request">
               <ResetPasswordRequest />
+            </Route>
+            <Route path="/reset-password/:token">
+              <ResetPassword />
             </Route>
             <Route path="/challenge">
               <Challenge />

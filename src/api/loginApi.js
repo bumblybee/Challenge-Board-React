@@ -6,8 +6,8 @@ const loginUser = async (details) => {
   return res;
 };
 
-const checkLogin = async (data) => {
-  const res = await instance.get("/users/login", data);
+const checkLogin = async () => {
+  const res = await instance.get("/users/check-login");
   return res;
 };
 

@@ -5,7 +5,7 @@ import { loginUser } from "../api/loginApi";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
