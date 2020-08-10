@@ -15,13 +15,14 @@ const DiscordLogin = () => {
     const postDiscordSignup = async () => {
       const user = await discordSignup(code, state);
       if (user.id) setLoggedIn(true);
+      //TODO: add logged in to global state
     };
     postDiscordSignup();
   }, []);
 
   return (
     <div>
-      {loggedIn ? <Redirect to="/challenge" /> : <span> Not logged in </span>}
+      {loggedIn ? <Redirect to="/challenge" /> : <span> Loading... </span>}
 
       {loginError ? (
         <div>

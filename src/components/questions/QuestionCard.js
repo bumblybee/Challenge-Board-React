@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const QuestionCard = ({ question }) => {
-  // const date = question.createdAt.split("T")[0];
+  const date = question.createdAt.split("T")[0];
 
   return (
     <li className="question-card">
       <div className="question-header">
         <div className="name">{question.username}</div>
-        <div className="created-at"></div>
+        <div className="created-at">{date}</div>
         {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
       </div>
       <div className="question-body">
@@ -20,8 +21,9 @@ const QuestionCard = ({ question }) => {
             ? " comments"
             : " comment"}
         </div>
+        {/* TODO: link route to thread ID  */}
         <div className="view-thread">
-          <a href="#">View Thread</a>
+          <Link to="/">View Thread</Link>
         </div>
       </div>
     </li>

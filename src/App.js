@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -7,54 +7,47 @@ import {
 } from "react-router-dom";
 // import { checkLogin } from "./api/loginApi";
 import "./App.css";
-
+import { UserContext } from "./context/UserContext";
 import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";
 import Signup from "./pages/Signup";
 import DiscordLogin from "./pages/DiscordLogin";
 import Login from "./pages/Login";
+import ResetPasswordRequest from "./pages/ResetPasswordRequest";
 
 function App() {
   //TODO: password-reset route
-  //TODO: discord login/signup
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userDetails, setUserDetails] = useState({});
 
-  const handleLogin = (state, user) => {
-    setLoggedIn(state);
-    setUserDetails(user);
-  };
-
-  // useEffect(() => {
-  //   const checkIfLoggedIn = async () => {
-  //     const res = await checkLogin(userDetails);
-  //     console.log(userDetails);
-  //   };
-  //   checkIfLoggedIn();
-  // }, [userDetails]);
+  const [user, setUser] = useState(null);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
     <Router>
       <div role="main" className="App">
         <Nav />
         <Switch>
-          <Route path="/signup">
-            <Signup />
-          </Route>
-          <Route path="/discord-login">
-            <DiscordLogin />
-          </Route>
-          <Route path="/login" exact>
-            <Login handleLogin={handleLogin} />
-          </Route>
+          <UserContext.Provider value={value}>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/discord-login">
+              <DiscordLogin />
+            </Route>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
 
-          <Route path="/challenge">
-            <Challenge loggedIn={loggedIn} />
-          </Route>
+            <Route path="/reset-password-request">
+              <ResetPasswordRequest />
+            </Route>
+            <Route path="/challenge">
+              <Challenge />
+            </Route>
 
-          <Route path="/" exact>
-            <Redirect to="/challenge" />
-          </Route>
+            <Route path="/" exact>
+              <Redirect to="/challenge" />
+            </Route>
+          </UserContext.Provider>
         </Switch>
       </div>
     </Router>

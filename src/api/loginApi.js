@@ -1,7 +1,7 @@
 import instance from "./baseApi";
 
-const loginUser = async (data) => {
-  const res = await instance.post("/users/login", data);
+const loginUser = async (details) => {
+  const res = await instance.post("/users/login", details);
 
   return res;
 };

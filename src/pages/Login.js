@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { loginUser } from "../api/loginApi";
+import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import { loginUser } from "../api/loginApi";
 
-const Login = ({ handleLogin }) => {
+const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = await loginUser(userDetails);
-    console.log(user);
+    const newUser = await loginUser(userDetails);
 
-    user.data.id && handleLogin(true, user.data.id);
-    console.log(user.data.id);
+    newUser && setUser(newUser);
 
     // TODO: handle logged in / unsuccessful login
 
@@ -58,7 +58,7 @@ const Login = ({ handleLogin }) => {
           {/* <button type="submit">Log in with Discord</button> */}
 
           <button type="submit">Log In</button>
-          <Link to="/reset-password">Forgot password?</Link>
+          <Link to="/reset-password-request">Forgot password?</Link>
           <Link to="/signup">Need to Register?</Link>
         </form>
       </div>

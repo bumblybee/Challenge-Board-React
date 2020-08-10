@@ -2,14 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
+  // TODO: links to settings and account pages
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
         <li className="my-account">
-          <a href="#">My Account</a>
+          <Link to="/account">My Account</Link>
         </li>
         <li className="settings">
-          <a href="#">Settings</a>
+          <Link to="/settings">Settings</Link>
         </li>
         <hr />
         <li className="signup-link">

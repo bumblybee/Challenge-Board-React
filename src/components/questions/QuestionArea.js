@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { withRouter, useHistory } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 import { createQuestion } from "../../api/questionsApi.js";
 import QuestionList from "./QuestionList";
 import Modal from "../../layout/Modal";
 
-const QuestionArea = ({ loggedIn }) => {
+const QuestionArea = () => {
   const history = useHistory();
-
+  const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     username: "Sara London",
@@ -29,7 +30,7 @@ const QuestionArea = ({ loggedIn }) => {
       createdAt: newQuestion.createdAt,
     };
     setIsOpen(!isOpen);
-    loggedIn && createQuestion(data);
+    user && createQuestion(data);
     // How should I be handling this? New api call instead of passing props up?
     // setQuestions([data, ...questions]);
 
@@ -96,7 +97,7 @@ const QuestionArea = ({ loggedIn }) => {
           <h4 className="heading">DISCUSSION</h4>
           <h1>Ask a Question</h1>
         </div>
-        {loggedIn ? (
+        {user ? (
           <button
             className="modal-button"
             id="question-button"

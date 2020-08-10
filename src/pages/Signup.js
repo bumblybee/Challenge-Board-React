@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
+
 import signupUser from "../api/signupApi";
-import { getDiscordUrl, discordSignup } from "../api/discordApi";
+import { getDiscordUrl } from "../api/discordApi";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
