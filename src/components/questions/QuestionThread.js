@@ -7,7 +7,7 @@ const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const [question, setQuestion] = useState({});
+  const [question, setQuestion] = useState();
   const [comments, setComments] = useState([]);
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
@@ -33,7 +33,7 @@ const QuestionThread = () => {
 
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
-      {/* <div className="question">{question}</div> */}
+      <div className="question">{question}</div>
       <div className="questions-container">
         <ul className="questions-thread">
           {comments.map((comment, index) => (

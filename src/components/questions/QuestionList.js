@@ -30,7 +30,6 @@ const QuestionsList = () => {
     e.preventDefault();
 
     const data = {
-      threadId: 2,
       username: newQuestion.username,
       question: newQuestion.question,
       questionDetails: newQuestion.questionDetails,
@@ -40,7 +39,7 @@ const QuestionsList = () => {
     };
 
     setIsOpen(!isOpen);
-    user && createQuestion(data);
+    user && (await createQuestion(data));
 
     // setQuestions([data, ...questions]);
 
@@ -56,7 +55,7 @@ const QuestionsList = () => {
 
   useEffect(() => {
     getQuestions().then((data) => setQuestions(data));
-    //Pass newQuestion into useEffect so that list is re-rendered when a new question is submitted
+    //Pass newQuestion into useEffect dependency so that list is re-rendered when a new question is submitted
   }, [newQuestion]);
 
   return (
