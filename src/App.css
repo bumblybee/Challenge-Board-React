@@ -306,6 +306,16 @@ iframe {
   margin-left: auto;
 }
 
+.discussion-header-container.thread {
+  display: flex;
+  flex-direction: column;
+}
+
+.discussion-header-container.thread button {
+  margin-right: 100%;
+  margin-top: 1.5rem;
+}
+
 .questions-container {
   overflow-y: auto;
 }
