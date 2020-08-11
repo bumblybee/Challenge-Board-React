@@ -11,15 +11,7 @@ const QuestionArea = () => {
 
   return (
     <div className="discussion-area">
-      {showQuestionThread ? (
-        <div className="questions-container">
-          <QuestionList />
-        </div>
-      ) : (
-        <div className="questions-container">
-          <QuestionThread />
-        </div>
-      )}
+      {!showQuestionThread ? <QuestionList /> : <QuestionThread />}
     </div>
   );
 };

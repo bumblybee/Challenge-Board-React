@@ -25,12 +25,13 @@ const QuestionThread = () => {
 
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
-
-      <ul className="questions-thread">
-        {comments.map((comment, index) => (
-          <CommentCard comment={comment} key={index} />
-        ))}
-      </ul>
+      <div className="questions-container">
+        <ul className="questions-thread">
+          {comments.map((comment, index) => (
+            <CommentCard comment={comment} key={index} />
+          ))}
+        </ul>
+      </div>
     </Fragment>
   );
 };

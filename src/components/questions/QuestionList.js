@@ -127,12 +127,13 @@ const QuestionsList = () => {
           </button>
         )}
       </div>
-
-      <ul className="questions-thread">
-        {questions.map((question, index) => (
-          <QuestionCard question={question} key={index} />
-        ))}
-      </ul>
+      <div className="questions-container">
+        <ul className="questions-thread">
+          {questions.map((question, index) => (
+            <QuestionCard question={question} key={index} />
+          ))}
+        </ul>
+      </div>
     </Fragment>
   );
 };
