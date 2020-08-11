@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const QuestionCard = ({ question }) => {
   const date = question.createdAt.split("T")[0];

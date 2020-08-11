@@ -16,7 +16,7 @@ const QuestionsList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState({
-    username: "Sara London",
+    username: "Bob Jones",
     question: "",
     questionDetails: "",
     isAnswered: false,
@@ -30,6 +30,7 @@ const QuestionsList = () => {
     e.preventDefault();
 
     const data = {
+      threadId: 2,
       username: newQuestion.username,
       question: newQuestion.question,
       questionDetails: newQuestion.questionDetails,

@@ -7,17 +7,20 @@ const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
 
+  const [question, setQuestion] = useState({});
   const [comments, setComments] = useState([]);
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
   useEffect(() => {
-    const fetchComments = async () => {
-      const data = await getQuestionThread(1);
-      setComments(data);
+    const fetchThread = async () => {
+      const data = await getQuestionThread(questionId);
+      setQuestion(data.question);
+      setComments(data.comments);
+      console.log(data);
     };
 
-    fetchComments();
+    fetchThread();
   }, []);
 
   return (
@@ -30,6 +33,7 @@ const QuestionThread = () => {
 
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
+      {/* <div className="question">{question}</div> */}
       <div className="questions-container">
         <ul className="questions-thread">
           {comments.map((comment, index) => (
