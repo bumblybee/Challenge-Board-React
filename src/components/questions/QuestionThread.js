@@ -1,14 +1,19 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { getComments } from "../../api/commentsApi";
+import { useHistory, useLocation } from "react-router-dom";
+import { getQuestionThread } from "../../api/questionsApi";
 import CommentCard from "./CommentCard";
 
 const QuestionThread = () => {
   const history = useHistory();
+  const location = useLocation();
+
   const [comments, setComments] = useState([]);
+  const path = location.pathname.split("/");
+  const questionId = path[path.indexOf("question") + 1];
+
   useEffect(() => {
     const fetchComments = async () => {
-      const data = await getComments();
+      const data = await getQuestionThread(1);
       setComments(data);
     };
 
@@ -31,6 +36,13 @@ const QuestionThread = () => {
             <CommentCard comment={comment} key={index} />
           ))}
         </ul>
+        <form>
+          <input
+            className="question-thread-input"
+            type="text"
+            placeholder="Comment"
+          />
+        </form>
       </div>
     </Fragment>
   );

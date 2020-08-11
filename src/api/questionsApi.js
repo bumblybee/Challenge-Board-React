@@ -7,8 +7,13 @@ const getQuestions = async () => {
   return res.data;
 };
 
+const getQuestionThread = async (id) => {
+  const res = await instance.get(`/questions/${id}`);
+  return res.data;
+};
+
 const createQuestion = async (data) => {
   await instance.post("/questions", data);
 };
 
-export { getQuestions, createQuestion };
+export { getQuestions, getQuestionThread, createQuestion };

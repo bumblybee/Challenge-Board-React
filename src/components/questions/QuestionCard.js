@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 const QuestionCard = ({ question }) => {
   const date = question.createdAt.split("T")[0];
@@ -23,7 +23,7 @@ const QuestionCard = ({ question }) => {
         </div>
         {/* TODO: link route to thread ID  */}
         <div className="view-thread">
-          <Link to="/">View Thread</Link>
+          <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
         </div>
       </div>
     </li>
