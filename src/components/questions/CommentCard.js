@@ -8,15 +8,15 @@ const QuestionCard = ({ comment }) => {
   return (
     <li className="comment-card" style={{ marginBottom: "2rem" }}>
       <div className="question-header">
-        <div className="name">{comment.username}</div>
+        <div className="name">{comment.user.username}</div>
         <div className="day" style={{ marginRight: "1rem" }}>
           {day}
         </div>
         <div className="time">{time}</div>
-        {comment.chosenAnswer ? <i className="fas fa-bookmark"></i> : ""}
+        {comment.isAnswer ? <i className="fas fa-bookmark"></i> : ""}
       </div>
       <div className="question-body">
-        <p>{comment.comment}</p>
+        <p>{comment.body}</p>
       </div>
     </li>
   );

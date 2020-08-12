@@ -16,4 +16,8 @@ const createQuestion = async (data) => {
   await instance.post("/questions", data);
 };
 
-export { getQuestions, getQuestionThread, createQuestion };
+const createComment = async (id, comment) => {
+  await instance.post(`/questions/${id}`, comment);
+};
+
+export { getQuestions, getQuestionThread, createQuestion, createComment };

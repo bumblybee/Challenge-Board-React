@@ -41,7 +41,7 @@ h1 {
   margin: 0;
 }
 
-button,
+button:not(.submit-comment),
 .discord-signup-button {
   margin-top: 1rem;
   background: #6271c0;

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { getQuestionThread } from "../../api/questionsApi";
+import { getQuestionThread, createComment } from "../../api/questionsApi";
 import CommentCard from "./CommentCard";
 
 //TODO: Get rid of CSS and add Styled Components
@@ -11,7 +11,7 @@ const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState({ body: "", isAnswered: false });
 
   const [date, setDate] = useState("");
   const path = location.pathname.split("/");
@@ -21,16 +21,20 @@ const QuestionThread = () => {
     const fetchThread = async () => {
       const data = await getQuestionThread(questionId);
       setQuestion(data.question);
-      setComments(data.comments);
+      setComments(data.question.comments);
       setUserName(data.question.user.username);
       setDate(data.question.createdAt.split("T")[0]);
+      console.log(data);
     };
 
     fetchThread();
   }, [questionId]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await createComment(questionId, newComment);
+
+    setNewComment({ ...newComment, body: "" });
   };
 
   return (
@@ -76,15 +80,35 @@ const QuestionThread = () => {
           }}
         >
           <input
-            onChange={(e) => setNewComment(e.target.value)}
-            value={newComment}
-            style={{ background: "#18191B", border: "none" }}
+            onChange={(e) =>
+              setNewComment({
+                ...newComment,
+                body: e.target.value,
+              })
+            }
+            value={newComment.body}
+            style={{
+              background: "#18191B",
+              border: "none",
+              color: "#fff",
+              width: "80%",
+            }}
             className="question-thread-input"
             type="text"
             placeholder="Comment"
           />
 
-          <i style={{ marginLeft: "auto" }} className="fas fa-paper-plane"></i>
+          <button
+            className="submit-comment"
+            style={{
+              marginLeft: "auto",
+              border: "none",
+              background: "#18191B",
+            }}
+            type="submit"
+          >
+            <i className="fas fa-paper-plane"></i>
+          </button>
         </form>
       </div>
     </Fragment>
