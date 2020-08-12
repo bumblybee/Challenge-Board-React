@@ -7,12 +7,12 @@ const QuestionCard = ({ question }) => {
   return (
     <li className="question-card">
       <div className="question-header">
-        <div className="name">{question.username}</div>
+        <div className="name">{question.user.username}</div>
         <div className="created-at">{date}</div>
         {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
       </div>
       <div className="question-body">
-        <p>{question.question}</p>
+        <p>{question.title}</p>
       </div>
       <div className="question-footer">
         <div className="comment-count">

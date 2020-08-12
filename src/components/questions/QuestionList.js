@@ -16,12 +16,9 @@ const QuestionsList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState({
-    username: "Bob Jones",
-    question: "",
-    questionDetails: "",
+    title: "",
+    body: "",
     isAnswered: false,
-    commentCount: 0,
-    createdAt: "2020-08-07T14:07:47.988-05",
   });
 
   // TODO: dynamic data from server
@@ -30,12 +27,9 @@ const QuestionsList = () => {
     e.preventDefault();
 
     const data = {
-      username: newQuestion.username,
-      question: newQuestion.question,
-      questionDetails: newQuestion.questionDetails,
+      title: newQuestion.title,
+      body: newQuestion.body,
       isAnswered: newQuestion.isAnswered,
-      commentCount: newQuestion.commentCount,
-      createdAt: newQuestion.createdAt,
     };
 
     setIsOpen(!isOpen);
@@ -54,8 +48,9 @@ const QuestionsList = () => {
   };
 
   useEffect(() => {
-    getQuestions().then((data) => setQuestions(data));
-    //Pass newQuestion into useEffect dependency so that list is re-rendered when a new question is submitted
+    getQuestions().then((data) => {
+      setQuestions(data);
+    });
   }, [newQuestion]);
 
   return (
@@ -72,10 +67,10 @@ const QuestionsList = () => {
                 onChange={(e) =>
                   setNewQuestion({
                     ...newQuestion,
-                    question: e.target.value,
+                    title: e.target.value,
                   })
                 }
-                value={newQuestion.question}
+                value={newQuestion.title}
                 id="question-input"
                 name="question"
                 type="text"
@@ -87,10 +82,10 @@ const QuestionsList = () => {
                 onChange={(e) =>
                   setNewQuestion({
                     ...newQuestion,
-                    questionDetails: e.target.value,
+                    body: e.target.value,
                   })
                 }
-                value={newQuestion.questionDetails}
+                value={newQuestion.body}
                 id="question-details"
                 name="question-details"
                 rows="8"

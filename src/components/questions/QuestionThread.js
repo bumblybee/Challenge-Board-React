@@ -33,9 +33,12 @@ const QuestionThread = () => {
 
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
-      <div className="question">{question}</div>
+
       <div className="questions-container">
-        <ul className="questions-thread">
+        <div className="question" style={{ backgroundColor: "#3a3c42" }}>
+          {question}
+        </div>
+        <ul className="comments-thread" style={{ backgroundColor: "#202225" }}>
           {comments.map((comment, index) => (
             <CommentCard comment={comment} key={index} />
           ))}
