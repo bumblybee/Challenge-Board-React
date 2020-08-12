@@ -3,12 +3,17 @@ import { useHistory, useLocation } from "react-router-dom";
 import { getQuestionThread } from "../../api/questionsApi";
 import CommentCard from "./CommentCard";
 
+//TODO: Get rid of CSS and add Styled Components
 const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const [question, setQuestion] = useState();
+  const [question, setQuestion] = useState({});
+  const [username, setUserName] = useState("");
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+
+  const [date, setDate] = useState("");
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
@@ -17,11 +22,16 @@ const QuestionThread = () => {
       const data = await getQuestionThread(questionId);
       setQuestion(data.question);
       setComments(data.comments);
-      console.log(data);
+      setUserName(data.question.user.username);
+      setDate(data.question.createdAt.split("T")[0]);
     };
 
     fetchThread();
-  }, []);
+  }, [questionId]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <Fragment>
@@ -34,21 +44,47 @@ const QuestionThread = () => {
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
 
-      <div className="questions-container">
-        <div className="question" style={{ backgroundColor: "#3a3c42" }}>
-          {question}
+      <div className="comments-container">
+        <div
+          className="question"
+          style={{ background: "#3a3c42", padding: "1rem" }}
+        >
+          <div className="question-header">
+            <div className="name">{username}</div>
+            <div className="created-at">{date}</div>
+            {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
+          </div>
+          <div className="question-body">
+            <div style={{ marginBottom: "1rem" }}>{question.title}</div>
+            <div>{question.body}</div>
+          </div>
         </div>
-        <ul className="comments-thread" style={{ backgroundColor: "#202225" }}>
+        <ul
+          className="comments-thread"
+          style={{ backgroundColor: "#202225", padding: "1rem" }}
+        >
           {comments.map((comment, index) => (
             <CommentCard comment={comment} key={index} />
           ))}
         </ul>
-        <form>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            background: "#18191B",
+            display: "flex",
+            padding: "1rem",
+          }}
+        >
           <input
+            onChange={(e) => setNewComment(e.target.value)}
+            value={newComment}
+            style={{ background: "#18191B", border: "none" }}
             className="question-thread-input"
             type="text"
             placeholder="Comment"
           />
+
+          <i style={{ marginLeft: "auto" }} className="fas fa-paper-plane"></i>
         </form>
       </div>
     </Fragment>

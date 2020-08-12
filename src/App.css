@@ -316,21 +316,25 @@ iframe {
   margin-top: 1.5rem;
 }
 
-.questions-container {
+.questions-container,
+.comments-container {
   overflow-y: auto;
 }
 
-.questions-container::-webkit-scrollbar {
+.questions-container::-webkit-scrollbar,
+.comments-container::-webkit-scrollbar {
   width: 1.15rem;
 }
 
-.questions-container::-webkit-scrollbar-track {
+.questions-container::-webkit-scrollbar-track,
+.comments-container::-webkit-scrollbar-track {
   background: #18191b;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
 }
 
-.questions-container::-webkit-scrollbar-thumb {
+.questions-container::-webkit-scrollbar-thumb,
+.comments-container::-webkit-scrollbar-thumb {
   background-color: var(--card-background);
   border: 3px solid transparent;
   border-radius: 10px;
@@ -403,6 +407,10 @@ iframe {
   font-weight: bold;
 }
 
+.comments-container {
+  border-radius: 6px;
+}
+
 @media all and (max-width: 1540px) {
   iframe {
     height: 395px;
@@ -456,7 +464,8 @@ iframe {
     padding: 3rem 0.5rem 0;
   }
 
-  .questions-container::-webkit-scrollbar {
+  .questions-container::-webkit-scrollbar,
+  .comments-container::-webkit-scrollbar {
     width: 0px;
   }
 }
