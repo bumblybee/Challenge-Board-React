@@ -12,6 +12,7 @@ const QuestionThread = () => {
   const [username, setUserName] = useState("");
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ body: "", isAnswered: false });
+  const [submitted, setIsSubmitted] = useState(false);
 
   const [date, setDate] = useState("");
   const path = location.pathname.split("/");
@@ -24,16 +25,15 @@ const QuestionThread = () => {
       setComments(data.question.comments);
       setUserName(data.question.user.username);
       setDate(data.question.createdAt.split("T")[0]);
-      console.log(data);
     };
 
     fetchThread();
-  }, [questionId]);
+  }, [questionId, submitted]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createComment(questionId, newComment);
-
+    setIsSubmitted(true);
     setNewComment({ ...newComment, body: "" });
   };
 
