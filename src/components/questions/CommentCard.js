@@ -6,7 +6,7 @@ const QuestionCard = ({ comment }) => {
   let time = date[1].split(".")[0].slice(0, date.length - 5);
 
   return (
-    <li className="comment-card" style={{ marginBottom: "2rem" }}>
+    <li className="comment-card" style={{ padding: "1rem" }}>
       <div className="question-header">
         <div className="name">{comment.user.username}</div>
         <div className="day" style={{ marginRight: "1rem" }}>

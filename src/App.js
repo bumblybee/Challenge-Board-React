@@ -6,7 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 // import { checkLogin } from "./api/loginApi";
-import "./App.css";
+import "./styles/App.css";
 import { UserContext } from "./context/UserContext";
 import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";

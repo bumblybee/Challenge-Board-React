@@ -1,20 +1,23 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+
+import TextareaAutosize from "react-autosize-textarea";
+
 import { getQuestionThread, createComment } from "../../api/questionsApi";
 import CommentCard from "./CommentCard";
 
 //TODO: Get rid of CSS and add Styled Components
 const QuestionThread = () => {
-  const history = useHistory();
-  const location = useLocation();
-
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ body: "", isAnswered: false });
-  const [submitted, setIsSubmitted] = useState(false);
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [date, setDate] = useState("");
+
+  const history = useHistory();
+  const location = useLocation();
+
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
@@ -28,11 +31,12 @@ const QuestionThread = () => {
     };
 
     fetchThread();
-  }, [questionId, submitted]);
+  }, [questionId, isSubmitted]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await createComment(questionId, newComment);
+    //Set isSubmitted to true to call api again and get comments
     setIsSubmitted(true);
     setNewComment({ ...newComment, body: "" });
   };
@@ -59,16 +63,17 @@ const QuestionThread = () => {
             {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
           </div>
           <div className="question-body">
-            <div style={{ marginBottom: "1rem" }}>{question.title}</div>
-            <div>{question.body}</div>
+            <div style={{ marginBottom: "1rem", fontWeight: "500" }}>
+              {question.title}
+            </div>
+            <div style={{ color: "#dcddde", fontWeight: "300" }}>
+              {question.body}
+            </div>
           </div>
         </div>
       </div>
       <div className="comments-container">
-        <ul
-          className="comments-thread"
-          style={{ backgroundColor: "#202225", padding: "1rem" }}
-        >
+        <ul className="comments-thread" style={{ backgroundColor: "#202225" }}>
           {comments.map((comment, index) => (
             <CommentCard comment={comment} key={index} />
           ))}
@@ -81,7 +86,7 @@ const QuestionThread = () => {
             padding: "1rem",
           }}
         >
-          <input
+          <TextareaAutosize
             onChange={(e) =>
               setNewComment({
                 ...newComment,
@@ -92,12 +97,16 @@ const QuestionThread = () => {
             style={{
               background: "#18191B",
               border: "none",
+              outline: "none",
               color: "#fff",
               width: "80%",
+              fontSize: "1rem",
+              fontFamily: "Arial",
+              resize: "none",
             }}
             className="question-thread-input"
-            type="text"
             placeholder="Comment"
+            rows={1}
           />
 
           <button

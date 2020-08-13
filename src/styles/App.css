@@ -341,6 +341,14 @@ iframe {
   background-clip: content-box;
 }
 
+/* Comment input div, add placeholder */
+[contenteditable="true"]:empty:before {
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block;
+  color: var(--tertiary-text);
+}
+
 .questions-thread {
   display: flex;
   flex-direction: column;
