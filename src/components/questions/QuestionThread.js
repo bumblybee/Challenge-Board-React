@@ -48,9 +48,9 @@ const QuestionThread = () => {
         <button onClick={() => history.push("/challenge")}>Back</button>
       </div>
 
-      <div className="comments-container">
+      <div className="thread-container">
         <div
-          className="question"
+          className="thread-question"
           style={{ background: "#3a3c42", padding: "1rem" }}
         >
           <div className="question-header">
@@ -63,6 +63,8 @@ const QuestionThread = () => {
             <div>{question.body}</div>
           </div>
         </div>
+      </div>
+      <div className="comments-container">
         <ul
           className="comments-thread"
           style={{ backgroundColor: "#202225", padding: "1rem" }}
