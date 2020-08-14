@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../context/UserContext";
+
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
 
@@ -15,14 +16,21 @@ const QuestionsList = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
     isAnswered: false,
   });
 
-  // TODO: dynamic data from server
   //TODO: create reusable component for form
+
+  useEffect(() => {
+    getQuestions().then((data) => {
+      setQuestions(data);
+    });
+  }, [isSubmitted]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,7 +43,7 @@ const QuestionsList = () => {
     setIsOpen(!isOpen);
     user && (await createQuestion(data));
 
-    // setQuestions([data, ...questions]);
+    setIsSubmitted(true);
 
     //clear input after submit
     setNewQuestion({
@@ -46,12 +54,6 @@ const QuestionsList = () => {
 
     history.push("/challenge");
   };
-
-  useEffect(() => {
-    getQuestions().then((data) => {
-      setQuestions(data);
-    });
-  }, [newQuestion]);
 
   return (
     <Fragment>

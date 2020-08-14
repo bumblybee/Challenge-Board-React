@@ -13,6 +13,7 @@ const QuestionThread = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState({ body: "", isAnswered: false });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  //TODO: This is silly - bring in Moment JS
   const [date, setDate] = useState("");
 
   const history = useHistory();
@@ -38,6 +39,7 @@ const QuestionThread = () => {
     await createComment(questionId, newComment);
     //Set isSubmitted to true to call api again and get comments
     setIsSubmitted(true);
+    //Clear input
     setNewComment({ ...newComment, body: "" });
   };
 
@@ -73,7 +75,10 @@ const QuestionThread = () => {
         </div>
       </div>
       <div className="comments-container">
-        <ul className="comments-thread" style={{ backgroundColor: "#202225" }}>
+        <ul
+          className="comments-thread"
+          style={{ backgroundColor: "#202225", overflow: "auto" }}
+        >
           {comments.map((comment, index) => (
             <CommentCard comment={comment} key={index} />
           ))}

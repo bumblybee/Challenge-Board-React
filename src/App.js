@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,8 +6,12 @@ import {
   Redirect,
 } from "react-router-dom";
 // import { checkLogin } from "./api/loginApi";
-import "./styles/App.css";
+
 import { UserContext } from "./context/UserContext";
+import { checkLogin } from "./api/loginApi";
+
+import "./styles/App.css";
+
 import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";
 import Signup from "./pages/Signup";
@@ -21,6 +25,15 @@ function App() {
 
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+
+  useEffect(() => {
+    const checkIfLoggedIn = async () => {
+      const auth = await checkLogin();
+      auth && setUser(auth);
+      console.log(auth);
+    };
+    checkIfLoggedIn();
+  }, []);
 
   return (
     <Router>

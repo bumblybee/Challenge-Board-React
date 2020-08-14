@@ -1,6 +1,7 @@
 import React from "react";
 
 const QuestionCard = ({ comment }) => {
+  //TODO: MomentJS
   const date = comment.createdAt.split("T");
   const day = date[0];
   let time = date[1].split(".")[0].slice(0, date.length - 5);
