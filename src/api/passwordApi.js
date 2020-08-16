@@ -1,13 +1,13 @@
-import instance from "./baseApi";
+import { post } from "./baseApi";
 
 const triggerPasswordReset = async (email) => {
-  return await instance.post(`/users/password-reset`, {
+  return await post(`/users/password-reset`, {
     email,
   });
 };
 
 const passwordReset = async (token, newPassword) => {
-  return await instance.post(`/users/password-reset/${token}`, {
+  return await post(`/users/password-reset/${token}`, {
     password: newPassword,
   });
 };

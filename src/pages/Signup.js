@@ -1,10 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 import signupUser from "../api/signupApi";
 import { getDiscordUrl } from "../api/discordApi";
+import Error from "../components/Error";
+
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
+  const [error, setError] = useState(undefined);
   const [user, setUser] = useState({ username: "", email: "", password: "" });
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const history = useHistory();
@@ -17,7 +21,7 @@ const Signup = () => {
     fetchDiscordUrl();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       username: user.username,
@@ -25,8 +29,15 @@ const Signup = () => {
       password: user.password,
     };
 
-    signupUser(data);
-    history.push("/login");
+    const newUser = await signupUser(data);
+    if (newUser.error) {
+      setError(newUser.error);
+      setUser({ username: "", email: "", password: "" });
+      console.log(newUser.error);
+    } else {
+      newUser && history.push("/login");
+    }
+
     //TODO: handle unsuccessful signup
     //TODO: Login user on signup and push to /challenge
   };
@@ -37,6 +48,11 @@ const Signup = () => {
         <h1>Sign Up</h1>
         <p>Sign up with your email</p>
       </div>
+      {error && (
+        <Error>
+          <div>{error}</div>
+        </Error>
+      )}
       <div className="signup-form-body">
         <form id="submit-form" onSubmit={handleSubmit}>
           <div className="input-area">
@@ -79,12 +95,12 @@ const Signup = () => {
           <button type="submit">Submit</button>
           {discordUrl && (
             <Fragment>
-              <p>or sign up with Discord</p>
               <a className="discord-signup-button" href={discordUrl}>
                 <i className="fab fa-discord fa-lg"></i>
               </a>
             </Fragment>
           )}
+          <Link to="/login">Already have an account?</Link>
         </form>
       </div>
     </div>

@@ -1,7 +1,8 @@
-import instance from "./baseApi";
+import { post } from "./baseApi";
 
 const signupUser = async (data) => {
-  await instance.post("/users/create", data);
+  const res = await post("/users/create", data);
+  return res;
 };
 
 export default signupUser;

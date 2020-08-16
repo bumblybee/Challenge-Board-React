@@ -5,9 +5,9 @@ import { discordSignup } from "../api/discordApi";
 import { Redirect } from "react-router-dom";
 
 const DiscordLogin = () => {
-  const [loginError, setLoginError] = useState(undefined);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  //TODO: handle user trying to login with discord again after already logged in with discord
   useEffect(() => {
     const state = getParameterByName("state");
     const code = getParameterByName("code");
@@ -21,17 +21,7 @@ const DiscordLogin = () => {
   }, []);
 
   return (
-    <div>
-      {loggedIn ? <Redirect to="/challenge" /> : <span> Loading... </span>}
-
-      {loginError ? (
-        <div>
-          Login Error: <pre>{JSON.stringify(loginError)}</pre>
-        </div>
-      ) : (
-        <span />
-      )}
-    </div>
+    <div>{loggedIn ? <Redirect to="/" /> : <span> Loading... </span>}</div>
   );
 };
 

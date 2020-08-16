@@ -86,7 +86,7 @@ i:hover {
 .login-form-content {
   background: var(--secondary-background);
   width: 30%;
-  margin: 11% auto;
+  margin: 10% auto;
   padding: 2rem;
   box-shadow: 0 2px 4.1px -43px rgba(0, 0, 0, 0.101),
     0 4.7px 13.8px -43px rgba(0, 0, 0, 0.129),
@@ -170,9 +170,10 @@ i:hover {
   margin-top: 1rem;
 }
 
-.login-form-body a {
+.login-form-body a,
+.signup-form-body a {
   color: #809bff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-align: center;

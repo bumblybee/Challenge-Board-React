@@ -5,12 +5,11 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-// import { checkLogin } from "./api/loginApi";
+
+import "./styles/App.css";
 
 import { UserContext } from "./context/UserContext";
 import { checkLogin } from "./api/loginApi";
-
-import "./styles/App.css";
 
 import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";
@@ -21,8 +20,6 @@ import ResetPasswordRequest from "./pages/ResetPasswordRequest";
 import ResetPassword from "./pages/ResetPassword";
 
 function App() {
-  //TODO: password-reset route
-
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
