@@ -112,6 +112,7 @@ const QuestionThread = () => {
             className="question-thread-input"
             placeholder="Comment"
             rows={1}
+            required
           />
 
           <button

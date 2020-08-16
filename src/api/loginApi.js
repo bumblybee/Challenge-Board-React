@@ -1,9 +1,10 @@
 import instance from "./baseApi";
+import handleErrors from "../errorHandlers/loginError";
 
 const loginUser = async (details) => {
-  const res = await instance.post("/users/login", details);
-
-  return res;
+  return await instance
+    .post("/users/login", details)
+    .catch((err) => handleErrors(err.response));
 };
 
 const checkLogin = async () => {

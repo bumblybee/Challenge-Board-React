@@ -92,6 +92,7 @@ const QuestionsList = () => {
                 name="question-details"
                 rows="8"
                 placeholder="More Details"
+                required
               ></textarea>
               <div className="modal-footer">
                 <a className="close-modal" onClick={() => setIsOpen(!isOpen)}>
