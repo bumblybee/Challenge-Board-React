@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import signupUser from "../api/signupApi";
 import { getDiscordUrl } from "../api/discordApi";
-import Error from "../components/Error";
+import Error from "../components/errors/Error";
 
 import { useHistory } from "react-router-dom";
 

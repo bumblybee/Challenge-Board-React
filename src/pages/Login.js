@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/loginApi";
-import Error from "../components/Error";
+import Error from "../components/errors/Error";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
