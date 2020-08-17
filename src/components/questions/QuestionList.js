@@ -13,7 +13,6 @@ const QuestionsList = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
-
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -95,9 +94,12 @@ const QuestionsList = () => {
                 required
               ></textarea>
               <div className="modal-footer">
-                <a className="close-modal" onClick={() => setIsOpen(!isOpen)}>
+                <button
+                  className="close-modal"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
                   Cancel
-                </a>
+                </button>
                 <button id="post-question-button" type="submit">
                   Post
                 </button>

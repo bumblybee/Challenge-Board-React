@@ -28,13 +28,13 @@ const SubmissionArea = () => {
               ></input>
               <textarea rows="5" placeholder="Comments (optional)"></textarea>
               <div className="modal-footer">
-                <a
+                <button
                   className="close-modal"
                   href="#"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   Cancel
-                </a>
+                </button>
                 <button
                   type="submit"
                   id="submit-project-button"
@@ -62,13 +62,7 @@ const SubmissionArea = () => {
             </p>
           </div>
           <div className="modal-footer">
-            <button
-              className="close-modal"
-              href="#"
-              onClick={() => setIsSubmitted(false)}
-            >
-              Close
-            </button>
+            <button onClick={() => setIsSubmitted(false)}>Close</button>
           </div>
         </Modal>
       )}
@@ -76,6 +70,7 @@ const SubmissionArea = () => {
       <h1>Submit Your Project</h1>
       <p>When you're ready, submit your Github link here for review.</p>
       <button
+        // TODO: add api call for project submission
         onClick={() => setIsOpen(!isOpen)}
         className="modal-button"
         id="submit-button"

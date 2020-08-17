@@ -129,12 +129,13 @@ i:hover {
   align-items: flex-end;
 }
 
-.modal-footer a {
+.modal-footer .close-modal {
   color: var(--primary-text);
-  margin: 0 1.5rem 0.5rem 0;
+  margin: 0.5rem 0.5rem 0 0;
+  background: transparent;
 }
 
-.modal-footer a:hover {
+.modal-footer .close-modal:hover {
   cursor: pointer;
 }
 
