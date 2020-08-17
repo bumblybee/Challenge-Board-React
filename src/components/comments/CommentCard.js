@@ -15,7 +15,7 @@ const QuestionCard = ({ comment }) => {
   };
 
   return (
-    <li className="comment-card" style={{ padding: "1rem", color: "#dcddde" }}>
+    <li className="comment-card" style={{ color: "#dcddde", padding: "1rem" }}>
       <div className="question-header">
         <div className="name">{comment.user.username}</div>
         <div style={{ marginRight: "1rem", color: "#7d8088" }}>{time}</div>

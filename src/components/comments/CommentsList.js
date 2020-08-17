@@ -13,6 +13,7 @@ const CommentsList = ({ comments, questionId, renderListOnNewComment }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     await createComment(questionId, newComment);
     renderListOnNewComment(true);
 

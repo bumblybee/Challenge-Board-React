@@ -104,19 +104,21 @@ const QuestionThread = () => {
           </div>
         </div>
 
-        {comments.map((comment) => {
+        {comments.map((comment, index) => {
           if (comment.isAnswer) {
             return (
-              <div className="chosenAnswer">
+              <div className="chosenAnswer" key={index}>
                 <i
                   className="fas fa-bookmark fa-lg"
                   style={{
                     float: "left",
-                    margin: "2rem 1rem 0 0.5rem",
+                    margin: "2.4rem 0 0 0.5rem",
                     color: "#6271c0",
                   }}
                 ></i>
-                <CommentCard comment={comment} />
+                <div style={{ marginLeft: "1.5rem", width: "92%" }}>
+                  <CommentCard comment={comment} />
+                </div>
               </div>
             );
           }
