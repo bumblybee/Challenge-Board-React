@@ -1,8 +1,9 @@
 import React from "react";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const QuestionCard = ({ question }) => {
-  const date = question.createdAt.split("T")[0];
+  const date = moment(question.createdAt).format("L");
 
   return (
     <li className="question-card">

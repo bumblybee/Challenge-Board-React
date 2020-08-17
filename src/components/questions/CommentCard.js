@@ -1,19 +1,23 @@
 import React from "react";
+import moment from "moment";
 
 const QuestionCard = ({ comment }) => {
   //TODO: MomentJS
-  const date = comment.createdAt.split("T");
-  const day = date[0];
-  let time = date[1].split(".")[0].slice(0, date.length - 5);
+  const date = moment(comment.createdAt).format("L");
+
+  const time = moment(comment.createdAt).format("LT");
 
   return (
-    <li className="comment-card" style={{ padding: "1rem" }}>
+    <li className="comment-card" style={{ padding: "1rem", color: "#dcddde" }}>
       <div className="question-header">
         <div className="name">{comment.user.username}</div>
-        <div className="day" style={{ marginRight: "1rem" }}>
-          {day}
+        <div className="time" style={{ marginRight: "1rem", color: "#7d8088" }}>
+          {time}
         </div>
-        <div className="time">{time}</div>
+        <div className="day" style={{ color: "#7d8088" }}>
+          {date}
+        </div>
+
         {comment.isAnswer ? <i className="fas fa-bookmark"></i> : ""}
       </div>
       <div className="question-body">

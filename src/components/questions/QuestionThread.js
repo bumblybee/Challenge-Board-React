@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
+import moment from "moment";
 import { useHistory, useLocation } from "react-router-dom";
 
 import TextareaAutosize from "react-autosize-textarea";
@@ -28,7 +29,9 @@ const QuestionThread = () => {
       setQuestion(data.question);
       setComments(data.question.comments);
       setUserName(data.question.user.username);
-      setDate(data.question.createdAt.split("T")[0]);
+
+      setDate(moment(data.question.createdAt).format("L"));
+      setIsSubmitted(false);
     };
 
     fetchThread();
@@ -61,11 +64,20 @@ const QuestionThread = () => {
         >
           <div className="question-header">
             <div className="name">{username}</div>
-            <div className="created-at">{date}</div>
+            <div className="created-at" style={{ color: "#7d8088" }}>
+              {date}
+            </div>
+
             {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
           </div>
           <div className="question-body">
-            <div style={{ marginBottom: "1rem", fontWeight: "500" }}>
+            <div
+              style={{
+                marginBottom: "1rem",
+                fontWeight: "500",
+                color: "#fff",
+              }}
+            >
               {question.title}
             </div>
             <div style={{ color: "#dcddde", fontWeight: "300" }}>
