@@ -1,21 +1,24 @@
 import React, { Fragment, useState, useEffect } from "react";
 import moment from "moment";
+import Truncate from "react-truncate";
+import { getQuestionThread } from "../../api/questionsApi";
 import { useHistory, useLocation } from "react-router-dom";
 
-import TextareaAutosize from "react-autosize-textarea";
+import CommentsList from "../comments/CommentsList";
+import CommentCard from "../comments/CommentCard";
+import { StyledSpan } from "../../styles/styledComponents";
 
-import { getQuestionThread, createComment } from "../../api/questionsApi";
-import CommentCard from "./CommentCard";
+//TODO: Break out comments list into component
 
-//TODO: Get rid of CSS and add Styled Components
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState({ body: "", isAnswered: false });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  //TODO: This is silly - bring in Moment JS
   const [date, setDate] = useState("");
+
+  const [comments, setComments] = useState([]);
+  const [renderList, setRenderList] = useState(false);
+
+  const [isTruncated, setIsTruncated] = useState(true);
 
   const history = useHistory();
   const location = useLocation();
@@ -31,19 +34,17 @@ const QuestionThread = () => {
       setUserName(data.question.user.username);
 
       setDate(moment(data.question.createdAt).format("L"));
-      setIsSubmitted(false);
     };
 
     fetchThread();
-  }, [questionId, isSubmitted]);
+  }, [questionId, renderList]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await createComment(questionId, newComment);
-    //Set isSubmitted to true to call api again and get comments
-    setIsSubmitted(true);
-    //Clear input
-    setNewComment({ ...newComment, body: "" });
+  const renderListOnNewComment = (status) => {
+    setRenderList(status);
+  };
+
+  const handleTruncate = () => {
+    setIsTruncated(!isTruncated);
   };
 
   return (
@@ -58,6 +59,7 @@ const QuestionThread = () => {
       </div>
 
       <div className="thread-container">
+        {/* TODO: isTeacher show menu dots */}
         <div
           className="thread-question"
           style={{ background: "#3a3c42", padding: "1rem" }}
@@ -80,66 +82,51 @@ const QuestionThread = () => {
             >
               {question.title}
             </div>
-            <div style={{ color: "#dcddde", fontWeight: "300" }}>
-              {question.body}
-            </div>
+            {isTruncated ? (
+              <Truncate
+                lines={3}
+                ellipsis={
+                  <span>
+                    ... <StyledSpan onClick={handleTruncate}>more</StyledSpan>
+                  </span>
+                }
+                trimWhitespace="true"
+                style={{ color: "#dcddde", fontWeight: "300" }}
+              >
+                {question.body}
+              </Truncate>
+            ) : (
+              <div style={{ color: "#dcddde", fontWeight: "300" }}>
+                {question.body}{" "}
+                <StyledSpan onClick={handleTruncate}>less</StyledSpan>
+              </div>
+            )}
           </div>
         </div>
-      </div>
-      <div className="comments-container">
-        <ul
-          className="comments-thread"
-          style={{ backgroundColor: "#202225", overflow: "auto" }}
-        >
-          {comments.map((comment, index) => (
-            <CommentCard comment={comment} key={index} />
-          ))}
-        </ul>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            background: "#18191B",
-            display: "flex",
-            padding: "1rem",
-          }}
-        >
-          <TextareaAutosize
-            onChange={(e) =>
-              setNewComment({
-                ...newComment,
-                body: e.target.value,
-              })
-            }
-            value={newComment.body}
-            style={{
-              background: "#18191B",
-              border: "none",
-              outline: "none",
-              color: "#fff",
-              width: "80%",
-              fontSize: "1rem",
-              fontFamily: "Arial",
-              resize: "none",
-            }}
-            className="question-thread-input"
-            placeholder="Comment"
-            rows={1}
-            required
-          />
 
-          <button
-            className="submit-comment"
-            style={{
-              marginLeft: "auto",
-              border: "none",
-              background: "#18191B",
-            }}
-            type="submit"
-          >
-            <i className="fas fa-paper-plane"></i>
-          </button>
-        </form>
+        {comments.map((comment) => {
+          if (comment.isAnswer) {
+            return (
+              <div className="chosenAnswer">
+                <i
+                  className="fas fa-bookmark fa-lg"
+                  style={{
+                    float: "left",
+                    margin: "2rem 1rem 0 0.5rem",
+                    color: "#6271c0",
+                  }}
+                ></i>
+                <CommentCard comment={comment} />
+              </div>
+            );
+          }
+        })}
       </div>
+      <CommentsList
+        comments={comments}
+        questionId={questionId}
+        renderListOnNewComment={renderListOnNewComment}
+      />
     </Fragment>
   );
 };
