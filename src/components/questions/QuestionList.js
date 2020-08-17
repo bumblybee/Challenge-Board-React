@@ -39,14 +39,15 @@ const QuestionsList = () => {
       isAnswered: newQuestion.isAnswered,
     };
 
+    // close modal after submit
     setIsOpen(!isOpen);
     user && (await createQuestion(data));
 
+    //set isSubmitted so list repopulates
     setIsSubmitted(true);
 
     //clear input after submit
     setNewQuestion({
-      ...newQuestion,
       question: "",
       questionDetails: "",
     });
