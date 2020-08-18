@@ -347,13 +347,13 @@ iframe {
   background-clip: content-box;
 }
 
-/* Comment input div, add placeholder */
+/* Comment input div, add placeholder
 [contenteditable="true"]:empty:before {
   content: attr(placeholder);
   pointer-events: none;
   display: block;
   color: var(--tertiary-text);
-}
+} */
 
 .questions-thread {
   display: flex;
@@ -523,7 +523,7 @@ iframe {
   }
 
   .challenge-submission-area p {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
   }
 
   .heading {
@@ -542,11 +542,5 @@ iframe {
   .discussion-area {
     width: 100%;
     height: 100%;
-  }
-
-  @media all and (max-width: 520px) {
-    .container {
-      width: 100%;
-    }
   }
 }

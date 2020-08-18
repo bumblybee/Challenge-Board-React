@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
   // TODO: links to settings and account pages
+  //TODO: "log in" change to "log out" if checkLoggedIn true
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
