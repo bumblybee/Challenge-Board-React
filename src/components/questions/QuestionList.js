@@ -22,7 +22,7 @@ const QuestionsList = () => {
     isAnswered: false,
   });
 
-  //TODO: create reusable component for form
+  //TODO: wire up isAnswered
 
   useEffect(() => {
     getQuestions().then((data) => {

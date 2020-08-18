@@ -1,8 +1,13 @@
 const errorCodeToMessage = {
   "login.invalidCredentials": "Invalid credentials, please try again.",
-  "signup.invalidEmail": "Email linked to existing account. Please log in.",
-  "signup.invalidUsername":
-    "Username taken. Please try again.",
+  "signup.emailTaken": "Email linked to existing account. Please log in.",
+  "signup.usernameTaken": "Username taken. Please try again.",
+  "signup.invalidEmail": "Email is invalid.",
+};
+
+const handleErrorsArray = (array) => {
+  const errors = array.map(handleErrors);
+  return errors;
 };
 
 const handleErrors = (errorCode) => {
@@ -15,4 +20,4 @@ const handleErrors = (errorCode) => {
   return { Error: "Unexpected error." };
 };
 
-export default handleErrors;
+export { handleErrors, handleErrorsArray };

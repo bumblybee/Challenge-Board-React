@@ -29,11 +29,17 @@ const Signup = () => {
       password: user.password,
     };
 
-    const newUser = await signupUser(data);
+    let newUser = await signupUser(data);
+    if (newUser.length) {
+      newUser = newUser[0];
+    }
+
     if (newUser.error) {
       setError(newUser.error);
       setUser({ username: "", email: "", password: "" });
-      console.log(newUser.error);
+      console.log(newUser);
+    } else if (newUser.errors) {
+      console.log(newUser.errors);
     } else {
       newUser && history.push("/login");
     }
