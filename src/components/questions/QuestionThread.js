@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import moment from "moment";
+import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
 import { getQuestionThread } from "../../api/questionsApi";
 import { useHistory, useLocation } from "react-router-dom";
@@ -22,6 +23,7 @@ const QuestionThread = () => {
 
   const history = useHistory();
   const location = useLocation();
+  const sanitize = DOMPurify.sanitize;
 
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
@@ -80,7 +82,7 @@ const QuestionThread = () => {
                 color: "#fff",
               }}
             >
-              {question.title}
+              {sanitize(question.title)}
             </div>
             {isTruncated ? (
               <Truncate
@@ -93,11 +95,11 @@ const QuestionThread = () => {
                 trimWhitespace="true"
                 style={{ color: "#dcddde", fontWeight: "300" }}
               >
-                {question.body}
+                {sanitize(question.body)}
               </Truncate>
             ) : (
               <div style={{ color: "#dcddde", fontWeight: "300" }}>
-                {question.body}{" "}
+                {sanitize(question.body)}{" "}
                 <StyledSpan onClick={handleTruncate}>less</StyledSpan>
               </div>
             )}

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
 import { StyledSpan } from "../../styles/styledComponents";
 
 const QuestionCard = ({ comment }) => {
-  //TODO: MomentJS
-
+  const sanitize = DOMPurify.sanitize;
   const [isTruncated, setIsTruncated] = useState(true);
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
@@ -34,11 +34,11 @@ const QuestionCard = ({ comment }) => {
             trimWhitespace="true"
             style={{ color: "#dcddde", fontWeight: "300" }}
           >
-            {comment.body}
+            {sanitize(comment.body)}
           </Truncate>
         ) : (
           <div style={{ color: "#dcddde", fontWeight: "300" }}>
-            {comment.body}{" "}
+            {sanitize(comment.body)}{" "}
             <StyledSpan onClick={handleTruncate}>less</StyledSpan>
           </div>
         )}

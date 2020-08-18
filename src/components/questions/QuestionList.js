@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
+import DOMPurify from "dompurify";
 import { useHistory } from "react-router-dom";
-
 import { UserContext } from "../../context/UserContext";
 
 import { createQuestion } from "../../api/questionsApi";
