@@ -239,9 +239,9 @@ i:hover {
 .container {
   width: 80%;
   margin: 3rem auto;
-  /* display: flex; */
+
   height: 900px;
-  /* align-items: stretch; */
+
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 }
@@ -255,13 +255,13 @@ i:hover {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  height: 900px;
+  max-height: 900px;
 }
 
 .challenge-container,
 .submission-container {
   background: var(--secondary-background);
-  padding: 3.3rem;
+  padding: 3.2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.05),
