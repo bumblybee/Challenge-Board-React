@@ -29,19 +29,18 @@ const Signup = () => {
       password: user.password,
     };
 
-    let newUser = await signupUser(data);
-    if (newUser.length) {
-      newUser = newUser[0];
+    let res = await signupUser(data);
+    //if length, returning array of errors from sequelize email validation
+    if (res.length) {
+      res = res[0];
     }
 
-    if (newUser.error) {
-      setError(newUser.error);
+    if (res.error) {
+      setError(res.error);
       setUser({ username: "", email: "", password: "" });
-      console.log(newUser);
-    } else if (newUser.errors) {
-      console.log(newUser.errors);
+      console.log(res);
     } else {
-      newUser && history.push("/login");
+      res && res.push("/login");
     }
 
     //TODO: handle unsuccessful signup
