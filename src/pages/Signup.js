@@ -40,7 +40,7 @@ const Signup = () => {
       setUser({ username: "", email: "", password: "" });
       console.log(res);
     } else {
-      res && res.push("/login");
+      res && history.push("/login");
     }
 
     //TODO: handle unsuccessful signup
