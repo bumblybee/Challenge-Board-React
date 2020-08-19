@@ -1,10 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
 import { getQuestionThread } from "../../api/questionsApi";
 import { useHistory, useLocation } from "react-router-dom";
-
+import { UserContext } from "../../context/UserContext";
 import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import { StyledSpan } from "../../styles/styledComponents";
@@ -24,6 +24,7 @@ const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
   const sanitize = DOMPurify.sanitize;
+  const { user } = useContext(UserContext);
 
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
@@ -61,7 +62,6 @@ const QuestionThread = () => {
       </div>
 
       <div className="thread-container">
-        {/* TODO: isTeacher show menu dots */}
         <div
           className="thread-question"
           style={{ background: "#3a3c42", padding: "1rem" }}
@@ -72,7 +72,13 @@ const QuestionThread = () => {
               {date}
             </div>
 
-            {/* {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""} */}
+            <div className="icons">
+              {!user
+                ? ""
+                : user.role === "Teacher" && (
+                    <i className="fas fa-ellipsis-h fa-lg"></i>
+                  )}
+            </div>
           </div>
           <div className="question-body">
             <div

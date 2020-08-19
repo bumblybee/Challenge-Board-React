@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
 const QuestionCard = ({ question }) => {
-  const [isTeacher, setIsTeacher] = useState(false);
   const date = moment(question.createdAt).format("L");
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
