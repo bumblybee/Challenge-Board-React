@@ -34,10 +34,10 @@ function App() {
 
   return (
     <Router>
-      <div role="main" className="App">
-        <Nav />
-        <Switch>
-          <UserContext.Provider value={userValue}>
+      <UserContext.Provider value={userValue}>
+        <div role="main" className="App">
+          <Nav />
+          <Switch>
             <Route path="/signup">
               <Signup />
             </Route>
@@ -61,9 +61,9 @@ function App() {
             <Route path="/" exact>
               <Redirect to="/challenge" />
             </Route>
-          </UserContext.Provider>
-        </Switch>
-      </div>
+          </Switch>
+        </div>
+      </UserContext.Provider>
     </Router>
   );
 }

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/UserContext";
+
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
   // TODO: links to settings and account pages
   //TODO: "log in" change to "log out" if checkLoggedIn true
+  const { user } = useContext(UserContext);
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
@@ -16,14 +19,24 @@ const UserMenu = ({ handleClose }) => {
         <hr />
         <li className="signup-link">
           {/* Handle close closes user menu */}
-          <Link to="/signup" onClick={() => handleClose(false)}>
-            Sign Up
-          </Link>
+          {!user ? (
+            <Link to="/signup" onClick={() => handleClose(false)}>
+              Sign Up
+            </Link>
+          ) : (
+            ""
+          )}
         </li>
         <li className="login">
-          <Link to="/login" onClick={() => handleClose(false)}>
-            Login
-          </Link>
+          {!user ? (
+            <Link to="/login" onClick={() => handleClose(false)}>
+              Login
+            </Link>
+          ) : (
+            <Link to="/logout" onClick={() => handleClose(false)}>
+              Logout
+            </Link>
+          )}
         </li>
       </ul>
     </div>
