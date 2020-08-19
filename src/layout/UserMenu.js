@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 const UserMenu = ({ handleClose }) => {
   // TODO: links to settings and account pages
   //TODO: "log in" change to "log out" if checkLoggedIn true
-  const { user } = useContext(UserContext);
+
+  const logout = async () => {
+    setUser(null);
+    handleClose(false);
+  };
+
+  const { user, setUser } = useContext(UserContext);
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
@@ -33,7 +39,7 @@ const UserMenu = ({ handleClose }) => {
               Login
             </Link>
           ) : (
-            <Link to="/logout" onClick={() => handleClose(false)}>
+            <Link to="/" onClick={logout}>
               Logout
             </Link>
           )}

@@ -10,4 +10,9 @@ const checkLogin = async () => {
   return res;
 };
 
-export { loginUser, checkLogin };
+const logoutUser = async () => {
+  const res = await instance.get("/users/logout");
+  console.log(res);
+};
+
+export { loginUser, checkLogin, logoutUser };
