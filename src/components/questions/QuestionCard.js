@@ -6,13 +6,14 @@ import { Link } from "react-router-dom";
 const QuestionCard = ({ question }) => {
   const date = moment(question.createdAt).format("L");
   const sanitize = DOMPurify.sanitize;
-  console.log(question);
+
   return (
     <li className="question-card">
       <div className="question-header">
         <div className="name">{question.user.username}</div>
         <div className="created-at">{date}</div>
         {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
+        {/* teacher menu icon <i class="fas fa-ellipsis-h"></i> */}
       </div>
       <div className="question-body">
         <p>{sanitize(question.title)}</p>

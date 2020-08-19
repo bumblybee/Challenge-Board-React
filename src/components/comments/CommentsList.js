@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
 import { createComment } from "../../api/questionsApi";
+import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
 
 const CommentsList = ({ comments, questionId, renderListOnNewComment }) => {
   //TODO: setIsAnswer in teacher view
+
+  const { user } = useContext(UserContext);
   const [isAnswer, setIsAnswer] = useState(false);
   const [newComment, setNewComment] = useState({
     body: "",
@@ -15,14 +18,16 @@ const CommentsList = ({ comments, questionId, renderListOnNewComment }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await createComment(questionId, newComment);
-    renderListOnNewComment(true);
+    if (user) {
+      await createComment(questionId, newComment);
+      renderListOnNewComment(true);
 
-    //Clear input
-    setNewComment({
-      ...newComment,
-      body: "",
-    });
+      //Clear input
+      setNewComment({
+        ...newComment,
+        body: "",
+      });
+    }
   };
 
   return (
@@ -65,9 +70,10 @@ const CommentsList = ({ comments, questionId, renderListOnNewComment }) => {
             resize: "none",
           }}
           className="question-thread-input"
-          placeholder="Comment"
+          placeholder={user ? "Comment" : "Log in to comment"}
           rows={1}
           required
+          disabled={!user ? true : false}
         />
 
         <button
