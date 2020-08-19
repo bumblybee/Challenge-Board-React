@@ -26,8 +26,8 @@ function App() {
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();
-      auth && setUser(auth);
-      console.log(auth);
+      auth && setUser(auth.data.user);
+      console.log(auth.data.user);
     };
     checkIfLoggedIn();
   }, []);
