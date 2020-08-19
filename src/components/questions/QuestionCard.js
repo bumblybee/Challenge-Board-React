@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const QuestionCard = ({ question }) => {
+  const [isTeacher, setIsTeacher] = useState(false);
   const date = moment(question.createdAt).format("L");
   const sanitize = DOMPurify.sanitize;
+  const { user } = useContext(UserContext);
 
   return (
     <li className="question-card">
       <div className="question-header">
         <div className="name">{question.user.username}</div>
         <div className="created-at">{date}</div>
-        {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
-        {/* teacher menu icon <i class="fas fa-ellipsis-h"></i> */}
+        <div className="icons">
+          {question.isAnswered ? (
+            <i
+              className="fas fa-bookmark fa-lg"
+              style={{ marginRight: "2rem" }}
+            ></i>
+          ) : (
+            ""
+          )}
+          {!user
+            ? ""
+            : user.role === "Teacher" && (
+                <i className="fas fa-ellipsis-h fa-md"></i>
+              )}
+        </div>
       </div>
       <div className="question-body">
         <p>{sanitize(question.title)}</p>

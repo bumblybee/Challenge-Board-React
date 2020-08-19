@@ -21,7 +21,7 @@ import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   const [user, setUser] = useState(null);
-  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const userValue = { user, setUser };
 
   useEffect(() => {
     const checkIfLoggedIn = async () => {

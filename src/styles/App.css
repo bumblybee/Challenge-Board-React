@@ -388,7 +388,11 @@ iframe {
   color: var(--tertiary-text);
 }
 
-.fa-bookmark {
+/* .fa-bookmark {
+  margin-left: auto;
+} */
+
+.icons {
   margin-left: auto;
 }
 
