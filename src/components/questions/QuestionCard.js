@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const QuestionCard = ({ question }) => {
   const date = moment(question.createdAt).format("L");
   const sanitize = DOMPurify.sanitize;
+  console.log(question);
   return (
     <li className="question-card">
       <div className="question-header">
@@ -18,8 +19,8 @@ const QuestionCard = ({ question }) => {
       </div>
       <div className="question-footer">
         <div className="comment-count">
-          {question.commentCount}
-          {question.commentCount > 1 || question.commentCount === 0
+          {question.comments.length}
+          {question.comments.length > 1 || question.comments.length === 0
             ? " comments"
             : " comment"}
         </div>

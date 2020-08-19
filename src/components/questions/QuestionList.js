@@ -39,20 +39,24 @@ const QuestionsList = () => {
       isAnswered: newQuestion.isAnswered,
     };
 
-    // close modal after submit
-    setIsOpen(!isOpen);
-    user && (await createQuestion(data));
+    //
 
-    //set isSubmitted so list repopulates
-    setIsSubmitted(true);
+    if (user) {
+      await createQuestion(data);
 
-    //clear input after submit
-    setNewQuestion({
-      question: "",
-      questionDetails: "",
-    });
+      setIsOpen(!isOpen);
 
-    history.push("/challenge");
+      //set isSubmitted so list repopulates
+      setIsSubmitted(true);
+
+      //clear input after submit
+      setNewQuestion({
+        question: "",
+        questionDetails: "",
+      });
+
+      history.push("/challenge");
+    }
   };
 
   return (

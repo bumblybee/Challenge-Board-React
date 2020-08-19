@@ -72,7 +72,7 @@ const QuestionThread = () => {
               {date}
             </div>
 
-            {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""}
+            {/* {question.isAnswered ? <i className="fas fa-bookmark"></i> : ""} */}
           </div>
           <div className="question-body">
             <div
