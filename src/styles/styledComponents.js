@@ -18,4 +18,17 @@ const StyledSpan = styled.span`
   }
 `;
 
-export { StyledErrorMsg, StyledSpan };
+const StyledTeacherMenu = styled.div`
+  background: #18191b;
+  padding: 1rem;
+  width: 40%;
+  position: absolute;
+  right: 0;
+  top: 1.8rem;
+  z-index: 10;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export { StyledErrorMsg, StyledSpan, StyledTeacherMenu };

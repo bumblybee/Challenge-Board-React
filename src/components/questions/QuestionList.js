@@ -13,6 +13,7 @@ const QuestionsList = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -36,7 +37,7 @@ const QuestionsList = () => {
     const data = {
       title: newQuestion.title,
       body: newQuestion.body,
-      isAnswered: newQuestion.isAnswered,
+      isAnswered: false,
     };
 
     //

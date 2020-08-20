@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/loginApi";
+
 import Error from "../components/errors/Error";
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
       setError(user.error);
       setUserDetails({ email: "", password: "" });
     } else {
-      user && setUser(user);
+      user && setUser(user.data);
       history.push("/challenge");
     }
   };

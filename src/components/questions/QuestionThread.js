@@ -9,21 +9,18 @@ import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import { StyledSpan } from "../../styles/styledComponents";
 
-//TODO: Break out comments list into component
-
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
   const [date, setDate] = useState("");
-
   const [comments, setComments] = useState([]);
   const [renderList, setRenderList] = useState(false);
-
   const [isTruncated, setIsTruncated] = useState(true);
+
+  const sanitize = DOMPurify.sanitize;
 
   const history = useHistory();
   const location = useLocation();
-  const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
 
   const path = location.pathname.split("/");
@@ -42,7 +39,7 @@ const QuestionThread = () => {
     fetchThread();
   }, [questionId, renderList]);
 
-  const renderListOnNewComment = (status) => {
+  const reRenderList = (status) => {
     setRenderList(status);
   };
 
@@ -125,7 +122,11 @@ const QuestionThread = () => {
                   }}
                 ></i>
                 <div style={{ marginLeft: "1.5rem", width: "92%" }}>
-                  <CommentCard comment={comment} />
+                  <CommentCard
+                    comment={comment}
+                    answer={true}
+                    reRenderList={reRenderList}
+                  />
                 </div>
               </div>
             );
@@ -135,7 +136,7 @@ const QuestionThread = () => {
       <CommentsList
         comments={comments}
         questionId={questionId}
-        renderListOnNewComment={renderListOnNewComment}
+        reRenderList={reRenderList}
       />
     </Fragment>
   );

@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleErrors, handleErrorsArray } from "../errorHandlers/errorHandler";
 
 const instance = axios.create({
-  baseURL: "https://salty-anchorage-50289.herokuapp.com",
+  baseURL: "http://localhost:9000",
   withCredentials: true,
   crossDomain: true,
 });
@@ -19,6 +19,18 @@ const post = async (url, data) => {
   });
 };
 
-export { post, instance };
+const deleteRoute = async (url) => {
+  return await instance.delete(url).catch((e) => {
+    if (e.response.data.errors) {
+      const errors = handleErrorsArray(e.response.data.errors);
 
-//https://salty-anchorage-50289.herokuapp.com/questions
+      return errors;
+    }
+
+    return handleErrors(e.response.data.error);
+  });
+};
+
+export { post, deleteRoute, instance };
+
+//https://salty-anchorage-50289.herokuapp.com

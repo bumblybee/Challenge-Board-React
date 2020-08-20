@@ -18,4 +18,14 @@ const createComment = async (id, comment) => {
   await post(`/questions/${id}`, comment);
 };
 
-export { getQuestions, getQuestionThread, createQuestion, createComment };
+const selectAnswer = async (id) => {
+  return await post(`/questions/select-answer/${id}`);
+};
+
+export {
+  getQuestions,
+  getQuestionThread,
+  createQuestion,
+  createComment,
+  selectAnswer,
+};

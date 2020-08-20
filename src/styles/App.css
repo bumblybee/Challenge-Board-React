@@ -367,6 +367,7 @@ iframe {
   padding: 1rem;
   background: var(--card-background);
   flex-shrink: 0;
+  position: relative;
 }
 
 .question-card:nth-child(n + 2) {
