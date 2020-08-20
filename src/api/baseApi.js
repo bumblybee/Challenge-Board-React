@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleErrors, handleErrorsArray } from "../errorHandlers/errorHandler";
 
 const instance = axios.create({
-  baseURL: "http://localhost:9000",
+  baseURL: "https://salty-anchorage-50289.herokuapp.com",
   withCredentials: true,
   crossDomain: true,
 });
