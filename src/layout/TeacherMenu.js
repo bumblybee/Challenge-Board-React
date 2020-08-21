@@ -11,9 +11,9 @@ const TeacherMenu = ({ question, comment }) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedAnswer = await selectAnswer(comment.id);
       updatedAnswer && setAnswer(true);
+      //TODO: Handle list re-render
     }
   };
-  console.log(comment);
 
   if (question) {
     return (

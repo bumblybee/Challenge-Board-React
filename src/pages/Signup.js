@@ -43,7 +43,7 @@ const Signup = () => {
       res && history.push("/login");
     }
 
-    //TODO: handle unsuccessful signup
+    //TODO: change minlength of password
     //TODO: Login user on signup and push to /challenge
   };
 

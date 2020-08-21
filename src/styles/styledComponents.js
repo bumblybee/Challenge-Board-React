@@ -25,7 +25,7 @@ const StyledTeacherMenu = styled.div`
   position: absolute;
   right: 0;
   top: 1.8rem;
-  z-index: 10;
+  z-index: 100;
   :hover {
     cursor: pointer;
   }
