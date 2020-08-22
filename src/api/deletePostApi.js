@@ -1,7 +1,11 @@
 import { deleteRoute } from "./baseApi";
 
-const deletePost = async (id) => {
-  return await deleteRoute(`/questions/${id}`);
+const deleteQuestion = async (questionId) => {
+  return await deleteRoute(`/questions/${questionId}`);
 };
 
-export default deletePost;
+const deleteComment = async (commentId) => {
+  return await deleteRoute(`/comments/${commentId}`);
+};
+
+export { deleteQuestion, deleteComment };

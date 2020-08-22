@@ -7,6 +7,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
+import TeacherMenu from "../../layout/TeacherMenu";
 import { StyledSpan } from "../../styles/styledComponents";
 
 const QuestionThread = () => {
@@ -16,7 +17,7 @@ const QuestionThread = () => {
   const [comments, setComments] = useState([]);
   const [renderList, setRenderList] = useState(false);
   const [isTruncated, setIsTruncated] = useState(true);
-
+  const [isOpen, setIsOpen] = useState(false);
   const sanitize = DOMPurify.sanitize;
 
   const history = useHistory();
@@ -47,6 +48,10 @@ const QuestionThread = () => {
     setIsTruncated(!isTruncated);
   };
 
+  const openTeacherMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Fragment>
       <div className="discussion-header-container thread">
@@ -61,7 +66,11 @@ const QuestionThread = () => {
       <div className="thread-container">
         <div
           className="thread-question"
-          style={{ background: "#3a3c42", padding: "1rem" }}
+          style={{
+            background: "#3a3c42",
+            padding: "1rem",
+            position: "relative",
+          }}
         >
           <div className="question-header">
             <div className="name">{username}</div>
@@ -73,9 +82,19 @@ const QuestionThread = () => {
               {!user
                 ? ""
                 : user.role === "Teacher" && (
-                    <i className="fas fa-ellipsis-h fa-lg"></i>
+                    <i
+                      onClick={openTeacherMenu}
+                      className="fas fa-ellipsis-h fa-lg"
+                    ></i>
                   )}
             </div>
+            {isOpen && (
+              <TeacherMenu
+                reRenderList={reRenderList}
+                question={question}
+                openTeacherMenu={openTeacherMenu}
+              ></TeacherMenu>
+            )}
           </div>
           <div className="question-body">
             <div
