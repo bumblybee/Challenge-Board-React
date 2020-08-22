@@ -39,8 +39,8 @@ const QuestionThread = () => {
     fetchThread();
   }, [questionId, renderList]);
 
-  const reRenderList = (status) => {
-    setRenderList(status);
+  const reRenderList = () => {
+    setRenderList(!renderList);
   };
 
   const handleTruncate = () => {
@@ -122,11 +122,7 @@ const QuestionThread = () => {
                   }}
                 ></i>
                 <div style={{ marginLeft: "1.5rem", width: "92%" }}>
-                  <CommentCard
-                    comment={comment}
-                    answer={true}
-                    reRenderList={reRenderList}
-                  />
+                  <CommentCard comment={comment} answer={true} />
                 </div>
               </div>
             );

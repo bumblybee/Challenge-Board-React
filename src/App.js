@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -27,7 +27,6 @@ function App() {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();
       auth && setUser(auth.data.user);
-      console.log(auth.data.user);
     };
     checkIfLoggedIn();
   }, []);

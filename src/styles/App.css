@@ -217,6 +217,7 @@ i:hover {
   right: 0;
   padding: 1rem;
   width: 12rem;
+  z-index: 100;
 }
 
 .show {

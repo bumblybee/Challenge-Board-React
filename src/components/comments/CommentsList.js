@@ -12,7 +12,6 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
 
   const [newComment, setNewComment] = useState({
     body: "",
-    isAnswer: false,
   });
 
   const handleSubmit = async (e) => {
@@ -20,7 +19,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
 
     if (user) {
       await createComment(questionId, newComment);
-      reRenderList(true);
+      reRenderList();
 
       //Clear input
       setNewComment({
@@ -40,7 +39,11 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
         }}
       >
         {comments.map((comment, index) => (
-          <CommentCard comment={comment} key={index} />
+          <CommentCard
+            reRenderList={reRenderList}
+            comment={comment}
+            key={index}
+          />
         ))}
       </ul>
       <form

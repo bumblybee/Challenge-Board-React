@@ -37,7 +37,6 @@ const QuestionsList = () => {
     const data = {
       title: newQuestion.title,
       body: newQuestion.body,
-      isAnswered: false,
     };
 
     //

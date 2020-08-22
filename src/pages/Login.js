@@ -8,6 +8,7 @@ import Error from "../components/errors/Error";
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const [error, setError] = useState(undefined);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { setUser } = useContext(UserContext);
   const history = useHistory();
 
@@ -20,6 +21,8 @@ const Login = () => {
       setUserDetails({ email: "", password: "" });
     } else {
       user && setUser(user.data);
+      console.log(user);
+      setIsLoggedIn(true);
       history.push("/challenge");
     }
   };
