@@ -47,6 +47,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
           <TeacherMenu
             reRenderList={reRenderList}
             comment={comment}
+            openTeacherMenu={openTeacherMenu}
           ></TeacherMenu>
         )}
       </div>

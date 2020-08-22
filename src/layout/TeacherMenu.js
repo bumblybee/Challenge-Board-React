@@ -5,15 +5,14 @@ import { selectAnswer } from "../api/questionsApi";
 
 import { StyledTeacherMenu } from "../styles/styledComponents";
 
-const TeacherMenu = ({ question, comment, reRenderList }) => {
+const TeacherMenu = ({ question, comment, reRenderList, openTeacherMenu }) => {
   const [answer, setAnswer] = useState(false);
   const chooseAnswer = async () => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
       updatedAnswer && setAnswer(true);
       reRenderList();
-      // //TODO: Handle list re-render
-      // //TODO: Pass question id to api
+      openTeacherMenu();
     }
   };
 
