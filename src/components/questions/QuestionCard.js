@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";

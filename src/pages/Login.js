@@ -21,7 +21,7 @@ const Login = () => {
       setUserDetails({ email: "", password: "" });
     } else {
       user && setUser(user.data);
-      console.log(user);
+
       setIsLoggedIn(true);
       history.push("/challenge");
     }

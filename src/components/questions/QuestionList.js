@@ -29,6 +29,7 @@ const QuestionsList = () => {
     getQuestions().then((data) => {
       setQuestions(data);
     });
+    setIsSubmitted(false);
   }, [isSubmitted]);
 
   const handleSubmit = async (e) => {

@@ -6,8 +6,6 @@ import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
-  //TODO: setIsAnswer in teacher view
-
   const { user } = useContext(UserContext);
 
   const [newComment, setNewComment] = useState({
