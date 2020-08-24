@@ -20,7 +20,10 @@ const QuestionCard = ({ question }) => {
       <div className="question-header">
         <div className="name">{question.user.username}</div>
         <div className="created-at">{date}</div>
-        <div className="icons" style={{ position: "relative" }}>
+        <div
+          className="icons"
+          style={{ position: "relative", background: isOpen && "#18191b" }}
+        >
           {question.isAnswered ? (
             <i
               className="fas fa-bookmark fa-lg"
@@ -38,9 +41,13 @@ const QuestionCard = ({ question }) => {
                   style={
                     isOpen
                       ? {
-                          background: "#202225",
+                          background: "#18191b",
+                          padding: "1rem",
+                          position: "absolute",
+                          top: "-1rem",
+                          right: "-0.1rem",
                         }
-                      : {}
+                      : { padding: "0 1rem" }
                   }
                 ></i>
               )}
@@ -59,7 +66,7 @@ const QuestionCard = ({ question }) => {
             : " comment"}
         </div>
         {/* TODO: link route to thread ID  */}
-        <div className="view-thread">
+        <div className="view-thread" style={{ padding: "0 1rem 0" }}>
           <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
         </div>
       </div>

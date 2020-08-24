@@ -33,7 +33,8 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
         className="comments-thread"
         style={{
           backgroundColor: "#202225",
-          overflow: "auto",
+          overflowY: "auto",
+          overflowX: "hidden",
         }}
       >
         {comments.map((comment, index) => (

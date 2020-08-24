@@ -84,6 +84,17 @@ const QuestionThread = () => {
                 : user.role === "Teacher" && (
                     <i
                       onClick={openTeacherMenu}
+                      style={
+                        isOpen
+                          ? {
+                              background: "#18191b",
+                              padding: "1rem",
+                              position: "absolute",
+                              top: "0",
+                              right: "-0.1rem",
+                            }
+                          : {}
+                      }
                       className="fas fa-ellipsis-h fa-lg"
                     ></i>
                   )}
@@ -131,7 +142,7 @@ const QuestionThread = () => {
         {comments.map((comment, index) => {
           if (comment.isAnswer) {
             return (
-              <div className="chosenAnswer" key={index}>
+              <div className="chosen-answer" key={index}>
                 <i
                   className="fas fa-bookmark fa-lg"
                   style={{

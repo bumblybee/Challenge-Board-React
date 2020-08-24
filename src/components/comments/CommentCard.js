@@ -26,18 +26,38 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
   return (
     <li
       className="comment-card"
-      style={{ color: "#dcddde", padding: "1rem", position: "relative" }}
+      style={{
+        color: "#dcddde",
+        padding: "1rem 0 1rem 1rem",
+        position: "relative",
+      }}
     >
       <div className="question-header">
         <div className="name">{comment.user.username}</div>
         <div style={{ marginRight: "1rem", color: "#7d8088" }}>{time}</div>
         <div style={{ color: "#7d8088" }}>{date}</div>
-        <div className="icons">
+        <div
+          className="icons"
+          style={{
+            background: isOpen && "#18191b",
+          }}
+        >
           {!user
             ? ""
             : user.role === "Teacher" &&
               !answer && (
                 <i
+                  style={
+                    isOpen
+                      ? {
+                          background: "#18191b",
+                          padding: "1rem",
+                          position: "absolute",
+                          top: "0",
+                          right: "0",
+                        }
+                      : { padding: "0 1rem" }
+                  }
                   onClick={openTeacherMenu}
                   className="fas fa-ellipsis-h fa-lg"
                 ></i>
