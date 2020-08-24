@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
-import { createComment } from "../../api/questionsApi";
+import { createComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
 

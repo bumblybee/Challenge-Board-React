@@ -14,18 +14,8 @@ const createQuestion = async (data) => {
   await post("/questions", data);
 };
 
-const createComment = async (id, comment) => {
-  await post(`/comments/${id}`, comment);
-};
-
 const selectAnswer = async (commentId, questionId) => {
   return await post(`/questions/select-answer/${questionId}/${commentId}`);
 };
 
-export {
-  getQuestions,
-  getQuestionThread,
-  createQuestion,
-  createComment,
-  selectAnswer,
-};
+export { getQuestions, getQuestionThread, createQuestion, selectAnswer };
