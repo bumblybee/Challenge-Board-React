@@ -326,6 +326,7 @@ iframe {
 .questions-container,
 .comments-container {
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .questions-container::-webkit-scrollbar,
