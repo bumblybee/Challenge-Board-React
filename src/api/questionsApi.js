@@ -15,7 +15,7 @@ const createQuestion = async (data) => {
 };
 
 const createComment = async (id, comment) => {
-  await post(`/questions/${id}`, comment);
+  await post(`/comments/${id}`, comment);
 };
 
 const selectAnswer = async (commentId, questionId) => {
