@@ -27,6 +27,7 @@ function App() {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();
       auth && setUser(auth.data.user);
+      //TODO: Handle errors
     };
     checkIfLoggedIn();
   }, []);

@@ -5,7 +5,12 @@ import { selectAnswer } from "../api/questionsApi";
 
 import { StyledTeacherMenu } from "../styles/styledComponents";
 
-const TeacherMenu = ({ question, comment, reRenderList, openTeacherMenu }) => {
+const TeacherMenu = ({
+  question,
+  comment,
+  reRenderList,
+  toggleTeacherMenu,
+}) => {
   const history = useHistory();
   const [answer, setAnswer] = useState(false);
   const chooseAnswer = async () => {
@@ -13,7 +18,7 @@ const TeacherMenu = ({ question, comment, reRenderList, openTeacherMenu }) => {
       const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
       updatedAnswer && setAnswer(true);
       updatedAnswer && reRenderList();
-      openTeacherMenu();
+      updatedAnswer && toggleTeacherMenu();
     }
   };
 
@@ -22,7 +27,7 @@ const TeacherMenu = ({ question, comment, reRenderList, openTeacherMenu }) => {
       const deletedQuestion = await deleteQuestion(question.id);
       console.log(deletedQuestion);
 
-      // openTeacherMenu();
+      toggleTeacherMenu(false);
       //TODO: reconfig so that it's not rerendering entire app, just the list
       history.push("/");
     }
@@ -33,7 +38,7 @@ const TeacherMenu = ({ question, comment, reRenderList, openTeacherMenu }) => {
       const deletedComment = await deleteComment(comment.id);
       console.log(deletedComment);
 
-      // openTeacherMenu();
+      toggleTeacherMenu(false);
       //TODO: reconfig so that it's not rerendering entire app, just the list
       reRenderList();
     }

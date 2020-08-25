@@ -8,12 +8,37 @@ import StudentMenu from "../../layout/StudentMenu";
 
 const QuestionCard = ({ question }) => {
   const date = moment(question.createdAt).format("L");
+
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const openMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const renderMenu = () => {
+    if (user.role === "Teacher" || user.id === question.userId) {
+      return (
+        <i
+          onClick={openMenu}
+          className="fas fa-ellipsis-h fa-lg"
+          style={
+            isOpen
+              ? {
+                  background: "#18191b",
+                  padding: "1rem",
+                  position: "absolute",
+                  top: "-1rem",
+                  right: "-0.1rem",
+                }
+              : { padding: "0 1rem" }
+          }
+        ></i>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -33,23 +58,7 @@ const QuestionCard = ({ question }) => {
           ) : (
             ""
           )}
-          {user && (
-            <i
-              onClick={openMenu}
-              className="fas fa-ellipsis-h fa-lg"
-              style={
-                isOpen
-                  ? {
-                      background: "#18191b",
-                      padding: "1rem",
-                      position: "absolute",
-                      top: "-1rem",
-                      right: "-0.1rem",
-                    }
-                  : { padding: "0 1rem" }
-              }
-            ></i>
-          )}
+          {user && renderMenu()}
         </div>
 
         {isOpen && user.role === "Teacher" ? (

@@ -1,27 +1,77 @@
 import React, { useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { editQuestion } from "../api/questionsApi";
+import { editComment } from "../api/commentsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
 import Modal from "./Modal";
 
-const StudentMenu = ({ openMenu, question }) => {
+const StudentMenu = ({ openMenu, question, comment }) => {
   const history = useHistory();
 
   const [openModal, setOpenModal] = useState(false);
-  const [title, setTitle] = useState(question.title);
-  const [body, setBody] = useState(question.body);
-  // console.log(question);
+  const [questionTitle, setQuestionTitle] = useState(
+    question ? question.title : ""
+  );
+  const [questionBody, setQuestionBody] = useState(
+    question ? question.body : ""
+  );
+  const [commentBody, setCommentBody] = useState(comment ? comment.body : "");
 
   const updateQuestion = async (e) => {
     e.preventDefault();
-    const data = { title: title, body: body, userId: question.userId };
-    const sendUpdate = await editQuestion(question.id, data);
-    //TODO: handle re-render so whole app isn't affected
+    const data = {
+      title: questionTitle,
+      body: questionBody,
+      userId: question.userId,
+    };
+    const editedQuestion = await editQuestion(question.id, data);
+    //TODO: refresh list, not app
     setOpenModal(!openModal);
-    sendUpdate && history.push("/");
-    //TODO: handle not logged in / not right user
+    editedQuestion && history.push("/");
+
     //TODO: handle error
   };
+
+  const updateComment = async (e) => {
+    e.preventDefault();
+    const data = {
+      body: commentBody,
+      userId: comment.userId,
+    };
+    const editedComment = await editComment(comment.id, data);
+    setOpenModal(!openModal);
+    //TODO: handle error
+    //TODO: refresh list
+    console.log(comment);
+  };
+
+  if (comment) {
+    if (openModal) {
+      return (
+        <Modal>
+          <div className="modal-body">
+            <form onSubmit={updateComment}>
+              <textarea
+                onChange={(e) => setCommentBody(e.target.value)}
+                style={{ resize: "none" }}
+                id="body"
+                rows="5"
+                value={commentBody}
+              ></textarea>
+              <button>Submit</button>
+              <button onClick={() => setOpenModal(!openModal)}>Close</button>
+            </form>
+          </div>
+        </Modal>
+      );
+    } else {
+      return (
+        <StyledStudentMenu>
+          <p onClick={() => setOpenModal(!openModal)}>Edit Post</p>
+        </StyledStudentMenu>
+      );
+    }
+  }
 
   return (
     <Fragment>
@@ -30,17 +80,17 @@ const StudentMenu = ({ openMenu, question }) => {
           <div className="modal-body">
             <form onSubmit={updateQuestion}>
               <input
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setQuestionTitle(e.target.value)}
                 type="text"
                 id="title"
-                value={title}
+                value={questionTitle}
               />
               <textarea
-                onChange={(e) => setBody(e.target.value)}
+                onChange={(e) => setQuestionBody(e.target.value)}
                 style={{ resize: "none" }}
                 id="body"
-                rows="10"
-                value={body}
+                rows="6"
+                value={questionBody}
               ></textarea>
               <button>Submit</button>
               <button onClick={() => setOpenModal(!openModal)}>Close</button>

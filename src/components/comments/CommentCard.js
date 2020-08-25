@@ -4,6 +4,7 @@ import moment from "moment";
 import Truncate from "react-truncate";
 import { StyledSpan } from "../../styles/styledComponents";
 import TeacherMenu from "../../layout/TeacherMenu";
+import StudentMenu from "../../layout/StudentMenu";
 import { UserContext } from "../../context/UserContext";
 
 const QuestionCard = ({ comment, answer, reRenderList }) => {
@@ -19,8 +20,32 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
     setIsTruncated(!isTruncated);
   };
 
-  const openTeacherMenu = () => {
+  const toggleTeacherMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const renderMenu = () => {
+    if (user.role === "Teacher" || user.id === comment.userId) {
+      return (
+        <i
+          style={
+            isOpen
+              ? {
+                  background: "#18191b",
+                  padding: "1rem",
+                  position: "absolute",
+                  top: "0",
+                  right: "0",
+                }
+              : { padding: "0 1rem" }
+          }
+          onClick={toggleTeacherMenu}
+          className="fas fa-ellipsis-h fa-lg"
+        ></i>
+      );
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -42,33 +67,18 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
             background: isOpen && "#18191b",
           }}
         >
-          {!user
-            ? ""
-            : user.role === "Teacher" &&
-              !answer && (
-                <i
-                  style={
-                    isOpen
-                      ? {
-                          background: "#18191b",
-                          padding: "1rem",
-                          position: "absolute",
-                          top: "0",
-                          right: "0",
-                        }
-                      : { padding: "0 1rem" }
-                  }
-                  onClick={openTeacherMenu}
-                  className="fas fa-ellipsis-h fa-lg"
-                ></i>
-              )}
+          {user && !answer && renderMenu()}
         </div>
-        {isOpen && (
+        {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
             reRenderList={reRenderList}
             comment={comment}
-            openTeacherMenu={openTeacherMenu}
+            toggleTeacherMenu={toggleTeacherMenu}
           ></TeacherMenu>
+        ) : isOpen && user.role === "Student" ? (
+          <StudentMenu comment={comment} />
+        ) : (
+          ""
         )}
       </div>
 
