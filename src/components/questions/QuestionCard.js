@@ -4,6 +4,7 @@ import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import TeacherMenu from "../../layout/TeacherMenu";
+import StudentMenu from "../../layout/StudentMenu";
 
 const QuestionCard = ({ question }) => {
   const date = moment(question.createdAt).format("L");
@@ -11,7 +12,7 @@ const QuestionCard = ({ question }) => {
   const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const openTeacherMenu = () => {
+  const openMenu = () => {
     setIsOpen(!isOpen);
   };
 
@@ -32,27 +33,32 @@ const QuestionCard = ({ question }) => {
           ) : (
             ""
           )}
-          {!user
-            ? ""
-            : user.role === "Teacher" && (
-                <i
-                  onClick={openTeacherMenu}
-                  className="fas fa-ellipsis-h fa-lg"
-                  style={
-                    isOpen
-                      ? {
-                          background: "#18191b",
-                          padding: "1rem",
-                          position: "absolute",
-                          top: "-1rem",
-                          right: "-0.1rem",
-                        }
-                      : { padding: "0 1rem" }
-                  }
-                ></i>
-              )}
+          {user && (
+            <i
+              onClick={openMenu}
+              className="fas fa-ellipsis-h fa-lg"
+              style={
+                isOpen
+                  ? {
+                      background: "#18191b",
+                      padding: "1rem",
+                      position: "absolute",
+                      top: "-1rem",
+                      right: "-0.1rem",
+                    }
+                  : { padding: "0 1rem" }
+              }
+            ></i>
+          )}
         </div>
-        {isOpen && <TeacherMenu question={question}></TeacherMenu>}
+
+        {isOpen && user.role === "Teacher" ? (
+          <TeacherMenu question={question}></TeacherMenu>
+        ) : isOpen && user.role === "Student" ? (
+          <StudentMenu openMenu={openMenu} question={question} />
+        ) : (
+          ""
+        )}
       </div>
 
       <div className="question-body">

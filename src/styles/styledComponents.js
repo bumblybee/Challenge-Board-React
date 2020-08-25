@@ -31,4 +31,17 @@ const StyledTeacherMenu = styled.div`
   }
 `;
 
-export { StyledErrorMsg, StyledSpan, StyledTeacherMenu };
+const StyledStudentMenu = styled.div`
+  background: #18191b;
+  padding: 1rem;
+  width: 40%;
+  position: absolute;
+  right: -0.1rem;
+  top: 2.8rem;
+  z-index: 1000;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export { StyledErrorMsg, StyledSpan, StyledTeacherMenu, StyledStudentMenu };

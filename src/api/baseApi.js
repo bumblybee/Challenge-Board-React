@@ -19,6 +19,18 @@ const post = async (url, data) => {
   });
 };
 
+const put = async (url, data) => {
+  return await instance.put(url, data).catch((e) => {
+    if (e.response.data.errors) {
+      const errors = handleErrorsArray(e.response.data.errors);
+
+      return errors;
+    }
+
+    return handleErrors(e.response.data.error);
+  });
+};
+
 const deleteRoute = async (url) => {
   return await instance.delete(url).catch((e) => {
     if (e.response.data.errors) {
@@ -31,6 +43,6 @@ const deleteRoute = async (url) => {
   });
 };
 
-export { post, deleteRoute, instance };
+export { post, put, deleteRoute, instance };
 
 //https://salty-anchorage-50289.herokuapp.com

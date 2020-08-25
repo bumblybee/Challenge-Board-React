@@ -1,4 +1,4 @@
-import { instance, post } from "./baseApi";
+import { instance, post, put } from "./baseApi";
 
 const getQuestions = async () => {
   const res = await instance.get("/questions");
@@ -14,8 +14,18 @@ const createQuestion = async (data) => {
   await post("/questions", data);
 };
 
+const editQuestion = async (id, data) => {
+  await put(`/questions/edit-question/${id}`, data);
+};
+
 const selectAnswer = async (commentId, questionId) => {
   return await post(`/questions/select-answer/${questionId}/${commentId}`);
 };
 
-export { getQuestions, getQuestionThread, createQuestion, selectAnswer };
+export {
+  getQuestions,
+  getQuestionThread,
+  createQuestion,
+  selectAnswer,
+  editQuestion,
+};
