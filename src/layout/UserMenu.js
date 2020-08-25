@@ -17,7 +17,9 @@ const UserMenu = ({ handleClose }) => {
     <div className="user-menu-container">
       <ul className="user-menu">
         <li className="my-account">
-          <Link to="/account">My Account</Link>
+          <Link to="/account" onClick={() => handleClose(false)}>
+            My Account
+          </Link>
         </li>
         <li className="settings">
           <Link to="/settings">Settings</Link>

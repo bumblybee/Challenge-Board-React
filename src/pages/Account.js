@@ -19,7 +19,6 @@ const Account = () => {
             </h1>
 
             <StyledAccountPostsDiv>
-              <h2 style={{ marginBottom: "2rem" }}>Your Posts</h2>
               <ul>
                 <StyledAccountPost>
                   {/* Link post to thread */}
@@ -31,7 +30,7 @@ const Account = () => {
               </ul>
             </StyledAccountPostsDiv>
             <div style={{ marginTop: "2rem" }}>
-              <h5>Edit your username</h5>
+              <h4>Edit your username</h4>
             </div>
           </Fragment>
         )}

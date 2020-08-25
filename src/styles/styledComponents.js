@@ -75,10 +75,13 @@ const StyledAccountPost = styled.li`
   background: #3a3c42;
   margin-top: 1rem;
   border-radius: 6px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
+  box-shadow: 0 2.8px 4px rgba(0, 0, 0, 0.02),
+    0 4.7px 5.3px rgba(0, 0, 0, 0.028);
+  transition: transform 0.1s;
   :hover {
     cursor: pointer;
+    transform: scale(0.99);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
   }
 `;
 
