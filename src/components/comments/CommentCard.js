@@ -20,7 +20,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
     setIsTruncated(!isTruncated);
   };
 
-  const toggleTeacherMenu = () => {
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
@@ -39,7 +39,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
                 }
               : { padding: "0 1rem" }
           }
-          onClick={toggleTeacherMenu}
+          onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
         ></i>
       );
@@ -73,10 +73,14 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
           <TeacherMenu
             reRenderList={reRenderList}
             comment={comment}
-            toggleTeacherMenu={toggleTeacherMenu}
+            toggleMenu={toggleMenu}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
-          <StudentMenu comment={comment} />
+          <StudentMenu
+            comment={comment}
+            toggleMenu={toggleMenu}
+            reRenderList={reRenderList}
+          />
         ) : (
           ""
         )}

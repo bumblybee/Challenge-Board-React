@@ -134,7 +134,11 @@ const QuestionsList = () => {
       <div className="questions-container">
         <ul className="questions-thread">
           {questions.map((question, index) => (
-            <QuestionCard question={question} key={index} />
+            <QuestionCard
+              question={question}
+              setIsSubmitted={setIsSubmitted}
+              key={index}
+            />
           ))}
         </ul>
       </div>

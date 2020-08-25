@@ -5,7 +5,13 @@ import { editComment } from "../api/commentsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
 import Modal from "./Modal";
 
-const StudentMenu = ({ openMenu, question, comment }) => {
+const StudentMenu = ({
+  question,
+  setIsSubmitted,
+  toggleMenu,
+  reRenderList,
+  comment,
+}) => {
   const history = useHistory();
 
   const [openModal, setOpenModal] = useState(false);
@@ -25,10 +31,11 @@ const StudentMenu = ({ openMenu, question, comment }) => {
       userId: question.userId,
     };
     const editedQuestion = await editQuestion(question.id, data);
-    //TODO: refresh list, not app
-    setOpenModal(!openModal);
-    editedQuestion && history.push("/");
 
+    editedQuestion && setOpenModal(!openModal);
+    editedQuestion && toggleMenu();
+    editedQuestion && setIsSubmitted(true);
+    //TODO: fix prop drilling to refresh list or send some kind of "updating" msg
     //TODO: handle error
   };
 
@@ -42,7 +49,8 @@ const StudentMenu = ({ openMenu, question, comment }) => {
     setOpenModal(!openModal);
     //TODO: handle error
     //TODO: refresh list
-    console.log(comment);
+    editedComment && toggleMenu();
+    editedComment && reRenderList();
   };
 
   if (comment) {

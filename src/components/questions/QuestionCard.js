@@ -6,22 +6,23 @@ import { UserContext } from "../../context/UserContext";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
 
-const QuestionCard = ({ question }) => {
+const QuestionCard = ({ question, setIsSubmitted }) => {
   const date = moment(question.createdAt).format("L");
 
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  const openMenu = () => {
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const renderMenu = () => {
+  // If user is teacher or if user.id matches the userId of question, render menu icon
+  const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
         <i
-          onClick={openMenu}
+          onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
           style={
             isOpen
@@ -32,7 +33,7 @@ const QuestionCard = ({ question }) => {
                   top: "-1rem",
                   right: "-0.1rem",
                 }
-              : { padding: "0 1rem" }
+              : { padding: "0 1rem", marginLeft: "1rem" }
           }
         ></i>
       );
@@ -53,18 +54,26 @@ const QuestionCard = ({ question }) => {
           {question.isAnswered ? (
             <i
               className="fas fa-bookmark fa-lg"
-              style={{ marginRight: "2rem" }}
+              style={{ marginRight: "1rem" }}
             ></i>
           ) : (
             ""
           )}
-          {user && renderMenu()}
+          {/* If there's a logged in user and that user is a teacher or is a student with a question attached to their id, render menu icon */}
+          {user && renderMenuIcon()}
         </div>
 
         {isOpen && user.role === "Teacher" ? (
-          <TeacherMenu question={question}></TeacherMenu>
+          <TeacherMenu
+            toggleMenu={toggleMenu}
+            question={question}
+          ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
-          <StudentMenu openMenu={openMenu} question={question} />
+          <StudentMenu
+            toggleMenu={toggleMenu}
+            question={question}
+            setIsSubmitted={setIsSubmitted}
+          />
         ) : (
           ""
         )}
