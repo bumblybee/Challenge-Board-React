@@ -23,8 +23,6 @@ const QuestionsList = () => {
     isAnswered: false,
   });
 
-  //TODO: wire up isAnswered
-
   useEffect(() => {
     getQuestions().then((data) => {
       setQuestions(data);

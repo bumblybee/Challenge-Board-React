@@ -11,11 +11,11 @@ const getQuestionThread = async (id) => {
 };
 
 const createQuestion = async (data) => {
-  await post("/questions", data);
+  return await post("/questions", data);
 };
 
 const editQuestion = async (id, data) => {
-  await put(`/questions/edit-question/${id}`, data);
+  return await put(`/questions/edit-question/${id}`, data);
 };
 
 const selectAnswer = async (commentId, questionId) => {

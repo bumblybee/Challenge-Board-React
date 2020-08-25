@@ -1,18 +1,26 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
+import { useHistory } from "react-router-dom";
 import { editQuestion } from "../api/questionsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
 import Modal from "./Modal";
 
 const StudentMenu = ({ openMenu, question }) => {
-  const [openModal, setOpenModal] = useState(false);
-  const [newTitle, setNewTitle] = useState(question.title);
-  const [newBody, setNewBody] = useState(question.body);
+  const history = useHistory();
 
-  const updateQuestion = async () => {
-    const data = { title: newTitle, body: newBody };
-    await editQuestion(question.id, data);
-    //TODO: handle re-render.
-    //TODO: check in server to be sure right user
+  const [openModal, setOpenModal] = useState(false);
+  const [title, setTitle] = useState(question.title);
+  const [body, setBody] = useState(question.body);
+  // console.log(question);
+
+  const updateQuestion = async (e) => {
+    e.preventDefault();
+    const data = { title: title, body: body, userId: question.userId };
+    const sendUpdate = await editQuestion(question.id, data);
+    //TODO: handle re-render so whole app isn't affected
+    setOpenModal(!openModal);
+    sendUpdate && history.push("/");
+    //TODO: handle not logged in / not right user
+    //TODO: handle error
   };
 
   return (
@@ -22,20 +30,20 @@ const StudentMenu = ({ openMenu, question }) => {
           <div className="modal-body">
             <form onSubmit={updateQuestion}>
               <input
-                onChange={(e) => setNewTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 id="title"
-                value={newTitle}
+                value={title}
               />
               <textarea
-                onChange={(e) => setNewBody(e.target.value)}
+                onChange={(e) => setBody(e.target.value)}
                 style={{ resize: "none" }}
                 id="body"
                 rows="10"
-                value={newBody}
+                value={body}
               ></textarea>
-              <button onClick={updateQuestion}>Submit</button>
-              <button>Close</button>
+              <button>Submit</button>
+              <button onClick={() => setOpenModal(!openModal)}>Close</button>
             </form>
           </div>
         </Modal>
