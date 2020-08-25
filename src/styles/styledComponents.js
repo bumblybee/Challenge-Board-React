@@ -44,4 +44,50 @@ const StyledStudentMenu = styled.div`
   }
 `;
 
-export { StyledErrorMsg, StyledSpan, StyledTeacherMenu, StyledStudentMenu };
+const StyledAccountDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 80%;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #2f3136;
+  height: 85vh;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
+`;
+
+const StyledAccountPostsDiv = styled.div`
+  width: 40%;
+  margin: 0 auto;
+  padding: 1rem;
+
+  border-radius: 6px;
+`;
+
+const StyledAccountPost = styled.li`
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #3a3c42;
+  margin-top: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export {
+  StyledErrorMsg,
+  StyledSpan,
+  StyledTeacherMenu,
+  StyledStudentMenu,
+  StyledAccountDiv,
+  StyledAccountPostsDiv,
+  StyledAccountPost,
+};

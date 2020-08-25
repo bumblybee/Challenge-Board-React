@@ -16,6 +16,7 @@ import Challenge from "./pages/Challenge";
 import Signup from "./pages/Signup";
 import DiscordLogin from "./pages/DiscordLogin";
 import Login from "./pages/Login";
+import Account from "./pages/Account";
 import ResetPasswordRequest from "./pages/ResetPasswordRequest";
 import ResetPassword from "./pages/ResetPassword";
 
@@ -47,7 +48,9 @@ function App() {
             <Route path="/login" exact>
               <Login />
             </Route>
-
+            <Route path="/account">
+              <Account />
+            </Route>
             <Route path="/reset-password-request">
               <ResetPasswordRequest />
             </Route>
