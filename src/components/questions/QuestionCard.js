@@ -31,7 +31,8 @@ const QuestionCard = ({ question, setIsSubmitted }) => {
                   padding: "1rem",
                   position: "absolute",
                   top: "-1rem",
-                  right: "-0.1rem",
+                  right: "0",
+                  borderTopRightRadius: "6px",
                 }
               : { padding: "0 1rem", marginLeft: "1rem" }
           }

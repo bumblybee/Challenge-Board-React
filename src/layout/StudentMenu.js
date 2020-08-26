@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { useHistory } from "react-router-dom";
+
 import { editQuestion } from "../api/questionsApi";
 import { editComment } from "../api/commentsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
@@ -12,8 +12,6 @@ const StudentMenu = ({
   reRenderList,
   comment,
 }) => {
-  const history = useHistory();
-
   const [openModal, setOpenModal] = useState(false);
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""

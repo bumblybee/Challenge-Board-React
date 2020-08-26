@@ -31,6 +31,7 @@ const Account = () => {
             </StyledAccountPostsDiv>
             <div style={{ marginTop: "2rem" }}>
               <h4>Edit your username</h4>
+              <h4>Edit your email</h4>
             </div>
           </Fragment>
         )}

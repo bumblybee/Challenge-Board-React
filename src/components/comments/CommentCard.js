@@ -8,10 +8,12 @@ import StudentMenu from "../../layout/StudentMenu";
 import { UserContext } from "../../context/UserContext";
 
 const QuestionCard = ({ comment, answer, reRenderList }) => {
-  const sanitize = DOMPurify.sanitize;
-  const { user } = useContext(UserContext);
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+
+  const sanitize = DOMPurify.sanitize;
+
+  const { user } = useContext(UserContext);
 
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
@@ -37,7 +39,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
                   top: "0",
                   right: "0",
                 }
-              : { padding: "0 1rem" }
+              : {}
           }
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
@@ -53,7 +55,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
       className="comment-card"
       style={{
         color: "#dcddde",
-        padding: "1rem 0 1rem 1rem",
+        padding: answer ? "1rem 1rem 1rem 2rem" : "1rem",
         position: "relative",
       }}
     >
@@ -67,7 +69,7 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
             background: isOpen && "#18191b",
           }}
         >
-          {user && !answer && renderMenu()}
+          {user && renderMenu()}
         </div>
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu

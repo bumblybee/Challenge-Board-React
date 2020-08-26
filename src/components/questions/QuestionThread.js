@@ -91,7 +91,8 @@ const QuestionThread = () => {
                               padding: "1rem",
                               position: "absolute",
                               top: "0",
-                              right: "-0.1rem",
+                              right: "0",
+                              borderTopRightRadius: "6px",
                             }
                           : {}
                       }
@@ -151,7 +152,7 @@ const QuestionThread = () => {
                     color: "#6271c0",
                   }}
                 ></i>
-                <div style={{ marginLeft: "1.5rem", width: "92%" }}>
+                <div>
                   <CommentCard comment={comment} answer={true} />
                 </div>
               </div>
