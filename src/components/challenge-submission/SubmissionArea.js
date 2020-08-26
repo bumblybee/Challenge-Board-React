@@ -7,26 +7,40 @@ const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [timestamp, setTimestamp] = useState({ date: "", time: "" });
+  const [timestamp, setTimestamp] = useState({
+    fullTimeStamp: "",
+    date: "",
+    time: "",
+  });
   const [projectData, setProjectData] = useState({
     githubLink: "",
     additionalLink: "",
     comment: "",
   });
-
+  // const date = moment(comment.createdAt).format("L");
+  // const time = moment(comment.createdAt).format("LT");
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const submission = await submitProject(projectData);
-    console.log(submission);
-    submission && setIsSubmitted(true);
-    setShowEdit(true);
-    setProjectData({ githubLink: "", additionalLink: "", comment: "" });
-    setIsOpen(!isOpen);
-    setTimestamp({
-      ...timestamp,
-      date: moment().format("L"),
-      time: moment().format("h:mm"),
-    });
+
+    if (submission) {
+      setIsSubmitted(true);
+      setShowEdit(true);
+      setProjectData({ githubLink: "", additionalLink: "", comment: "" });
+      setIsOpen(!isOpen);
+      setTimestamp({
+        ...timestamp,
+        fullTimeStamp: submission.createdAt,
+        date: moment(submission.createdAt).format("L"),
+        time: moment(submission.createdAt).format("h:mm"),
+      });
+    }
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    //TODO: PUT request to api to update submission where createdAt = timestamp.fullTimeStamp
   };
 
   return (
