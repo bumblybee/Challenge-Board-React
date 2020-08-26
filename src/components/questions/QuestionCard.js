@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
 
-const QuestionCard = ({ question, setIsSubmitted }) => {
+const QuestionCard = ({ question, reRenderList }) => {
   const date = moment(question.createdAt).format("L");
 
   const sanitize = DOMPurify.sanitize;
@@ -73,7 +73,7 @@ const QuestionCard = ({ question, setIsSubmitted }) => {
           <StudentMenu
             toggleMenu={toggleMenu}
             question={question}
-            setIsSubmitted={setIsSubmitted}
+            reRenderList={reRenderList}
           />
         ) : (
           ""

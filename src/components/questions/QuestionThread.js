@@ -8,8 +8,10 @@ import { UserContext } from "../../context/UserContext";
 import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import TeacherMenu from "../../layout/TeacherMenu";
+import StudentMenu from "../../layout/StudentMenu";
 import { StyledSpan } from "../../styles/styledComponents";
 
+//TODO: add access to student menu in main question and answer
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
@@ -48,7 +50,31 @@ const QuestionThread = () => {
     setIsTruncated(!isTruncated);
   };
 
-  const openTeacherMenu = () => {
+  const renderMenu = () => {
+    if (user.role === "Teacher" || user.id === question.userId) {
+      return (
+        <i
+          style={
+            isOpen
+              ? {
+                  background: "#18191b",
+                  padding: "1rem",
+                  position: "absolute",
+                  top: "0",
+                  right: "0",
+                }
+              : {}
+          }
+          onClick={toggleMenu}
+          className="fas fa-ellipsis-h fa-lg"
+        ></i>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
@@ -79,33 +105,22 @@ const QuestionThread = () => {
             </div>
 
             <div className="icons" style={{ marginRight: "1.3rem" }}>
-              {!user
-                ? ""
-                : user.role === "Teacher" && (
-                    <i
-                      onClick={openTeacherMenu}
-                      style={
-                        isOpen
-                          ? {
-                              background: "#18191b",
-                              padding: "1rem",
-                              position: "absolute",
-                              top: "0",
-                              right: "0",
-                              borderTopRightRadius: "6px",
-                            }
-                          : {}
-                      }
-                      className="fas fa-ellipsis-h fa-lg"
-                    ></i>
-                  )}
+              {user && renderMenu()}
             </div>
-            {isOpen && (
+            {isOpen && user.role === "Teacher" ? (
               <TeacherMenu
                 reRenderList={reRenderList}
                 question={question}
-                openTeacherMenu={openTeacherMenu}
+                toggleMenu={toggleMenu}
               ></TeacherMenu>
+            ) : isOpen && user.role === "Student" ? (
+              <StudentMenu
+                question={question}
+                toggleMenu={toggleMenu}
+                reRenderList={reRenderList}
+              ></StudentMenu>
+            ) : (
+              ""
             )}
           </div>
           <div className="question-body">

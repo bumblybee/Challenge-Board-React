@@ -5,48 +5,49 @@ import { editComment } from "../api/commentsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
 import Modal from "./Modal";
 
-const StudentMenu = ({
-  question,
-  setIsSubmitted,
-  toggleMenu,
-  reRenderList,
-  comment,
-}) => {
+const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   const [openModal, setOpenModal] = useState(false);
+
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
+
   const [questionBody, setQuestionBody] = useState(
     question ? question.body : ""
   );
+
   const [commentBody, setCommentBody] = useState(comment ? comment.body : "");
 
   const updateQuestion = async (e) => {
     e.preventDefault();
+
     const data = {
       title: questionTitle,
       body: questionBody,
       userId: question.userId,
     };
+
     const editedQuestion = await editQuestion(question.id, data);
 
     editedQuestion && setOpenModal(!openModal);
     editedQuestion && toggleMenu();
-    editedQuestion && setIsSubmitted(true);
-    //TODO: fix prop drilling to refresh list or send some kind of "updating" msg
+    editedQuestion && reRenderList();
+
     //TODO: handle error
   };
 
   const updateComment = async (e) => {
     e.preventDefault();
+
     const data = {
       body: commentBody,
       userId: comment.userId,
     };
+
     const editedComment = await editComment(comment.id, data);
     setOpenModal(!openModal);
     //TODO: handle error
-    //TODO: refresh list
+
     editedComment && toggleMenu();
     editedComment && reRenderList();
   };

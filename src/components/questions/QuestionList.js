@@ -30,6 +30,10 @@ const QuestionsList = () => {
     setIsSubmitted(false);
   }, [isSubmitted]);
 
+  const reRenderList = () => {
+    setIsSubmitted(!isSubmitted);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -136,7 +140,7 @@ const QuestionsList = () => {
           {questions.map((question, index) => (
             <QuestionCard
               question={question}
-              setIsSubmitted={setIsSubmitted}
+              reRenderList={reRenderList}
               key={index}
             />
           ))}
