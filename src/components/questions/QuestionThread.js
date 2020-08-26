@@ -78,7 +78,7 @@ const QuestionThread = () => {
               {date}
             </div>
 
-            <div className="icons">
+            <div className="icons" style={{ marginRight: "1.3rem" }}>
               {!user
                 ? ""
                 : user.role === "Teacher" && (
@@ -143,7 +143,11 @@ const QuestionThread = () => {
         {comments.map((comment, index) => {
           if (comment.isAnswer) {
             return (
-              <div className="chosen-answer" key={index}>
+              <div
+                style={{ marginRight: "1.3rem" }}
+                className="chosen-answer"
+                key={index}
+              >
                 <i
                   className="fas fa-bookmark fa-lg"
                   style={{
