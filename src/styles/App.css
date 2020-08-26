@@ -278,6 +278,19 @@ i:hover {
   color: var(--primary-text);
 }
 
+.submission-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.submission-content button {
+  margin-right: auto;
+}
+
+.submission-container .edit-submission {
+  display: flex;
+}
+
 iframe {
   margin: 1.5rem 0 1rem;
   width: 100%;
