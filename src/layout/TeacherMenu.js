@@ -5,7 +5,13 @@ import { selectAnswer } from "../api/questionsApi";
 
 import { StyledTeacherMenu } from "../styles/styledComponents";
 
-const TeacherMenu = ({ question, comment, reRenderList, toggleMenu }) => {
+const TeacherMenu = ({
+  question,
+  comment,
+  reRenderList,
+  toggleMenu,
+  thread,
+}) => {
   const history = useHistory();
   const [answer, setAnswer] = useState(false);
 
@@ -25,8 +31,8 @@ const TeacherMenu = ({ question, comment, reRenderList, toggleMenu }) => {
       console.log(deletedQuestion);
       if (deletedQuestion) {
         toggleMenu();
-        //TODO: reconfig so that it's not rerendering entire app, just the list
-        reRenderList();
+        //if question is being deleted within a thread, send to home, otherwise re-render question list
+        thread ? history.push("/challenge") : reRenderList();
       }
     }
   };
@@ -34,10 +40,11 @@ const TeacherMenu = ({ question, comment, reRenderList, toggleMenu }) => {
   const deleteUserComment = async () => {
     if (window.confirm("Are you sure you want to delete this comment?")) {
       const deletedComment = await deleteComment(comment.id);
+      if (deletedComment) {
+        toggleMenu();
 
-      toggleMenu();
-
-      reRenderList();
+        reRenderList();
+      }
     }
   };
 

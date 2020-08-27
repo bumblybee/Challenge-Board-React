@@ -20,6 +20,7 @@ const SubmissionArea = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // TODO: handle http protocol at start of links
 
     const submission = await submitProject(projectData);
 
@@ -40,7 +41,6 @@ const SubmissionArea = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    //TODO: send project user id to match token id
     const userId = submissionData.userId;
     const projectId = submissionData.id;
     const editedSubmissionData = { ...projectData, userId };
@@ -77,11 +77,13 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   setProjectData({ ...projectData, githubLink: e.target.value })
                 }
-                type="text"
+                type="url"
+                title="Link starts with https://"
                 id="githubLink"
                 placeholder="Github Link"
                 value={projectData.githubLink}
                 required
+                novalidate
               ></input>
               <input
                 onChange={(e) =>
@@ -90,7 +92,8 @@ const SubmissionArea = () => {
                     additionalLink: e.target.value,
                   })
                 }
-                type="text"
+                title="Link starts with https://"
+                type="url"
                 placeholder="Additional Link (optional)"
                 value={projectData.additionalLink}
               ></input>
