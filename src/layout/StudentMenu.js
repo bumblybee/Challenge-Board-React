@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from "react";
-
 import { editQuestion } from "../api/questionsApi";
 import { editComment } from "../api/commentsApi";
 import { StyledStudentMenu } from "../styles/styledComponents";
@@ -60,13 +59,20 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
             <form onSubmit={updateComment}>
               <textarea
                 onChange={(e) => setCommentBody(e.target.value)}
-                style={{ resize: "none" }}
+                style={{ resize: "none", fontSize: "1.1rem" }}
                 id="body"
-                rows="5"
+                rows="6"
                 value={commentBody}
               ></textarea>
-              <button>Submit</button>
-              <button onClick={() => setOpenModal(!openModal)}>Close</button>
+              <div className="modal-footer">
+                <button
+                  style={{ background: "transparent" }}
+                  onClick={() => setOpenModal(!openModal)}
+                >
+                  Cancel
+                </button>
+                <button>Submit</button>
+              </div>
             </form>
           </div>
         </Modal>
@@ -99,8 +105,15 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 rows="6"
                 value={questionBody}
               ></textarea>
-              <button>Submit</button>
-              <button onClick={() => setOpenModal(!openModal)}>Close</button>
+              <div className="modal-footer">
+                <button
+                  style={{ background: "transparent" }}
+                  onClick={() => setOpenModal(!openModal)}
+                >
+                  Cancel
+                </button>
+                <button>Submit</button>
+              </div>
             </form>
           </div>
         </Modal>
