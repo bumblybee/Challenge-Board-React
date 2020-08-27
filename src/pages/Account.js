@@ -33,10 +33,9 @@ const Account = () => {
             <h1 style={{ textAlign: "center", padding: "4rem" }}>
               Hello, {user.username}. Nice to see you.
             </h1>
-
+            <h2>Posts</h2>
             <StyledAccountPostsDiv>
-              <h2 style={{ marginBottom: "1rem" }}>Posts</h2>
-              <ul>
+              <ul style={{ background: "#202225" }}>
                 {questions
                   ? questions.map((question) => (
                       <Link
@@ -45,8 +44,9 @@ const Account = () => {
                         to={`/challenge/question/${question.id}`}
                       >
                         <StyledAccountPost>
-                          {/* Link post to thread */}
-                          <h4>{question.title}</h4>
+                          <h4 style={{ marginBottom: "1rem" }}>
+                            {question.title}
+                          </h4>
                           <p>{question.body}</p>
                         </StyledAccountPost>
                       </Link>
@@ -57,7 +57,7 @@ const Account = () => {
                       <Link
                         key={comment.id}
                         style={{ color: "#fff" }}
-                        to={`/challenge/question/${comment.id}`}
+                        to={`/challenge/question/${comment.questionId}`}
                       >
                         <StyledAccountPost>
                           {/* Link post to thread */}
@@ -70,8 +70,10 @@ const Account = () => {
               </ul>
             </StyledAccountPostsDiv>
             <div style={{ marginTop: "2rem" }}>
-              <h4>Edit your username</h4>
-              <h4>Edit your email</h4>
+              <form>
+                <h4>Edit username</h4>
+                <h4>Edit email</h4>
+              </form>
             </div>
           </Fragment>
         )}

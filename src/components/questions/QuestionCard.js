@@ -17,7 +17,7 @@ const QuestionCard = ({ question, reRenderList }) => {
     setIsOpen(!isOpen);
   };
 
-  // If user is teacher or if user.id matches the userId of question, render menu icon
+  // If user is teacher or if user.id matches question.userId, render menu icon
   const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
@@ -60,7 +60,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           ) : (
             ""
           )}
-          {/* If there's a logged in user and that user is a teacher or is a student with a question attached to their id, render menu icon */}
+          {/* If there's a logged in user and that user is a teacher, or is a student with a question attached to their id, render menu icon */}
           {user && renderMenuIcon()}
         </div>
 
@@ -68,6 +68,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           <TeacherMenu
             toggleMenu={toggleMenu}
             question={question}
+            reRenderList={reRenderList}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
           <StudentMenu
