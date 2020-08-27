@@ -10,6 +10,7 @@ import QuestionCard from "./QuestionCard";
 import Modal from "../../layout/Modal";
 
 const QuestionsList = () => {
+  //TODO: Remove post question btn if teacher
   const history = useHistory();
 
   const { user } = useContext(UserContext);

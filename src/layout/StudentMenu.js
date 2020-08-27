@@ -44,7 +44,8 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
     };
 
     const editedComment = await editComment(comment.id, data);
-    setOpenModal(!openModal);
+
+    editedComment && setOpenModal(!openModal);
     //TODO: handle error
 
     editedComment && toggleMenu();

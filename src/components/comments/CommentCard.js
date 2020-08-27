@@ -59,7 +59,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         position: "relative",
       }}
     >
-      <div className="question-header">
+      <div className="comment-header">
         <div className="name">{comment.user.username}</div>
         <div style={{ marginRight: "1rem", color: "#7d8088" }}>{time}</div>
         <div style={{ color: "#7d8088" }}>{date}</div>
@@ -88,7 +88,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         )}
       </div>
 
-      <div className="question-body">
+      <div className="comment-body">
         {isTruncated ? (
           <Truncate
             lines={3}

@@ -385,7 +385,8 @@ iframe {
   margin-top: 0.5rem;
 }
 
-.question-header {
+.question-header,
+.comment-header {
   display: flex;
   font-size: 0.9rem;
 }
@@ -408,7 +409,8 @@ iframe {
   margin-left: auto;
 }
 
-.question-body {
+.question-body,
+.comment-body {
   padding: 0.5rem 0;
 }
 

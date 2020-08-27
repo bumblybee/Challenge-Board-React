@@ -49,7 +49,7 @@ const SubmissionArea = () => {
     if (editedSubmission) {
       setIsSubmitted(true);
       setShowEdit(true);
-      setProjectData({ githubLink: "", additionalLink: "", comment: "" });
+
       setIsOpen(!isOpen);
       setTimestamp({
         ...timestamp,

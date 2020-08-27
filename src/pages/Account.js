@@ -22,7 +22,7 @@ const Account = () => {
     setQuestions(userData.data.questions);
     setComments(userData.data.comments);
 
-    console.log(userData);
+    // console.log(userData);
   };
 
   return (
@@ -33,9 +33,10 @@ const Account = () => {
             <h1 style={{ textAlign: "center", padding: "4rem" }}>
               Hello, {user.username}. Nice to see you.
             </h1>
-            <h2>Posts</h2>
+
             <StyledAccountPostsDiv>
-              <ul style={{ background: "#202225" }}>
+              <ul style={{ background: "#202225", padding: "0.5rem" }}>
+                <h3>Questions</h3>
                 {questions
                   ? questions.map((question) => (
                       <Link
@@ -44,20 +45,21 @@ const Account = () => {
                         to={`/challenge/question/${question.id}`}
                       >
                         <StyledAccountPost>
-                          <h4 style={{ marginBottom: "1rem" }}>
+                          <h3 style={{ marginBottom: "1rem" }}>
                             {question.title}
-                          </h4>
+                          </h3>
                           <p>{question.body}</p>
                         </StyledAccountPost>
                       </Link>
                     ))
                   : ""}
+                <h3 style={{ marginTop: "1rem" }}>Comments</h3>
                 {comments
                   ? comments.map((comment) => (
                       <Link
                         key={comment.id}
                         style={{ color: "#fff" }}
-                        to={`/challenge/question/${comment.questionId}`}
+                        to={`/challenge/question/${comment.questionId}#${comment.id}`}
                       >
                         <StyledAccountPost>
                           {/* Link post to thread */}
