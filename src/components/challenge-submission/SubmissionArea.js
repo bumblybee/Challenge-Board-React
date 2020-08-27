@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import Modal from "../../layout/Modal";
 import { submitProject } from "../../api/projectsApi";
@@ -17,8 +17,7 @@ const SubmissionArea = () => {
     additionalLink: "",
     comment: "",
   });
-  // const date = moment(comment.createdAt).format("L");
-  // const time = moment(comment.createdAt).format("LT");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

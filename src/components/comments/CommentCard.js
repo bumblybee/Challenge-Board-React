@@ -7,7 +7,7 @@ import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
 import { UserContext } from "../../context/UserContext";
 
-const QuestionCard = ({ comment, answer, reRenderList }) => {
+const CommentCard = ({ comment, answer, reRenderList }) => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -113,4 +113,4 @@ const QuestionCard = ({ comment, answer, reRenderList }) => {
   );
 };
 
-export default QuestionCard;
+export default CommentCard;
