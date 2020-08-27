@@ -34,7 +34,7 @@ const TeacherMenu = ({ question, comment, reRenderList, toggleMenu }) => {
       console.log(deletedComment);
 
       toggleMenu();
-      //TODO: reconfig so that it's not rerendering entire app, just the list
+
       reRenderList();
     }
   };

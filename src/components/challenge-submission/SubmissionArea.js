@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import moment from "moment";
 import Modal from "../../layout/Modal";
-import { submitProject } from "../../api/projectsApi";
+import { submitProject, editProject } from "../../api/projectsApi";
 
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [submissionData, setSubmissionData] = useState({});
   const [timestamp, setTimestamp] = useState({
     fullTimeStamp: "",
     date: "",
@@ -24,6 +25,7 @@ const SubmissionArea = () => {
     const submission = await submitProject(projectData);
 
     if (submission) {
+      setSubmissionData(submission);
       setIsSubmitted(true);
       setShowEdit(true);
       setProjectData({ githubLink: "", additionalLink: "", comment: "" });
@@ -37,9 +39,32 @@ const SubmissionArea = () => {
     }
   };
 
-  const handleEdit = (e) => {
+  console.log(submissionData);
+  const handleEdit = async (e) => {
     e.preventDefault();
-    //TODO: PUT request to api to update submission where createdAt = timestamp.fullTimeStamp
+    const submissionId = submissionData.data.id;
+    const editedSubmission = await editProject(submissionId, projectData);
+
+    if (editedSubmission) {
+      setSubmissionData(editedSubmission);
+      setIsSubmitted(true);
+      setShowEdit(true);
+      setProjectData({ githubLink: "", additionalLink: "", comment: "" });
+      setIsOpen(!isOpen);
+      setTimestamp({
+        ...timestamp,
+        date: moment(editedSubmission.createdAt).format("L"),
+        time: moment(editedSubmission.createdAt).format("h:mm"),
+      });
+    }
+  };
+
+  const handleForm = () => {
+    if (showEdit) {
+      return handleEdit();
+    } else {
+      return handleSubmit();
+    }
   };
 
   return (
@@ -52,7 +77,10 @@ const SubmissionArea = () => {
             <p>Provide your Github and any additional relevant links.</p>
           </div>
           <div className="modal-body">
-            <form onSubmit={handleSubmit} id="submit-form">
+            <form
+              onSubmit={showEdit ? handleEdit : handleSubmit}
+              id="submit-form"
+            >
               <input
                 onChange={(e) =>
                   setProjectData({ ...projectData, githubLink: e.target.value })

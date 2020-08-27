@@ -1,7 +1,11 @@
-import { post } from "./baseApi";
+import { put, post } from "./baseApi";
 
 const submitProject = async (data) => {
   return await post("/projects", data);
 };
 
-export { submitProject };
+const editProject = async (id, data) => {
+  return await put(`/projects/${id}`, data);
+};
+
+export { submitProject, editProject };
