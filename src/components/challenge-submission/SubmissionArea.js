@@ -7,9 +7,8 @@ const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [submissionData, setSubmissionData] = useState({});
+  const [submissionData, setSubmissionData] = useState();
   const [timestamp, setTimestamp] = useState({
-    fullTimeStamp: "",
     date: "",
     time: "",
   });
@@ -25,28 +24,29 @@ const SubmissionArea = () => {
     const submission = await submitProject(projectData);
 
     if (submission) {
-      setSubmissionData(submission);
       setIsSubmitted(true);
       setShowEdit(true);
-      setProjectData({ githubLink: "", additionalLink: "", comment: "" });
       setIsOpen(!isOpen);
       setTimestamp({
         ...timestamp,
-        fullTimeStamp: submission.createdAt,
+
         date: moment(submission.createdAt).format("L"),
         time: moment(submission.createdAt).format("h:mm"),
       });
     }
+    setSubmissionData(submission.data);
   };
 
-  console.log(submissionData);
   const handleEdit = async (e) => {
     e.preventDefault();
-    const submissionId = submissionData.data.id;
-    const editedSubmission = await editProject(submissionId, projectData);
+
+    //TODO: send project user id to match token id
+    const userId = submissionData.userId;
+    const projectId = submissionData.id;
+    const editedSubmissionData = { ...projectData, userId };
+    const editedSubmission = await editProject(projectId, editedSubmissionData);
 
     if (editedSubmission) {
-      setSubmissionData(editedSubmission);
       setIsSubmitted(true);
       setShowEdit(true);
       setProjectData({ githubLink: "", additionalLink: "", comment: "" });
@@ -56,14 +56,6 @@ const SubmissionArea = () => {
         date: moment(editedSubmission.createdAt).format("L"),
         time: moment(editedSubmission.createdAt).format("h:mm"),
       });
-    }
-  };
-
-  const handleForm = () => {
-    if (showEdit) {
-      return handleEdit();
-    } else {
-      return handleSubmit();
     }
   };
 
@@ -88,6 +80,7 @@ const SubmissionArea = () => {
                 type="text"
                 id="githubLink"
                 placeholder="Github Link"
+                value={projectData.githubLink}
                 required
               ></input>
               <input
@@ -99,6 +92,7 @@ const SubmissionArea = () => {
                 }
                 type="text"
                 placeholder="Additional Link (optional)"
+                value={projectData.additionalLink}
               ></input>
               <textarea
                 onChange={(e) =>
@@ -106,6 +100,7 @@ const SubmissionArea = () => {
                 }
                 rows="5"
                 placeholder="Comments (optional)"
+                value={projectData.comment}
               ></textarea>
               <div className="modal-footer">
                 <button
