@@ -1,7 +1,10 @@
 import React, { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
+
 import { getUserPosts } from "../api/userApi";
 import { UserContext } from "../context/UserContext";
+
 import {
   StyledAccountDiv,
   StyledAccountPostsDiv,
@@ -56,17 +59,15 @@ const Account = () => {
                 <h3 style={{ marginTop: "1rem" }}>Comments</h3>
                 {comments
                   ? comments.map((comment) => (
-                      <Link
+                      <HashLink
                         key={comment.id}
                         style={{ color: "#fff" }}
                         to={`/challenge/question/${comment.questionId}#${comment.id}`}
                       >
                         <StyledAccountPost>
-                          {/* Link post to thread */}
-
                           <p>{comment.body}</p>
                         </StyledAccountPost>
-                      </Link>
+                      </HashLink>
                     ))
                   : ""}
               </ul>

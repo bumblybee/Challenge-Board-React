@@ -52,6 +52,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
 
   return (
     <li
+      id={comment.id}
       className="comment-card"
       style={{
         color: "#dcddde",

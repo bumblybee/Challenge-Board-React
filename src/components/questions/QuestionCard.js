@@ -34,7 +34,7 @@ const QuestionCard = ({ question, reRenderList }) => {
                   right: "0",
                   borderTopRightRadius: "6px",
                 }
-              : { padding: "0 1rem", marginLeft: "1rem" }
+              : { padding: "0 1rem" }
           }
         ></i>
       );
