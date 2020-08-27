@@ -20,4 +20,9 @@ const logoutUser = async () => {
   console.log(res);
 };
 
-export { loginUser, checkLogin, logoutUser, signupUser };
+const getUserPosts = async (id) => {
+  const res = await instance.get(`/users/${id}/posts`);
+  return res;
+};
+
+export { loginUser, checkLogin, logoutUser, signupUser, getUserPosts };

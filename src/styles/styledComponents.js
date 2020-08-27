@@ -73,9 +73,10 @@ const StyledAccountPostsDiv = styled.div`
 const StyledAccountPost = styled.li`
   width: 80%;
   margin: 0 auto;
+
   padding: 1rem;
   background: #3a3c42;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 4.5px 5.3px rgba(0, 0, 0, 0.028);
   transition: transform 0.1s ease-in;

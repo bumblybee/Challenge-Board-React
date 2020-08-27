@@ -23,7 +23,7 @@ import ResetPassword from "./pages/ResetPassword";
 function App() {
   const [user, setUser] = useState(null);
   const userValue = { user, setUser };
-
+  //TODO: Loading component
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();

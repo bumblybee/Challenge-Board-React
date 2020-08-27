@@ -1,4 +1,6 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, useEffect, useState, Fragment } from "react";
+import { Link } from "react-router-dom";
+import { getUserPosts } from "../api/userApi";
 import { UserContext } from "../context/UserContext";
 import {
   StyledAccountDiv,
@@ -8,7 +10,21 @@ import {
 
 const Account = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
+  const [questions, setQuestions] = useState([]);
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    user && getPosts();
+  }, [user]);
+
+  const getPosts = async () => {
+    const userData = await getUserPosts(user.id);
+    setQuestions(userData.data.questions);
+    setComments(userData.data.comments);
+
+    console.log(userData);
+  };
+
   return (
     <div>
       <StyledAccountDiv>
@@ -19,14 +35,38 @@ const Account = () => {
             </h1>
 
             <StyledAccountPostsDiv>
+              <h2 style={{ marginBottom: "1rem" }}>Posts</h2>
               <ul>
-                <StyledAccountPost>
-                  {/* Link post to thread */}
-                  Post One
-                </StyledAccountPost>
-                <StyledAccountPost>Post Two</StyledAccountPost>
-                <StyledAccountPost>Post Three</StyledAccountPost>
-                <StyledAccountPost>Post Four</StyledAccountPost>
+                {questions
+                  ? questions.map((question) => (
+                      <Link
+                        key={question.id}
+                        style={{ color: "#fff" }}
+                        to={`/challenge/question/${question.id}`}
+                      >
+                        <StyledAccountPost>
+                          {/* Link post to thread */}
+                          <h4>{question.title}</h4>
+                          <p>{question.body}</p>
+                        </StyledAccountPost>
+                      </Link>
+                    ))
+                  : ""}
+                {comments
+                  ? comments.map((comment) => (
+                      <Link
+                        key={comment.id}
+                        style={{ color: "#fff" }}
+                        to={`/challenge/question/${comment.id}`}
+                      >
+                        <StyledAccountPost>
+                          {/* Link post to thread */}
+
+                          <p>{comment.body}</p>
+                        </StyledAccountPost>
+                      </Link>
+                    ))
+                  : ""}
               </ul>
             </StyledAccountPostsDiv>
             <div style={{ marginTop: "2rem" }}>
