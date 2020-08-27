@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import signupUser from "../api/signupApi";
+import { signupUser } from "../api/userApi";
 import { getDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
 

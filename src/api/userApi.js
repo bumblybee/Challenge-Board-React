@@ -1,5 +1,10 @@
 import { instance, post } from "./baseApi";
 
+const signupUser = async (data) => {
+  const res = await post("/users/create", data);
+  return res;
+};
+
 const loginUser = async (details) => {
   const res = await post("/users/login", details);
   return res;
@@ -15,4 +20,4 @@ const logoutUser = async () => {
   console.log(res);
 };
 
-export { loginUser, checkLogin, logoutUser };
+export { loginUser, checkLogin, logoutUser, signupUser };

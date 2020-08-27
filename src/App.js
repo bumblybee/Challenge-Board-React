@@ -9,7 +9,7 @@ import {
 import "./styles/App.css";
 
 import { UserContext } from "./context/UserContext";
-import { checkLogin } from "./api/loginApi";
+import { checkLogin } from "./api/userApi";
 
 import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";
