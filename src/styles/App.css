@@ -45,25 +45,6 @@ h1 {
   margin: 0;
 }
 
-button:not(.submit-comment),
-.discord-signup-button {
-  margin-top: 1rem;
-  background: #6271c0;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 4px;
-  border: none;
-  font-size: 0.95rem;
-  font-family: "Roboto Slab", serif;
-  font-weight: 300;
-  text-align: center;
-}
-
-button:hover {
-  cursor: pointer;
-  background: #809bff;
-}
-
 i {
   color: var(--secondary-text);
 }
@@ -515,10 +496,6 @@ iframe {
 
   h1 {
     font-size: 1.3rem;
-  }
-
-  button {
-    font-size: 0.9rem;
   }
 
   iframe {

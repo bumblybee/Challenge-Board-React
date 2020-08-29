@@ -133,12 +133,12 @@ const QuestionsList = () => {
             Post a Question
           </StyledPurpleButton>
         ) : (
-          <button
+          <StyledPurpleButton
             className="modal-button"
             onClick={() => history.push("/login")}
           >
             Log in to Post a Question
-          </button>
+          </StyledPurpleButton>
         )}
       </div>
       <div className="questions-container">

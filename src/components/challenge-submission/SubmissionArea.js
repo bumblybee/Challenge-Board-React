@@ -174,14 +174,13 @@ const SubmissionArea = () => {
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
           <p>When you're ready, submit your Github link here for review.</p>
-          <button
-            // TODO: add api call for project submission
+          <StyledPurpleButton
             onClick={() => setIsOpen(!isOpen)}
             className="modal-button"
             id="submit-button"
           >
             Submit Project
-          </button>
+          </StyledPurpleButton>
         </div>
       )}
     </div>

@@ -80,6 +80,11 @@ const StyledPurpleButton = styled.button`
     css`
       margin-right: 1rem;
     `}
+
+  :hover {
+    cursor: pointer;
+    background: #809bff;
+  }
 `;
 
 export {
