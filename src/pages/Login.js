@@ -2,7 +2,10 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/userApi";
-import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledTransparentButton,
+} from "../styles/GlobalStyledComponents";
 import Error from "../components/errors/Error";
 
 const Login = () => {

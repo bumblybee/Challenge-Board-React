@@ -9,7 +9,10 @@ import { getQuestions } from "../../api/questionsApi";
 import QuestionCard from "./QuestionCard";
 import Modal from "../../layout/Modal";
 
-import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledTransparentButton,
+} from "../../styles/GlobalStyledComponents";
 
 const QuestionsList = () => {
   //TODO: Remove post question btn if teacher
@@ -105,12 +108,12 @@ const QuestionsList = () => {
                 required
               ></textarea>
               <div className="modal-footer">
-                <button
+                <StyledTransparentButton
                   className="close-modal"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   Cancel
-                </button>
+                </StyledTransparentButton>
                 <StyledPurpleButton id="post-question-button" type="submit">
                   Post
                 </StyledPurpleButton>

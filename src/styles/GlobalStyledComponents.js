@@ -62,6 +62,12 @@ const StyledAccountPost = styled.li`
 
 const StyledTransparentButton = styled.button`
   background: transparent;
+  border: none;
+  color: #fff;
+  margin: 0 1rem 0.5rem 0;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledPurpleButton = styled.button`

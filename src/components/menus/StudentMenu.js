@@ -2,7 +2,10 @@ import React, { useState, Fragment } from "react";
 import { editQuestion } from "../../api/questionsApi";
 import { editComment } from "../../api/commentsApi";
 import { StyledStudentMenu, StyledEditTextarea } from "./StyledMenus";
-import { StyledTransparentButton } from "../../styles/GlobalStyledComponents";
+import {
+  StyledTransparentButton,
+  StyledPurpleButton,
+} from "../../styles/GlobalStyledComponents";
 import Modal from "../../layout/Modal";
 
 const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
@@ -66,13 +69,12 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 value={commentBody}
               ></StyledEditTextarea>
               <div className="modal-footer">
-                <button
-                  style={{ background: "transparent" }}
+                <StyledTransparentButton
                   onClick={() => setOpenModal(!openModal)}
                 >
                   Cancel
-                </button>
-                <button>Submit</button>
+                </StyledTransparentButton>
+                <StyledPurpleButton>Submit</StyledPurpleButton>
               </div>
             </form>
           </div>
@@ -111,7 +113,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 >
                   Cancel
                 </StyledTransparentButton>
-                <button>Submit</button>
+                <StyledPurpleButton>Submit</StyledPurpleButton>
               </div>
             </form>
           </div>

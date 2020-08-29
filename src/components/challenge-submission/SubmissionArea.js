@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import moment from "moment";
 import Modal from "../../layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
-import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledTransparentButton,
+} from "../../styles/GlobalStyledComponents";
 
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -107,13 +110,13 @@ const SubmissionArea = () => {
                 value={projectData.comment}
               ></textarea>
               <div className="modal-footer">
-                <button
+                <StyledTransparentButton
                   className="close-modal"
                   href="#"
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   Cancel
-                </button>
+                </StyledTransparentButton>
                 <StyledPurpleButton type="submit" id="submit-project-button">
                   Submit
                 </StyledPurpleButton>
