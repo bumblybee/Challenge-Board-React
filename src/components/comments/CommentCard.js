@@ -2,10 +2,12 @@ import React, { useState, useContext } from "react";
 import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
+
+import { UserContext } from "../../context/UserContext";
 import { StyledSpan } from "../../styles/styledComponents";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
-import { UserContext } from "../../context/UserContext";
+import { StyledIconsDiv, StyledMenuIcon } from "./StyledComments";
 
 const CommentCard = ({ comment, answer, reRenderList }) => {
   const [isTruncated, setIsTruncated] = useState(true);
@@ -29,21 +31,11 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
   const renderMenu = () => {
     if (user.role === "Teacher" || user.id === comment.userId) {
       return (
-        <i
-          style={
-            isOpen
-              ? {
-                  background: "#18191b",
-                  padding: "1rem",
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                }
-              : {}
-          }
+        <StyledMenuIcon
+          isOpen={isOpen}
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-        ></i>
+        ></StyledMenuIcon>
       );
     } else {
       return null;
@@ -64,14 +56,9 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         <div className="name">{comment.user.username}</div>
         <div style={{ marginRight: "1rem", color: "#7d8088" }}>{time}</div>
         <div style={{ color: "#7d8088" }}>{date}</div>
-        <div
-          className="icons"
-          style={{
-            background: isOpen && "#18191b",
-          }}
-        >
+        <StyledIconsDiv className="icons" isOpen={isOpen}>
           {user && renderMenu()}
-        </div>
+        </StyledIconsDiv>
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
             reRenderList={reRenderList}
