@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
-import { StyledMenuIcon, StyledIconsDiv } from "./StyledQuestions";
+import {
+  StyledMenuIcon,
+  StyledIconsDiv,
+  StyledViewThreadDiv,
+} from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
   const date = moment(question.createdAt).format("L");
@@ -80,9 +84,12 @@ const QuestionCard = ({ question, reRenderList }) => {
             : " comment"}
         </div>
         {/* TODO: link route to thread ID  */}
-        <div className="view-thread" style={{ padding: "0 1rem 0" }}>
+        <StyledViewThreadDiv
+          className="view-thread"
+          style={{ padding: "0 1rem 0" }}
+        >
           <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
-        </div>
+        </StyledViewThreadDiv>
       </div>
     </li>
   );

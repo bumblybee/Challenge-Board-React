@@ -7,6 +7,7 @@ const StyledCommentCard = styled.li`
 `;
 
 const StyledIconsDiv = styled.div`
+  margin-left: auto;
   background: ${(props) => (props.isOpen ? "#18191b" : "#202225")};
 `;
 

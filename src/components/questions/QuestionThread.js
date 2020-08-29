@@ -9,7 +9,15 @@ import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
-import { StyledSpan, StyledMenuIcon } from "./StyledQuestions";
+import {
+  StyledSpan,
+  StyledMenuIcon,
+  StyledAnswerIcon,
+  StyledThreadQuestion,
+  StyledQuestionTitle,
+  StyledQuestionText,
+  StyledDateDiv,
+} from "./StyledQuestions";
 
 //TODO: add access to student menu in main question and answer
 const QuestionThread = () => {
@@ -81,19 +89,10 @@ const QuestionThread = () => {
       </div>
 
       <div className="thread-container">
-        <div
-          className="thread-question"
-          style={{
-            background: "#3a3c42",
-            padding: "1rem",
-            position: "relative",
-          }}
-        >
+        <StyledThreadQuestion className="thread-question">
           <div className="question-header">
             <div className="name">{username}</div>
-            <div className="created-at" style={{ color: "#7d8088" }}>
-              {date}
-            </div>
+            <StyledDateDiv className="created-at">{date}</StyledDateDiv>
 
             <div className="icons" style={{ marginRight: "1.3rem" }}>
               {user && renderMenu()}
@@ -117,15 +116,9 @@ const QuestionThread = () => {
             )}
           </div>
           <div className="question-body">
-            <div
-              style={{
-                marginBottom: "1rem",
-                fontWeight: "500",
-                color: "#fff",
-              }}
-            >
+            <StyledQuestionTitle>
               {sanitize(question.title)}
-            </div>
+            </StyledQuestionTitle>
             {isTruncated ? (
               <Truncate
                 lines={3}
@@ -140,13 +133,13 @@ const QuestionThread = () => {
                 {sanitize(question.body)}
               </Truncate>
             ) : (
-              <div style={{ color: "#dcddde", fontWeight: "300" }}>
+              <StyledQuestionText>
                 {sanitize(question.body)}{" "}
                 <StyledSpan onClick={handleTruncate}>less</StyledSpan>
-              </div>
+              </StyledQuestionText>
             )}
           </div>
-        </div>
+        </StyledThreadQuestion>
 
         {comments.map((comment, index) => {
           if (comment.isAnswer) {
@@ -156,14 +149,7 @@ const QuestionThread = () => {
                 className="chosen-answer"
                 key={index}
               >
-                <i
-                  className="fas fa-bookmark fa-lg"
-                  style={{
-                    float: "left",
-                    margin: "2.4rem 0 0 0.5rem",
-                    color: "#6271c0",
-                  }}
-                ></i>
+                <StyledAnswerIcon className="fas fa-bookmark fa-lg"></StyledAnswerIcon>
                 <div>
                   <CommentCard comment={comment} answer={true} />
                 </div>
