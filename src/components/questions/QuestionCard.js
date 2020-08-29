@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
+import { StyledMenuIcon, StyledIconsDiv } from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
   const date = moment(question.createdAt).format("L");
@@ -21,22 +22,11 @@ const QuestionCard = ({ question, reRenderList }) => {
   const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
-        <i
+        <StyledMenuIcon
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-          style={
-            isOpen
-              ? {
-                  background: "#18191b",
-                  padding: "1rem",
-                  position: "absolute",
-                  top: "-1rem",
-                  right: "0",
-                  borderTopRightRadius: "6px",
-                }
-              : { padding: "0 1rem" }
-          }
-        ></i>
+          isOpen={isOpen}
+        ></StyledMenuIcon>
       );
     } else {
       return null;
@@ -48,10 +38,7 @@ const QuestionCard = ({ question, reRenderList }) => {
       <div className="question-header">
         <div className="name">{question.user.username}</div>
         <div className="created-at">{date}</div>
-        <div
-          className="icons"
-          style={{ position: "relative", background: isOpen && "#18191b" }}
-        >
+        <StyledIconsDiv className="icons" isOpen={isOpen}>
           {question.isAnswered ? (
             <i
               className="fas fa-bookmark fa-lg"
@@ -62,7 +49,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           )}
           {/* If there's a logged in user and that user is a teacher, or is a student with a question attached to their id, render menu icon */}
           {user && renderMenuIcon()}
-        </div>
+        </StyledIconsDiv>
 
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu

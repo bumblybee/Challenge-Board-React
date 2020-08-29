@@ -6,7 +6,7 @@ import { submitProject, editProject } from "../../api/projectsApi";
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
+  const [showEditButton, setShowEditButton] = useState(false);
   const [submissionData, setSubmissionData] = useState();
   const [timestamp, setTimestamp] = useState({
     date: "",
@@ -26,7 +26,7 @@ const SubmissionArea = () => {
 
     if (submission) {
       setIsSubmitted(true);
-      setShowEdit(true);
+      setShowEditButton(true);
       setIsOpen(!isOpen);
       setTimestamp({
         ...timestamp,
@@ -48,7 +48,7 @@ const SubmissionArea = () => {
 
     if (editedSubmission) {
       setIsSubmitted(true);
-      setShowEdit(true);
+      setShowEditButton(true);
 
       setIsOpen(!isOpen);
       setTimestamp({
@@ -70,7 +70,7 @@ const SubmissionArea = () => {
           </div>
           <div className="modal-body">
             <form
-              onSubmit={showEdit ? handleEdit : handleSubmit}
+              onSubmit={showEditButton ? handleEdit : handleSubmit}
               id="submit-form"
             >
               <input
@@ -141,7 +141,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {showEdit ? (
+      {showEditButton ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>

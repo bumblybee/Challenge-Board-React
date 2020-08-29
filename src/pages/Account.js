@@ -48,9 +48,9 @@ const Account = () => {
                         to={`/challenge/question/${question.id}`}
                       >
                         <StyledAccountPost>
-                          <h3 style={{ marginBottom: "1rem" }}>
+                          <h4 style={{ marginBottom: "1rem" }}>
                             {question.title}
-                          </h3>
+                          </h4>
                           <p>{question.body}</p>
                         </StyledAccountPost>
                       </Link>

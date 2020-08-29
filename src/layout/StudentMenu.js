@@ -62,7 +62,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 onChange={(e) => setCommentBody(e.target.value)}
                 style={{ resize: "none", fontSize: "1.1rem" }}
                 id="body"
-                rows="6"
+                rows="8"
                 value={commentBody}
               ></textarea>
               <div className="modal-footer">
