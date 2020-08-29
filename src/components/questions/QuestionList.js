@@ -9,6 +9,8 @@ import { getQuestions } from "../../api/questionsApi";
 import QuestionCard from "./QuestionCard";
 import Modal from "../../layout/Modal";
 
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+
 const QuestionsList = () => {
   //TODO: Remove post question btn if teacher
   const history = useHistory();
@@ -109,9 +111,9 @@ const QuestionsList = () => {
                 >
                   Cancel
                 </button>
-                <button id="post-question-button" type="submit">
+                <StyledPurpleButton id="post-question-button" type="submit">
                   Post
-                </button>
+                </StyledPurpleButton>
               </div>
             </form>
           </div>{" "}
@@ -124,9 +126,12 @@ const QuestionsList = () => {
           <h1>Ask a Question</h1>
         </div>
         {user ? (
-          <button className="modal-button" onClick={() => setIsOpen(!isOpen)}>
+          <StyledPurpleButton
+            className="modal-button"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             Post a Question
-          </button>
+          </StyledPurpleButton>
         ) : (
           <button
             className="modal-button"

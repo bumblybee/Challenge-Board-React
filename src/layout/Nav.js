@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UserMenu from "./UserMenu";
+import UserMenu from "../components/menus/UserMenu";
 import { Link } from "react-router-dom";
 
 const Nav = () => {

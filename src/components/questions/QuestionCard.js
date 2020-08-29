@@ -3,8 +3,8 @@ import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import TeacherMenu from "../../layout/TeacherMenu";
-import StudentMenu from "../../layout/StudentMenu";
+import TeacherMenu from "../menus/TeacherMenu";
+import StudentMenu from "../menus/StudentMenu";
 import {
   StyledMenuIcon,
   StyledIconsDiv,

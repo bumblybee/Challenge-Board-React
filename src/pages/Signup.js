@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { signupUser } from "../api/userApi";
 import { getDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
+import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 
 import { useHistory } from "react-router-dom";
 
@@ -97,12 +98,12 @@ const Signup = () => {
             ></input>
           </div>
 
-          <button type="submit">Submit</button>
+          <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
           {discordUrl && (
             <Fragment>
-              <a className="discord-signup-button" href={discordUrl}>
+              <StyledPurpleButton href={discordUrl}>
                 <i className="fab fa-discord fa-lg"></i>
-              </a>
+              </StyledPurpleButton>
             </Fragment>
           )}
           <Link to="/login">Already have an account?</Link>

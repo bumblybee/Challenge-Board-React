@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from "react";
-import { editQuestion } from "../api/questionsApi";
-import { editComment } from "../api/commentsApi";
-import { StyledStudentMenu } from "../styles/styledComponents";
-import Modal from "./Modal";
+import { editQuestion } from "../../api/questionsApi";
+import { editComment } from "../../api/commentsApi";
+import { StyledStudentMenu, StyledEditTextarea } from "./StyledMenus";
+import { StyledTransparentButton } from "../../styles/GlobalStyledComponents";
+import Modal from "../../layout/Modal";
 
 const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -58,13 +59,12 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
         <Modal>
           <div className="modal-body">
             <form onSubmit={updateComment}>
-              <textarea
+              <StyledEditTextarea
                 onChange={(e) => setCommentBody(e.target.value)}
-                style={{ resize: "none", fontSize: "1.1rem" }}
                 id="body"
                 rows="8"
                 value={commentBody}
-              ></textarea>
+              ></StyledEditTextarea>
               <div className="modal-footer">
                 <button
                   style={{ background: "transparent" }}
@@ -99,20 +99,18 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 id="title"
                 value={questionTitle}
               />
-              <textarea
+              <StyledEditTextarea
                 onChange={(e) => setQuestionBody(e.target.value)}
-                style={{ resize: "none" }}
                 id="body"
                 rows="6"
                 value={questionBody}
-              ></textarea>
+              ></StyledEditTextarea>
               <div className="modal-footer">
-                <button
-                  style={{ background: "transparent" }}
+                <StyledTransparentButton
                   onClick={() => setOpenModal(!openModal)}
                 >
                   Cancel
-                </button>
+                </StyledTransparentButton>
                 <button>Submit</button>
               </div>
             </form>

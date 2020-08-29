@@ -9,7 +9,7 @@ import {
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
-} from "../styles/styledComponents";
+} from "../styles/GlobalStyledComponents";
 
 const Account = () => {
   const { user } = useContext(UserContext);

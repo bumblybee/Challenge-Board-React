@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { passwordReset } from "../api/passwordApi";
+import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -37,7 +38,7 @@ const ResetPassword = () => {
             ></input>
           </div>
 
-          <button type="submit">Submit</button>
+          <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
         </form>
       </div>
     </div>

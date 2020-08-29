@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import Modal from "../../layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,9 +114,9 @@ const SubmissionArea = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" id="submit-project-button">
+                <StyledPurpleButton type="submit" id="submit-project-button">
                   Submit
-                </button>
+                </StyledPurpleButton>
               </div>
             </form>
           </div>
@@ -136,7 +137,9 @@ const SubmissionArea = () => {
             </p>
           </div>
           <div className="modal-footer">
-            <button onClick={() => setIsSubmitted(false)}>Close</button>
+            <StyledPurpleButton onClick={() => setIsSubmitted(false)}>
+              Close
+            </StyledPurpleButton>
           </div>
         </Modal>
       )}
@@ -147,14 +150,14 @@ const SubmissionArea = () => {
           <h1>Submit Your Project</h1>
           <p>When you're ready, submit your Github link here for review.</p>
           <div className="edit-submission">
-            <button
+            <StyledPurpleButton
               onClick={() => setIsOpen(!isOpen)}
               className="modal-button edit-submission-button"
               id="submit-button"
-              style={{ marginRight: "1rem" }}
+              editButton={true}
             >
               Edit Submission
-            </button>
+            </StyledPurpleButton>
             <p
               style={{
                 color: "#7d8088",

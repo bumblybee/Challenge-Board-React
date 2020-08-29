@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { deleteQuestion, deleteComment } from "../api/deletePostApi";
-import { selectAnswer } from "../api/questionsApi";
+import { deleteQuestion, deleteComment } from "../../api/deletePostApi";
+import { selectAnswer } from "../../api/questionsApi";
 
-import { StyledTeacherMenu } from "../styles/styledComponents";
+import { StyledTeacherMenu } from "./StyledMenus";
 
 const TeacherMenu = ({
   question,

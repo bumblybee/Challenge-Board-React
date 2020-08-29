@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/userApi";
-
+import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 import Error from "../components/errors/Error";
 
 const Login = () => {
@@ -30,7 +30,7 @@ const Login = () => {
     <div className="login-form-content">
       <div className="login-form-header">
         <h1>Log In</h1>
-        <p>Log in with your email or Discord login</p>
+        <p>Log in with your email and password</p>
       </div>
 
       {error && (
@@ -68,7 +68,7 @@ const Login = () => {
             ></input>
           </div>
 
-          <button type="submit">Log In</button>
+          <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
           <Link to="/reset-password-request">Forgot password?</Link>
           <Link to="/signup">Need to Register?</Link>
         </form>

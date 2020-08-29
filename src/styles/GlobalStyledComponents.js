@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledErrorMsg = styled.div`
   color: #f77;
@@ -13,34 +13,6 @@ const StyledErrorMsg = styled.div`
 
 const StyledSpan = styled.span`
   color: #809bff;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledTeacherMenu = styled.div`
-  background: #18191b;
-  ont-size: 1.05rem;
-  padding: 1rem;
-  width: 30%;
-  position: absolute;
-  right: 0;
-  top: 2.8rem;
-  z-index: 1000;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledStudentMenu = styled.div`
-  background: #18191b;
-  font-size: 1.05rem;
-  padding: 1rem;
-  width: 35%;
-  position: absolute;
-  right: 0;
-  top: 2.8rem;
-  z-index: 1000;
   :hover {
     cursor: pointer;
   }
@@ -88,12 +60,34 @@ const StyledAccountPost = styled.li`
   }
 `;
 
+const StyledTransparentButton = styled.button`
+  background: transparent;
+`;
+
+const StyledPurpleButton = styled.button`
+  margin-top: 1rem;
+  background: #6271c0;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.95rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+  text-align: center;
+  ${(props) =>
+    props.editButton &&
+    css`
+      margin-right: 1rem;
+    `}
+`;
+
 export {
   StyledErrorMsg,
   StyledSpan,
-  StyledTeacherMenu,
-  StyledStudentMenu,
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
+  StyledTransparentButton,
+  StyledPurpleButton,
 };

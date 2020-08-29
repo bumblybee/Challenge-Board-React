@@ -4,8 +4,8 @@ import moment from "moment";
 import Truncate from "react-truncate";
 
 import { UserContext } from "../../context/UserContext";
-import TeacherMenu from "../../layout/TeacherMenu";
-import StudentMenu from "../../layout/StudentMenu";
+import TeacherMenu from "../menus/TeacherMenu";
+import StudentMenu from "../menus/StudentMenu";
 import {
   StyledCommentCard,
   StyledIconsDiv,

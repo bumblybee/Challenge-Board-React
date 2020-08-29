@@ -283,10 +283,6 @@ i:hover {
   flex-direction: column;
 }
 
-.submission-content button {
-  margin-right: auto;
-}
-
 .submission-container .edit-submission {
   display: flex;
 }

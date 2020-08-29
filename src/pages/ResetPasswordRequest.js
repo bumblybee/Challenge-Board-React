@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { triggerPasswordReset } from "../api/passwordApi";
+import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ const ResetPassword = () => {
                 ></input>
               </div>
 
-              <button type="submit">Submit</button>
+              <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
             </form>
           </div>
         </Fragment>

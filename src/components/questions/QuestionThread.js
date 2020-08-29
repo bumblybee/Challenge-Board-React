@@ -7,8 +7,10 @@ import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
-import TeacherMenu from "../../layout/TeacherMenu";
-import StudentMenu from "../../layout/StudentMenu";
+import TeacherMenu from "../menus/TeacherMenu";
+import StudentMenu from "../menus/StudentMenu";
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+
 import {
   StyledSpan,
   StyledMenuIcon,
@@ -85,7 +87,9 @@ const QuestionThread = () => {
           <h1>Ask a Question</h1>
         </div>
 
-        <button onClick={() => history.push("/challenge")}>Back</button>
+        <StyledPurpleButton onClick={() => history.push("/challenge")}>
+          Back
+        </StyledPurpleButton>
       </div>
 
       <div className="thread-container">
