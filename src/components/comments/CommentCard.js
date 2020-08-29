@@ -7,7 +7,13 @@ import { UserContext } from "../../context/UserContext";
 import { StyledSpan } from "../../styles/styledComponents";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
-import { StyledIconsDiv, StyledMenuIcon } from "./StyledComments";
+import {
+  StyledCommentCard,
+  StyledIconsDiv,
+  StyledMenuIcon,
+  StyledTimeDiv,
+  StyledDateDiv,
+} from "./StyledComments";
 
 const CommentCard = ({ comment, answer, reRenderList }) => {
   const [isTruncated, setIsTruncated] = useState(true);
@@ -43,19 +49,11 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
   };
 
   return (
-    <li
-      id={comment.id}
-      className="comment-card"
-      style={{
-        color: "#dcddde",
-        padding: answer ? "1rem 1rem 1rem 2rem" : "1rem",
-        position: "relative",
-      }}
-    >
+    <StyledCommentCard id={comment.id} className="comment-card">
       <div className="comment-header">
         <div className="name">{comment.user.username}</div>
-        <div style={{ marginRight: "1rem", color: "#7d8088" }}>{time}</div>
-        <div style={{ color: "#7d8088" }}>{date}</div>
+        <StyledTimeDiv>{time}</StyledTimeDiv>
+        <StyledDateDiv>{date}</StyledDateDiv>
         <StyledIconsDiv className="icons" isOpen={isOpen}>
           {user && renderMenu()}
         </StyledIconsDiv>
@@ -97,7 +95,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
           </div>
         )}
       </div>
-    </li>
+    </StyledCommentCard>
   );
 };
 
