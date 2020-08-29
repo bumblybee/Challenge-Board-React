@@ -26,6 +26,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
           isOpen={isOpen}
+          inList={true}
         ></StyledMenuIcon>
       );
     } else {

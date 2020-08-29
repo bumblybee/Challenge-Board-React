@@ -9,7 +9,7 @@ import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
-import { StyledSpan } from "../../styles/styledComponents";
+import { StyledSpan, StyledMenuIcon } from "./StyledQuestions";
 
 //TODO: add access to student menu in main question and answer
 const QuestionThread = () => {
@@ -53,21 +53,12 @@ const QuestionThread = () => {
   const renderMenu = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
-        <i
-          style={
-            isOpen
-              ? {
-                  background: "#18191b",
-                  padding: "1rem",
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                }
-              : {}
-          }
+        <StyledMenuIcon
+          isOpen={isOpen}
+          inList={false}
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-        ></i>
+        ></StyledMenuIcon>
       );
     } else {
       return null;

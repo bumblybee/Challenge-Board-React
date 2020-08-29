@@ -7,12 +7,12 @@ const StyledMenuIcon = styled.i`
           background-color: #18191b;
           padding: 1rem;
           position: absolute;
-          top: -1rem;
+          top: ${(props) => (props.inList ? "-1rem" : "0")};
           right: 0;
           border-top-right-radius: 6px;
         `
       : css`
-          padding: 0 1rem;
+          padding: ${(props) => (props.inList ? "0 1rem" : "0")};
         `}
 `;
 
@@ -21,4 +21,11 @@ const StyledIconsDiv = styled.div`
   background: ${(props) => (props.isOpen ? "#18191b" : "#3a3c42")};
 `;
 
-export { StyledMenuIcon, StyledIconsDiv };
+const StyledSpan = styled.span`
+  color: #809bff;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export { StyledMenuIcon, StyledIconsDiv, StyledSpan };
