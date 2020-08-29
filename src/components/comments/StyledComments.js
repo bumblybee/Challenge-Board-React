@@ -32,10 +32,24 @@ const StyledDateDiv = styled.div`
   color: #7d8088;
 `;
 
+const StyledSpan = styled.span`
+  color: #809bff;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledCommentTextDiv = styled.div`
+  color: #dcddde;
+  font-weight: 300;
+`;
+
 export {
   StyledCommentCard,
   StyledMenuIcon,
   StyledIconsDiv,
   StyledTimeDiv,
   StyledDateDiv,
+  StyledSpan,
+  StyledCommentTextDiv,
 };

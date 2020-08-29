@@ -4,7 +4,6 @@ import moment from "moment";
 import Truncate from "react-truncate";
 
 import { UserContext } from "../../context/UserContext";
-import { StyledSpan } from "../../styles/styledComponents";
 import TeacherMenu from "../../layout/TeacherMenu";
 import StudentMenu from "../../layout/StudentMenu";
 import {
@@ -13,6 +12,8 @@ import {
   StyledMenuIcon,
   StyledTimeDiv,
   StyledDateDiv,
+  StyledSpan,
+  StyledCommentTextDiv,
 } from "./StyledComments";
 
 const CommentCard = ({ comment, answer, reRenderList }) => {
@@ -49,7 +50,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
   };
 
   return (
-    <StyledCommentCard id={comment.id} className="comment-card">
+    <StyledCommentCard id={comment.id} className="comment-card" answer={answer}>
       <div className="comment-header">
         <div className="name">{comment.user.username}</div>
         <StyledTimeDiv>{time}</StyledTimeDiv>
@@ -89,10 +90,10 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
             {sanitize(comment.body)}
           </Truncate>
         ) : (
-          <div style={{ color: "#dcddde", fontWeight: "300" }}>
+          <StyledCommentTextDiv>
             {sanitize(comment.body)}{" "}
             <StyledSpan onClick={handleTruncate}>less</StyledSpan>
-          </div>
+          </StyledCommentTextDiv>
         )}
       </div>
     </StyledCommentCard>
