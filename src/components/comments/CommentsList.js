@@ -4,7 +4,11 @@ import CommentCard from "./CommentCard";
 import { createComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
-import { StyledSubmitButton, StyledCommentsForm } from "./StyledComments";
+import {
+  StyledCommentsThread,
+  StyledSubmitButton,
+  StyledCommentsForm,
+} from "./StyledComments";
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
   const { user } = useContext(UserContext);
@@ -30,12 +34,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
 
   return (
     <div className="comments-container">
-      <ul
-        className="comments-thread"
-        style={{
-          backgroundColor: "#202225",
-        }}
-      >
+      <StyledCommentsThread className="comments-thread">
         {comments.map((comment, index) => (
           <CommentCard
             reRenderList={reRenderList}
@@ -43,7 +42,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
             key={index}
           />
         ))}
-      </ul>
+      </StyledCommentsThread>
       <StyledCommentsForm onSubmit={handleSubmit}>
         <TextareaAutosize
           onChange={(e) =>

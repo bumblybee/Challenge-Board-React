@@ -22,6 +22,10 @@ const StyledAnswerIcon = styled.i`
   color: #6271c0;
 `;
 
+const StyledIsAnsweredIcon = styled.i`
+  margin-right: 1rem;
+`;
+
 const StyledIconsDiv = styled.div`
   position: relative;
   margin-left: auto;
@@ -70,4 +74,5 @@ export {
   StyledQuestionText,
   StyledDateDiv,
   StyledViewThreadDiv,
+  StyledIsAnsweredIcon,
 };

@@ -55,7 +55,11 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         <div className="name">{comment.user.username}</div>
         <StyledTimeDiv>{time}</StyledTimeDiv>
         <StyledDateDiv>{date}</StyledDateDiv>
-        <StyledIconsDiv className="icons" isOpen={isOpen}>
+        <StyledIconsDiv
+          className="icons"
+          isOpen={isOpen}
+          isAnswer={comment.isAnswer}
+        >
           {user && renderMenu()}
         </StyledIconsDiv>
         {isOpen && user.role === "Teacher" ? (

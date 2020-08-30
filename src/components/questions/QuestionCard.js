@@ -9,6 +9,7 @@ import {
   StyledMenuIcon,
   StyledIconsDiv,
   StyledViewThreadDiv,
+  StyledIsAnsweredIcon,
 } from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
@@ -45,10 +46,7 @@ const QuestionCard = ({ question, reRenderList }) => {
         <div className="created-at">{date}</div>
         <StyledIconsDiv className="icons" isOpen={isOpen}>
           {question.isAnswered ? (
-            <i
-              className="fas fa-bookmark fa-lg"
-              style={{ marginRight: "1rem" }}
-            ></i>
+            <StyledIsAnsweredIcon className="fas fa-bookmark fa-lg"></StyledIsAnsweredIcon>
           ) : (
             ""
           )}
@@ -84,10 +82,7 @@ const QuestionCard = ({ question, reRenderList }) => {
             : " comment"}
         </div>
         {/* TODO: link route to thread ID  */}
-        <StyledViewThreadDiv
-          className="view-thread"
-          style={{ padding: "0 1rem 0" }}
-        >
+        <StyledViewThreadDiv className="view-thread">
           <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
         </StyledViewThreadDiv>
       </div>

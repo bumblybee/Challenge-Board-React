@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+const StyledCommentsThread = styled.ul`
+  background: #202225;
+`;
+
 const StyledCommentCard = styled.li`
   color: #dcddde;
   position: relative;
@@ -7,8 +11,15 @@ const StyledCommentCard = styled.li`
 `;
 
 const StyledIconsDiv = styled.div`
-  margin-left: auto;
-  background: ${(props) => (props.isOpen ? "#18191b" : "#202225")};
+  ${(props) =>
+    props.isOpen
+      ? css`
+          background: #18191b;
+        `
+      : css`
+          margin-left: auto;
+          background: ${(props) => (props.isAnswer ? "#2f3136" : "#202225")};
+        `}
 `;
 
 const StyledMenuIcon = styled.i`
@@ -58,6 +69,7 @@ const StyledSubmitButton = styled.button`
 `;
 
 export {
+  StyledCommentsThread,
   StyledCommentCard,
   StyledMenuIcon,
   StyledIconsDiv,

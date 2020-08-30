@@ -24,8 +24,6 @@ const Account = () => {
     const userData = await getUserPosts(user.id);
     setQuestions(userData.data.questions);
     setComments(userData.data.comments);
-
-    // console.log(userData);
   };
 
   return (
