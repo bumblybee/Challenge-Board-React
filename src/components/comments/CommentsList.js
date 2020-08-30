@@ -4,6 +4,7 @@ import CommentCard from "./CommentCard";
 import { createComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
+import { StyledSubmitButton, StyledCommentsForm } from "./StyledComments";
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
   const { user } = useContext(UserContext);
@@ -43,14 +44,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
           />
         ))}
       </ul>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          background: "#18191B",
-          display: "flex",
-          padding: "1rem",
-        }}
-      >
+      <StyledCommentsForm onSubmit={handleSubmit}>
         <TextareaAutosize
           onChange={(e) =>
             setNewComment({
@@ -76,18 +70,10 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
           disabled={!user ? true : false}
         />
 
-        <button
-          className="submit-comment"
-          style={{
-            marginLeft: "auto",
-            border: "none",
-            background: "#18191B",
-          }}
-          type="submit"
-        >
+        <StyledSubmitButton className="submit-comment" type="submit">
           <i className="fas fa-paper-plane"></i>
-        </button>
-      </form>
+        </StyledSubmitButton>
+      </StyledCommentsForm>
     </div>
   );
 };

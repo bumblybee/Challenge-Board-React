@@ -13,7 +13,7 @@ import {
   StyledTimeDiv,
   StyledDateDiv,
   StyledSpan,
-  StyledCommentTextDiv,
+  StyledCommentText,
 } from "./StyledComments";
 
 const CommentCard = ({ comment, answer, reRenderList }) => {
@@ -90,10 +90,10 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
             {sanitize(comment.body)}
           </Truncate>
         ) : (
-          <StyledCommentTextDiv>
+          <StyledCommentText>
             {sanitize(comment.body)}{" "}
             <StyledSpan onClick={handleTruncate}>less</StyledSpan>
-          </StyledCommentTextDiv>
+          </StyledCommentText>
         )}
       </div>
     </StyledCommentCard>

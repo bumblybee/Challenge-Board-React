@@ -40,9 +40,21 @@ const StyledSpan = styled.span`
   }
 `;
 
-const StyledCommentTextDiv = styled.div`
+const StyledCommentText = styled.div`
   color: #dcddde;
   font-weight: 300;
+`;
+
+const StyledCommentsForm = styled.form`
+  background: #18191b;
+  display: flex;
+  padding: 1rem;
+`;
+
+const StyledSubmitButton = styled.button`
+  margin-left: auto;
+  border: none;
+  background: #18191b;
 `;
 
 export {
@@ -52,5 +64,7 @@ export {
   StyledTimeDiv,
   StyledDateDiv,
   StyledSpan,
-  StyledCommentTextDiv,
+  StyledCommentText,
+  StyledSubmitButton,
+  StyledCommentsForm,
 };

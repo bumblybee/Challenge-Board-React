@@ -7,6 +7,7 @@ import {
   StyledTransparentButton,
 } from "../../styles/GlobalStyledComponents";
 
+//TODO: Add isSubmitted to context?
 const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
