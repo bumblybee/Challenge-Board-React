@@ -70,7 +70,7 @@ i:hover {
 .signup-form-content,
 .login-form-content {
   background: var(--secondary-background);
-  width: 30%;
+  width: 32%;
   margin: 10% auto;
   padding: 2rem;
   box-shadow: 0 2px 4.1px -43px rgba(0, 0, 0, 0.101),

@@ -6,6 +6,12 @@ import {
   StyledPurpleButton,
   StyledTransparentButton,
 } from "../../styles/GlobalStyledComponents";
+import {
+  StyledModalBody,
+  StyledTimestampParagraph,
+  StyledConfirmationH1,
+  StyledConfirmationParagraph,
+} from "./StyledSubmissionArea";
 
 //TODO: Add isSubmitted to context?
 const SubmissionArea = () => {
@@ -129,17 +135,14 @@ const SubmissionArea = () => {
 
       {isSubmitted && (
         <Modal>
-          <div
-            className="modal-body"
-            style={{ height: "18rem", padding: "2rem" }}
-          >
-            <h1 style={{ marginTop: "6rem" }}>
+          <StyledModalBody className="modal-body">
+            <StyledConfirmationH1>
               Your project has been Submitted!
-            </h1>
-            <p style={{ paddingTop: "5px" }}>
+            </StyledConfirmationH1>
+            <StyledConfirmationParagraph>
               Look for an email confirmation shortly.
-            </p>
-          </div>
+            </StyledConfirmationParagraph>
+          </StyledModalBody>
           <div className="modal-footer">
             <StyledPurpleButton onClick={() => setIsSubmitted(false)}>
               Close
@@ -162,15 +165,9 @@ const SubmissionArea = () => {
             >
               Edit Submission
             </StyledPurpleButton>
-            <p
-              style={{
-                color: "#7d8088",
-                marginTop: "auto",
-                marginBottom: "0.5rem",
-              }}
-            >
+            <StyledTimestampParagraph>
               Project submitted at {timestamp.time} on {timestamp.date}{" "}
-            </p>
+            </StyledTimestampParagraph>
           </div>
         </div>
       ) : (
