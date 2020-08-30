@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { deleteQuestion, deleteComment } from "../../api/deletePostApi";
 import { selectAnswer } from "../../api/questionsApi";
 
-import { StyledTeacherMenu } from "./StyledMenus";
+import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
 const TeacherMenu = ({
   question,
@@ -57,13 +57,11 @@ const TeacherMenu = ({
   }
   return (
     <StyledTeacherMenu answer={answer}>
-      <p onClick={chooseAnswer} style={{ padding: "0.8rem 0" }}>
+      <StyledParagraph onClick={chooseAnswer}>
         Promote as Answer
-      </p>
+      </StyledParagraph>
       <hr />
-      <p onClick={deleteUserComment} style={{ padding: "0.8rem 0" }}>
-        Remove Post
-      </p>
+      <StyledParagraph onClick={deleteUserComment}>Remove Post</StyledParagraph>
     </StyledTeacherMenu>
   );
 };

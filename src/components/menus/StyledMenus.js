@@ -33,4 +33,13 @@ const StyledEditTextarea = styled.textarea`
   font-size: 1.2rem;
 `;
 
-export { StyledStudentMenu, StyledTeacherMenu, StyledEditTextarea };
+const StyledParagraph = styled.p`
+  padding: 0.8rem 0;
+`;
+
+export {
+  StyledStudentMenu,
+  StyledTeacherMenu,
+  StyledEditTextarea,
+  StyledParagraph,
+};
