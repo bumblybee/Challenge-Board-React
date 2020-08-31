@@ -3,6 +3,7 @@ const errorCodeToMessage = {
   "auth.existingCredentials":
     "User credentials already in use. Please log in or try again.",
   "signup.invalidEmail": "Email is invalid.",
+  "server.failed": "Uh-oh, something went wrong on our end. Please try again.",
   "server.notFound": "Oops, looks like that doesn't exist.",
 };
 
