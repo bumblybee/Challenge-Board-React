@@ -49,7 +49,7 @@ const Account = () => {
                   ? questions.map((question) => (
                       <Link
                         key={question.id}
-                        style={{ color: "#fff" }}
+                        style={whiteText}
                         to={`/challenge/question/${question.id}`}
                       >
                         <StyledAccountPost>
@@ -68,7 +68,7 @@ const Account = () => {
                   ? comments.map((comment) => (
                       <HashLink
                         key={comment.id}
-                        style={{ color: "#fff" }}
+                        style={whiteText}
                         to={`/challenge/question/${comment.questionId}#${comment.id}`}
                       >
                         <StyledAccountPost>
@@ -84,6 +84,10 @@ const Account = () => {
       </StyledAccountDiv>
     </div>
   );
+};
+
+const whiteText = {
+  color: "#fff",
 };
 
 export default Account;
