@@ -15,7 +15,11 @@ const Nav = () => {
       <Link to="/challenge">
         <i className="fas fa-chess-knight fa-lg"></i>
       </Link>
-      <h3>CHALLENGE BOARD</h3>
+      <h3>
+        <Link to="/challenge" style={{ color: "#809bff" }}>
+          CHALLENGE BOARD
+        </Link>
+      </h3>
       <i
         id="user-menu-toggle"
         className="fas fa-user-circle fa-2x"
