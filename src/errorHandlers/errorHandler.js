@@ -1,7 +1,7 @@
 const errorCodeToMessage = {
   "login.invalidCredentials": "Invalid credentials, please try again.",
-  "signup.emailTaken": "Email linked to existing account. Please log in.",
-  "signup.usernameTaken": "Username taken. Please try again.",
+  "signup.userExists":
+    "User credentials already in use. Please log in or try again.",
   "signup.invalidEmail": "Email is invalid.",
 };
 

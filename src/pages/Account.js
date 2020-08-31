@@ -38,7 +38,11 @@ const Account = () => {
 
             <StyledAccountPostsDiv>
               <StyledPostList>
-                <h3>Questions</h3>
+                {posts.length === 0 ? (
+                  <h3>Looks like you haven't created any posts yet.</h3>
+                ) : (
+                  <h3>Questions</h3>
+                )}
                 {posts
                   ? posts.map((post) => (
                       <Link
@@ -57,7 +61,7 @@ const Account = () => {
                   : ""}
               </StyledPostList>
               <StyledPostList>
-                <h3>Comments</h3>
+                {comments.length > 0 && <h3>Comments</h3>}
                 {comments
                   ? comments.map((comment) => (
                       <HashLink

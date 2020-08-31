@@ -45,14 +45,12 @@ const Signup = () => {
     if (res.error) {
       setError(res.error);
       setNewUser({ username: "", email: "", password: "" });
-      console.log(res);
     } else {
       setUser(res.data);
       res && history.push("/challenge");
     }
 
     //TODO: change minlength of password
-    //TODO: Login user on signup and push to /challenge
   };
 
   return (
