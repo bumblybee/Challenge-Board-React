@@ -19,7 +19,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
     question ? question.body : ""
   );
 
-  const [commentBody, setCommentBody] = useState(comment ? comment.body : "");
+  const [commentBody, setCommentBody] = useState(comment && comment.body);
 
   const updateQuestion = async (e) => {
     e.preventDefault();
@@ -67,6 +67,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 id="body"
                 rows="8"
                 value={commentBody}
+                autoFocus
               ></StyledEditTextarea>
               <div className="modal-footer">
                 <StyledTransparentButton
@@ -100,6 +101,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 type="text"
                 id="title"
                 value={questionTitle}
+                autoFocus
               />
               <StyledEditTextarea
                 onChange={(e) => setQuestionBody(e.target.value)}

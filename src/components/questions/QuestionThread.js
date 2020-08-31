@@ -42,6 +42,7 @@ const QuestionThread = () => {
   useEffect(() => {
     const fetchThread = async () => {
       const data = await getQuestionThread(questionId);
+
       setQuestion(data.question);
       setComments(data.question.comments);
       setUserName(data.question.user.username);

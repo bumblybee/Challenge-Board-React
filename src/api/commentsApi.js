@@ -5,7 +5,7 @@ const createComment = async (id, comment) => {
 };
 
 const editComment = async (id, data) => {
-  return await put(`/comments/edit-comment/${id}`, data);
+  return await put(`/comments/edit/${id}`, data);
 };
 
 export { createComment, editComment };
