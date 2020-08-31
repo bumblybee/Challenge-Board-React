@@ -1,6 +1,7 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import { Link } from "react-router-dom";
 
+import { UserContext } from "../context/UserContext";
 import { signupUser } from "../api/userApi";
 import { getDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
@@ -9,8 +10,13 @@ import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
+  const { setUser } = useContext(UserContext);
   const [error, setError] = useState(undefined);
-  const [user, setUser] = useState({ username: "", email: "", password: "" });
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const history = useHistory();
 
@@ -25,9 +31,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      username: user.username,
-      email: user.email,
-      password: user.password,
+      username: newUser.username,
+      email: newUser.email,
+      password: newUser.password,
     };
 
     let res = await signupUser(data);
@@ -38,10 +44,11 @@ const Signup = () => {
 
     if (res.error) {
       setError(res.error);
-      setUser({ username: "", email: "", password: "" });
+      setNewUser({ username: "", email: "", password: "" });
       console.log(res);
     } else {
-      res && history.push("/login");
+      setUser(res.data);
+      res && history.push("/challenge");
     }
 
     //TODO: change minlength of password
@@ -64,19 +71,24 @@ const Signup = () => {
           <div className="input-area">
             <label htmlFor="signup-username">Username</label>
             <input
-              onChange={(e) => setUser({ ...user, username: e.target.value })}
-              value={user.username}
+              onChange={(e) =>
+                setNewUser({ ...newUser, username: e.target.value })
+              }
+              value={newUser.username}
               type="text"
               id="signup-username"
               name="signup-username"
+              autoFocus
               required
             ></input>
           </div>
           <div className="input-area">
             <label htmlFor="signup-email">Email</label>
             <input
-              onChange={(e) => setUser({ ...user, email: e.target.value })}
-              value={user.email}
+              onChange={(e) =>
+                setNewUser({ ...newUser, email: e.target.value })
+              }
+              value={newUser.email}
               type="email"
               id="signup-email"
               name="signup-email"
@@ -87,9 +99,9 @@ const Signup = () => {
             <label htmlFor="signup-password">Password</label>
             <input
               onChange={(e) => {
-                setUser({ ...user, password: e.target.value });
+                setNewUser({ ...newUser, password: e.target.value });
               }}
-              value={user.password}
+              value={newUser.password}
               type="password"
               name="signup-password"
               id="signup-password"
