@@ -9,11 +9,12 @@ import {
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
-} from "../styles/GlobalStyledComponents";
+  StyledPostList,
+} from "./StyledPages";
 
 const Account = () => {
   const { user } = useContext(UserContext);
-  const [questions, setQuestions] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const Account = () => {
 
   const getPosts = async () => {
     const userData = await getUserPosts(user.id);
-    setQuestions(userData.data.questions);
+    setPosts(userData.data.questions);
     setComments(userData.data.comments);
   };
 
@@ -36,25 +37,27 @@ const Account = () => {
             </h1>
 
             <StyledAccountPostsDiv>
-              <ul style={{ background: "#202225", padding: "0.5rem" }}>
+              <StyledPostList>
                 <h3>Questions</h3>
-                {questions
-                  ? questions.map((question) => (
+                {posts
+                  ? posts.map((post) => (
                       <Link
-                        key={question.id}
+                        key={post.id}
                         style={{ color: "#fff" }}
-                        to={`/challenge/question/${question.id}`}
+                        to={`/challenge/question/${post.id}`}
                       >
                         <StyledAccountPost>
-                          <h4 style={{ marginBottom: "1rem" }}>
-                            {question.title}
+                          <h4 style={{ marginBottom: "1.5rem" }}>
+                            {post.title}
                           </h4>
-                          <p>{question.body}</p>
+                          <p>{post.body}</p>
                         </StyledAccountPost>
                       </Link>
                     ))
                   : ""}
-                <h3 style={{ marginTop: "1rem" }}>Comments</h3>
+              </StyledPostList>
+              <StyledPostList>
+                <h3>Comments</h3>
                 {comments
                   ? comments.map((comment) => (
                       <HashLink
@@ -68,14 +71,8 @@ const Account = () => {
                       </HashLink>
                     ))
                   : ""}
-              </ul>
+              </StyledPostList>
             </StyledAccountPostsDiv>
-            <div style={{ marginTop: "2rem" }}>
-              <form>
-                <h4>Edit username</h4>
-                <h4>Edit email</h4>
-              </form>
-            </div>
           </Fragment>
         )}
       </StyledAccountDiv>

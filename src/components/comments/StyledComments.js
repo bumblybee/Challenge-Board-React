@@ -15,6 +15,7 @@ const StyledIconsDiv = styled.div`
     props.isOpen
       ? css`
           background: #18191b;
+          //TODO: adjust menu shift to right when open answer
         `
       : css`
           margin-left: auto;
