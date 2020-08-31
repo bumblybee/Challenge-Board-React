@@ -5,6 +5,10 @@ const StyledHelloH1 = styled.h1`
   padding: 4rem;
 `;
 
+const StyledQuestionTitle = styled.h4`
+  margin-bottom: 1.5rem;
+`;
+
 const StyledAccountDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -54,6 +58,7 @@ const StyledPostList = styled.ul`
 
 export {
   StyledHelloH1,
+  StyledQuestionTitle,
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,

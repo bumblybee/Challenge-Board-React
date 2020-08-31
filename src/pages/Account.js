@@ -7,6 +7,7 @@ import { UserContext } from "../context/UserContext";
 
 import {
   StyledHelloH1,
+  StyledQuestionTitle,
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
@@ -15,7 +16,7 @@ import {
 
 const Account = () => {
   const { user } = useContext(UserContext);
-  const [posts, setPosts] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Account = () => {
 
   const getPosts = async () => {
     const userData = await getUserPosts(user.id);
-    setPosts(userData.data.questions);
+    setQuestions(userData.data.questions);
     setComments(userData.data.comments);
   };
 
@@ -39,23 +40,23 @@ const Account = () => {
 
             <StyledAccountPostsDiv>
               <StyledPostList>
-                {posts.length === 0 ? (
+                {questions.length === 0 ? (
                   <h3>Looks like you haven't created any posts yet.</h3>
                 ) : (
                   <h3>Questions</h3>
                 )}
-                {posts
-                  ? posts.map((post) => (
+                {questions
+                  ? questions.map((question) => (
                       <Link
-                        key={post.id}
+                        key={question.id}
                         style={{ color: "#fff" }}
-                        to={`/challenge/question/${post.id}`}
+                        to={`/challenge/question/${question.id}`}
                       >
                         <StyledAccountPost>
-                          <h4 style={{ marginBottom: "1.5rem" }}>
-                            {post.title}
-                          </h4>
-                          <p>{post.body}</p>
+                          <StyledQuestionTitle>
+                            {question.title}
+                          </StyledQuestionTitle>
+                          <p>{question.body}</p>
                         </StyledAccountPost>
                       </Link>
                     ))
