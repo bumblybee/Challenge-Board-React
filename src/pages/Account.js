@@ -6,6 +6,7 @@ import { getUserPosts } from "../api/userApi";
 import { UserContext } from "../context/UserContext";
 
 import {
+  StyledHelloH1,
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
@@ -32,9 +33,9 @@ const Account = () => {
       <StyledAccountDiv>
         {user && (
           <Fragment>
-            <h1 style={{ textAlign: "center", padding: "4rem" }}>
+            <StyledHelloH1>
               Hello, {user.username}. Nice to see you.
-            </h1>
+            </StyledHelloH1>
 
             <StyledAccountPostsDiv>
               <StyledPostList>

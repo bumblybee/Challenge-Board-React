@@ -1,5 +1,10 @@
 import styled, { css } from "styled-components";
 
+const StyledHelloH1 = styled.h1`
+  text-align: center;
+  padding: 4rem;
+`;
+
 const StyledAccountDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,6 +53,7 @@ const StyledPostList = styled.ul`
 `;
 
 export {
+  StyledHelloH1,
   StyledAccountDiv,
   StyledAccountPostsDiv,
   StyledAccountPost,
