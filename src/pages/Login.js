@@ -26,7 +26,7 @@ const Login = () => {
     } else {
       user && setUser(user.data);
 
-      // history.push("/challenge");
+      history.push("/challenge");
     }
   };
 

@@ -2,7 +2,7 @@ const errorCodeToMessage = {
   "auth.invalidCredentials": "Invalid credentials, please try again.",
   "auth.existingCredentials":
     "User credentials already in use. Please log in or try again.",
-  "signup.invalidEmail": "Email is invalid.",
+  "auth.discordError": "Discord signup unsuccessful, please try again.",
   "server.failed": "Uh-oh, something went wrong on our end. Please try again.",
   "server.notFound": "Oops, looks like that doesn't exist.",
 };

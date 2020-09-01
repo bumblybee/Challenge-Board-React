@@ -6,6 +6,7 @@ import { signupUser } from "../api/userApi";
 import { getDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
 import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import { StyledDiscordButton } from "./StyledPages";
 
 import { useHistory } from "react-router-dom";
 
@@ -103,21 +104,23 @@ const Signup = () => {
               type="password"
               name="signup-password"
               id="signup-password"
-              required
               minLength="5"
+              required
             ></input>
           </div>
 
           <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
-          {discordUrl && (
-            <Fragment>
-              <StyledPurpleButton href={discordUrl}>
-                <i className="fab fa-discord fa-lg"></i>
-              </StyledPurpleButton>
-            </Fragment>
-          )}
-          <Link to="/login">Already have an account?</Link>
         </form>
+        {discordUrl && (
+          <Fragment>
+            <StyledDiscordButton href={discordUrl}>
+              <i className="fab fa-discord fa-lg"></i>
+            </StyledDiscordButton>
+          </Fragment>
+        )}
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <Link to="/login">Already have an account?</Link>
+        </div>
       </div>
     </div>
   );

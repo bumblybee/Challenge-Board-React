@@ -56,6 +56,21 @@ const StyledPostList = styled.ul`
   padding: 2rem 0.5rem 1rem;
 `;
 
+const StyledDiscordButton = styled.a`
+  margin-top: 1rem;
+  background: #6271c0;
+  display: block;
+  width: 100%;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 4px;
+  border: none;
+  font-size: 0.95rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+  text-align: center;
+`;
+
 export {
   StyledHelloH1,
   StyledQuestionTitle,
@@ -63,4 +78,5 @@ export {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
+  StyledDiscordButton,
 };
