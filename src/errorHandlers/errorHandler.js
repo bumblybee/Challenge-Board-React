@@ -7,6 +7,7 @@ const errorCodeToMessage = {
   "auth.discordError": "Discord signup unsuccessful, please try again.",
 
   "post.failed": "Uh-oh, something went wrong on our end. Please try again.",
+  "delete.failed": "Oops, something went wrong. Please try again.",
 
   "server.failed": "Uh-oh, something went wrong on our end. Please try again.",
 
