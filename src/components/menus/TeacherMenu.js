@@ -33,13 +33,17 @@ const TeacherMenu = ({
   const deleteUserQuestion = async () => {
     if (window.confirm("Are you sure you want to delete this question?")) {
       const deletedQuestion = await deleteQuestion(question.id);
-
-      if (deletedQuestion) {
+      console.log(deletedQuestion);
+      if (deletedQuestion.error) {
+        setError(deletedQuestion.error);
+        setTimeout(() => {
+          toggleMenu();
+          setShowError(false);
+        }, 2000);
+      } else if (deletedQuestion.data.deletedQuestion) {
         toggleMenu();
         //if question is being deleted within a thread, send to home, otherwise re-render question list
         thread ? history.push("/challenge") : reRenderList();
-      } else {
-        setError(deletedQuestion.error);
       }
     }
   };
@@ -64,9 +68,17 @@ const TeacherMenu = ({
 
   if (question) {
     return (
-      <StyledTeacherMenu>
-        <p onClick={deleteUserQuestion}>Remove Post</p>
-      </StyledTeacherMenu>
+      <Fragment>
+        {error && showError ? (
+          <Error>
+            <div>{error}</div>
+          </Error>
+        ) : (
+          <StyledTeacherMenu>
+            <p onClick={deleteUserQuestion}>Remove Post</p>
+          </StyledTeacherMenu>
+        )}
+      </Fragment>
     );
   }
   return (
