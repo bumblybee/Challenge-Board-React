@@ -40,8 +40,6 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
       toggleMenu();
       reRenderList();
     }
-
-    //TODO: handle error
   };
 
   const updateComment = async (e) => {
@@ -54,20 +52,30 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
 
     const editedComment = await editComment(comment.id, data);
 
-    editedComment && setOpenModal(!openModal);
-    //TODO: handle error
+    if (editedComment.error) {
+      setError(editedComment.error);
+    } else if (editedComment.data[0] === 1) {
+      setOpenModal(!openModal);
 
-    editedComment && toggleMenu();
-    editedComment && reRenderList();
+      toggleMenu();
+      reRenderList();
+    }
   };
+
   const handleCancel = () => {
     setOpenModal(!openModal);
     toggleMenu();
   };
+
   if (comment) {
     if (openModal) {
       return (
         <Modal>
+          {error && (
+            <Error>
+              <div>{error}</div>
+            </Error>
+          )}
           <div className="modal-body">
             <form onSubmit={updateComment}>
               <StyledEditTextarea
