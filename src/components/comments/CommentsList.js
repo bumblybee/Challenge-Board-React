@@ -4,6 +4,7 @@ import CommentCard from "./CommentCard";
 import { createComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import TextareaAutosize from "react-autosize-textarea";
+import Error from "../errors/Error";
 import {
   StyledCommentsThread,
   StyledSubmitButton,
@@ -12,7 +13,7 @@ import {
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
   const { user } = useContext(UserContext);
-
+  const [error, setError] = useState(undefined);
   const [newComment, setNewComment] = useState({
     body: "",
   });
@@ -21,19 +22,28 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
     e.preventDefault();
 
     if (user) {
-      await createComment(questionId, newComment);
-      reRenderList();
+      const createdComment = await createComment(questionId, newComment);
+      if (createdComment.error) {
+        setError(createdComment.error);
+      } else {
+        reRenderList();
 
-      //Clear input
-      setNewComment({
-        ...newComment,
-        body: "",
-      });
+        //Clear input
+        setNewComment({
+          ...newComment,
+          body: "",
+        });
+      }
     }
   };
 
   return (
     <div className="comments-container">
+      {error && (
+        <Error>
+          <div>{error}</div>
+        </Error>
+      )}
       <StyledCommentsThread className="comments-thread">
         {comments.map((comment, index) => (
           <CommentCard

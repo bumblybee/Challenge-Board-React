@@ -30,7 +30,7 @@ const StyledStudentMenu = styled.div`
 
 const StyledEditTextarea = styled.textarea`
   resize: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 `;
 
 const StyledParagraph = styled.p`
