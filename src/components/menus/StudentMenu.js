@@ -7,10 +7,11 @@ import {
   StyledPurpleButton,
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../layout/Modal";
+import Error from "../errors/Error";
 
 const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   const [openModal, setOpenModal] = useState(false);
-
+  const [error, setError] = useState(undefined);
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
@@ -32,9 +33,13 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
 
     const editedQuestion = await editQuestion(question.id, data);
 
-    editedQuestion && setOpenModal(!openModal);
-    editedQuestion && toggleMenu();
-    editedQuestion && reRenderList();
+    if (editedQuestion.error) {
+      setError(editedQuestion.error);
+    } else if (editedQuestion.data[0] === 1) {
+      setOpenModal(!openModal);
+      toggleMenu();
+      reRenderList();
+    }
 
     //TODO: handle error
   };
@@ -95,6 +100,11 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
     <Fragment>
       {openModal ? (
         <Modal>
+          {error && (
+            <Error>
+              <div>{error}</div>
+            </Error>
+          )}
           <div className="modal-body">
             <form onSubmit={updateQuestion}>
               <input
