@@ -55,7 +55,10 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
     editedComment && toggleMenu();
     editedComment && reRenderList();
   };
-
+  const handleCancel = () => {
+    setOpenModal(!openModal);
+    toggleMenu();
+  };
   if (comment) {
     if (openModal) {
       return (
@@ -70,9 +73,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 autoFocus
               ></StyledEditTextarea>
               <div className="modal-footer">
-                <StyledTransparentButton
-                  onClick={() => setOpenModal(!openModal)}
-                >
+                <StyledTransparentButton onClick={handleCancel}>
                   Cancel
                 </StyledTransparentButton>
                 <StyledPurpleButton>Submit</StyledPurpleButton>
@@ -110,9 +111,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 value={questionBody}
               ></StyledEditTextarea>
               <div className="modal-footer">
-                <StyledTransparentButton
-                  onClick={() => setOpenModal(!openModal)}
-                >
+                <StyledTransparentButton onClick={handleCancel}>
                   Cancel
                 </StyledTransparentButton>
                 <StyledPurpleButton>Submit</StyledPurpleButton>
