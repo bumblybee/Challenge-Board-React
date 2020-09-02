@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import getParameterByName from "../utilities/getParameterByName";
-import { discordSignup } from "../api/discordApi";
+import { discordLogin } from "../api/discordApi";
 import { UserContext } from "../context/UserContext";
 import Error from "../components/errors/Error";
 import { StyledDiscordDiv } from "./StyledPages";
@@ -17,7 +17,7 @@ const DiscordLogin = () => {
     const code = getParameterByName("code");
 
     const postDiscordSignup = async () => {
-      const user = await discordSignup(code, state);
+      const user = await discordLogin(code, state);
 
       if (user.error) {
         setUser(null);
@@ -29,6 +29,7 @@ const DiscordLogin = () => {
     };
 
     postDiscordSignup();
+    // eslint-disable-next-line
   }, [setUser]);
 
   return (

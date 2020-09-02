@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserContext";
 
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
-
+import Error from "../../components/errors/Error";
 import QuestionCard from "./QuestionCard";
 import Modal from "../../layout/Modal";
 
@@ -19,7 +19,7 @@ const QuestionsList = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
-
+  const [error, setError] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -51,20 +51,25 @@ const QuestionsList = () => {
     //
 
     if (user) {
-      await createQuestion(data);
+      const createdQuestion = await createQuestion(data);
+      console.log(createdQuestion);
+      if (createdQuestion.error) {
+        setError(createdQuestion.error);
+        setIsOpen(!isOpen);
+      } else if (createdQuestion.data.id) {
+        setIsOpen(!isOpen);
 
-      setIsOpen(!isOpen);
+        //set isSubmitted so list repopulates
+        setIsSubmitted(true);
 
-      //set isSubmitted so list repopulates
-      setIsSubmitted(true);
+        //clear input after submit
+        setNewQuestion({
+          question: "",
+          questionDetails: "",
+        });
 
-      //clear input after submit
-      setNewQuestion({
-        question: "",
-        questionDetails: "",
-      });
-
-      history.push("/challenge");
+        history.push("/challenge");
+      }
     }
   };
 
@@ -122,7 +127,11 @@ const QuestionsList = () => {
           </div>{" "}
         </Modal>
       )}
-
+      {error && (
+        <Error>
+          <div>{error}</div>
+        </Error>
+      )}
       <div className="discussion-header-container">
         <div className="discussion-header">
           <h4 className="heading">DISCUSSION</h4>
