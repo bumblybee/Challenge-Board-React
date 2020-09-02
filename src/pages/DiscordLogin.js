@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import getParameterByName from "../utilities/getParameterByName";
 import { discordSignup } from "../api/discordApi";
 import { UserContext } from "../context/UserContext";
 import Error from "../components/errors/Error";
+import { StyledDiscordDiv } from "./StyledPages";
 
 import { Redirect } from "react-router-dom";
 
@@ -21,7 +23,7 @@ const DiscordLogin = () => {
       if (user.error) {
         setUser(null);
         setError(user.error);
-      } else {
+      } else if (user.id) {
         setLoggedIn(true);
         setUser(user.data);
       }
@@ -31,17 +33,18 @@ const DiscordLogin = () => {
   }, [setUser]);
 
   return (
-    <div>
+    <StyledDiscordDiv>
       {loggedIn ? (
         <Redirect to="/" />
       ) : error ? (
-        <Error>
+        <Error discordError={true}>
           <div>{error}</div>
         </Error>
       ) : (
-        <span> Loading... </span>
+        //TODO: Loading component
+        <span style={{ textAlign: "center" }}> Loading... </span>
       )}
-    </div>
+    </StyledDiscordDiv>
   );
 };
 

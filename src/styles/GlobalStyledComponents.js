@@ -1,23 +1,5 @@
 import styled, { css } from "styled-components";
 
-const StyledErrorMsg = styled.div`
-  color: #f77;
-  text-align: center;
-  font-size: 1.1rem;
-  background: #000;
-  padding: 1rem;
-  margin: 0 auto;
-  width: 70%;
-  border-radius: 6px;
-`;
-
-const StyledSpan = styled.span`
-  color: #809bff;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
 const StyledTransparentButton = styled.button`
   background: transparent;
   border: none;
@@ -51,9 +33,22 @@ const StyledPurpleButton = styled.button`
   }
 `;
 
-export {
-  StyledErrorMsg,
-  StyledSpan,
-  StyledTransparentButton,
-  StyledPurpleButton,
-};
+const StyledError = styled.div`
+  color: #f77;
+  text-align: center;
+  font-size: 1.1rem;
+  background: #000;
+  padding: ${(props) => (props.discordError === true ? "4rem" : "1rem")};
+  margin: 0 auto;
+  width: 70%;
+  border-radius: 6px;
+`;
+
+const StyledSpan = styled.span`
+  color: #809bff;
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export { StyledSpan, StyledError, StyledTransparentButton, StyledPurpleButton };

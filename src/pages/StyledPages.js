@@ -71,6 +71,11 @@ const StyledDiscordButton = styled.a`
   text-align: center;
 `;
 
+const StyledDiscordDiv = styled.div`
+  margin: 15% auto;
+  width: 80%;
+`;
+
 export {
   StyledHelloH1,
   StyledQuestionTitle,
@@ -78,5 +83,6 @@ export {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
+  StyledDiscordDiv,
   StyledDiscordButton,
 };

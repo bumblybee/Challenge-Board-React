@@ -1,8 +1,8 @@
 import React from "react";
-import { StyledErrorMsg } from "../../styles/GlobalStyledComponents";
+import { StyledError } from "../../styles/GlobalStyledComponents";
 
-const Error = ({ children }) => {
-  return <StyledErrorMsg>{children}</StyledErrorMsg>;
+const Error = ({ children, discordError }) => {
+  return <StyledError discordError={discordError}>{children}</StyledError>;
 };
 
 export default Error;
