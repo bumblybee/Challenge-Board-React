@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledTeacherMenu = styled.div`
   background: #18191b;

@@ -20,14 +20,14 @@ const Account = () => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    const getPosts = async () => {
+      const userData = await getUserPosts(user.id);
+      setQuestions(userData.data.questions);
+      setComments(userData.data.comments);
+    };
+
     user && getPosts();
   }, [user]);
-
-  const getPosts = async () => {
-    const userData = await getUserPosts(user.id);
-    setQuestions(userData.data.questions);
-    setComments(userData.data.comments);
-  };
 
   return (
     <div>

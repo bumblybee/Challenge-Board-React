@@ -51,7 +51,7 @@ const Signup = () => {
       res && history.push("/challenge");
     }
 
-    //TODO: change minlength of password
+    //TODO: change minlength of password before deploy
   };
 
   return (
@@ -119,7 +119,9 @@ const Signup = () => {
           </Fragment>
         )}
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
-          <Link to="/login">Already have an account?</Link>
+          <Link to="/login" style={{ fontSize: "1.1rem" }}>
+            Already have an account?
+          </Link>
         </div>
       </div>
     </div>

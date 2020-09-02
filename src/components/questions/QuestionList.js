@@ -85,7 +85,7 @@ const QuestionsList = () => {
                     title: e.target.value,
                   })
                 }
-                value={newQuestion.title}
+                value={newQuestion.title || ""}
                 id="question-input"
                 name="question"
                 type="text"

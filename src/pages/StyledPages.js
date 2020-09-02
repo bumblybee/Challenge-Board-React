@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const StyledHelloH1 = styled.h1`
   text-align: center;
@@ -57,7 +57,6 @@ const StyledPostList = styled.ul`
 `;
 
 const StyledDiscordButton = styled.a`
-  margin-top: 1rem;
   background: #6271c0;
   display: block;
   width: 100%;

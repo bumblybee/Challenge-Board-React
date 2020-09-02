@@ -2,10 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/userApi";
-import {
-  StyledPurpleButton,
-  StyledTransparentButton,
-} from "../styles/GlobalStyledComponents";
+import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 import Error from "../components/errors/Error";
 
 const Login = () => {
@@ -73,8 +70,12 @@ const Login = () => {
           </div>
 
           <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
-          <Link to="/reset-password-request">Forgot password?</Link>
-          <Link to="/signup">Need to Register?</Link>
+          <Link style={{ fontSize: "1.05rem" }} to="/reset-password-request">
+            Forgot password?
+          </Link>
+          <Link style={{ fontSize: "1.05rem" }} to="/signup">
+            Need to Register?
+          </Link>
         </form>
       </div>
     </div>
