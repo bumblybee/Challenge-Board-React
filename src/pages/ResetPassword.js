@@ -1,26 +1,38 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { passwordReset } from "../api/passwordApi";
+import Error from "../components/errors/Error";
 import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const history = useHistory();
   const location = useLocation();
-
+  const [error, setError] = useState(undefined);
   const [newPassword, setNewPassword] = useState("");
   const path = location.pathname.split("/");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = path[2];
-    await passwordReset(token, newPassword);
-    history.push("/login");
+    const resetPassword = await passwordReset(token, newPassword);
+
+    if (resetPassword.error || !resetPassword) {
+      setError(resetPassword.error);
+    } else if (resetPassword.data.id) {
+      history.push("/login");
+    }
   };
 
   return (
     <div className="login-form-content">
       <div className="login-form-header">
-        <h1>Enter New Password</h1>
+        {error ? (
+          <Error>
+            <div>{error}</div>
+          </Error>
+        ) : (
+          <h1>Enter New Password</h1>
+        )}{" "}
       </div>
       <div className="login-form-body">
         <form id="login-form" onSubmit={handleSubmit}>
