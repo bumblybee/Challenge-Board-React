@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import moment from "moment";
 import Modal from "../../layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
+import Error from "../errors/Error";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
@@ -15,6 +16,7 @@ import {
 
 //TODO: Add isSubmitted to context?
 const SubmissionArea = () => {
+  const [error, setError] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showEditButton, setShowEditButton] = useState(false);
@@ -32,10 +34,13 @@ const SubmissionArea = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // TODO: handle http protocol at start of links
+    //TODO: Validate url
 
     const submission = await submitProject(projectData);
 
-    if (submission) {
+    if (submission.error || !submission) {
+      setError(submission.error);
+    } else if (submission) {
       setIsSubmitted(true);
       setShowEditButton(true);
       setIsOpen(!isOpen);
@@ -45,8 +50,8 @@ const SubmissionArea = () => {
         date: moment(submission.createdAt).format("L"),
         time: moment(submission.createdAt).format("h:mm"),
       });
+      setSubmissionData(submission.data);
     }
-    setSubmissionData(submission.data);
   };
 
   const handleEdit = async (e) => {
@@ -74,7 +79,11 @@ const SubmissionArea = () => {
     <div className="submission-container">
       {isOpen && (
         <Modal>
-          {" "}
+          {error && (
+            <Error>
+              <div>{error}</div>
+            </Error>
+          )}{" "}
           <div className="modal-header">
             <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
