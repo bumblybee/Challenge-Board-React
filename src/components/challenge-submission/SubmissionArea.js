@@ -94,7 +94,7 @@ const SubmissionArea = () => {
                 placeholder="Github Link"
                 value={projectData.githubLink}
                 required
-                novalidate
+                noValidate
               ></input>
               <input
                 onChange={(e) =>

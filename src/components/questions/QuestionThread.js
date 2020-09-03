@@ -130,7 +130,7 @@ const QuestionThread = () => {
                     ... <StyledSpan onClick={handleTruncate}>more</StyledSpan>
                   </span>
                 }
-                trimWhitespace="true"
+                trimWhitespace
                 style={{ color: "#dcddde", fontWeight: "300" }}
               >
                 {sanitize(question.body)}

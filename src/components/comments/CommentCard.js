@@ -84,7 +84,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
                 ... <StyledSpan onClick={handleTruncate}>more</StyledSpan>
               </span>
             }
-            trimWhitespace="true"
+            trimWhitespace
             style={{ color: "#dcddde", fontWeight: "300" }}
           >
             {sanitize(comment.body)}

@@ -18,8 +18,8 @@ const DiscordLogin = () => {
 
     const postDiscordSignup = async () => {
       const user = await discordLogin(code, state);
-
-      if (user.error) {
+      console.log(user);
+      if (user.error || user.Error) {
         setUser(null);
         setError(user.error);
       } else if (user.data.id) {

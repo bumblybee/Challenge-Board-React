@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { editQuestion } from "../../api/questionsApi";
 import { editComment } from "../../api/commentsApi";
-import { StyledStudentMenu, StyledEditTextarea } from "./StyledMenus";
+import { StyledStudentMenu } from "./StyledMenus";
 import {
   StyledTransparentButton,
   StyledPurpleButton,
