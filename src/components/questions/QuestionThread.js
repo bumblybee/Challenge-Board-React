@@ -99,9 +99,7 @@ const QuestionThread = () => {
             <div className="name">{username}</div>
             <StyledDateDiv className="created-at">{date}</StyledDateDiv>
 
-            <div className="icons" style={{ marginRight: "1.3rem" }}>
-              {user && renderMenu()}
-            </div>
+            <div className="icons">{user && renderMenu()}</div>
             {isOpen && user.role === "Teacher" ? (
               <TeacherMenu
                 reRenderList={reRenderList}
@@ -149,11 +147,7 @@ const QuestionThread = () => {
         {comments.map((comment, index) => {
           if (comment.isAnswer) {
             return (
-              <div
-                style={{ marginRight: "1.3rem" }}
-                className="chosen-answer"
-                key={index}
-              >
+              <div className="chosen-answer" key={index}>
                 <StyledAnswerIcon className="fas fa-bookmark fa-lg"></StyledAnswerIcon>
                 <div>
                   <CommentCard comment={comment} answer={true} />

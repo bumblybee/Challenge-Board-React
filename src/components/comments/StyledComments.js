@@ -19,7 +19,7 @@ const StyledIconsDiv = styled.div`
         `
       : css`
           margin-left: auto;
-          background: ${(props) => (props.isAnswer ? "#2f3136" : "#202225")};
+          background: ${(props) => (props.answer ? "#2f3136" : "#202225")};
         `}
 `;
 

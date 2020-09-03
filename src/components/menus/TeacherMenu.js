@@ -20,12 +20,18 @@ const TeacherMenu = ({
   const chooseAnswer = async () => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
-      if (updatedAnswer) {
+      console.log(updatedAnswer);
+
+      if (updatedAnswer.error) {
+        setError(updatedAnswer.error);
+        setTimeout(() => {
+          toggleMenu();
+          setShowError(false);
+        }, 2000);
+      } else if (updatedAnswer.data.answer) {
         setAnswer(true);
         reRenderList();
         toggleMenu();
-      } else {
-        setError(updatedAnswer.error);
       }
     }
   };
@@ -33,7 +39,7 @@ const TeacherMenu = ({
   const deleteUserQuestion = async () => {
     if (window.confirm("Are you sure you want to delete this question?")) {
       const deletedQuestion = await deleteQuestion(question.id);
-      console.log(deletedQuestion);
+
       if (deletedQuestion.error) {
         setError(deletedQuestion.error);
         setTimeout(() => {
