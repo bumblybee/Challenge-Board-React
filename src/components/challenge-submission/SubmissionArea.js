@@ -40,7 +40,7 @@ const SubmissionArea = () => {
 
     if (submission.error || !submission) {
       setError(submission.error);
-    } else if (submission) {
+    } else if (submission.data.id) {
       setIsSubmitted(true);
       setShowEditButton(true);
       setIsOpen(!isOpen);
@@ -61,7 +61,7 @@ const SubmissionArea = () => {
     const projectId = submissionData.id;
     const editedSubmissionData = { ...projectData, userId };
     const editedSubmission = await editProject(projectId, editedSubmissionData);
-    console.log(editedSubmission);
+
     if (editedSubmission.error || !editedSubmission) {
       setError(editedSubmission.error);
     } else if (editedSubmission.data[0] === 1) {
