@@ -61,8 +61,10 @@ const SubmissionArea = () => {
     const projectId = submissionData.id;
     const editedSubmissionData = { ...projectData, userId };
     const editedSubmission = await editProject(projectId, editedSubmissionData);
-
-    if (editedSubmission) {
+    console.log(editedSubmission);
+    if (editedSubmission.error || !editedSubmission) {
+      setError(editedSubmission.error);
+    } else if (editedSubmission.data[0] === 1) {
       setIsSubmitted(true);
       setShowEditButton(true);
 
@@ -144,6 +146,11 @@ const SubmissionArea = () => {
 
       {isSubmitted && (
         <Modal>
+          {error && (
+            <Error>
+              <div>{error}</div>
+            </Error>
+          )}
           <StyledModalBody className="modal-body">
             <StyledConfirmationH1>
               Your project has been Submitted!
