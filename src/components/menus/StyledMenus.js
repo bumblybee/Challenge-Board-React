@@ -28,18 +28,8 @@ const StyledStudentMenu = styled.div`
   }
 `;
 
-const StyledEditTextarea = styled.textarea`
-  resize: none;
-  font-size: 1.4rem;
-`;
-
 const StyledParagraph = styled.p`
   padding: 0.8rem 0;
 `;
 
-export {
-  StyledStudentMenu,
-  StyledTeacherMenu,
-  StyledEditTextarea,
-  StyledParagraph,
-};
+export { StyledStudentMenu, StyledTeacherMenu, StyledParagraph };

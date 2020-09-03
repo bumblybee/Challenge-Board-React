@@ -5,6 +5,7 @@ import { StyledStudentMenu, StyledEditTextarea } from "./StyledMenus";
 import {
   StyledTransparentButton,
   StyledPurpleButton,
+  StyledTextarea,
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../layout/Modal";
 import Error from "../errors/Error";
@@ -78,13 +79,13 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
           )}
           <div className="modal-body">
             <form onSubmit={updateComment}>
-              <StyledEditTextarea
+              <StyledTextarea
                 onChange={(e) => setCommentBody(e.target.value)}
                 id="body"
                 rows="8"
                 value={commentBody}
                 autoFocus
-              ></StyledEditTextarea>
+              ></StyledTextarea>
               <div className="modal-footer">
                 <StyledTransparentButton onClick={handleCancel}>
                   Cancel
@@ -122,12 +123,12 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
                 value={questionTitle}
                 autoFocus
               />
-              <StyledEditTextarea
+              <StyledTextarea
                 onChange={(e) => setQuestionBody(e.target.value)}
                 id="body"
                 rows="6"
                 value={questionBody}
-              ></StyledEditTextarea>
+              ></StyledTextarea>
               <div className="modal-footer">
                 <StyledTransparentButton onClick={handleCancel}>
                   Cancel

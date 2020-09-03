@@ -45,6 +45,11 @@ const StyledError = styled.div`
   z-index: 100;
 `;
 
+const StyledTextarea = styled.textarea`
+  resize: none;
+  font-size: 1.4rem;
+`;
+
 const StyledSpan = styled.span`
   color: #809bff;
   :hover {
@@ -52,4 +57,10 @@ const StyledSpan = styled.span`
   }
 `;
 
-export { StyledSpan, StyledError, StyledTransparentButton, StyledPurpleButton };
+export {
+  StyledSpan,
+  StyledError,
+  StyledTransparentButton,
+  StyledPurpleButton,
+  StyledTextarea,
+};

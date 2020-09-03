@@ -12,10 +12,12 @@ import Modal from "../../layout/Modal";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
+  StyledTextarea,
 } from "../../styles/GlobalStyledComponents";
 
 const QuestionsList = () => {
   //TODO: Remove post question btn if teacher
+  //TODO: Bring in StyledTextArea
   const history = useHistory();
 
   const { user } = useContext(UserContext);
@@ -52,7 +54,7 @@ const QuestionsList = () => {
 
     if (user) {
       const createdQuestion = await createQuestion(data);
-      console.log(createdQuestion);
+
       if (createdQuestion.error) {
         setError(createdQuestion.error);
         setIsOpen(!isOpen);
@@ -98,7 +100,7 @@ const QuestionsList = () => {
                 maxLength="100"
                 required
               ></input>
-              <textarea
+              <StyledTextarea
                 onChange={(e) =>
                   setNewQuestion({
                     ...newQuestion,
@@ -111,7 +113,7 @@ const QuestionsList = () => {
                 rows="8"
                 placeholder="More Details"
                 required
-              ></textarea>
+              ></StyledTextarea>
               <div className="modal-footer">
                 <StyledTransparentButton
                   className="close-modal"
