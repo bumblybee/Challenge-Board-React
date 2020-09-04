@@ -27,8 +27,13 @@ function App() {
   useEffect(() => {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();
-      auth && setUser(auth.data.user);
-      //TODO: Handle errors
+      console.log(auth);
+      //TODO: Handle error, not getting our custom setup error code
+      if (auth.Error) {
+        return;
+      } else {
+        auth && setUser(auth.data.user);
+      }
     };
     checkIfLoggedIn();
   }, []);
