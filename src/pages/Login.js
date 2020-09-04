@@ -91,7 +91,11 @@ const Login = () => {
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
           {" "}
           <Link
-            style={{ fontSize: "1.05rem", display: "block" }}
+            style={{
+              fontSize: "1.05rem",
+              display: "block",
+              marginBottom: "0.5rem",
+            }}
             to="/reset-password-request"
           >
             Forgot password?
