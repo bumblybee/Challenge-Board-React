@@ -1,7 +1,7 @@
-import { instance, post } from "./baseApi";
+import { get, post } from "./baseApi";
 
 const getDiscordUrl = async () => {
-  const res = await instance.get("/discord");
+  const res = await get("/discord");
   return res.data.discordUrl;
 };
 

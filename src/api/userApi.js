@@ -1,4 +1,4 @@
-import { instance, post } from "./baseApi";
+import { get, post } from "./baseApi";
 
 const signupUser = async (data) => {
   const res = await post("/users/create", data);
@@ -11,17 +11,17 @@ const loginUser = async (details) => {
 };
 
 const checkLogin = async () => {
-  const res = await instance.get("/users/check-login");
+  const res = await get("/users/check-login");
   return res;
 };
 
 const logoutUser = async () => {
-  const res = await instance.get("/users/logout");
+  const res = await get("/users/logout");
   console.log(res);
 };
 
 const getUserPosts = async (id) => {
-  const res = await instance.get(`/users/${id}/posts`);
+  const res = await get(`/users/${id}/posts`);
   return res;
 };
 

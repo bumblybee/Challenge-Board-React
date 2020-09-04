@@ -20,13 +20,13 @@ const TeacherMenu = ({
   const chooseAnswer = async () => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
-      console.log(updatedAnswer);
 
       if (updatedAnswer.error) {
         setError(updatedAnswer.error);
         setTimeout(() => {
           toggleMenu();
           setShowError(false);
+          //TODO: setShowError can probs be just setError(undefined)
         }, 2000);
       } else if (updatedAnswer.data.answer) {
         setAnswer(true);

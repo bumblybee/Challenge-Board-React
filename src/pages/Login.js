@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
 
     const user = await loginUser(userDetails);
-    console.log(user);
+
     if (user.error) {
       setError(user.error);
       setUserDetails({ email: "", password: "" });

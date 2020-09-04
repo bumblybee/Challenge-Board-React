@@ -1,12 +1,12 @@
-import { instance, post, put } from "./baseApi";
+import { get, post, put } from "./baseApi";
 
 const getQuestions = async () => {
-  const res = await instance.get("/questions");
+  const res = await get("/questions");
   return res.data;
 };
 
 const getQuestionThread = async (id) => {
-  const res = await instance.get(`/questions/${id}`);
+  const res = await get(`/questions/${id}`);
   return res.data;
 };
 

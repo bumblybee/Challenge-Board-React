@@ -7,6 +7,18 @@ const instance = axios.create({
   crossDomain: true,
 });
 
+const get = async (url, data) => {
+  return await instance.get(url).catch((e) => {
+    if (e.response.data.errors) {
+      const errors = handleErrorsArray(e.response.data.errors);
+
+      return errors;
+    }
+
+    return handleErrors(e.response.data.error);
+  });
+};
+
 const post = async (url, data) => {
   return await instance.post(url, data).catch((e) => {
     if (e.response.data.errors) {
@@ -43,6 +55,6 @@ const deleteRoute = async (url) => {
   });
 };
 
-export { post, put, deleteRoute, instance };
+export { post, put, deleteRoute, get };
 
 //https://salty-anchorage-50289.herokuapp.com

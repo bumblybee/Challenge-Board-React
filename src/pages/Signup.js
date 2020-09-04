@@ -113,7 +113,9 @@ const Signup = () => {
         </form>
         {discordUrl && (
           <Fragment>
+            <hr></hr>
             <StyledDiscordButton href={discordUrl}>
+              {" "}
               <i className="fab fa-discord fa-lg"></i>
             </StyledDiscordButton>
           </Fragment>

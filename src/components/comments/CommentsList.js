@@ -26,7 +26,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
       if (createdComment.error) {
         setError(createdComment.error);
       } else {
-        reRenderList();
+        // reRenderList();
 
         //Clear input
         setNewComment({

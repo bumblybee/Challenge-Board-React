@@ -57,7 +57,6 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
       setError(editedComment.error);
     } else if (editedComment.data[0] === 1) {
       setOpenModal(!openModal);
-
       toggleMenu();
       reRenderList();
     }
