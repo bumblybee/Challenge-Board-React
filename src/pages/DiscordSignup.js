@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import getParameterByName from "../utilities/getParameterByName";
-import { discordLogin } from "../api/discordApi";
+import { discordSignup } from "../api/discordApi";
 import { UserContext } from "../context/UserContext";
 import Error from "../components/errors/Error";
 import { StyledDiscordDiv } from "./StyledPages";
 
-const DiscordLogin = () => {
+const DiscordSignup = () => {
   const [error, setError] = useState(undefined);
   const { setUser } = useContext(UserContext);
 
@@ -16,8 +16,8 @@ const DiscordLogin = () => {
     const state = getParameterByName("state");
     const code = getParameterByName("code");
 
-    const postDiscordLogin = async () => {
-      const user = await discordLogin(code, state);
+    const postDiscordSignup = async () => {
+      const user = await discordSignup(code, state);
       console.log(user);
       if (user.error || user.Error) {
         setUser(null);
@@ -28,7 +28,7 @@ const DiscordLogin = () => {
       }
     };
 
-    postDiscordLogin();
+    postDiscordSignup();
     // eslint-disable-next-line
   }, [setUser]);
 
@@ -39,8 +39,12 @@ const DiscordLogin = () => {
           <div>{error}</div>
         </Error>
       )}
+      {/* (
+        //TODO: Loading component
+        <span style={{ textAlign: "center" }}> Loading... </span>
+      ) */}
     </StyledDiscordDiv>
   );
 };
 
-export default DiscordLogin;
+export default DiscordSignup;

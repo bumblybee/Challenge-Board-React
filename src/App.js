@@ -15,6 +15,7 @@ import Nav from "./layout/Nav";
 import Challenge from "./pages/Challenge";
 import Signup from "./pages/Signup";
 import DiscordLogin from "./pages/DiscordLogin";
+import DiscordSignup from "./pages/DiscordSignup";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
 import ResetPasswordRequest from "./pages/ResetPasswordRequest";
@@ -46,6 +47,9 @@ function App() {
           <Switch>
             <Route path="/signup">
               <Signup />
+            </Route>
+            <Route path="/discord-signup" exact>
+              <DiscordSignup />
             </Route>
             <Route path="/discord-login">
               <DiscordLogin />

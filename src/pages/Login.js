@@ -2,7 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/userApi";
-import { getDiscordUrl } from "../api/discordApi";
+import { getLoginDiscordUrl } from "../api/discordApi";
 import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
 import Error from "../components/errors/Error";
@@ -16,7 +16,7 @@ const Login = () => {
 
   useEffect(() => {
     const fetchDiscordUrl = async () => {
-      const discordUrl = await getDiscordUrl();
+      const discordUrl = await getLoginDiscordUrl();
       setDiscordUrl(discordUrl);
     };
     fetchDiscordUrl();

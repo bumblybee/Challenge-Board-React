@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { UserContext } from "../context/UserContext";
 import { signupUser } from "../api/userApi";
-import { getDiscordUrl } from "../api/discordApi";
+import { getSignupDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
 import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
@@ -23,7 +23,7 @@ const Signup = () => {
 
   useEffect(() => {
     const fetchDiscordUrl = async () => {
-      const discordUrl = await getDiscordUrl();
+      const discordUrl = await getSignupDiscordUrl();
       setDiscordUrl(discordUrl);
     };
     fetchDiscordUrl();
