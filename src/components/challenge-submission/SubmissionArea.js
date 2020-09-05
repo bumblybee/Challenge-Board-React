@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Modal from "../../layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
 import Error from "../errors/Error";
+import { UserContext } from "../../context/UserContext";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
@@ -31,11 +33,11 @@ const SubmissionArea = () => {
     comment: "",
   });
 
+  const { user } = useContext(UserContext);
+  const history = useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: handle http protocol at start of links
-    //TODO: Validate url
-
     const submission = await submitProject(projectData);
 
     if (submission.error || !submission) {
@@ -167,7 +169,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {showEditButton ? (
+      {showEditButton && user ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
@@ -191,13 +193,22 @@ const SubmissionArea = () => {
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
           <p>When you're ready, submit your Github link here for review.</p>
-          <StyledPurpleButton
-            onClick={() => setIsOpen(!isOpen)}
-            className="modal-button"
-            id="submit-button"
-          >
-            Submit Project
-          </StyledPurpleButton>
+          {user ? (
+            <StyledPurpleButton
+              onClick={() => setIsOpen(!isOpen)}
+              className="modal-button"
+              id="submit-button"
+            >
+              Submit Project
+            </StyledPurpleButton>
+          ) : (
+            <StyledPurpleButton
+              className="modal-button"
+              onClick={() => history.push("/login")}
+            >
+              Log in to Submit Project
+            </StyledPurpleButton>
+          )}
         </div>
       )}
     </div>
