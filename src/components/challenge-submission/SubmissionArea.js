@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Modal from "../../layout/Modal";
@@ -18,6 +18,8 @@ import {
 
 //TODO: Add isSubmitted to context?
 const SubmissionArea = () => {
+  const { user } = useContext(UserContext);
+
   const [error, setError] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -31,15 +33,18 @@ const SubmissionArea = () => {
     githubLink: "",
     additionalLink: "",
     comment: "",
+    userData: {},
   });
 
-  const { user } = useContext(UserContext);
   const history = useHistory();
-
+  useEffect(() => {
+    setProjectData({ ...projectData, userData: user });
+  }, [user]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const submission = await submitProject(projectData);
 
+    const submission = await submitProject(projectData);
+    console.log(projectData);
     if (submission.error || !submission) {
       setError(submission.error);
     } else if (submission.data.id) {
