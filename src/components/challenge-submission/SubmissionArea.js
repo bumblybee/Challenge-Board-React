@@ -40,11 +40,12 @@ const SubmissionArea = () => {
   useEffect(() => {
     setProjectData({ ...projectData, userData: user });
   }, [user]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const submission = await submitProject(projectData);
-    console.log(projectData);
+
     if (submission.error || !submission) {
       setError(submission.error);
     } else if (submission.data.id) {
@@ -64,9 +65,8 @@ const SubmissionArea = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
 
-    const userId = submissionData.userId;
     const projectId = submissionData.id;
-    const editedSubmissionData = { ...projectData, userId };
+    const editedSubmissionData = { ...projectData };
     const editedSubmission = await editProject(projectId, editedSubmissionData);
 
     if (editedSubmission.error || !editedSubmission) {
