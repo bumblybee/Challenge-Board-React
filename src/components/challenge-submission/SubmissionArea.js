@@ -41,7 +41,7 @@ const SubmissionArea = () => {
     setProjectData({ ...projectData, userData: user });
   }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleProjectSubmit = async (e) => {
     e.preventDefault();
 
     const submission = await submitProject(projectData);
@@ -62,7 +62,7 @@ const SubmissionArea = () => {
     }
   };
 
-  const handleEdit = async (e) => {
+  const handleEditedSubmission = async (e) => {
     e.preventDefault();
 
     const projectId = submissionData.id;
@@ -99,7 +99,9 @@ const SubmissionArea = () => {
           </div>
           <div className="modal-body">
             <form
-              onSubmit={showEditButton ? handleEdit : handleSubmit}
+              onSubmit={
+                showEditButton ? handleEditedSubmission : handleProjectSubmit
+              }
               id="submit-form"
             >
               <input
