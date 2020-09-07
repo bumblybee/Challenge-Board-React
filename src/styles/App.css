@@ -227,10 +227,14 @@ i:hover {
   max-height: 900px;
 }
 
+.challenge-submission-area > div:first-child {
+  margin-bottom: 1rem;
+}
+
 .challenge-container,
 .submission-container {
   background: var(--secondary-background);
-  padding: 3.2rem;
+  padding: 2.9rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.05),
@@ -238,12 +242,12 @@ i:hover {
   margin-right: 1rem;
 }
 
-.challenge-container {
-  margin-bottom: 1rem;
-}
-
 .challenge-header h1 {
   color: var(--primary-text);
+}
+
+.challenge-container {
+  flex-grow: 1;
 }
 
 .submission-container {
@@ -255,14 +259,14 @@ i:hover {
   display: flex;
 }
 
+.submission-content h1 {
+  margin-bottom: 0.2rem;
+}
+
 iframe {
   margin: 1.5rem 0 1rem;
   width: 100%;
   height: 400px;
-}
-
-.challenge-container {
-  flex-grow: 1;
 }
 
 .discussion-area {
