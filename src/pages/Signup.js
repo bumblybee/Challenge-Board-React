@@ -8,6 +8,7 @@ import Error from "../components/errors/Error";
 import {
   StyledPurpleButton,
   StyledFormLink,
+  StyledFormHr,
 } from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
 
@@ -114,12 +115,12 @@ const Signup = () => {
 
           <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
         </form>
+
         {discordUrl && (
           <Fragment>
-            <hr></hr>
+            <StyledFormHr></StyledFormHr>
             <StyledDiscordButton href={discordUrl}>
-              {" "}
-              <i className="fab fa-discord fa-lg"></i>
+              Sign up with Discord
             </StyledDiscordButton>
           </Fragment>
         )}

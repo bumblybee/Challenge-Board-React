@@ -59,17 +59,26 @@ const StyledSpan = styled.span`
 `;
 const StyledFormLink = styled(Link)`
   color: #809bff;
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   text-align: center;
-  margin-top: 1.2rem;
+  margin-top: 1rem;
   display: block;
+`;
+
+const StyledFormHr = styled.hr`
+  margin: 1rem auto;
+  border: none;
+  background: #7d8088;
+  height: 0.5px;
+  width: 50%;
 `;
 
 export {
   StyledSpan,
   StyledFormLink,
+  StyledFormHr,
   StyledError,
   StyledTransparentButton,
   StyledPurpleButton,

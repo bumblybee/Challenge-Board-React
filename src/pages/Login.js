@@ -6,6 +6,7 @@ import { getLoginDiscordUrl } from "../api/discordApi";
 import {
   StyledPurpleButton,
   StyledFormLink,
+  StyledFormHr,
 } from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
 import Error from "../components/errors/Error";
@@ -86,6 +87,7 @@ const Login = () => {
         </form>
         {discordUrl && (
           <Fragment>
+            <StyledFormHr></StyledFormHr>
             <StyledDiscordButton href={discordUrl}>
               Log in with Discord
             </StyledDiscordButton>
