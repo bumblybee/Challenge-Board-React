@@ -37,6 +37,7 @@ const SubmissionArea = () => {
   });
 
   const history = useHistory();
+
   useEffect(() => {
     setProjectData({ ...projectData, userData: user });
   }, [user]);
@@ -220,9 +221,8 @@ const SubmissionArea = () => {
             </StyledPurpleButton>
           ) : user && user.role === "Teacher" ? (
             <StyledPurpleButton
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={(e) => e.preventDefault()}
               className="modal-button"
-              id="submit-button"
             >
               View Submissions
             </StyledPurpleButton>
