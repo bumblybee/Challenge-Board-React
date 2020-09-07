@@ -48,7 +48,7 @@ const StyledError = styled.div`
 
 const StyledTextarea = styled.textarea`
   resize: none;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 `;
 
 const StyledSpan = styled.span`

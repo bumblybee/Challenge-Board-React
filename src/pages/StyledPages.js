@@ -70,15 +70,14 @@ const StyledDiscordButton = styled.a`
   text-align: center;
   margin-top: 1rem;
   position: relative;
+  :hover {
+    background: #809bff;
+  }
 `;
 
 const StyledDiscordDiv = styled.div`
   margin: 15% auto;
   width: 80%;
-`;
-
-const StyledDiscordIcon = styled.i`
-  ${"" /* color: rgba(0, 0, 0, 0.3); */}
 `;
 
 const StyledHr = styled.hr`
@@ -98,6 +97,5 @@ export {
   StyledPostList,
   StyledDiscordDiv,
   StyledDiscordButton,
-  StyledDiscordIcon,
   StyledHr,
 };

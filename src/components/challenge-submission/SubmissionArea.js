@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Modal from "../../layout/Modal";
@@ -92,7 +92,7 @@ const SubmissionArea = () => {
             <Error>
               <div>{error}</div>
             </Error>
-          )}{" "}
+          )}
           <div className="modal-header">
             <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
@@ -198,15 +198,33 @@ const SubmissionArea = () => {
       ) : (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
-          <h1>Submit Your Project</h1>
-          <p>When you're ready, submit your Github link here for review.</p>
-          {user ? (
+          {user && user.role === "Teacher" ? (
+            <Fragment>
+              <h1>View Student Submissions</h1>
+              <p>Project submissions page</p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <h1>Submit Your Project</h1>
+              <p>When you're ready, submit your Github link here for review.</p>
+            </Fragment>
+          )}
+
+          {user && user.role === "Student" ? (
             <StyledPurpleButton
               onClick={() => setIsOpen(!isOpen)}
               className="modal-button"
               id="submit-button"
             >
               Submit Project
+            </StyledPurpleButton>
+          ) : user && user.role === "Teacher" ? (
+            <StyledPurpleButton
+              onClick={() => setIsOpen(!isOpen)}
+              className="modal-button"
+              id="submit-button"
+            >
+              View Submissions
             </StyledPurpleButton>
           ) : (
             <StyledPurpleButton
