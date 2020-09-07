@@ -68,6 +68,7 @@ const StyledDiscordButton = styled.a`
   font-family: "Roboto Slab", serif;
   font-weight: 300;
   text-align: center;
+  margin-top: 1rem;
 `;
 
 const StyledDiscordDiv = styled.div`

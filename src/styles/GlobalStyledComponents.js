@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledTransparentButton = styled.button`
   background: transparent;
@@ -56,9 +57,19 @@ const StyledSpan = styled.span`
     cursor: pointer;
   }
 `;
+const StyledFormLink = styled(Link)`
+  color: #809bff;
+  font-size: 1.08rem;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1.2rem;
+  display: block;
+`;
 
 export {
   StyledSpan,
+  StyledFormLink,
   StyledError,
   StyledTransparentButton,
   StyledPurpleButton,

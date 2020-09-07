@@ -87,7 +87,7 @@ i:hover {
 .modal-body,
 .signup-form-body,
 .login-form-body {
-  padding: 1rem;
+  padding: 1rem 1rem 0;
 }
 
 .modal-body form,
@@ -152,16 +152,6 @@ i:hover {
   font-size: 1rem;
 }
 .signup-form-body p {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.login-form-body a,
-.signup-form-body a {
-  color: #809bff;
-  font-size: 1rem;
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
   text-align: center;
   margin-top: 1rem;
 }

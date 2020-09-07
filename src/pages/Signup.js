@@ -5,7 +5,10 @@ import { UserContext } from "../context/UserContext";
 import { signupUser } from "../api/userApi";
 import { getSignupDiscordUrl } from "../api/discordApi";
 import Error from "../components/errors/Error";
-import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledFormLink,
+} from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
 
 import { useHistory } from "react-router-dom";
@@ -120,11 +123,8 @@ const Signup = () => {
             </StyledDiscordButton>
           </Fragment>
         )}
-        <div style={{ textAlign: "center", marginTop: "1rem" }}>
-          <Link to="/login" style={{ fontSize: "1.1rem" }}>
-            Already have an account?
-          </Link>
-        </div>
+
+        <StyledFormLink to="/login">Already have an account?</StyledFormLink>
       </div>
     </div>
   );

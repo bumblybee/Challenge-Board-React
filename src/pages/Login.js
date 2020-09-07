@@ -3,7 +3,10 @@ import { useHistory, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { loginUser } from "../api/userApi";
 import { getLoginDiscordUrl } from "../api/discordApi";
-import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledFormLink,
+} from "../styles/GlobalStyledComponents";
 import { StyledDiscordButton } from "./StyledPages";
 import Error from "../components/errors/Error";
 
@@ -84,25 +87,16 @@ const Login = () => {
         {discordUrl && (
           <Fragment>
             <StyledDiscordButton href={discordUrl}>
-              <i className="fab fa-discord fa-lg"></i>
+              Log in with Discord
             </StyledDiscordButton>
           </Fragment>
         )}
         <div style={{ textAlign: "center", marginTop: "1rem" }}>
           {" "}
-          <Link
-            style={{
-              fontSize: "1.05rem",
-              display: "block",
-              marginBottom: "0.5rem",
-            }}
-            to="/reset-password-request"
-          >
+          <StyledFormLink to="/reset-password-request">
             Forgot password?
-          </Link>
-          <Link style={{ fontSize: "1.05rem" }} to="/signup">
-            Need to Register?
-          </Link>
+          </StyledFormLink>
+          <StyledFormLink to="/signup">Need to Register?</StyledFormLink>
         </div>
       </div>
     </div>
