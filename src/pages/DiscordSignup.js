@@ -22,6 +22,9 @@ const DiscordSignup = () => {
       if (user.error || user.Error) {
         setUser(null);
         setError(user.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
       } else if (user.data.id) {
         setUser(user.data);
         history.push("/challenge");

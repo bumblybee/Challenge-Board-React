@@ -1,7 +1,7 @@
 const errorCodeToMessage = {
   "auth.existingCredentials": "User credentials already in use. Please log in.",
 
-  "auth.discordError": "Discord signup unsuccessful, please try again.",
+  "auth.discordError": "Discord sign in unsuccessful, please try again.",
 
   "auth.invalidCredentials": "Invalid credentials, please try again.",
 
