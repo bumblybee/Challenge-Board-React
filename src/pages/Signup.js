@@ -8,9 +8,8 @@ import Error from "../components/errors/Error";
 import {
   StyledPurpleButton,
   StyledFormLink,
-  StyledFormHr,
 } from "../styles/GlobalStyledComponents";
-import { StyledDiscordButton } from "./StyledPages";
+import { StyledDiscordButton, StyledHr } from "./StyledPages";
 
 import { useHistory } from "react-router-dom";
 
@@ -118,8 +117,17 @@ const Signup = () => {
 
         {discordUrl && (
           <Fragment>
-            <StyledFormHr></StyledFormHr>
+            <StyledHr></StyledHr>
             <StyledDiscordButton href={discordUrl}>
+              <i
+                style={{
+                  position: "absolute",
+                  opacity: "0.3",
+                  left: "47%",
+                  top: "2px",
+                }}
+                class="fab fa-discord fa-2x"
+              ></i>
               Sign up with Discord
             </StyledDiscordButton>
           </Fragment>

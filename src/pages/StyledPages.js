@@ -69,10 +69,23 @@ const StyledDiscordButton = styled.a`
   font-weight: 300;
   text-align: center;
   margin-top: 1rem;
+  position: relative;
 `;
 
 const StyledDiscordDiv = styled.div`
   margin: 15% auto;
+  width: 80%;
+`;
+
+const StyledDiscordIcon = styled.i`
+  ${"" /* color: rgba(0, 0, 0, 0.3); */}
+`;
+
+const StyledHr = styled.hr`
+  margin: 1rem auto;
+  border: none;
+  background: #202225;
+  height: 1px;
   width: 80%;
 `;
 
@@ -85,4 +98,6 @@ export {
   StyledPostList,
   StyledDiscordDiv,
   StyledDiscordButton,
+  StyledDiscordIcon,
+  StyledHr,
 };

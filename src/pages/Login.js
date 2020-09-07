@@ -6,9 +6,8 @@ import { getLoginDiscordUrl } from "../api/discordApi";
 import {
   StyledPurpleButton,
   StyledFormLink,
-  StyledFormHr,
 } from "../styles/GlobalStyledComponents";
-import { StyledDiscordButton } from "./StyledPages";
+import { StyledDiscordButton, StyledHr } from "./StyledPages";
 import Error from "../components/errors/Error";
 
 const Login = () => {
@@ -83,23 +82,29 @@ const Login = () => {
             ></input>
           </div>
 
-          <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
+          <StyledPurpleButton type="submit">Log in</StyledPurpleButton>
         </form>
         {discordUrl && (
           <Fragment>
-            <StyledFormHr></StyledFormHr>
+            <StyledHr></StyledHr>
             <StyledDiscordButton href={discordUrl}>
+              <i
+                style={{
+                  position: "absolute",
+                  opacity: "0.3",
+                  left: "47%",
+                  top: "2px",
+                }}
+                class="fab fa-discord fa-2x"
+              ></i>
               Log in with Discord
             </StyledDiscordButton>
           </Fragment>
         )}
-        <div style={{ textAlign: "center", marginTop: "1rem" }}>
-          {" "}
-          <StyledFormLink to="/reset-password-request">
-            Forgot password?
-          </StyledFormLink>
-          <StyledFormLink to="/signup">Need to Register?</StyledFormLink>
-        </div>
+        <StyledFormLink to="/reset-password-request">
+          Forgot password?
+        </StyledFormLink>
+        <StyledFormLink to="/signup">Need to Register?</StyledFormLink>
       </div>
     </div>
   );

@@ -67,18 +67,9 @@ const StyledFormLink = styled(Link)`
   display: block;
 `;
 
-const StyledFormHr = styled.hr`
-  margin: 1rem auto;
-  border: none;
-  background: #7d8088;
-  height: 0.5px;
-  width: 50%;
-`;
-
 export {
   StyledSpan,
   StyledFormLink,
-  StyledFormHr,
   StyledError,
   StyledTransparentButton,
   StyledPurpleButton,
