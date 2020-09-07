@@ -64,6 +64,7 @@ const Login = () => {
               type="email"
               id="login-email"
               name="login-email"
+              autoFocus
               required
             ></input>
           </div>
