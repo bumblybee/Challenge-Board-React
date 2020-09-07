@@ -137,9 +137,15 @@ const QuestionsList = () => {
       <div className="discussion-header-container">
         <div className="discussion-header">
           <h4 className="heading">DISCUSSION</h4>
-          <h1>Ask a Question</h1>
+          {user && user.role === "Teacher" ? (
+            <h1>Challenge Questions</h1>
+          ) : (
+            <h1>Ask a Question</h1>
+          )}
         </div>
-        {user ? (
+        {user && user.role === "Teacher" ? (
+          ""
+        ) : user && user.role === "Student" ? (
           <StyledPurpleButton
             className="modal-button"
             onClick={() => setIsOpen(!isOpen)}
