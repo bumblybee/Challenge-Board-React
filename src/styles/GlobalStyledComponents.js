@@ -37,11 +37,11 @@ const StyledPurpleButton = styled.button`
 const StyledError = styled.div`
   color: #f77;
   text-align: center;
-  font-size: 1.1rem;
-  background: #000;
-  padding: ${(props) => (props.discordError === true ? "4rem" : "1rem")};
+  font-size: 1.5rem;
+  background: #202225;
+  padding: ${(props) => (props.discordError === true ? "4rem" : "2rem")};
   margin: 0 auto;
-  width: 70%;
+  width: 80%;
   border-radius: 6px;
   z-index: 100;
 `;

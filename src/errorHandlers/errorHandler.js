@@ -8,11 +8,11 @@ const errorCodeToMessage = {
   "auth.noToken":
     "Token not found or has expired. Try resetting your password again.",
 
-  "post.failed": "Uh-oh, something went wrong on our end. Please try again.",
+  "post.failed": "Uh-oh, something went wrong. Please try again.",
 
   "delete.failed": "Oops, something went wrong. Please try again.",
 
-  "server.failed": "Uh-oh, something went wrong on our end. Please try again.",
+  "server.failed": "Uh-oh, something went wrong. Please try again.",
 
   "server.notFound": "Oops, looks like that doesn't exist.",
 };

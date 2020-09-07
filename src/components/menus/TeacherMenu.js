@@ -15,7 +15,6 @@ const TeacherMenu = ({
   const history = useHistory();
   const [answer, setAnswer] = useState(false);
   const [error, setError] = useState(undefined);
-  const [showError, setShowError] = useState(true);
 
   const chooseAnswer = async () => {
     if (window.confirm("Are you sure you want to select this answer?")) {
@@ -25,9 +24,8 @@ const TeacherMenu = ({
         setError(updatedAnswer.error);
         setTimeout(() => {
           toggleMenu();
-          setShowError(false);
-          //TODO: setShowError can probs be just setError(undefined)
-        }, 2000);
+          setError(undefined);
+        }, 2500);
       } else if (updatedAnswer.data.answer) {
         setAnswer(true);
         reRenderList();
@@ -44,8 +42,8 @@ const TeacherMenu = ({
         setError(deletedQuestion.error);
         setTimeout(() => {
           toggleMenu();
-          setShowError(false);
-        }, 2000);
+          setError(undefined);
+        }, 2500);
       } else if (deletedQuestion.data.deletedQuestion) {
         toggleMenu();
         //if question is being deleted within a thread, send to home, otherwise re-render question list
@@ -62,7 +60,7 @@ const TeacherMenu = ({
         setError(deletedComment.error);
         setTimeout(() => {
           toggleMenu();
-          setShowError(false);
+          setError(undefined);
         }, 2000);
       } else if (deletedComment.data.deletedComment) {
         toggleMenu();
@@ -75,7 +73,7 @@ const TeacherMenu = ({
   if (question) {
     return (
       <Fragment>
-        {error && showError ? (
+        {error ? (
           <Error>
             <div>{error}</div>
           </Error>
@@ -89,7 +87,7 @@ const TeacherMenu = ({
   }
   return (
     <Fragment>
-      {error && showError ? (
+      {error ? (
         <Error>
           <div>{error}</div>
         </Error>

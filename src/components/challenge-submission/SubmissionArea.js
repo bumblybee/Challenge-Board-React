@@ -49,6 +49,9 @@ const SubmissionArea = () => {
 
     if (submission.error || !submission) {
       setError(submission.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else if (submission.data.id) {
       setIsSubmitted(true);
       setShowEditButton(true);
@@ -72,6 +75,9 @@ const SubmissionArea = () => {
 
     if (editedSubmission.error || !editedSubmission) {
       setError(editedSubmission.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else if (editedSubmission.data[0] === 1) {
       setIsSubmitted(true);
       setShowEditButton(true);

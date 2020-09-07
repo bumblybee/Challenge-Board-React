@@ -58,6 +58,9 @@ const QuestionsList = () => {
       if (createdQuestion.error) {
         setError(createdQuestion.error);
         setIsOpen(!isOpen);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
       } else if (createdQuestion.data.id) {
         setIsOpen(!isOpen);
 

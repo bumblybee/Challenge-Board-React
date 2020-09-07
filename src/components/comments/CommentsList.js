@@ -25,6 +25,9 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
       const createdComment = await createComment(questionId, newComment);
       if (createdComment.error) {
         setError(createdComment.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
       } else {
         reRenderList();
 

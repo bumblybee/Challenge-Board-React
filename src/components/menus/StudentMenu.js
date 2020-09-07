@@ -36,6 +36,9 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
 
     if (editedQuestion.error) {
       setError(editedQuestion.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else if (editedQuestion.data[0] === 1) {
       setOpenModal(!openModal);
       toggleMenu();
@@ -55,6 +58,9 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
 
     if (editedComment.error) {
       setError(editedComment.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else if (editedComment.data[0] === 1) {
       setOpenModal(!openModal);
       toggleMenu();
