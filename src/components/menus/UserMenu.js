@@ -4,8 +4,6 @@ import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
-  // TODO: links to settings and account pages
-
   const logout = async () => {
     setUser(null);
     handleClose(false);

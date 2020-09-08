@@ -81,7 +81,7 @@ const QuestionCard = ({ question, reRenderList }) => {
             ? " comments"
             : " comment"}
         </div>
-        {/* TODO: link route to thread ID  */}
+
         <StyledViewThreadDiv className="view-thread">
           <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
         </StyledViewThreadDiv>

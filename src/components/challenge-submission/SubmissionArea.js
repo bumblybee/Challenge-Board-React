@@ -16,7 +16,6 @@ import {
   StyledConfirmationParagraph,
 } from "./StyledSubmissionArea";
 
-//TODO: Add isSubmitted to context?
 const SubmissionArea = () => {
   const { user } = useContext(UserContext);
 

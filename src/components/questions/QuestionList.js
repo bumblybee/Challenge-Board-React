@@ -16,8 +16,6 @@ import {
 } from "../../styles/GlobalStyledComponents";
 
 const QuestionsList = () => {
-  //TODO: Remove post question btn if teacher
-  //TODO: Bring in StyledTextArea
   const history = useHistory();
 
   const { user } = useContext(UserContext);

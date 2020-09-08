@@ -21,7 +21,6 @@ import {
   StyledDateDiv,
 } from "./StyledQuestions";
 
-//TODO: add access to student menu in main question and answer
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
