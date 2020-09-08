@@ -105,7 +105,7 @@ const QuestionThread = () => {
                 reRenderList={reRenderList}
                 question={question}
                 toggleMenu={toggleMenu}
-                // coming from thread, so want to push user back to home after delete
+                // coming from thread, so want to push user back to home after deleting main thread question
                 thread={true}
               ></TeacherMenu>
             ) : isOpen && user.role === "Student" ? (

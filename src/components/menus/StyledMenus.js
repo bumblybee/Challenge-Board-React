@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledTeacherMenu = styled.div`
   background: #18191b;
   ont-size: 1.05rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   width: 30%;
   position: absolute;
   right: 0;
@@ -11,6 +11,26 @@ const StyledTeacherMenu = styled.div`
   z-index: 1000;
   :hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 1600px) {
+    width: 40%;
+  }
+
+  @media (max-width: 1200px) {
+    width: 47%;
+  }
+
+  @media (max-width: 1045px) {
+    width: 20%;
+  }
+
+  @media (max-width: 600px) {
+    width: 35%;
+  }
+
+  @media (max-width: 375px) {
+    width: 50%;
   }
 `;
 
@@ -25,6 +45,18 @@ const StyledStudentMenu = styled.div`
   z-index: 1000;
   :hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 1045px) {
+    width: 20%;
+  }
+
+  @media (max-width: 600px) {
+    width: 30%;
+  }
+
+  @media (max-width: 375px) {
+    width: 45%;
   }
 `;
 

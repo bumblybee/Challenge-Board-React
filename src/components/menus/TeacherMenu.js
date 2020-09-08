@@ -79,7 +79,9 @@ const TeacherMenu = ({
           </Error>
         ) : (
           <StyledTeacherMenu>
-            <p onClick={deleteUserQuestion}>Remove Post</p>
+            <StyledParagraph onClick={deleteUserQuestion}>
+              Remove Post
+            </StyledParagraph>
           </StyledTeacherMenu>
         )}
       </Fragment>
