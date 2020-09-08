@@ -24,6 +24,7 @@ const DiscordSignup = () => {
         setError(user.error);
         setTimeout(() => {
           setError(undefined);
+          history.push("/signup");
         }, 2500);
       } else if (user.data.id) {
         setUser(user.data);

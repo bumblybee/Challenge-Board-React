@@ -1,5 +1,5 @@
 import axios from "axios";
-import { handleErrors, handleErrorsArray } from "../errorHandlers/errorHandler";
+import { handleErrors, handleErrorsArray } from "../handlers/errorHandler";
 
 const instance = axios.create({
   baseURL: "http://localhost:9000",
