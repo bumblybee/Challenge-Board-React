@@ -29,8 +29,8 @@ function App() {
     const checkIfLoggedIn = async () => {
       const auth = await checkLogin();
       console.log(auth);
-      //TODO: Handle error, not getting our custom setup error code
-      if (auth.Error) {
+
+      if (auth.error) {
         return;
       } else {
         auth && setUser(auth.data.user);

@@ -28,7 +28,7 @@ const Account = () => {
 
     user && getPosts();
   }, [user]);
-
+  //TODO: add project submissions
   return (
     <div>
       <StyledAccountDiv>

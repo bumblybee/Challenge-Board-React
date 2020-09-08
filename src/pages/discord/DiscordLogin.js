@@ -19,7 +19,7 @@ const DiscordLogin = () => {
     const postDiscordLogin = async () => {
       const user = await discordLogin(code, state);
       console.log(user);
-      if (user.error || user.Error) {
+      if (user.error) {
         setUser(null);
         setError(user.error);
         setTimeout(() => {
