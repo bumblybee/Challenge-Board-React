@@ -476,11 +476,21 @@ iframe {
 }
 
 @media all and (max-width: 620px) {
-  .modal-content,
+  .modal-content {
+    width: 90%;
+    margin: 40% auto;
+    padding: 0.5rem;
+  }
+
+  .modal-footer {
+    padding-bottom: 0.5rem;
+    margin: 0;
+  }
+
   .signup-form-content,
   .login-form-content {
     width: 90%;
-    margin: 35% auto;
+    margin: 25% auto;
     padding: 0.5rem;
   }
 
@@ -527,7 +537,9 @@ iframe {
 }
 
 @media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 900px) {
-  .modal-content {
+  .modal-content,
+  .signup-form-content,
+  .login-form-content {
     margin: 2% auto;
     width: 75%;
   }
