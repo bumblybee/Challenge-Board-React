@@ -37,8 +37,6 @@ const Login = () => {
     if (user.error) {
       setError(user.error);
 
-      setUserDetails({ email: "", password: "" });
-
       setTimeout(() => {
         setError(undefined);
       }, 2500);
