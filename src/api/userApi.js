@@ -20,9 +20,4 @@ const logoutUser = async () => {
   console.log(res);
 };
 
-const getUserPosts = async (id) => {
-  const res = await get(`/users/${id}/posts`);
-  return res;
-};
-
-export { loginUser, getUser, logoutUser, signupUser, getUserPosts };
+export { loginUser, getUser, logoutUser, signupUser };

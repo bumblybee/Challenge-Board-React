@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-import { getUserPosts } from "../../api/userApi";
 import { UserContext } from "../../context/UserContext";
 
 import {
@@ -16,18 +15,7 @@ import {
 
 const Account = () => {
   const { user } = useContext(UserContext);
-  const [questions, setQuestions] = useState([]);
-  const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    const getPosts = async () => {
-      const userData = await getUserPosts(user.id);
-      setQuestions(userData.data.questions);
-      setComments(userData.data.comments);
-    };
-
-    user && getPosts();
-  }, [user]);
   //TODO: add project submissions
   return (
     <div>
@@ -40,13 +28,13 @@ const Account = () => {
 
             <StyledAccountPostsDiv>
               <StyledPostList>
-                {questions.length === 0 && comments.length === 0 ? (
+                {user.questions.length === 0 && user.comments.length === 0 ? (
                   <h3>Looks like you haven't created any posts yet.</h3>
                 ) : (
                   <h3>Questions</h3>
                 )}
-                {questions
-                  ? questions.map((question) => (
+                {user.questions
+                  ? user.questions.map((question) => (
                       <Link
                         key={question.id}
                         style={whiteText}
@@ -63,9 +51,9 @@ const Account = () => {
                   : ""}
               </StyledPostList>
               <StyledPostList>
-                {comments.length > 0 && <h3>Comments</h3>}
-                {comments
-                  ? comments.map((comment) => (
+                {user.comments.length > 0 && <h3>Comments</h3>}
+                {user.comments
+                  ? user.comments.map((comment) => (
                       //TODO: styled component for links
                       <HashLink
                         key={comment.id}
