@@ -9,7 +9,7 @@ import {
 import "./styles/App.css";
 
 import { UserContext } from "./context/UserContext";
-import { checkLogin } from "./api/userApi";
+import { getUser } from "./api/userApi";
 
 import Nav from "./components/layout/Nav";
 import Challenge from "./pages/challenge";
@@ -26,8 +26,8 @@ function App() {
   const userValue = { user, setUser };
 
   useEffect(() => {
-    const checkIfLoggedIn = async () => {
-      const auth = await checkLogin();
+    const getUserData = async () => {
+      const auth = await getUser();
       console.log(auth);
 
       if (auth.error) {
@@ -36,7 +36,7 @@ function App() {
         auth && setUser(auth.data.user);
       }
     };
-    checkIfLoggedIn();
+    getUserData();
   }, []);
 
   return (

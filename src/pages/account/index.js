@@ -84,7 +84,11 @@ const Account = () => {
                 {user.projects.length > 0 && <h3>Projects</h3>}
                 {user.projects
                   ? user.projects.map((project) => (
-                      <a href={project.githubLink} style={whiteText}>
+                      <a
+                        key={project.id}
+                        href={project.githubLink}
+                        style={whiteText}
+                      >
                         <StyledAccountPost>
                           <p>{project.githubLink}</p>
                           <p>{project.additionLink}</p>

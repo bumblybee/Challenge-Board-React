@@ -10,8 +10,8 @@ const loginUser = async (details) => {
   return res;
 };
 
-const checkLogin = async () => {
-  const res = await get("/users/check-login");
+const getUser = async () => {
+  const res = await get("/users/get-user");
   return res;
 };
 
@@ -25,4 +25,4 @@ const getUserPosts = async (id) => {
   return res;
 };
 
-export { loginUser, checkLogin, logoutUser, signupUser, getUserPosts };
+export { loginUser, getUser, logoutUser, signupUser, getUserPosts };
