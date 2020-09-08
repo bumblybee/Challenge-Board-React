@@ -1,4 +1,4 @@
-import { get, post, put } from "./baseApi";
+import { get, post, put, deleteRequest } from "./baseApi";
 
 const getQuestions = async () => {
   const res = await get("/questions");
@@ -18,4 +18,14 @@ const editQuestion = async (id, data) => {
   return await put(`/questions/edit-question/${id}`, data);
 };
 
-export { getQuestions, getQuestionThread, createQuestion, editQuestion };
+const deleteQuestion = async (questionId) => {
+  return await deleteRequest(`/questions/${questionId}`);
+};
+
+export {
+  getQuestions,
+  getQuestionThread,
+  createQuestion,
+  editQuestion,
+  deleteQuestion,
+};

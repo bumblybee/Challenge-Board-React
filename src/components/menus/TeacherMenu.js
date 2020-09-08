@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import { deleteQuestion, deleteComment } from "../../api/deletePostApi";
+import { deleteQuestion } from "../../api/questionsApi";
+import { deleteComment } from "../../api/commentsApi";
 import { selectAnswer } from "../../api/commentsApi";
 import Error from "../errors/Error";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";

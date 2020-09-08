@@ -6,7 +6,7 @@ import { UserContext } from "../../context/UserContext";
 
 const Challenge = () => {
   const { user } = useContext(UserContext);
-  //TODO: style components for submission area so can pass teacher propr and space appropriately
+
   return (
     <div role="main" className="container">
       {user && user.role === "Teacher" ? (
