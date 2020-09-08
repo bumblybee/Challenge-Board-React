@@ -18,14 +18,4 @@ const editQuestion = async (id, data) => {
   return await put(`/questions/edit-question/${id}`, data);
 };
 
-const selectAnswer = async (commentId, questionId) => {
-  return await post(`/questions/select-answer/${questionId}/${commentId}`);
-};
-
-export {
-  getQuestions,
-  getQuestionThread,
-  createQuestion,
-  selectAnswer,
-  editQuestion,
-};
+export { getQuestions, getQuestionThread, createQuestion, editQuestion };

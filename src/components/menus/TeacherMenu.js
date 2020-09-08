@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { deleteQuestion, deleteComment } from "../../api/deletePostApi";
-import { selectAnswer } from "../../api/questionsApi";
+import { selectAnswer } from "../../api/commentsApi";
 import Error from "../errors/Error";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
@@ -13,8 +13,12 @@ const TeacherMenu = ({
   thread,
 }) => {
   const history = useHistory();
-  const [answer, setAnswer] = useState(false);
+  const [answerId, setAnswerId] = useState(undefined);
   const [error, setError] = useState(undefined);
+
+  const replaceAnswer = async (id) => {
+    return;
+  };
 
   const chooseAnswer = async () => {
     if (window.confirm("Are you sure you want to select this answer?")) {
@@ -27,7 +31,7 @@ const TeacherMenu = ({
           setError(undefined);
         }, 2500);
       } else if (updatedAnswer.data.answer) {
-        setAnswer(true);
+        setAnswerId(comment.id);
         reRenderList();
         toggleMenu();
       }
@@ -55,7 +59,7 @@ const TeacherMenu = ({
   const deleteUserComment = async () => {
     if (window.confirm("Are you sure you want to delete this comment?")) {
       const deletedComment = await deleteComment(comment.id);
-      console.log(deletedComment);
+
       if (deletedComment.error) {
         setError(deletedComment.error);
         setTimeout(() => {
@@ -94,7 +98,7 @@ const TeacherMenu = ({
           <div>{error}</div>
         </Error>
       ) : (
-        <StyledTeacherMenu answer={answer}>
+        <StyledTeacherMenu>
           <StyledParagraph onClick={chooseAnswer}>
             Promote as Answer
           </StyledParagraph>
