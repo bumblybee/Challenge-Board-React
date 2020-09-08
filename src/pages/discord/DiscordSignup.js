@@ -4,7 +4,7 @@ import getParameterByName from "../../utilities/getParameterByName";
 import { discordSignup } from "../../api/discordApi";
 import { UserContext } from "../../context/UserContext";
 import Error from "../../components/errors/Error";
-import { StyledDiscordDiv } from "../StyledPages";
+import { StyledDiscordDiv } from "./StyledDiscord";
 
 const DiscordSignup = () => {
   const [error, setError] = useState(undefined);

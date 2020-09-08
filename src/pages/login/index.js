@@ -7,7 +7,7 @@ import {
   StyledPurpleButton,
   StyledFormLink,
 } from "../../styles/GlobalStyledComponents";
-import { StyledDiscordButton, StyledHr } from "../StyledPages";
+import { StyledDiscordButton, StyledHr } from "./StyledLogin";
 import Error from "../../components/errors/Error";
 
 const Login = () => {

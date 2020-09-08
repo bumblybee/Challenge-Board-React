@@ -8,7 +8,7 @@ import {
   StyledPurpleButton,
   StyledFormLink,
 } from "../../styles/GlobalStyledComponents";
-import { StyledDiscordButton, StyledHr } from "../StyledPages";
+import { StyledDiscordButton, StyledHr } from "./StyledSignup";
 
 import { useHistory } from "react-router-dom";
 

@@ -24,12 +24,4 @@ const StyledDiscordDiv = styled.div`
   width: 80%;
 `;
 
-const StyledHr = styled.hr`
-  margin: 1rem auto;
-  border: none;
-  background: #202225;
-  height: 1px;
-  width: 80%;
-`;
-
-export { StyledDiscordDiv, StyledDiscordButton, StyledHr };
+export { StyledDiscordDiv, StyledDiscordButton };
