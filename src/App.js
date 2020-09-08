@@ -11,7 +11,7 @@ import "./styles/App.css";
 import { UserContext } from "./context/UserContext";
 import { checkLogin } from "./api/userApi";
 
-import Nav from "./layout/Nav";
+import Nav from "./components/layout/Nav";
 import Challenge from "./pages/challenge";
 import Signup from "./pages/signup";
 import DiscordLogin from "./pages/discord/DiscordLogin";

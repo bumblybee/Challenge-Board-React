@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "../../layout/Modal";
+import Modal from "../../components/layout/Modal";
 import { StyledError } from "../../styles/GlobalStyledComponents";
 
 const Error = ({ children, discordError }) => {

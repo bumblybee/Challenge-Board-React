@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-import Modal from "../../layout/Modal";
+import Modal from "../../components/layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
 import Error from "../errors/Error";
 import { UserContext } from "../../context/UserContext";
