@@ -18,14 +18,23 @@ const DiscordSignup = () => {
 
     const postDiscordSignup = async () => {
       const user = await discordSignup(code, state);
-      console.log(user);
-      if (user.error || user.Error) {
+
+      if (user.error) {
         setUser(null);
         setError(user.error);
+
         setTimeout(() => {
           setError(undefined);
-          history.push("/signup");
+          if (
+            user.error === "User credentials already in use. Please log in."
+          ) {
+            history.push("/login");
+          } else {
+            history.push("/signup");
+          }
         }, 2500);
+
+        
       } else if (user.data.id) {
         setUser(user.data);
         history.push("/challenge");
@@ -43,10 +52,6 @@ const DiscordSignup = () => {
           <div>{error}</div>
         </Error>
       )}
-      {/* (
-        //TODO: Loading component
-        <span style={{ textAlign: "center" }}> Loading... </span>
-      ) */}
     </StyledDiscordDiv>
   );
 };

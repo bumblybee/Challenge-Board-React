@@ -105,7 +105,7 @@ const Login = () => {
                   left: "47%",
                   top: "2px",
                 }}
-                class="fab fa-discord fa-2x"
+                className="fab fa-discord fa-2x"
               ></i>
               Log in with Discord
             </StyledDiscordButton>
