@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
-import { triggerPasswordReset } from "../api/passwordApi";
-import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import { triggerPasswordReset } from "../../api/passwordApi";
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { passwordReset } from "../api/passwordApi";
-import Error from "../components/errors/Error";
-import { StyledPurpleButton } from "../styles/GlobalStyledComponents";
+import { passwordReset } from "../../api/passwordApi";
+import Error from "../../components/errors/Error";
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -18,9 +18,9 @@ const ResetPassword = () => {
 
     if (resetPassword.error || !resetPassword) {
       setError(resetPassword.error);
-       setTimeout(() => {
-         setError(undefined);
-       }, 2500);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else if (resetPassword.data.id) {
       history.push("/login");
     }

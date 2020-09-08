@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import ChallengeArea from "../components/challenge-submission/ChallengeArea";
-import SubmissionArea from "../components/challenge-submission/SubmissionArea";
-import QuestionArea from "../components/questions/QuestionArea";
-import { UserContext } from "../context/UserContext";
+import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
+import SubmissionArea from "../../components/challenge-submission/SubmissionArea";
+import QuestionArea from "../../components/questions/QuestionArea";
+import { UserContext } from "../../context/UserContext";
 
 const Challenge = () => {
   const { user } = useContext(UserContext);

@@ -12,14 +12,14 @@ import { UserContext } from "./context/UserContext";
 import { checkLogin } from "./api/userApi";
 
 import Nav from "./layout/Nav";
-import Challenge from "./pages/Challenge";
-import Signup from "./pages/Signup";
-import DiscordLogin from "./pages/DiscordLogin";
-import DiscordSignup from "./pages/DiscordSignup";
-import Login from "./pages/Login";
-import Account from "./pages/Account";
-import ResetPasswordRequest from "./pages/ResetPasswordRequest";
-import ResetPassword from "./pages/ResetPassword";
+import Challenge from "./pages/challenge";
+import Signup from "./pages/signup";
+import DiscordLogin from "./pages/discord/DiscordLogin";
+import DiscordSignup from "./pages/discord/DiscordSignup";
+import Login from "./pages/login";
+import Account from "./pages/account";
+import ResetPasswordRequest from "./pages/password/ResetPasswordRequest";
+import ResetPassword from "./pages/password/ResetPassword";
 
 function App() {
   const [user, setUser] = useState(null);

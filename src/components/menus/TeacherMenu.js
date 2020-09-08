@@ -17,7 +17,7 @@ const TeacherMenu = ({
   const [error, setError] = useState(undefined);
 
   const replaceAnswer = async (id) => {
-    return;
+    //figure out how to handle situation where already have answer and want to replace, using state won't persist on sign out or reload
   };
 
   const chooseAnswer = async () => {

@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-import { getUserPosts } from "../api/userApi";
-import { UserContext } from "../context/UserContext";
+import { getUserPosts } from "../../api/userApi";
+import { UserContext } from "../../context/UserContext";
 
 import {
   StyledHelloH1,
@@ -12,7 +12,7 @@ import {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
-} from "./StyledPages";
+} from "../StyledPages";
 
 const Account = () => {
   const { user } = useContext(UserContext);

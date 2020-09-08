@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
-import { Link } from "react-router-dom";
 
-import { UserContext } from "../context/UserContext";
-import { signupUser } from "../api/userApi";
-import { getSignupDiscordUrl } from "../api/discordApi";
-import Error from "../components/errors/Error";
+import { UserContext } from "../../context/UserContext";
+import { signupUser } from "../../api/userApi";
+import { getSignupDiscordUrl } from "../../api/discordApi";
+import Error from "../../components/errors/Error";
 import {
   StyledPurpleButton,
   StyledFormLink,
-} from "../styles/GlobalStyledComponents";
-import { StyledDiscordButton, StyledHr } from "./StyledPages";
+} from "../../styles/GlobalStyledComponents";
+import { StyledDiscordButton, StyledHr } from "../StyledPages";
 
 import { useHistory } from "react-router-dom";
 
@@ -49,9 +48,9 @@ const Signup = () => {
     if (res.error) {
       setError(res.error);
       setNewUser({ username: "", email: "", password: "" });
-       setTimeout(() => {
-         setError(undefined);
-       }, 2500);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
     } else {
       setUser(res.data);
       res && history.push("/challenge");
@@ -129,7 +128,7 @@ const Signup = () => {
                   left: "47%",
                   top: "2px",
                 }}
-                class="fab fa-discord fa-2x"
+                className="fab fa-discord fa-2x"
               ></i>
               Sign up with Discord
             </StyledDiscordButton>
