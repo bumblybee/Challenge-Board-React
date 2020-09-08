@@ -12,7 +12,7 @@ import {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
-} from "../StyledPages";
+} from "./StyledAccount";
 
 const Account = () => {
   const { user } = useContext(UserContext);
