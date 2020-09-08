@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Modal from "../../components/layout/Modal";
+import { ErrorContext } from "../../context/ErrorContext";
 import { StyledError } from "../../styles/GlobalStyledComponents";
 
-const Error = ({ children, discordError }) => {
+const Error = ({ discordError }) => {
+  const { error } = useContext(ErrorContext);
   return (
     <Modal>
-      <StyledError discordError={discordError}>{children}</StyledError>
+      <StyledError discordError={discordError}>{error}</StyledError>
     </Modal>
   );
 };

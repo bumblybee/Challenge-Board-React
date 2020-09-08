@@ -1,8 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { deleteQuestion } from "../../api/questionsApi";
 import { deleteComment } from "../../api/commentsApi";
 import { selectAnswer } from "../../api/commentsApi";
+import { ErrorContext } from "../../context/ErrorContext";
 import Error from "../errors/Error";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
@@ -13,9 +14,10 @@ const TeacherMenu = ({
   toggleMenu,
   thread,
 }) => {
+  const { error, setError } = useContext(ErrorContext);
   const history = useHistory();
   const [answerId, setAnswerId] = useState(undefined);
-  const [error, setError] = useState(undefined);
+  // const [error, setError] = useState(undefined);
 
   const replaceAnswer = async (id) => {
     //figure out how to handle situation where already have answer and want to replace, using state won't persist on sign out or reload
@@ -79,9 +81,7 @@ const TeacherMenu = ({
     return (
       <Fragment>
         {error ? (
-          <Error>
-            <div>{error}</div>
-          </Error>
+          <Error />
         ) : (
           <StyledTeacherMenu>
             <StyledParagraph onClick={deleteUserQuestion}>
@@ -95,9 +95,7 @@ const TeacherMenu = ({
   return (
     <Fragment>
       {error ? (
-        <Error>
-          <div>{error}</div>
-        </Error>
+        <Error />
       ) : (
         <StyledTeacherMenu>
           <StyledParagraph onClick={chooseAnswer}>
