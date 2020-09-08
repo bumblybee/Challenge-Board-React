@@ -40,6 +40,7 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     setProjectData({ ...projectData, userData: user });
+    //eslint-disable-next-line
   }, [user]);
 
   const handleProjectSubmit = async (e) => {

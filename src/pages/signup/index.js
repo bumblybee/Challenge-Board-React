@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { UserContext } from "../../context/UserContext";
+
 import { signupUser } from "../../api/userApi";
 import { getSignupDiscordUrl } from "../../api/discordApi";
+
 import Error from "../../components/errors/Error";
+
 import {
   StyledPurpleButton,
   StyledFormLink,

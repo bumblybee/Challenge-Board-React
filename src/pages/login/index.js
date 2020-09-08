@@ -1,14 +1,18 @@
 import React, { Fragment, useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+
 import { UserContext } from "../../context/UserContext";
+
 import { loginUser } from "../../api/userApi";
 import { getLoginDiscordUrl } from "../../api/discordApi";
+
+import Error from "../../components/errors/Error";
+
 import {
   StyledPurpleButton,
   StyledFormLink,
 } from "../../styles/GlobalStyledComponents";
 import { StyledDiscordButton, StyledHr } from "./StyledLogin";
-import Error from "../../components/errors/Error";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
