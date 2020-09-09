@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { passwordReset } from "../../api/passwordApi";
+import { ErrorContext } from "../../context/ErrorContext";
 import Error from "../../components/errors/Error";
 import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const history = useHistory();
   const location = useLocation();
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [newPassword, setNewPassword] = useState("");
   const path = location.pathname.split("/");
 
@@ -29,13 +30,7 @@ const ResetPassword = () => {
   return (
     <div className="login-form-content">
       <div className="login-form-header">
-        {error ? (
-          <Error>
-            <div>{error}</div>
-          </Error>
-        ) : (
-          <h1>Enter New Password</h1>
-        )}{" "}
+        {error ? <Error /> : <h1>Enter New Password</h1>}{" "}
       </div>
       <div className="login-form-body">
         <form id="login-form" onSubmit={handleSubmit}>

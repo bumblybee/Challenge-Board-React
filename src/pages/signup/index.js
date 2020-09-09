@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { UserContext } from "../../context/UserContext";
-
+import { ErrorContext } from "../../context/ErrorContext";
 import { signupUser } from "../../api/userApi";
 import { getSignupDiscordUrl } from "../../api/discordApi";
 
@@ -17,7 +17,7 @@ import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const { setUser } = useContext(UserContext);
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -68,11 +68,7 @@ const Signup = () => {
         <h1>Sign Up</h1>
         <p>Sign up with your email</p>
       </div>
-      {error && (
-        <Error>
-          <div>{error}</div>
-        </Error>
-      )}
+      {error && <Error />}
       <div className="signup-form-body">
         <form id="submit-form" onSubmit={handleSubmit}>
           <div className="input-area">

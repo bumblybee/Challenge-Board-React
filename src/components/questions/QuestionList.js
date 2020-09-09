@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-
+import { ErrorContext } from "../../context/ErrorContext";
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
 import Error from "../../components/errors/Error";
@@ -19,7 +19,7 @@ const QuestionsList = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -130,11 +130,7 @@ const QuestionsList = () => {
           </div>{" "}
         </Modal>
       )}
-      {error && (
-        <Error>
-          <div>{error}</div>
-        </Error>
-      )}
+      {error && <Error />}
       <div className="discussion-header-container">
         <div className="discussion-header">
           <h4 className="heading">DISCUSSION</h4>

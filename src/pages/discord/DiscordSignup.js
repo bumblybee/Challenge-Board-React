@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import getParameterByName from "../../utilities/getParameterByName";
 import { discordSignup } from "../../api/discordApi";
 import { UserContext } from "../../context/UserContext";
+import { ErrorContext } from "../../context/ErrorContext";
 import Error from "../../components/errors/Error";
 import { StyledDiscordDiv } from "./StyledDiscord";
 
 const DiscordSignup = () => {
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const { setUser } = useContext(UserContext);
 
   const history = useHistory();
@@ -33,8 +34,6 @@ const DiscordSignup = () => {
             history.push("/signup");
           }
         }, 2500);
-
-        
       } else if (user.data.id) {
         setUser(user.data);
         history.push("/challenge");
@@ -45,15 +44,7 @@ const DiscordSignup = () => {
     // eslint-disable-next-line
   }, [setUser]);
 
-  return (
-    <StyledDiscordDiv>
-      {error && (
-        <Error discordError={true}>
-          <div>{error}</div>
-        </Error>
-      )}
-    </StyledDiscordDiv>
-  );
+  return <StyledDiscordDiv>{error && <Error />}</StyledDiscordDiv>;
 };
 
 export default DiscordSignup;

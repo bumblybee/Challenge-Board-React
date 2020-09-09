@@ -2,7 +2,9 @@ import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
 import { createComment } from "../../api/commentsApi";
+
 import { UserContext } from "../../context/UserContext";
+import { ErrorContext } from "../../context/ErrorContext";
 import TextareaAutosize from "react-autosize-textarea";
 import Error from "../errors/Error";
 import {
@@ -13,7 +15,7 @@ import {
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
   const { user } = useContext(UserContext);
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     body: "",
   });
@@ -42,11 +44,7 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
 
   return (
     <div className="comments-container">
-      {error && (
-        <Error>
-          <div>{error}</div>
-        </Error>
-      )}
+      {error && <Error />}
       <StyledCommentsThread className="comments-thread">
         {comments.map((comment, index) => (
           <CommentCard

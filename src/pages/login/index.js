@@ -2,7 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../context/UserContext";
-
+import { ErrorContext } from "../../context/ErrorContext";
 import { loginUser } from "../../api/userApi";
 import { getLoginDiscordUrl } from "../../api/discordApi";
 
@@ -16,7 +16,7 @@ import { StyledDiscordButton, StyledHr } from "./StyledLogin";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const { setUser } = useContext(UserContext);
   const history = useHistory();
@@ -54,11 +54,7 @@ const Login = () => {
         <p>Log in with your email and password</p>
       </div>
 
-      {error && (
-        <Error>
-          <div>{error}</div>
-        </Error>
-      )}
+      {error && <Error />}
       <div className="login-form-body">
         <form id="login-form" onSubmit={handleSubmit}>
           <div className="input-area">

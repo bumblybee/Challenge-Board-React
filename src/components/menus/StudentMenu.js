@@ -1,7 +1,8 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import { editQuestion } from "../../api/questionsApi";
 import { editComment } from "../../api/commentsApi";
 import { StyledStudentMenu } from "./StyledMenus";
+import { ErrorContext } from "../../context/ErrorContext";
 import {
   StyledTransparentButton,
   StyledPurpleButton,
@@ -12,7 +13,7 @@ import Error from "../errors/Error";
 
 const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [error, setError] = useState(undefined);
+  const { error, setError } = useContext(ErrorContext);
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
@@ -77,11 +78,7 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
     if (openModal) {
       return (
         <Modal>
-          {error && (
-            <Error>
-              <div>{error}</div>
-            </Error>
-          )}
+          {error && <Error />}
           <div className="modal-body">
             <form onSubmit={updateComment}>
               <StyledTextarea

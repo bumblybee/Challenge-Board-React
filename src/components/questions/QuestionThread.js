@@ -3,6 +3,7 @@ import moment from "moment";
 import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
 import { getQuestionThread } from "../../api/questionsApi";
+
 import { useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import CommentsList from "../comments/CommentsList";
@@ -21,6 +22,7 @@ import {
   StyledDateDiv,
 } from "./StyledQuestions";
 
+//TODO: get rid of reRenderList and
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");

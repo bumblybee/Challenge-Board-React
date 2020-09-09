@@ -48,6 +48,7 @@ function App() {
         <ErrorContext.Provider value={errorValue}>
           <div role="main" className="App">
             <Nav />
+
             <Switch>
               <Route path="/signup">
                 <Signup />

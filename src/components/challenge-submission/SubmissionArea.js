@@ -5,6 +5,7 @@ import Modal from "../../components/layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
 import Error from "../errors/Error";
 import { UserContext } from "../../context/UserContext";
+import { ErrorContext } from "../../context/ErrorContext";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
@@ -18,8 +19,8 @@ import {
 
 const SubmissionArea = () => {
   const { user } = useContext(UserContext);
+  const { error, setError } = useContext(ErrorContext);
 
-  const [error, setError] = useState(undefined);
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showEditButton, setShowEditButton] = useState(false);
@@ -95,11 +96,7 @@ const SubmissionArea = () => {
     <div className="submission-container">
       {isOpen && (
         <Modal>
-          {error && (
-            <Error>
-              <div>{error}</div>
-            </Error>
-          )}
+          {error && <Error />}
           <div className="modal-header">
             <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
