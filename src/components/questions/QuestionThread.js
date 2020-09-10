@@ -62,7 +62,7 @@ const QuestionThread = () => {
     setIsTruncated(!isTruncated);
   };
 
-  const renderMenu = () => {
+  const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
         <StyledMenuIcon
@@ -100,7 +100,7 @@ const QuestionThread = () => {
             <div className="name">{username}</div>
             <StyledDateDiv className="created-at">{date}</StyledDateDiv>
 
-            <div className="icons">{user && renderMenu()}</div>
+            <div className="icons">{user && renderMenuIcon()}</div>
             {isOpen && user.role === "Teacher" ? (
               <TeacherMenu
                 reRenderList={reRenderList}

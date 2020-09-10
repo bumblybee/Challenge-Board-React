@@ -74,7 +74,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
     setIsOpen(!isOpen);
   };
 
-  const renderMenu = () => {
+  const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === comment.userId) {
       return (
         <StyledMenuIcon
@@ -95,13 +95,11 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         <StyledTimeDiv>{time}</StyledTimeDiv>
         <StyledDateDiv>{date}</StyledDateDiv>
         <StyledIconsDiv className="icons" isOpen={isOpen} answer={answer}>
-          {user && renderMenu()}
+          {user && renderMenuIcon()}
         </StyledIconsDiv>
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
-            reRenderList={reRenderList}
             comment={comment}
-            toggleMenu={toggleMenu}
             chooseAnswer={chooseAnswer}
             deleteUserComment={deleteUserComment}
           ></TeacherMenu>

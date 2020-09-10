@@ -7,7 +7,7 @@ import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
 
 import QuestionCard from "./QuestionCard";
-import Modal from "../../components/layout/Modal";
+import Modal from "../layout/Modal";
 
 import {
   StyledPurpleButton,

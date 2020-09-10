@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
-import QuestionList from "./QuestionList";
+import QuestionsList from "./QuestionsList";
 import QuestionThread from "./QuestionThread";
 
 const QuestionArea = () => {
@@ -11,7 +11,7 @@ const QuestionArea = () => {
 
   return (
     <div className="discussion-area">
-      {!showQuestionThread ? <QuestionList /> : <QuestionThread />}
+      {!showQuestionThread ? <QuestionsList /> : <QuestionThread />}
     </div>
   );
 };
