@@ -32,13 +32,13 @@ function App() {
 
   useEffect(() => {
     const getUserData = async () => {
-      const auth = await getUser();
-      console.log(auth);
+      const userData = await getUser();
+      console.log(userData);
 
-      if (auth.error) {
+      if (userData.error) {
         return;
       } else {
-        auth && setUser(auth.data.user);
+        userData && setUser(userData.data.user);
       }
     };
     getUserData();
