@@ -41,7 +41,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
           toggleMenu();
           setError(undefined);
         }, 2500);
-      } else if (updatedAnswer.data.answer) {
+      } else if (updatedAnswer.data.selectedAnswer) {
         reRenderList();
         toggleMenu();
       }
