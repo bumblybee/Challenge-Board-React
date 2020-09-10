@@ -12,7 +12,17 @@ const selectAnswer = async (commentId, questionId) => {
   return await post(`/comments/select-answer/${questionId}/${commentId}`);
 };
 
+const deselectAnswer = async (commentId, questionId) => {
+  return await post(`/comments/deselect-answer/${questionId}/${commentId}`);
+};
+
 const deleteComment = async (commentId) => {
   return await deleteRequest(`/comments/${commentId}`);
 };
-export { createComment, editComment, selectAnswer, deleteComment };
+export {
+  createComment,
+  editComment,
+  selectAnswer,
+  deselectAnswer,
+  deleteComment,
+};

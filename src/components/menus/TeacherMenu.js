@@ -6,7 +6,8 @@ const TeacherMenu = ({
   question,
   comment,
   deleteUserQuestion,
-  chooseAnswer,
+  promoteAnswer,
+  demoteAnswer,
   deleteUserComment,
 }) => {
   if (question) {
@@ -23,9 +24,16 @@ const TeacherMenu = ({
   return (
     <Fragment>
       <StyledTeacherMenu>
-        <StyledParagraph onClick={() => chooseAnswer(comment)}>
-          Promote as Answer
-        </StyledParagraph>
+        {comment.isAnswer ? (
+          <StyledParagraph onClick={() => demoteAnswer(comment)}>
+            Demote Answer
+          </StyledParagraph>
+        ) : (
+          <StyledParagraph onClick={() => promoteAnswer(comment)}>
+            Promote as Answer
+          </StyledParagraph>
+        )}
+
         <hr />
         <StyledParagraph onClick={() => deleteUserComment(comment)}>
           Remove Post

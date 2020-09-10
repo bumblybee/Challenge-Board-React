@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
 import { selectAnswer } from "../../api/commentsApi";
+import { deselectAnswer } from "../../api/commentsApi";
 import { deleteComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
@@ -31,7 +32,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
 
-  const chooseAnswer = async (comment) => {
+  const promoteAnswer = async (comment) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
       console.log(updatedAnswer);
@@ -42,6 +43,26 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
           setError(undefined);
         }, 2500);
       } else if (updatedAnswer.data.selectedAnswer) {
+        reRenderList();
+        toggleMenu();
+      }
+    }
+  };
+
+  const demoteAnswer = async (comment) => {
+    if (window.confirm("Are you sure you want to deselect this answer?")) {
+      const updatedAnswer = await deselectAnswer(
+        comment.id,
+        comment.questionId
+      );
+      console.log(updatedAnswer);
+      if (updatedAnswer.error) {
+        setError(updatedAnswer.error);
+        setTimeout(() => {
+          toggleMenu();
+          setError(undefined);
+        }, 2500);
+      } else if (updatedAnswer.data.deselectedAnswer) {
         reRenderList();
         toggleMenu();
       }
@@ -100,7 +121,8 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
             comment={comment}
-            chooseAnswer={chooseAnswer}
+            promoteAnswer={promoteAnswer}
+            demoteAnswer={demoteAnswer}
             deleteUserComment={deleteUserComment}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
