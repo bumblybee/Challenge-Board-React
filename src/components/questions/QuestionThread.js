@@ -2,10 +2,13 @@ import React, { Fragment, useState, useEffect, useContext } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
-import { getQuestionThread } from "../../api/questionsApi";
-
 import { useHistory, useLocation } from "react-router-dom";
+
+import { getQuestionThread } from "../../api/questionsApi";
+import { deleteQuestion } from "../../api/questionsApi";
+
 import { UserContext } from "../../context/UserContext";
+import { ErrorContext } from "../../context/ErrorContext";
 import CommentsList from "../comments/CommentsList";
 import CommentCard from "../comments/CommentCard";
 import TeacherMenu from "../menus/TeacherMenu";
@@ -36,7 +39,7 @@ const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
   const { user } = useContext(UserContext);
-
+  const { setError } = useContext(ErrorContext);
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
@@ -81,6 +84,23 @@ const QuestionThread = () => {
     setIsOpen(!isOpen);
   };
 
+  const deleteThreadQuestion = async (question) => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      const deletedQuestion = await deleteQuestion(question.id);
+
+      if (deletedQuestion.error) {
+        setError(deletedQuestion.error);
+        setTimeout(() => {
+          toggleMenu();
+          setError(undefined);
+        }, 2500);
+      } else if (deletedQuestion.data.deletedQuestion) {
+        toggleMenu();
+        history.push("/challenge");
+      }
+    }
+  };
+
   return (
     <Fragment>
       <div className="discussion-header-container thread">
@@ -103,10 +123,8 @@ const QuestionThread = () => {
             <div className="icons">{user && renderMenuIcon()}</div>
             {isOpen && user.role === "Teacher" ? (
               <TeacherMenu
-                reRenderList={reRenderList}
                 question={question}
-                toggleMenu={toggleMenu}
-                // coming from thread, so want to push user back to home after deleting main thread question
+                deleteThreadQuestion={deleteThreadQuestion}
                 thread={true}
               ></TeacherMenu>
             ) : isOpen && user.role === "Student" ? (

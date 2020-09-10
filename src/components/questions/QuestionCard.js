@@ -55,8 +55,6 @@ const QuestionCard = ({ question, reRenderList }) => {
       } else if (deletedQuestion.data.deletedQuestion) {
         toggleMenu();
         reRenderList();
-        //if question is being deleted within a thread, send to home, otherwise re-render question list
-        // thread ? history.push("/challenge") : reRenderList();
       }
     }
   };
