@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { deleteQuestion } from "../../api/questionsApi";
 
 import { ErrorContext } from "../../context/ErrorContext";
-import Error from "../errors/Error";
+
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
 const TeacherMenu = ({

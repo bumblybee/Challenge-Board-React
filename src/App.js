@@ -10,8 +10,10 @@ import "./styles/App.css";
 
 import { ErrorContext } from "./context/ErrorContext";
 import { UserContext } from "./context/UserContext";
+
 import { getUser } from "./api/userApi";
 
+import Error from "./components/errors/Error";
 import Nav from "./components/layout/Nav";
 import Challenge from "./pages/challenge";
 import Signup from "./pages/signup";
@@ -48,7 +50,7 @@ function App() {
         <ErrorContext.Provider value={errorValue}>
           <div role="main" className="App">
             <Nav />
-
+            <Error />
             <Switch>
               <Route path="/signup">
                 <Signup />

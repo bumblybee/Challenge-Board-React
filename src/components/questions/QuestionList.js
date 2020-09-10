@@ -19,7 +19,7 @@ const QuestionsList = () => {
   const history = useHistory();
 
   const { user } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -130,7 +130,7 @@ const QuestionsList = () => {
           </div>{" "}
         </Modal>
       )}
-      {error && <Error />}
+
       <div className="discussion-header-container">
         <div className="discussion-header">
           <h4 className="heading">DISCUSSION</h4>

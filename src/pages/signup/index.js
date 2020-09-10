@@ -17,7 +17,7 @@ import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const { setUser } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -68,7 +68,7 @@ const Signup = () => {
         <h1>Sign Up</h1>
         <p>Sign up with your email</p>
       </div>
-      {error && <Error />}
+
       <div className="signup-form-body">
         <form id="submit-form" onSubmit={handleSubmit}>
           <div className="input-area">

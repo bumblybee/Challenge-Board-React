@@ -8,7 +8,7 @@ import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 const ResetPassword = () => {
   const history = useHistory();
   const location = useLocation();
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [newPassword, setNewPassword] = useState("");
   const path = location.pathname.split("/");
 
@@ -30,7 +30,7 @@ const ResetPassword = () => {
   return (
     <div className="login-form-content">
       <div className="login-form-header">
-        {error ? <Error /> : <h1>Enter New Password</h1>}{" "}
+        <h1>Enter New Password</h1>
       </div>
       <div className="login-form-body">
         <form id="login-form" onSubmit={handleSubmit}>

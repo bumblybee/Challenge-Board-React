@@ -16,7 +16,7 @@ import { StyledDiscordButton, StyledHr } from "./StyledLogin";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const { setUser } = useContext(UserContext);
   const history = useHistory();
@@ -53,8 +53,6 @@ const Login = () => {
         <h1>Log In</h1>
         <p>Log in with your email and password</p>
       </div>
-
-      {error && <Error />}
       <div className="login-form-body">
         <form id="login-form" onSubmit={handleSubmit}>
           <div className="input-area">

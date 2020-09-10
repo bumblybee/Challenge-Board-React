@@ -8,7 +8,7 @@ import Error from "../../components/errors/Error";
 import { StyledDiscordDiv } from "./StyledDiscord";
 
 const DiscordSignup = () => {
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const { setUser } = useContext(UserContext);
 
   const history = useHistory();
@@ -44,7 +44,7 @@ const DiscordSignup = () => {
     // eslint-disable-next-line
   }, [setUser]);
 
-  return <StyledDiscordDiv>{error && <Error />}</StyledDiscordDiv>;
+  return <StyledDiscordDiv></StyledDiscordDiv>;
 };
 
 export default DiscordSignup;

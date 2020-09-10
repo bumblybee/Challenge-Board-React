@@ -15,7 +15,7 @@ import {
 
 const CommentsList = ({ comments, questionId, reRenderList }) => {
   const { user } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     body: "",
   });
@@ -44,7 +44,6 @@ const CommentsList = ({ comments, questionId, reRenderList }) => {
 
   return (
     <div className="comments-container">
-      {error && <Error />}
       <StyledCommentsThread className="comments-thread">
         {comments.map((comment, index) => (
           <CommentCard

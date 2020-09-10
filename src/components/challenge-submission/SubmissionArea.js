@@ -19,7 +19,7 @@ import {
 
 const SubmissionArea = () => {
   const { user } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -96,7 +96,6 @@ const SubmissionArea = () => {
     <div className="submission-container">
       {isOpen && (
         <Modal>
-          {error && <Error />}
           <div className="modal-header">
             <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
@@ -159,11 +158,6 @@ const SubmissionArea = () => {
 
       {isSubmitted && (
         <Modal>
-          {error && (
-            <Error>
-              <div>{error}</div>
-            </Error>
-          )}
           <StyledModalBody className="modal-body">
             <StyledConfirmationH1>
               Your project has been Submitted!

@@ -6,9 +6,11 @@ import { StyledError } from "../../styles/GlobalStyledComponents";
 const Error = ({ discordError }) => {
   const { error } = useContext(ErrorContext);
   return (
-    <Modal>
-      <StyledError discordError={discordError}>{error}</StyledError>
-    </Modal>
+    error !== undefined && (
+      <Modal>
+        <StyledError discordError={discordError}>{error}</StyledError>
+      </Modal>
+    )
   );
 };
 
