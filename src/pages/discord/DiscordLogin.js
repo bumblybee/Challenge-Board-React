@@ -4,7 +4,7 @@ import getParameterByName from "../../utilities/getParameterByName";
 import { discordLogin } from "../../api/discordApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
-import Error from "../../components/errors/Error";
+
 import { StyledDiscordDiv } from "./StyledDiscord";
 
 const DiscordLogin = () => {

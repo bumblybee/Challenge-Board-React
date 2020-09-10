@@ -6,7 +6,7 @@ import { createComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 import TextareaAutosize from "react-autosize-textarea";
-import Error from "../errors/Error";
+
 import {
   StyledCommentsThread,
   StyledSubmitButton,

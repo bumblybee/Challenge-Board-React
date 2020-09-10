@@ -1,46 +1,19 @@
-import React, { Fragment, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { deleteQuestion } from "../../api/questionsApi";
-
-import { ErrorContext } from "../../context/ErrorContext";
+import React, { Fragment } from "react";
 
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
 const TeacherMenu = ({
   question,
   comment,
-  reRenderList,
-  toggleMenu,
-  thread,
+  deleteUserQuestion,
   chooseAnswer,
   deleteUserComment,
 }) => {
-  const { error, setError } = useContext(ErrorContext);
-  const history = useHistory();
-
-  const deleteUserQuestion = async () => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      const deletedQuestion = await deleteQuestion(question.id);
-
-      if (deletedQuestion.error) {
-        setError(deletedQuestion.error);
-        setTimeout(() => {
-          toggleMenu();
-          setError(undefined);
-        }, 2500);
-      } else if (deletedQuestion.data.deletedQuestion) {
-        toggleMenu();
-        //if question is being deleted within a thread, send to home, otherwise re-render question list
-        thread ? history.push("/challenge") : reRenderList();
-      }
-    }
-  };
-
   if (question) {
     return (
       <Fragment>
         <StyledTeacherMenu>
-          <StyledParagraph onClick={deleteUserQuestion}>
+          <StyledParagraph onClick={() => deleteUserQuestion(question)}>
             Remove Post
           </StyledParagraph>
         </StyledTeacherMenu>

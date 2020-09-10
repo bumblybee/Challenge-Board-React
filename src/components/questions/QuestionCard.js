@@ -3,6 +3,8 @@ import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import { ErrorContext } from "../../context/ErrorContext";
+import { deleteQuestion } from "../../api/questionsApi";
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 import {
@@ -13,6 +15,7 @@ import {
 } from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
+  const { setError } = useContext(ErrorContext);
   const date = moment(question.createdAt).format("L");
 
   const sanitize = DOMPurify.sanitize;
@@ -39,6 +42,25 @@ const QuestionCard = ({ question, reRenderList }) => {
     }
   };
 
+  const deleteUserQuestion = async (question) => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      const deletedQuestion = await deleteQuestion(question.id);
+
+      if (deletedQuestion.error) {
+        setError(deletedQuestion.error);
+        setTimeout(() => {
+          toggleMenu();
+          setError(undefined);
+        }, 2500);
+      } else if (deletedQuestion.data.deletedQuestion) {
+        toggleMenu();
+        reRenderList();
+        //if question is being deleted within a thread, send to home, otherwise re-render question list
+        // thread ? history.push("/challenge") : reRenderList();
+      }
+    }
+  };
+
   return (
     <li className="question-card">
       <div className="question-header">
@@ -50,15 +72,14 @@ const QuestionCard = ({ question, reRenderList }) => {
           ) : (
             ""
           )}
-          {/* If there's a logged in user and that user is a teacher, or is a student with a question attached to their id, render menu icon */}
+
           {user && renderMenuIcon()}
         </StyledIconsDiv>
 
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
-            toggleMenu={toggleMenu}
             question={question}
-            reRenderList={reRenderList}
+            deleteUserQuestion={deleteUserQuestion}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
           <StudentMenu

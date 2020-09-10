@@ -5,8 +5,6 @@ import { ErrorContext } from "../../context/ErrorContext";
 import { signupUser } from "../../api/userApi";
 import { getSignupDiscordUrl } from "../../api/discordApi";
 
-import Error from "../../components/errors/Error";
-
 import {
   StyledPurpleButton,
   StyledFormLink,

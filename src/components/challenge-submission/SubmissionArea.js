@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Modal from "../../components/layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
-import Error from "../errors/Error";
+
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 import {

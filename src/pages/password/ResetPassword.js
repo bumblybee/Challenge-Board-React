@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { passwordReset } from "../../api/passwordApi";
 import { ErrorContext } from "../../context/ErrorContext";
-import Error from "../../components/errors/Error";
+
 import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {

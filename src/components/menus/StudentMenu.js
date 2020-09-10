@@ -9,7 +9,6 @@ import {
   StyledTextarea,
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../components/layout/Modal";
-import Error from "../errors/Error";
 
 const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   const [openModal, setOpenModal] = useState(false);
