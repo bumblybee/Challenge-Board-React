@@ -5,6 +5,7 @@ import Truncate from "react-truncate";
 import { selectAnswer } from "../../api/commentsApi";
 import { deselectAnswer } from "../../api/commentsApi";
 import { deleteComment } from "../../api/commentsApi";
+import { getQuestions } from "../../api/questionsApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 

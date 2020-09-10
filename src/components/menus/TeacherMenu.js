@@ -12,6 +12,7 @@ const TeacherMenu = ({
   promoteAnswer,
   demoteAnswer,
 }) => {
+  console.log(comment);
   if (question) {
     return (
       <Fragment>
@@ -33,16 +34,24 @@ const TeacherMenu = ({
     <Fragment>
       <StyledTeacherMenu>
         {comment.isAnswer ? (
-          <StyledParagraph onClick={() => demoteAnswer(comment)}>
-            Demote Answer
-          </StyledParagraph>
+          <Fragment>
+            <StyledParagraph onClick={() => demoteAnswer(comment)}>
+              Demote Answer
+            </StyledParagraph>
+            <hr></hr>
+          </Fragment>
         ) : (
-          <StyledParagraph onClick={() => promoteAnswer(comment)}>
-            Promote as Answer
-          </StyledParagraph>
+          //If question isn't already answered, give option to promote as answer
+          !comment.question.isAnswered && (
+            <Fragment>
+              <StyledParagraph onClick={() => promoteAnswer(comment)}>
+                Promote as Answer
+              </StyledParagraph>
+              <hr></hr>
+            </Fragment>
+          )
         )}
 
-        <hr />
         <StyledParagraph onClick={() => deleteUserComment(comment)}>
           Remove Post
         </StyledParagraph>
