@@ -6,7 +6,7 @@ import { selectAnswer } from "../../api/commentsApi";
 import { deleteComment } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
-import Error from "../errors/Error";
+
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 import {
@@ -26,7 +26,7 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
   const sanitize = DOMPurify.sanitize;
 
   const { user } = useContext(UserContext);
-  const { error, setError } = useContext(ErrorContext);
+  const { setError } = useContext(ErrorContext);
 
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
@@ -90,7 +90,6 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
 
   return (
     <StyledCommentCard id={comment.id} className="comment-card" answer={answer}>
-      {error && <Error />}
       <div className="comment-header">
         <div className="name">{comment.user.username}</div>
         <StyledTimeDiv>{time}</StyledTimeDiv>
