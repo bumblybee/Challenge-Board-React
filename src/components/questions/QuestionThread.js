@@ -38,11 +38,10 @@ const QuestionThread = () => {
   const [username, setUserName] = useState("");
   const [date, setDate] = useState("");
   const [comments, setComments] = useState([]);
-  const [renderList, setRenderList] = useState(false);
+
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const sanitize = DOMPurify.sanitize;
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
@@ -63,7 +62,7 @@ const QuestionThread = () => {
     };
 
     fetchThread();
-  }, [questionId, isSubmitted]);
+  }, [questionId]);
 
   const handleTruncate = () => {
     setIsTruncated(!isTruncated);
@@ -89,13 +88,14 @@ const QuestionThread = () => {
   };
 
   //TODO: Instead of making costly db queries on server, just update isSubmitted to re-render list?
+
   const promoteAnswer = async (comment) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedComments = await selectAnswer(
         comment.id,
         comment.questionId
       );
-      console.log(updatedComments.data);
+
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
@@ -135,8 +135,7 @@ const QuestionThread = () => {
           setError(undefined);
         }, 2500);
       } else {
-        // setComments(updatedComments.data.comments);
-        setIsSubmitted(!isSubmitted);
+        setComments(updatedComments.data.comments);
       }
     }
   };
@@ -168,18 +167,7 @@ const QuestionThread = () => {
         setError(undefined);
       }, 2500);
     } else {
-      setIsSubmitted(!isSubmitted);
-    }
-  };
-
-  const updateIsAnswered = async (comment) => {
-    const updatedQuestion = await updateAnswer(comment.questionId);
-
-    if (updatedQuestion.error) {
-      setError(updatedQuestion.error);
-      setTimeout(() => {
-        setError(undefined);
-      }, 2000);
+      setComments(editedComment.data.comments);
     }
   };
 
@@ -197,6 +185,17 @@ const QuestionThread = () => {
         toggleMenu();
         history.push("/challenge");
       }
+    }
+  };
+
+  const updateIsAnswered = async (comment) => {
+    const updatedQuestion = await updateAnswer(comment.questionId);
+
+    if (updatedQuestion.error) {
+      setError(updatedQuestion.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2000);
     }
   };
 

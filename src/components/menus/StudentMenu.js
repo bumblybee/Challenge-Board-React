@@ -44,6 +44,7 @@ const StudentMenu = ({
                 const data = {
                   body: commentBody,
                   userId: comment.userId,
+                  questionId: comment.questionId,
                 };
                 updateComment(comment, data);
                 setOpenModal(!openModal);

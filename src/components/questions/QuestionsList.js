@@ -24,18 +24,17 @@ const QuestionsList = () => {
   const { setError } = useContext(ErrorContext);
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
-    isAnswered: false,
   });
 
   useEffect(() => {
     getQuestions().then((data) => {
       setQuestions(data);
     });
-  }, [isSubmitted]);
+  }, [refresh]);
 
   const submitNewQuestion = async (e) => {
     e.preventDefault();
@@ -56,17 +55,13 @@ const QuestionsList = () => {
         }, 2500);
       } else if (createdQuestion.data.id) {
         setIsOpen(!isOpen);
-
-        //set isSubmitted so list repopulates
-        setIsSubmitted(!isSubmitted);
+        setRefresh(!refresh);
 
         //clear input after submit
         setNewQuestion({
           question: "",
           questionDetails: "",
         });
-
-        // history.push("/challenge");
       }
     }
   };
@@ -81,7 +76,7 @@ const QuestionsList = () => {
           setError(undefined);
         }, 2500);
       } else if (deletedQuestion.data.deletedQuestion) {
-        setIsSubmitted(!isSubmitted);
+        setRefresh(!refresh);
       }
     }
   };
@@ -95,7 +90,7 @@ const QuestionsList = () => {
         setError(undefined);
       }, 2500);
     } else if (editedQuestion.data[0] === 1) {
-      setIsSubmitted(!isSubmitted);
+      setRefresh(!refresh);
     }
   };
 
