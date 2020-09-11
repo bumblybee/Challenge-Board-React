@@ -6,6 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import { getQuestionThread } from "../../api/questionsApi";
 import { createComment } from "../../api/commentsApi";
+import { deleteComment } from "../../api/commentsApi";
 import { deleteQuestion } from "../../api/questionsApi";
 import { selectAnswer } from "../../api/commentsApi";
 import { deselectAnswer } from "../../api/commentsApi";
@@ -34,9 +35,6 @@ const QuestionThread = () => {
   const [date, setDate] = useState("");
   const [comments, setComments] = useState([]);
   const [renderList, setRenderList] = useState(false);
-  const [newComment, setNewComment] = useState({
-    body: "",
-  });
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const sanitize = DOMPurify.sanitize;
@@ -145,13 +143,32 @@ const QuestionThread = () => {
   const submitComment = async (questionId, newComment) => {
     if (user) {
       const updatedComments = await createComment(questionId, newComment);
-      console.log(updatedComments);
+
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
           setError(undefined);
         }, 2500);
       } else {
+        setComments(updatedComments.data.comments);
+      }
+    }
+  };
+
+  const deleteUserComment = async (comment) => {
+    if (window.confirm("Are you sure you want to delete this comment?")) {
+      const updatedComments = await deleteComment(
+        comment.id,
+        comment.questionId
+      );
+
+      if (updatedComments.error) {
+        setError(updatedComments.error);
+        setTimeout(() => {
+          toggleMenu();
+          setError(undefined);
+        }, 2000);
+      } else if (updatedComments.data.comments) {
         setComments(updatedComments.data.comments);
       }
     }
@@ -229,6 +246,7 @@ const QuestionThread = () => {
                     comment={comment}
                     answer={true}
                     demoteAnswer={demoteAnswer}
+                    deleteUserComment={deleteUserComment}
                   />
                 </div>
               </div>
@@ -242,6 +260,7 @@ const QuestionThread = () => {
         promoteAnswer={promoteAnswer}
         demoteAnswer={demoteAnswer}
         submitComment={submitComment}
+        deleteUserComment={deleteUserComment}
       />
     </Fragment>
   );
