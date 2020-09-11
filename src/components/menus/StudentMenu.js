@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
-import { editQuestion } from "../../api/questionsApi";
+
 import { editComment } from "../../api/commentsApi";
 import { StyledStudentMenu } from "./StyledMenus";
 import { ErrorContext } from "../../context/ErrorContext";
@@ -10,7 +10,13 @@ import {
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../components/layout/Modal";
 
-const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
+const StudentMenu = ({
+  question,
+  comment,
+  toggleMenu,
+  reRenderList,
+  updateQuestion,
+}) => {
   const [openModal, setOpenModal] = useState(false);
   const { setError } = useContext(ErrorContext);
   const [questionTitle, setQuestionTitle] = useState(
@@ -22,29 +28,6 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
   );
 
   const [commentBody, setCommentBody] = useState(comment && comment.body);
-
-  const updateQuestion = async (e) => {
-    e.preventDefault();
-
-    const data = {
-      title: questionTitle,
-      body: questionBody,
-      userId: question.userId,
-    };
-
-    const editedQuestion = await editQuestion(question.id, data);
-
-    if (editedQuestion.error) {
-      setError(editedQuestion.error);
-      setTimeout(() => {
-        setError(undefined);
-      }, 2500);
-    } else if (editedQuestion.data[0] === 1) {
-      setOpenModal(!openModal);
-      toggleMenu();
-      reRenderList();
-    }
-  };
 
   const updateComment = async (e) => {
     e.preventDefault();
@@ -110,7 +93,19 @@ const StudentMenu = ({ question, comment, toggleMenu, reRenderList }) => {
       {openModal ? (
         <Modal>
           <div className="modal-body">
-            <form onSubmit={updateQuestion}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const data = {
+                  title: questionTitle,
+                  body: questionBody,
+                  userId: question.userId,
+                };
+                updateQuestion(question, data);
+                setOpenModal(!openModal);
+                toggleMenu();
+              }}
+            >
               <input
                 onChange={(e) => setQuestionTitle(e.target.value)}
                 type="text"

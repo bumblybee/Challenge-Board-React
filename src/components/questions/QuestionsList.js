@@ -6,6 +6,7 @@ import { ErrorContext } from "../../context/ErrorContext";
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
 import { deleteQuestion } from "../../api/questionsApi";
+import { editQuestion } from "../../api/questionsApi";
 
 import QuestionCard from "./QuestionCard";
 import Modal from "../../components/layout/Modal";
@@ -41,7 +42,7 @@ const QuestionsList = () => {
     setIsSubmitted(!isSubmitted);
   };
 
-  const handleSubmit = async (e) => {
+  const submitNewQuestion = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -92,6 +93,19 @@ const QuestionsList = () => {
     }
   };
 
+  const updateQuestion = async (question, data) => {
+    const editedQuestion = await editQuestion(question.id, data);
+
+    if (editedQuestion.error) {
+      setError(editedQuestion.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
+    } else if (editedQuestion.data[0] === 1) {
+      setIsSubmitted(true);
+    }
+  };
+
   return (
     <Fragment>
       {isOpen && (
@@ -101,7 +115,7 @@ const QuestionsList = () => {
             <p>Make sure to add enough detail to provide context for others.</p>
           </div>
           <div className="modal-body">
-            <form id="question-form" onSubmit={handleSubmit}>
+            <form id="question-form" onSubmit={submitNewQuestion}>
               <input
                 onChange={(e) =>
                   setNewQuestion({
@@ -181,6 +195,7 @@ const QuestionsList = () => {
               reRenderList={reRenderList}
               question={question}
               deleteUserQuestion={deleteUserQuestion}
+              updateQuestion={updateQuestion}
               key={question.id}
             />
           ))}

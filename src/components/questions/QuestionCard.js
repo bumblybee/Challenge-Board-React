@@ -13,7 +13,12 @@ import {
   StyledIsAnsweredIcon,
 } from "./StyledQuestions";
 
-const QuestionCard = ({ question, deleteUserQuestion, reRenderList }) => {
+const QuestionCard = ({
+  question,
+  deleteUserQuestion,
+  updateQuestion,
+  reRenderList,
+}) => {
   const date = moment(question.createdAt).format("L");
 
   const sanitize = DOMPurify.sanitize;
@@ -68,6 +73,7 @@ const QuestionCard = ({ question, deleteUserQuestion, reRenderList }) => {
             toggleMenu={toggleMenu}
             question={question}
             reRenderList={reRenderList}
+            updateQuestion={updateQuestion}
           />
         ) : (
           ""
