@@ -3,8 +3,7 @@ import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { ErrorContext } from "../../context/ErrorContext";
-import { deleteQuestion } from "../../api/questionsApi";
+
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 import {
@@ -14,8 +13,7 @@ import {
   StyledIsAnsweredIcon,
 } from "./StyledQuestions";
 
-const QuestionCard = ({ question, reRenderList }) => {
-  const { setError } = useContext(ErrorContext);
+const QuestionCard = ({ question, deleteUserQuestion, reRenderList }) => {
   const date = moment(question.createdAt).format("L");
 
   const sanitize = DOMPurify.sanitize;
@@ -42,23 +40,6 @@ const QuestionCard = ({ question, reRenderList }) => {
     }
   };
 
-  const deleteUserQuestion = async (question) => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      const deletedQuestion = await deleteQuestion(question.id);
-
-      if (deletedQuestion.error) {
-        setError(deletedQuestion.error);
-        setTimeout(() => {
-          toggleMenu();
-          setError(undefined);
-        }, 2500);
-      } else if (deletedQuestion.data.deletedQuestion) {
-        toggleMenu();
-        reRenderList();
-      }
-    }
-  };
-
   return (
     <li className="question-card">
       <div className="question-header">
@@ -77,7 +58,10 @@ const QuestionCard = ({ question, reRenderList }) => {
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
             question={question}
-            deleteUserQuestion={deleteUserQuestion}
+            deleteUserQuestion={() => {
+              deleteUserQuestion(question);
+              toggleMenu();
+            }}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
           <StudentMenu

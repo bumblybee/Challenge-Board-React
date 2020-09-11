@@ -5,9 +5,10 @@ import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
+import { deleteQuestion } from "../../api/questionsApi";
 
 import QuestionCard from "./QuestionCard";
-import Modal from "../layout/Modal";
+import Modal from "../../components/layout/Modal";
 
 import {
   StyledPurpleButton,
@@ -72,6 +73,21 @@ const QuestionsList = () => {
         });
 
         history.push("/challenge");
+      }
+    }
+  };
+
+  const deleteUserQuestion = async (question) => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      const deletedQuestion = await deleteQuestion(question.id);
+
+      if (deletedQuestion.error) {
+        setError(deletedQuestion.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
+      } else if (deletedQuestion.data.deletedQuestion) {
+        setIsSubmitted(true);
       }
     }
   };
@@ -160,11 +176,12 @@ const QuestionsList = () => {
       </div>
       <div className="questions-container">
         <ul className="questions-thread">
-          {questions.map((question, index) => (
+          {questions.map((question) => (
             <QuestionCard
-              question={question}
               reRenderList={reRenderList}
-              key={index}
+              question={question}
+              deleteUserQuestion={deleteUserQuestion}
+              key={question.id}
             />
           ))}
         </ul>
