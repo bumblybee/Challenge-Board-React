@@ -35,12 +35,7 @@ const QuestionsList = () => {
     getQuestions().then((data) => {
       setQuestions(data);
     });
-    setIsSubmitted(false);
   }, [isSubmitted]);
-
-  const reRenderList = () => {
-    setIsSubmitted(!isSubmitted);
-  };
 
   const submitNewQuestion = async (e) => {
     e.preventDefault();
@@ -49,8 +44,6 @@ const QuestionsList = () => {
       title: newQuestion.title,
       body: newQuestion.body,
     };
-
-    //
 
     if (user) {
       const createdQuestion = await createQuestion(data);
@@ -65,7 +58,7 @@ const QuestionsList = () => {
         setIsOpen(!isOpen);
 
         //set isSubmitted so list repopulates
-        setIsSubmitted(true);
+        setIsSubmitted(!isSubmitted);
 
         //clear input after submit
         setNewQuestion({
@@ -73,7 +66,7 @@ const QuestionsList = () => {
           questionDetails: "",
         });
 
-        history.push("/challenge");
+        // history.push("/challenge");
       }
     }
   };
@@ -88,7 +81,7 @@ const QuestionsList = () => {
           setError(undefined);
         }, 2500);
       } else if (deletedQuestion.data.deletedQuestion) {
-        setIsSubmitted(true);
+        setIsSubmitted(!isSubmitted);
       }
     }
   };
@@ -102,7 +95,7 @@ const QuestionsList = () => {
         setError(undefined);
       }, 2500);
     } else if (editedQuestion.data[0] === 1) {
-      setIsSubmitted(true);
+      setIsSubmitted(!isSubmitted);
     }
   };
 
@@ -192,7 +185,6 @@ const QuestionsList = () => {
         <ul className="questions-thread">
           {questions.map((question) => (
             <QuestionCard
-              reRenderList={reRenderList}
               question={question}
               deleteUserQuestion={deleteUserQuestion}
               updateQuestion={updateQuestion}

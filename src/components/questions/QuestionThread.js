@@ -153,9 +153,22 @@ const QuestionThread = () => {
         setTimeout(() => {
           setError(undefined);
         }, 2000);
-      } else if (updatedComments.data.comments) {
+      } else {
         setComments(updatedComments.data.comments);
       }
+    }
+  };
+
+  const updateComment = async (comment, data) => {
+    const editedComment = await editComment(comment.id, data);
+
+    if (editedComment.error) {
+      setError(editedComment.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
+    } else {
+      setIsSubmitted(!isSubmitted);
     }
   };
 
@@ -170,19 +183,6 @@ const QuestionThread = () => {
     }
   };
 
-  const updateComment = async (comment, data) => {
-    const editedComment = await editComment(comment.id, data);
-
-    if (editedComment.error) {
-      setError(editedComment.error);
-      setTimeout(() => {
-        setError(undefined);
-      }, 2500);
-    } else if (editedComment.data[0] === 1) {
-      setIsSubmitted(!isSubmitted);
-    }
-  };
-
   const deleteThreadQuestion = async (question) => {
     if (window.confirm("Are you sure you want to delete this question?")) {
       const deletedQuestion = await deleteQuestion(question.id);
@@ -193,7 +193,7 @@ const QuestionThread = () => {
           toggleMenu();
           setError(undefined);
         }, 2500);
-      } else if (deletedQuestion.data.deletedQuestion) {
+      } else {
         toggleMenu();
         history.push("/challenge");
       }
