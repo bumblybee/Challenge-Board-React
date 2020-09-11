@@ -1,8 +1,7 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 
-import { editComment } from "../../api/commentsApi";
 import { StyledStudentMenu } from "./StyledMenus";
-import { ErrorContext } from "../../context/ErrorContext";
+
 import {
   StyledTransparentButton,
   StyledPurpleButton,
@@ -14,11 +13,11 @@ const StudentMenu = ({
   question,
   comment,
   toggleMenu,
-  reRenderList,
+  updateComment,
   updateQuestion,
 }) => {
   const [openModal, setOpenModal] = useState(false);
-  const { setError } = useContext(ErrorContext);
+
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
@@ -28,28 +27,6 @@ const StudentMenu = ({
   );
 
   const [commentBody, setCommentBody] = useState(comment && comment.body);
-
-  const updateComment = async (e) => {
-    e.preventDefault();
-
-    const data = {
-      body: commentBody,
-      userId: comment.userId,
-    };
-
-    const editedComment = await editComment(comment.id, data);
-
-    if (editedComment.error) {
-      setError(editedComment.error);
-      setTimeout(() => {
-        setError(undefined);
-      }, 2500);
-    } else if (editedComment.data[0] === 1) {
-      setOpenModal(!openModal);
-      toggleMenu();
-      reRenderList();
-    }
-  };
 
   const handleCancel = () => {
     setOpenModal(!openModal);
@@ -61,7 +38,18 @@ const StudentMenu = ({
       return (
         <Modal>
           <div className="modal-body">
-            <form onSubmit={updateComment}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const data = {
+                  body: commentBody,
+                  userId: comment.userId,
+                };
+                updateComment(comment, data);
+                setOpenModal(!openModal);
+                toggleMenu();
+              }}
+            >
               <StyledTextarea
                 onChange={(e) => setCommentBody(e.target.value)}
                 id="body"

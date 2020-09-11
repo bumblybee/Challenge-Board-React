@@ -6,6 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import { getQuestionThread } from "../../api/questionsApi";
 import { createComment } from "../../api/commentsApi";
+import { editComment } from "../../api/commentsApi";
 import { deleteComment } from "../../api/commentsApi";
 import { deleteQuestion } from "../../api/questionsApi";
 import { selectAnswer } from "../../api/commentsApi";
@@ -41,6 +42,7 @@ const QuestionThread = () => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const sanitize = DOMPurify.sanitize;
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
@@ -61,11 +63,7 @@ const QuestionThread = () => {
     };
 
     fetchThread();
-  }, [questionId, renderList]);
-
-  const reRenderList = () => {
-    setRenderList(!renderList);
-  };
+  }, [questionId, isSubmitted]);
 
   const handleTruncate = () => {
     setIsTruncated(!isTruncated);
@@ -90,6 +88,7 @@ const QuestionThread = () => {
     setIsOpen(!isOpen);
   };
 
+  //TODO: Instead of making costly db queries on server, just update isSubmitted to re-render list?
   const promoteAnswer = async (comment) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedComments = await selectAnswer(
@@ -170,6 +169,19 @@ const QuestionThread = () => {
     }
   };
 
+  const updateComment = async (comment, data) => {
+    const editedComment = await editComment(comment.id, data);
+
+    if (editedComment.error) {
+      setError(editedComment.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2500);
+    } else if (editedComment.data[0] === 1) {
+      setIsSubmitted(!isSubmitted);
+    }
+  };
+
   const deleteThreadQuestion = async (question) => {
     if (window.confirm("Are you sure you want to delete this question?")) {
       const deletedQuestion = await deleteQuestion(question.id);
@@ -217,7 +229,6 @@ const QuestionThread = () => {
               <StudentMenu
                 question={question}
                 toggleMenu={toggleMenu}
-                reRenderList={reRenderList}
               ></StudentMenu>
             ) : (
               ""
@@ -253,6 +264,7 @@ const QuestionThread = () => {
           demoteAnswer={demoteAnswer}
           deleteUserComment={deleteUserComment}
           updateIsAnswered={updateIsAnswered}
+          updateComment={updateComment}
         />
 
         {/* //TODO: need to update question to not answered if comment deleted */}
@@ -264,6 +276,7 @@ const QuestionThread = () => {
         demoteAnswer={demoteAnswer}
         submitComment={submitComment}
         deleteUserComment={deleteUserComment}
+        updateComment={updateComment}
       />
     </Fragment>
   );

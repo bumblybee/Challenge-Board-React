@@ -24,6 +24,7 @@ const CommentCard = ({
   demoteAnswer,
   deleteUserComment,
   updateIsAnswered,
+  updateComment,
 }) => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -86,7 +87,11 @@ const CommentCard = ({
             }}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
-          <StudentMenu comment={comment} toggleMenu={toggleMenu} />
+          <StudentMenu
+            comment={comment}
+            toggleMenu={toggleMenu}
+            updateComment={updateComment}
+          />
         ) : (
           ""
         )}

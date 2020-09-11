@@ -18,6 +18,7 @@ const CommentsList = ({
   deleteUserComment,
   promoteAnswer,
   demoteAnswer,
+  updateComment,
 }) => {
   const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState({
@@ -27,13 +28,14 @@ const CommentsList = ({
   return (
     <div className="comments-container">
       <StyledCommentsThread className="comments-thread">
-        {comments.map((comment, index) => (
+        {comments.map((comment) => (
           <CommentCard
             comment={comment}
-            key={index}
+            key={comment.id}
             promoteAnswer={promoteAnswer}
             demoteAnswer={demoteAnswer}
             deleteUserComment={deleteUserComment}
+            updateComment={updateComment}
           />
         ))}
       </StyledCommentsThread>
