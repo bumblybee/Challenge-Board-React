@@ -5,21 +5,20 @@ import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 const TeacherMenu = ({
   question,
   comment,
-  thread,
+  threadQuestion,
   deleteThreadQuestion,
   deleteUserQuestion,
   deleteUserComment,
   promoteAnswer,
   demoteAnswer,
 }) => {
-  console.log(comment);
   if (question) {
     return (
       <Fragment>
         <StyledTeacherMenu>
           <StyledParagraph
             onClick={
-              thread
+              threadQuestion
                 ? () => deleteThreadQuestion(question)
                 : () => deleteUserQuestion(question)
             }

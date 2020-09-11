@@ -22,10 +22,15 @@ const deleteQuestion = async (questionId) => {
   return await deleteRequest(`/questions/${questionId}`);
 };
 
+const updateAnswer = async (questionId) => {
+  return await put(`/questions/edit-answer/${questionId}`);
+};
+
 export {
   getQuestions,
   getQuestionThread,
   createQuestion,
   editQuestion,
   deleteQuestion,
+  updateAnswer,
 };

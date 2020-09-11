@@ -35,6 +35,12 @@ const StyledMenuIcon = styled.i`
       : css``}
 `;
 
+const StyledAnswerIcon = styled.i`
+  float: left;
+  margin: 2.4rem 0 0 0.5rem;
+  color: #6271c0;
+`;
+
 const StyledTimeDiv = styled.div`
   margin-right: 1rem;
   color: #7d8088;
@@ -72,6 +78,7 @@ export {
   StyledCommentsThread,
   StyledCommentCard,
   StyledMenuIcon,
+  StyledAnswerIcon,
   StyledIconsDiv,
   StyledTimeDiv,
   StyledDateDiv,

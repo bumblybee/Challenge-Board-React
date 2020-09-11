@@ -10,10 +10,14 @@ import { deleteComment } from "../../api/commentsApi";
 import { deleteQuestion } from "../../api/questionsApi";
 import { selectAnswer } from "../../api/commentsApi";
 import { deselectAnswer } from "../../api/commentsApi";
+import { updateAnswer } from "../../api/questionsApi";
+
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
+
 import CommentsList from "../comments/CommentsList";
-import CommentCard from "../comments/CommentCard";
+import CommentAnswer from "../comments/CommentAnswer";
+
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
@@ -21,7 +25,6 @@ import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 import {
   StyledSpan,
   StyledMenuIcon,
-  StyledAnswerIcon,
   StyledThreadQuestion,
   StyledQuestionTitle,
   StyledQuestionText,
@@ -87,23 +90,6 @@ const QuestionThread = () => {
     setIsOpen(!isOpen);
   };
 
-  const deleteThreadQuestion = async (question) => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      const deletedQuestion = await deleteQuestion(question.id);
-
-      if (deletedQuestion.error) {
-        setError(deletedQuestion.error);
-        setTimeout(() => {
-          toggleMenu();
-          setError(undefined);
-        }, 2500);
-      } else if (deletedQuestion.data.deletedQuestion) {
-        toggleMenu();
-        history.push("/challenge");
-      }
-    }
-  };
-
   const promoteAnswer = async (comment) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
       const updatedComments = await selectAnswer(
@@ -165,11 +151,38 @@ const QuestionThread = () => {
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
-          toggleMenu();
           setError(undefined);
         }, 2000);
       } else if (updatedComments.data.comments) {
         setComments(updatedComments.data.comments);
+      }
+    }
+  };
+
+  const updateIsAnswered = async (comment) => {
+    const updatedQuestion = await updateAnswer(comment.questionId);
+
+    if (updatedQuestion.error) {
+      setError(updatedQuestion.error);
+      setTimeout(() => {
+        setError(undefined);
+      }, 2000);
+    }
+  };
+
+  const deleteThreadQuestion = async (question) => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      const deletedQuestion = await deleteQuestion(question.id);
+
+      if (deletedQuestion.error) {
+        setError(deletedQuestion.error);
+        setTimeout(() => {
+          toggleMenu();
+          setError(undefined);
+        }, 2500);
+      } else if (deletedQuestion.data.deletedQuestion) {
+        toggleMenu();
+        history.push("/challenge");
       }
     }
   };
@@ -198,7 +211,7 @@ const QuestionThread = () => {
               <TeacherMenu
                 question={question}
                 deleteThreadQuestion={deleteThreadQuestion}
-                thread={true}
+                threadQuestion={true}
               ></TeacherMenu>
             ) : isOpen && user.role === "Student" ? (
               <StudentMenu
@@ -235,24 +248,14 @@ const QuestionThread = () => {
             )}
           </div>
         </StyledThreadQuestion>
+        <CommentAnswer
+          comments={comments}
+          demoteAnswer={demoteAnswer}
+          deleteUserComment={deleteUserComment}
+          updateIsAnswered={updateIsAnswered}
+        />
 
-        {comments.map((comment, index) => {
-          if (comment.isAnswer) {
-            return (
-              <div className="chosen-answer" key={index}>
-                <StyledAnswerIcon className="fas fa-bookmark fa-lg"></StyledAnswerIcon>
-                <div>
-                  <CommentCard
-                    comment={comment}
-                    answer={true}
-                    demoteAnswer={demoteAnswer}
-                    deleteUserComment={deleteUserComment}
-                  />
-                </div>
-              </div>
-            );
-          }
-        })}
+        {/* //TODO: need to update question to not answered if comment deleted */}
       </div>
       <CommentsList
         comments={comments}

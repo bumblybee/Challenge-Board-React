@@ -23,6 +23,7 @@ const CommentCard = ({
   promoteAnswer,
   demoteAnswer,
   deleteUserComment,
+  updateIsAnswered,
 }) => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +79,9 @@ const CommentCard = ({
             }}
             deleteUserComment={() => {
               deleteUserComment(comment);
+              if (comment.isAnswer) {
+                updateIsAnswered(comment);
+              }
               toggleMenu();
             }}
           ></TeacherMenu>

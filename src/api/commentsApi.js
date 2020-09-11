@@ -19,6 +19,7 @@ const deselectAnswer = async (commentId, questionId) => {
 const deleteComment = async (commentId, questionId) => {
   return await deleteRequest(`/comments/${questionId}/${commentId}`);
 };
+
 export {
   createComment,
   editComment,
