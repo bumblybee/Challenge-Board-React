@@ -135,7 +135,8 @@ const QuestionThread = () => {
           setError(undefined);
         }, 2500);
       } else {
-        setComments(updatedComments.data.comments);
+        // setComments(updatedComments.data.comments);
+        setIsSubmitted(!isSubmitted);
       }
     }
   };

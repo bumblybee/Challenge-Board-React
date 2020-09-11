@@ -103,6 +103,7 @@ i:hover {
   background: #18191b;
   color: var(--primary-text);
   font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .modal-footer {
