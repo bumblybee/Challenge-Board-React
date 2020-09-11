@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
-import { createComment } from "../../api/commentsApi";
 
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
@@ -13,47 +12,41 @@ import {
   StyledCommentsForm,
 } from "./StyledComments";
 
-const CommentsList = ({ comments, questionId, reRenderList }) => {
+const CommentsList = ({
+  comments,
+  questionId,
+  submitComment,
+  promoteAnswer,
+  demoteAnswer,
+}) => {
   const { user } = useContext(UserContext);
-  const { setError } = useContext(ErrorContext);
+
   const [newComment, setNewComment] = useState({
     body: "",
   });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (user) {
-      const createdComment = await createComment(questionId, newComment);
-      if (createdComment.error) {
-        setError(createdComment.error);
-        setTimeout(() => {
-          setError(undefined);
-        }, 2500);
-      } else {
-        reRenderList();
-
-        //Clear input
-        setNewComment({
-          ...newComment,
-          body: "",
-        });
-      }
-    }
-  };
 
   return (
     <div className="comments-container">
       <StyledCommentsThread className="comments-thread">
         {comments.map((comment, index) => (
           <CommentCard
-            reRenderList={reRenderList}
             comment={comment}
             key={index}
+            promoteAnswer={promoteAnswer}
+            demoteAnswer={demoteAnswer}
           />
         ))}
       </StyledCommentsThread>
-      <StyledCommentsForm onSubmit={handleSubmit}>
+      <StyledCommentsForm
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitComment(questionId, newComment);
+          setNewComment({
+            ...newComment,
+            body: "",
+          });
+        }}
+      >
         <TextareaAutosize
           onChange={(e) =>
             setNewComment({

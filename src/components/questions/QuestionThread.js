@@ -5,8 +5,10 @@ import Truncate from "react-truncate";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { getQuestionThread } from "../../api/questionsApi";
+import { createComment } from "../../api/commentsApi";
 import { deleteQuestion } from "../../api/questionsApi";
-
+import { selectAnswer } from "../../api/commentsApi";
+import { deselectAnswer } from "../../api/commentsApi";
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 import CommentsList from "../comments/CommentsList";
@@ -25,13 +27,16 @@ import {
   StyledDateDiv,
 } from "./StyledQuestions";
 
-//TODO: get rid of reRenderList and
+//TODO: get rid of reRenderList
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
   const [date, setDate] = useState("");
   const [comments, setComments] = useState([]);
   const [renderList, setRenderList] = useState(false);
+  const [newComment, setNewComment] = useState({
+    body: "",
+  });
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const sanitize = DOMPurify.sanitize;
@@ -97,6 +102,57 @@ const QuestionThread = () => {
       } else if (deletedQuestion.data.deletedQuestion) {
         toggleMenu();
         history.push("/challenge");
+      }
+    }
+  };
+
+  const promoteAnswer = async (comment) => {
+    if (window.confirm("Are you sure you want to select this answer?")) {
+      const updatedComments = await selectAnswer(
+        comment.id,
+        comment.questionId
+      );
+      console.log(updatedComments.data);
+      if (updatedComments.error) {
+        setError(updatedComments.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
+      } else if (updatedComments.data) {
+        setComments(updatedComments.data.comments);
+      }
+    }
+  };
+
+  const demoteAnswer = async (comment) => {
+    if (window.confirm("Are you sure you want to deselect this answer?")) {
+      const updatedComments = await deselectAnswer(
+        comment.id,
+        comment.questionId
+      );
+
+      if (updatedComments.error) {
+        setError(updatedComments.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
+      } else if (updatedComments.data) {
+        setComments(updatedComments.data.comments);
+      }
+    }
+  };
+
+  const submitComment = async (questionId, newComment) => {
+    if (user) {
+      const updatedComments = await createComment(questionId, newComment);
+      console.log(updatedComments);
+      if (updatedComments.error) {
+        setError(updatedComments.error);
+        setTimeout(() => {
+          setError(undefined);
+        }, 2500);
+      } else {
+        setComments(updatedComments.data.comments);
       }
     }
   };
@@ -169,7 +225,11 @@ const QuestionThread = () => {
               <div className="chosen-answer" key={index}>
                 <StyledAnswerIcon className="fas fa-bookmark fa-lg"></StyledAnswerIcon>
                 <div>
-                  <CommentCard comment={comment} answer={true} />
+                  <CommentCard
+                    comment={comment}
+                    answer={true}
+                    demoteAnswer={demoteAnswer}
+                  />
                 </div>
               </div>
             );
@@ -179,7 +239,9 @@ const QuestionThread = () => {
       <CommentsList
         comments={comments}
         questionId={questionId}
-        reRenderList={reRenderList}
+        promoteAnswer={promoteAnswer}
+        demoteAnswer={demoteAnswer}
+        submitComment={submitComment}
       />
     </Fragment>
   );

@@ -33,7 +33,6 @@ function App() {
   useEffect(() => {
     const getUserData = async () => {
       const userData = await getUser();
-      console.log(userData);
 
       if (userData.error) {
         return;

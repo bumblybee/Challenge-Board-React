@@ -12,7 +12,6 @@ const TeacherMenu = ({
   promoteAnswer,
   demoteAnswer,
 }) => {
-  console.log(comment);
   if (question) {
     return (
       <Fragment>

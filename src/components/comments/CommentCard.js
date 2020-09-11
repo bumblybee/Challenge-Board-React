@@ -2,10 +2,9 @@ import React, { useState, useContext } from "react";
 import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
-import { selectAnswer } from "../../api/commentsApi";
-import { deselectAnswer } from "../../api/commentsApi";
+
 import { deleteComment } from "../../api/commentsApi";
-import { getQuestions } from "../../api/questionsApi";
+
 import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 
@@ -21,7 +20,7 @@ import {
   StyledCommentText,
 } from "./StyledComments";
 
-const CommentCard = ({ comment, answer, reRenderList }) => {
+const CommentCard = ({ comment, answer, promoteAnswer, demoteAnswer }) => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,43 +31,6 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
 
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
-
-  const promoteAnswer = async (comment) => {
-    if (window.confirm("Are you sure you want to select this answer?")) {
-      const updatedAnswer = await selectAnswer(comment.id, comment.questionId);
-      console.log(updatedAnswer);
-      if (updatedAnswer.error) {
-        setError(updatedAnswer.error);
-        setTimeout(() => {
-          toggleMenu();
-          setError(undefined);
-        }, 2500);
-      } else if (updatedAnswer.data.selectedAnswer) {
-        reRenderList();
-        toggleMenu();
-      }
-    }
-  };
-
-  const demoteAnswer = async (comment) => {
-    if (window.confirm("Are you sure you want to deselect this answer?")) {
-      const updatedAnswer = await deselectAnswer(
-        comment.id,
-        comment.questionId
-      );
-      console.log(updatedAnswer);
-      if (updatedAnswer.error) {
-        setError(updatedAnswer.error);
-        setTimeout(() => {
-          toggleMenu();
-          setError(undefined);
-        }, 2500);
-      } else if (updatedAnswer.data.deselectedAnswer) {
-        reRenderList();
-        toggleMenu();
-      }
-    }
-  };
 
   const deleteUserComment = async (comment) => {
     if (window.confirm("Are you sure you want to delete this comment?")) {
@@ -82,8 +44,6 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         }, 2000);
       } else if (deletedComment.data.deletedComment) {
         toggleMenu();
-
-        reRenderList();
       }
     }
   };
@@ -122,16 +82,18 @@ const CommentCard = ({ comment, answer, reRenderList }) => {
         {isOpen && user.role === "Teacher" ? (
           <TeacherMenu
             comment={comment}
-            promoteAnswer={promoteAnswer}
-            demoteAnswer={demoteAnswer}
+            promoteAnswer={() => {
+              toggleMenu();
+              promoteAnswer(comment);
+            }}
+            demoteAnswer={() => {
+              demoteAnswer(comment);
+              toggleMenu();
+            }}
             deleteUserComment={deleteUserComment}
           ></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
-          <StudentMenu
-            comment={comment}
-            toggleMenu={toggleMenu}
-            reRenderList={reRenderList}
-          />
+          <StudentMenu comment={comment} toggleMenu={toggleMenu} />
         ) : (
           ""
         )}
