@@ -30,6 +30,7 @@ const QuestionsList = () => {
     body: "",
   });
 
+  //TODO: get rid of refresh state and instead return questions from server and updated getQuestions
   useEffect(() => {
     getQuestions().then((data) => {
       setQuestions(data);

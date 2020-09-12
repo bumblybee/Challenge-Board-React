@@ -17,7 +17,7 @@ import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 
 import CommentsList from "../comments/CommentsList";
-import CommentAnswer from "../comments/CommentAnswer";
+import ThreadAnswer from "../comments/ThreadAnswer";
 
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
@@ -32,7 +32,6 @@ import {
   StyledDateDiv,
 } from "./StyledQuestions";
 
-//TODO: get rid of reRenderList
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
   const [username, setUserName] = useState("");
@@ -86,8 +85,6 @@ const QuestionThread = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  //TODO: Instead of making costly db queries on server, just update isSubmitted to re-render list?
 
   const promoteAnswer = async (comment) => {
     if (window.confirm("Are you sure you want to select this answer?")) {
@@ -259,15 +256,16 @@ const QuestionThread = () => {
             )}
           </div>
         </StyledThreadQuestion>
-        <CommentAnswer
-          comments={comments}
-          demoteAnswer={demoteAnswer}
-          deleteUserComment={deleteUserComment}
-          updateIsAnswered={updateIsAnswered}
-          updateComment={updateComment}
-        />
-
-        {/* //TODO: need to update question to not answered if comment deleted */}
+        {comments &&
+          comments.map((comment) => (
+            <ThreadAnswer
+              comment={comment}
+              demoteAnswer={demoteAnswer}
+              deleteUserComment={deleteUserComment}
+              updateIsAnswered={updateIsAnswered}
+              updateComment={updateComment}
+            />
+          ))}
       </div>
       <CommentsList
         comments={comments}
