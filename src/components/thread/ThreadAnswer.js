@@ -1,6 +1,6 @@
 import React from "react";
-import CommentCard from "./CommentCard";
-import { StyledAnswerIcon } from "./StyledComments";
+import CommentCard from "../comments/CommentCard";
+import { StyledAnswerIcon } from "../comments/StyledComments";
 
 const ThreadAnswer = ({
   comment,

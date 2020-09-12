@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 
 import QuestionsList from "./QuestionsList";
-import QuestionThread from "./QuestionThread";
+import QuestionThread from "../thread/QuestionThread";
 
 const QuestionArea = () => {
   const location = useLocation();

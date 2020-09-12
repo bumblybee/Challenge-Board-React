@@ -17,7 +17,7 @@ import { UserContext } from "../../context/UserContext";
 import { ErrorContext } from "../../context/ErrorContext";
 
 import CommentsList from "../comments/CommentsList";
-import ThreadAnswer from "../comments/ThreadAnswer";
+import ThreadAnswer from "./ThreadAnswer";
 
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
@@ -30,7 +30,7 @@ import {
   StyledQuestionTitle,
   StyledQuestionText,
   StyledDateDiv,
-} from "./StyledQuestions";
+} from "../questions/StyledQuestions";
 
 const QuestionThread = () => {
   const [question, setQuestion] = useState({});
