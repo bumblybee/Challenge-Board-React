@@ -259,6 +259,7 @@ const QuestionThread = () => {
         {comments &&
           comments.map((comment) => (
             <ThreadAnswer
+              key={comment.id}
               comment={comment}
               demoteAnswer={demoteAnswer}
               deleteUserComment={deleteUserComment}

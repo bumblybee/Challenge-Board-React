@@ -10,7 +10,7 @@ const ThreadAnswer = ({
 }) => {
   return (
     comment.isAnswer && (
-      <div className="chosen-answer" key={comment.id}>
+      <div className="chosen-answer">
         <StyledAnswerIcon className="fas fa-bookmark fa-lg"></StyledAnswerIcon>
         <div>
           <CommentCard
