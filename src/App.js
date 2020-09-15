@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -24,19 +24,6 @@ import ResetPasswordRequest from "./pages/password/ResetPasswordRequest";
 import ResetPassword from "./pages/password/ResetPassword";
 
 function App() {
-  useEffect(() => {
-    // const getUserData = async () => {
-    //   const userData = await getUser();
-    //   console.log(userData);
-    //   if (userData.error) {
-    //     return;
-    //   } else {
-    //     userData && setUser(userData.data.user);
-    //   }
-    // };
-    // getUserData();
-  }, []);
-
   return (
     <Router>
       <UserState>

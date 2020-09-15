@@ -4,7 +4,7 @@ import { UserContext } from "./UserContext";
 import UserReducer from "./UserReducer";
 
 const UserState = ({ children }) => {
-  const initState = { user: {} };
+  const initState = { auth: false, user: {} };
 
   const getCurrentUser = async () => {
     const userData = await getUser();

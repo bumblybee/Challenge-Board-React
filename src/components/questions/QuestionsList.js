@@ -94,7 +94,7 @@ const QuestionsList = () => {
       setRefresh(!refresh);
     }
   };
-
+  console.log(user);
   return (
     <Fragment>
       {isOpen && (
