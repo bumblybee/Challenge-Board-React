@@ -189,6 +189,10 @@ i:hover {
   z-index: 100;
 }
 
+.user-menu-container p:hover {
+  cursor: pointer;
+}
+
 .show {
   display: block;
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { useHistory } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
-import { ErrorContext } from "../../context/ErrorContext";
+import { UserContext } from "../../context/user/UserContext";
+import { ErrorContext } from "../../context/errors/ErrorContext";
 import { createQuestion } from "../../api/questionsApi";
 import { getQuestions } from "../../api/questionsApi";
 import { deleteQuestion } from "../../api/questionsApi";

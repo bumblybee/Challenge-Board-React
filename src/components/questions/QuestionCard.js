@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/user/UserContext";
 
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";

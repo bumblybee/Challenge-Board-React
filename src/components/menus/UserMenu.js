@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/user/UserContext";
 
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
-  const logout = async () => {
+  const { user, setUser } = useContext(UserContext);
+
+  const logout = () => {
     setUser(null);
     handleClose(false);
   };
 
-  const { user, setUser } = useContext(UserContext);
   return (
     <div className="user-menu-container">
       <ul className="user-menu">
@@ -38,9 +39,7 @@ const UserMenu = ({ handleClose }) => {
               Login
             </Link>
           ) : (
-            <Link to="/" onClick={logout}>
-              Logout
-            </Link>
+            <p onClick={logout}>Logout</p>
           )}
         </li>
       </ul>

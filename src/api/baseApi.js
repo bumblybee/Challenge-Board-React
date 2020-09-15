@@ -7,7 +7,7 @@ const instance = axios.create({
   crossDomain: true,
 });
 
-const get = async (url, data) => {
+const get = async (url) => {
   return await instance.get(url).catch((e) => {
     if (e.response.data.errors) {
       const errors = handleErrorsArray(e.response.data.errors);

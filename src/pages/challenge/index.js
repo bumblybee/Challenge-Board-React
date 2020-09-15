@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
 import SubmissionArea from "../../components/challenge-submission/SubmissionArea";
 import QuestionArea from "../../components/questions/QuestionArea";
-import { UserContext } from "../../context/UserContext";
+
+import { UserContext } from "../../context/user/UserContext";
 
 const Challenge = () => {
-  const { user } = useContext(UserContext);
+  const { user, getCurrentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   return (
     <div role="main" className="container">

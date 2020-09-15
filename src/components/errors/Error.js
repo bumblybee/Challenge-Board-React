@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Modal from "../../components/layout/Modal";
-import { ErrorContext } from "../../context/ErrorContext";
+import { ErrorContext } from "../../context/errors/ErrorContext";
 import { StyledError } from "../../styles/GlobalStyledComponents";
 
 const Error = ({ discordError }) => {

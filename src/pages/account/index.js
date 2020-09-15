@@ -2,7 +2,7 @@ import React, { useContext, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/user/UserContext";
 
 import {
   StyledHelloH1,

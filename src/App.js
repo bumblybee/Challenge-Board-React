@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,10 +8,9 @@ import {
 
 import "./styles/App.css";
 
-import { ErrorContext } from "./context/ErrorContext";
-import { UserContext } from "./context/UserContext";
+import ErrorState from "./context/errors/ErrorState";
 
-import { getUser } from "./api/userApi";
+import UserState from "./context/user/UserState";
 
 import Error from "./components/errors/Error";
 import Nav from "./components/layout/Nav";
@@ -25,28 +24,23 @@ import ResetPasswordRequest from "./pages/password/ResetPasswordRequest";
 import ResetPassword from "./pages/password/ResetPassword";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState();
-  const userValue = { user, setUser };
-  const errorValue = { error, setError };
-
   useEffect(() => {
-    const getUserData = async () => {
-      const userData = await getUser();
-
-      if (userData.error) {
-        return;
-      } else {
-        userData && setUser(userData.data.user);
-      }
-    };
-    getUserData();
+    // const getUserData = async () => {
+    //   const userData = await getUser();
+    //   console.log(userData);
+    //   if (userData.error) {
+    //     return;
+    //   } else {
+    //     userData && setUser(userData.data.user);
+    //   }
+    // };
+    // getUserData();
   }, []);
 
   return (
     <Router>
-      <UserContext.Provider value={userValue}>
-        <ErrorContext.Provider value={errorValue}>
+      <UserState>
+        <ErrorState>
           <div role="main" className="App">
             <Nav />
             <Error />
@@ -81,8 +75,8 @@ function App() {
               </Route>
             </Switch>
           </div>
-        </ErrorContext.Provider>
-      </UserContext.Provider>
+        </ErrorState>
+      </UserState>
     </Router>
   );
 }

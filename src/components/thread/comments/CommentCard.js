@@ -3,10 +3,10 @@ import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
 
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/user/UserContext";
 
-import TeacherMenu from "../menus/TeacherMenu";
-import StudentMenu from "../menus/StudentMenu";
+import TeacherMenu from "../../menus/TeacherMenu";
+import StudentMenu from "../../menus/StudentMenu";
 import {
   StyledCommentCard,
   StyledIconsDiv,
