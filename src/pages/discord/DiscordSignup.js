@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import getParameterByName from "../../utilities/getParameterByName";
 import { discordSignup } from "../../api/discordApi";
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/errors/ErrorContext";
+import { ErrorContext } from "../../context/error/ErrorContext";
 
 import { StyledDiscordDiv } from "./StyledDiscord";
 

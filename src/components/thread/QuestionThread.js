@@ -14,7 +14,7 @@ import { deselectAnswer } from "../../api/commentsApi";
 import { updateAnswer } from "../../api/questionsApi";
 
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/errors/ErrorContext";
+import { ErrorContext } from "../../context/error/ErrorContext";
 
 import CommentsList from "./comments/CommentsList";
 import ThreadAnswer from "./ThreadAnswer";

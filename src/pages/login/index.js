@@ -2,7 +2,7 @@ import React, { Fragment, useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/errors/ErrorContext";
+import { ErrorContext } from "../../context/error/ErrorContext";
 import { loginUser } from "../../api/userApi";
 import { getLoginDiscordUrl } from "../../api/discordApi";
 

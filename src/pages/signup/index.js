@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/errors/ErrorContext";
+import { ErrorContext } from "../../context/error/ErrorContext";
 import { signupUser } from "../../api/userApi";
 import { getSignupDiscordUrl } from "../../api/discordApi";
 

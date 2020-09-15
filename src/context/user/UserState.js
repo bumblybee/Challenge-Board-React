@@ -1,25 +1,29 @@
-import React, { useReducer } from "react";
+import React, { useState, useContext } from "react";
 import { getUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
-import UserReducer from "./UserReducer";
+import { ErrorContext } from "../error/ErrorContext";
 
 const UserState = ({ children }) => {
-  const initState = { auth: false, user: {} };
+  const [user, setUser] = useState({});
+  const errorContext = useContext(ErrorContext);
 
   const getCurrentUser = async () => {
     const userData = await getUser();
-
-    dispatch({ type: "GET_USER", payload: userData.data.user });
+    if (userData.error) {
+      return;
+    } else {
+      setUser(userData.data.user);
+    }
   };
 
-  const setUser = async (data) => {
-    dispatch({ type: "SET_USER", payload: data });
-  };
+  // const setUser = async (data) => {
+  //   dispatch({ type: "SET_USER", payload: data });
+  // };
 
-  const [state, dispatch] = useReducer(UserReducer, initState);
+  // const [state, dispatch] = useReducer(UserReducer, initState);
 
   return (
-    <UserContext.Provider value={{ user: state.user, getCurrentUser, setUser }}>
+    <UserContext.Provider value={{ user, getCurrentUser, setUser }}>
       {children}
     </UserContext.Provider>
   );

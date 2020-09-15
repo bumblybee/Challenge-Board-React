@@ -8,7 +8,7 @@ import {
 
 import "./styles/App.css";
 
-import ErrorState from "./context/errors/ErrorState";
+import ErrorState from "./context/error/ErrorState";
 
 import UserState from "./context/user/UserState";
 

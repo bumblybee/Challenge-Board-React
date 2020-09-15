@@ -5,7 +5,7 @@ import Modal from "../../components/layout/Modal";
 import { submitProject, editProject } from "../../api/projectsApi";
 
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/errors/ErrorContext";
+import { ErrorContext } from "../../context/error/ErrorContext";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
