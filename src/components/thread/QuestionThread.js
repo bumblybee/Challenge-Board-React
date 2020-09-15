@@ -96,7 +96,7 @@ const QuestionThread = () => {
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2500);
       } else if (updatedComments.data) {
         setComments(updatedComments.data.comments);
@@ -114,7 +114,7 @@ const QuestionThread = () => {
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2500);
       } else if (updatedComments.data) {
         setComments(updatedComments.data.comments);
@@ -129,7 +129,7 @@ const QuestionThread = () => {
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2500);
       } else {
         setComments(updatedComments.data.comments);
@@ -147,7 +147,7 @@ const QuestionThread = () => {
       if (updatedComments.error) {
         setError(updatedComments.error);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2000);
       } else {
         setComments(updatedComments.data.comments);
@@ -161,7 +161,7 @@ const QuestionThread = () => {
     if (editedComment.error) {
       setError(editedComment.error);
       setTimeout(() => {
-        setError(undefined);
+        setError(null);
       }, 2500);
     } else {
       setComments(editedComment.data.comments);
@@ -176,7 +176,7 @@ const QuestionThread = () => {
         setError(deletedQuestion.error);
         setTimeout(() => {
           toggleMenu();
-          setError(undefined);
+          setError(null);
         }, 2500);
       } else {
         toggleMenu();
@@ -191,7 +191,7 @@ const QuestionThread = () => {
     if (updatedQuestion.error) {
       setError(updatedQuestion.error);
       setTimeout(() => {
-        setError(undefined);
+        setError(null);
       }, 2000);
     }
   };

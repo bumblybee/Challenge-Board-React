@@ -24,7 +24,7 @@ const QuestionsList = () => {
   const { setError } = useContext(ErrorContext);
   const [isOpen, setIsOpen] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
@@ -35,7 +35,7 @@ const QuestionsList = () => {
     getQuestions().then((data) => {
       setQuestions(data);
     });
-  }, [refresh]);
+  }, []);
 
   const submitNewQuestion = async (e) => {
     e.preventDefault();
@@ -46,17 +46,17 @@ const QuestionsList = () => {
     };
 
     if (user) {
-      const createdQuestion = await createQuestion(data);
+      const updatedQuestions = await createQuestion(data);
 
-      if (createdQuestion.error) {
-        setError(createdQuestion.error);
+      if (updatedQuestions.error) {
+        setError(updatedQuestions.error);
         setIsOpen(!isOpen);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2500);
-      } else if (createdQuestion.data.id) {
+      } else {
         setIsOpen(!isOpen);
-        setRefresh(!refresh);
+        setQuestions(updatedQuestions.data.questions);
 
         //clear input after submit
         setNewQuestion({
@@ -69,29 +69,29 @@ const QuestionsList = () => {
 
   const deleteUserQuestion = async (question) => {
     if (window.confirm("Are you sure you want to delete this question?")) {
-      const deletedQuestion = await deleteQuestion(question.id);
+      const updatedQuestions = await deleteQuestion(question.id);
 
-      if (deletedQuestion.error) {
-        setError(deletedQuestion.error);
+      if (updatedQuestions.error) {
+        setError(updatedQuestions.error);
         setTimeout(() => {
-          setError(undefined);
+          setError(null);
         }, 2500);
-      } else if (deletedQuestion.data.deletedQuestion) {
-        setRefresh(!refresh);
+      } else {
+        setQuestions(updatedQuestions.data.questions);
       }
     }
   };
 
   const updateQuestion = async (question, data) => {
-    const editedQuestion = await editQuestion(question.id, data);
+    const updatedQuestions = await editQuestion(question.id, data);
 
-    if (editedQuestion.error) {
-      setError(editedQuestion.error);
+    if (updatedQuestions.error) {
+      setError(updatedQuestions.error);
       setTimeout(() => {
-        setError(undefined);
+        setError(null);
       }, 2500);
-    } else if (editedQuestion.data[0] === 1) {
-      setRefresh(!refresh);
+    } else {
+      setQuestions(updatedQuestions.data.questions);
     }
   };
 
