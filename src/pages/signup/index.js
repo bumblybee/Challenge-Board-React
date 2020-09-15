@@ -49,9 +49,6 @@ const Signup = () => {
     if (res.error) {
       setError(res.error);
       setNewUser({ username: "", email: "", password: "" });
-      setTimeout(() => {
-        setError(undefined);
-      }, 2500);
     } else {
       setUser(res.data);
       res && history.push("/challenge");

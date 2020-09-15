@@ -3,10 +3,18 @@ import React, { useState } from "react";
 import { ErrorContext } from "./ErrorContext";
 
 const ErrorState = ({ children }) => {
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const setError = (msg) => {
+    setErrorMessage(msg);
+
+    setTimeout(() => {
+      setError(null);
+    }, 3000);
+  };
 
   return (
-    <ErrorContext.Provider value={{ error, setError }}>
+    <ErrorContext.Provider value={{ errorMessage, setError }}>
       {children}
     </ErrorContext.Provider>
   );

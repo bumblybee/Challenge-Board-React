@@ -23,10 +23,7 @@ const DiscordLogin = () => {
       if (user.error) {
         setUser(null);
         setError(user.error);
-        setTimeout(() => {
-          setError(undefined);
-          history.push("/login");
-        }, 2500);
+        history.push("/login");
       } else if (user.data.id) {
         setUser(user.data);
         history.push("/challenge");

@@ -43,7 +43,7 @@ const StyledError = styled.div`
   margin: 0 auto;
   width: 80%;
   border-radius: 6px;
-  z-index: 100;
+  z-index: 1000;
 `;
 
 const StyledTextarea = styled.textarea`

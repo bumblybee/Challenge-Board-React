@@ -19,9 +19,6 @@ const ResetPassword = () => {
 
     if (resetPassword.error || !resetPassword) {
       setError(resetPassword.error);
-      setTimeout(() => {
-        setError(undefined);
-      }, 2500);
     } else if (resetPassword.data.id) {
       history.push("/login");
     }

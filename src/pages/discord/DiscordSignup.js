@@ -24,16 +24,11 @@ const DiscordSignup = () => {
         setUser(null);
         setError(user.error);
 
-        setTimeout(() => {
-          setError(undefined);
-          if (
-            user.error === "User credentials already in use. Please log in."
-          ) {
-            history.push("/login");
-          } else {
-            history.push("/signup");
-          }
-        }, 2500);
+        if (user.error === "User credentials already in use. Please log in.") {
+          history.push("/login");
+        } else {
+          history.push("/signup");
+        }
       } else if (user.data.id) {
         setUser(user.data);
         history.push("/challenge");

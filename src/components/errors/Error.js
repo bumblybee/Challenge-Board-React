@@ -4,11 +4,11 @@ import { ErrorContext } from "../../context/error/ErrorContext";
 import { StyledError } from "../../styles/GlobalStyledComponents";
 
 const Error = ({ discordError }) => {
-  const { error } = useContext(ErrorContext);
+  const { errorMessage } = useContext(ErrorContext);
   return (
-    error !== null && (
+    errorMessage !== null && (
       <Modal>
-        <StyledError discordError={discordError}>{error}</StyledError>
+        <StyledError discordError={discordError}>{errorMessage}</StyledError>
       </Modal>
     )
   );

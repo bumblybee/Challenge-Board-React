@@ -51,9 +51,6 @@ const QuestionsList = () => {
       if (updatedQuestions.error) {
         setError(updatedQuestions.error);
         setIsOpen(!isOpen);
-        setTimeout(() => {
-          setError(null);
-        }, 2500);
       } else {
         setIsOpen(!isOpen);
         setQuestions(updatedQuestions.data.questions);
@@ -73,9 +70,6 @@ const QuestionsList = () => {
 
       if (updatedQuestions.error) {
         setError(updatedQuestions.error);
-        setTimeout(() => {
-          setError(null);
-        }, 2500);
       } else {
         setQuestions(updatedQuestions.data.questions);
       }
@@ -87,9 +81,6 @@ const QuestionsList = () => {
 
     if (updatedQuestions.error) {
       setError(updatedQuestions.error);
-      setTimeout(() => {
-        setError(null);
-      }, 2500);
     } else {
       setQuestions(updatedQuestions.data.questions);
     }
