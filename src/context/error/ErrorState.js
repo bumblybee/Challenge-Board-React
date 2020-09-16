@@ -10,7 +10,7 @@ const ErrorState = ({ children }) => {
 
     setTimeout(() => {
       setError(null);
-    }, 3000);
+    }, 2800);
   };
 
   return (

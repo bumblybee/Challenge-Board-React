@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import CommentCard from "./CommentCard";
 
 import { UserContext } from "../../../context/user/UserContext";
+import { ThreadContext } from "../../../context/thread/ThreadContext";
 import TextareaAutosize from "react-autosize-textarea";
 
 import {
@@ -12,15 +13,14 @@ import {
 } from "./StyledComments";
 
 const CommentsList = ({
-  comments,
   questionId,
-  submitComment,
   deleteUserComment,
   promoteAnswer,
   demoteAnswer,
   updateComment,
 }) => {
   const { user } = useContext(UserContext);
+  const { submitComment, comments } = useContext(ThreadContext);
   const [newComment, setNewComment] = useState({
     body: "",
   });

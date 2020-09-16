@@ -10,6 +10,7 @@ import "./styles/App.css";
 
 import ErrorState from "./context/error/ErrorState";
 import UserState from "./context/user/UserState";
+import ThreadState from "./context/thread/ThreadState";
 
 import Error from "./components/errors/Error";
 import Nav from "./components/layout/Nav";
@@ -52,10 +53,11 @@ function App() {
               <Route path="/reset-password/:token">
                 <ResetPassword />
               </Route>
-              <Route path="/challenge">
-                <Challenge />
-              </Route>
-
+              <ThreadState>
+                <Route path="/challenge">
+                  <Challenge />
+                </Route>
+              </ThreadState>
               <Route path="/" exact>
                 <Redirect to="/challenge" />
               </Route>

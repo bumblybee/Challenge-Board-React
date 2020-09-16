@@ -10,6 +10,7 @@ const Challenge = () => {
 
   useEffect(() => {
     getCurrentUser();
+    //eslint-disable-next-line
   }, []);
 
   return (
