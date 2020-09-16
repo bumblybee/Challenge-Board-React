@@ -3,7 +3,6 @@ import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
 
-import { ThreadContext } from "../../../context/thread/ThreadContext";
 import { UserContext } from "../../../context/user/UserContext";
 
 import TeacherMenu from "../../menus/TeacherMenu";
@@ -18,22 +17,13 @@ import {
   StyledCommentText,
 } from "./StyledComments";
 
-const CommentCard = ({
-  comment,
-  answer,
-  promoteAnswer,
-  demoteAnswer,
-
-  updateIsAnswered,
-  updateComment,
-}) => {
+const CommentCard = ({ comment, answer }) => {
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
   const sanitize = DOMPurify.sanitize;
 
   const { user } = useContext(UserContext);
-  const { deleteUserComment } = useContext(ThreadContext);
 
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
@@ -70,28 +60,9 @@ const CommentCard = ({
           {user && renderMenuIcon()}
         </StyledIconsDiv>
         {isOpen && user.role === "Teacher" ? (
-          <TeacherMenu
-            comment={comment}
-            promoteAnswer={() => {
-              toggleMenu();
-              promoteAnswer(comment);
-            }}
-            demoteAnswer={() => {
-              demoteAnswer(comment);
-              toggleMenu();
-            }}
-            deleteUserComment={() => {
-              deleteUserComment(comment);
-
-              toggleMenu();
-            }}
-          ></TeacherMenu>
+          <TeacherMenu comment={comment} toggleMenu={toggleMenu}></TeacherMenu>
         ) : isOpen && user.role === "Student" ? (
-          <StudentMenu
-            comment={comment}
-            toggleMenu={toggleMenu}
-            updateComment={updateComment}
-          />
+          <StudentMenu comment={comment} toggleMenu={toggleMenu} />
         ) : (
           ""
         )}

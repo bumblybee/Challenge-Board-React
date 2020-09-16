@@ -4,11 +4,6 @@ import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { editComment } from "../../api/commentsApi";
-
-import { selectAnswer } from "../../api/commentsApi";
-import { deselectAnswer } from "../../api/commentsApi";
-
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
@@ -30,8 +25,6 @@ import {
 } from "../questions/StyledQuestions";
 
 const QuestionThread = () => {
-  // const [date, setDate] = useState("");
-
   const sanitize = DOMPurify.sanitize;
   const [isTruncated, setIsTruncated] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -39,22 +32,15 @@ const QuestionThread = () => {
   const history = useHistory();
   const location = useLocation();
   const { user } = useContext(UserContext);
-  const { setError } = useContext(ErrorContext);
-  const {
-    fetchThread,
-    threadQuestion,
-    comments,
-    setComments,
-    username,
-  } = useContext(ThreadContext);
-
+  // const { setError } = useContext(ErrorContext);
+  const { fetchThread, threadQuestion, comments, username } = useContext(
+    ThreadContext
+  );
+  const date = moment(threadQuestion.createdAt).format("L");
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
   useEffect(() => {
-    //   setDate(moment(data.question.createdAt).format("L"));
-    // };
-
     fetchThread(questionId);
     //eslint-disable-next-line
   }, []);
@@ -82,46 +68,6 @@ const QuestionThread = () => {
     setIsOpen(!isOpen);
   };
 
-  const promoteAnswer = async (comment) => {
-    if (window.confirm("Are you sure you want to select this answer?")) {
-      const updatedComments = await selectAnswer(
-        comment.id,
-        comment.questionId
-      );
-
-      if (updatedComments.error) {
-        setError(updatedComments.error);
-      } else if (updatedComments.data) {
-        setComments(updatedComments.data.comments);
-      }
-    }
-  };
-
-  const demoteAnswer = async (comment) => {
-    if (window.confirm("Are you sure you want to deselect this answer?")) {
-      const updatedComments = await deselectAnswer(
-        comment.id,
-        comment.questionId
-      );
-
-      if (updatedComments.error) {
-        setError(updatedComments.error);
-      } else if (updatedComments.data) {
-        setComments(updatedComments.data.comments);
-      }
-    }
-  };
-
-  const updateComment = async (comment, data) => {
-    const editedComment = await editComment(comment.id, data);
-
-    if (editedComment.error) {
-      setError(editedComment.error);
-    } else {
-      setComments(editedComment.data.comments);
-    }
-  };
-
   return (
     <Fragment>
       <div className="discussion-header-container thread">
@@ -138,8 +84,10 @@ const QuestionThread = () => {
       <div className="thread-container">
         <StyledThreadQuestion className="thread-question">
           <div className="question-header">
-            <div className="name">{username}</div>
-            {/* <StyledDateDiv className="created-at">{date}</StyledDateDiv> */}
+            <div className="name">
+              {threadQuestion.user && threadQuestion.user.username}
+            </div>
+            <StyledDateDiv className="created-at">{date}</StyledDateDiv>
 
             <div className="icons">{user && renderMenuIcon()}</div>
             {isOpen && user.role === "Teacher" ? (
@@ -184,20 +132,10 @@ const QuestionThread = () => {
         </StyledThreadQuestion>
         {comments &&
           comments.map((comment) => (
-            <ThreadAnswer
-              key={comment.id}
-              comment={comment}
-              demoteAnswer={demoteAnswer}
-              updateComment={updateComment}
-            />
+            <ThreadAnswer key={comment.id} comment={comment} />
           ))}
       </div>
-      <CommentsList
-        questionId={questionId}
-        promoteAnswer={promoteAnswer}
-        demoteAnswer={demoteAnswer}
-        updateComment={updateComment}
-      />
+      <CommentsList questionId={questionId} />
     </Fragment>
   );
 };

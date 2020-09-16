@@ -57,10 +57,10 @@ function App() {
                 <Route path="/challenge">
                   <Challenge />
                 </Route>
+                <Route path="/" exact>
+                  <Redirect to="/challenge" />
+                </Route>
               </ThreadState>
-              <Route path="/" exact>
-                <Redirect to="/challenge" />
-              </Route>
             </Switch>
           </ErrorState>
         </div>

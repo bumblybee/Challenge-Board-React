@@ -12,12 +12,7 @@ import {
   StyledCommentsForm,
 } from "./StyledComments";
 
-const CommentsList = ({
-  questionId,
-  promoteAnswer,
-  demoteAnswer,
-  updateComment,
-}) => {
+const CommentsList = ({ questionId, demoteAnswer }) => {
   const { user } = useContext(UserContext);
   const { submitComment, comments } = useContext(ThreadContext);
   const { setError } = useContext(ErrorContext);
@@ -32,9 +27,7 @@ const CommentsList = ({
           <CommentCard
             comment={comment}
             key={comment.id}
-            promoteAnswer={promoteAnswer}
             demoteAnswer={demoteAnswer}
-            updateComment={updateComment}
           />
         ))}
       </StyledCommentsThread>

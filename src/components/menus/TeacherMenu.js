@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
@@ -8,13 +8,15 @@ const TeacherMenu = ({
   comment,
   threadQuestion,
   deleteUserQuestion,
-  deleteUserComment,
-  promoteAnswer,
-  demoteAnswer,
   toggleMenu,
 }) => {
-  const { deleteThreadQuestion } = ThreadContext;
   const history = useHistory();
+  const {
+    deleteThreadQuestion,
+    deleteUserComment,
+    promoteAnswer,
+    demoteAnswer,
+  } = useContext(ThreadContext);
 
   if (question) {
     return (
@@ -42,7 +44,12 @@ const TeacherMenu = ({
       <StyledTeacherMenu>
         {comment.isAnswer ? (
           <Fragment>
-            <StyledParagraph onClick={() => demoteAnswer(comment)}>
+            <StyledParagraph
+              onClick={() => {
+                demoteAnswer(comment);
+                toggleMenu();
+              }}
+            >
               Demote Answer
             </StyledParagraph>
             <hr></hr>
@@ -51,7 +58,12 @@ const TeacherMenu = ({
           //If question isn't already answered, give option to promote as answer
           !comment.question.isAnswered && (
             <Fragment>
-              <StyledParagraph onClick={() => promoteAnswer(comment)}>
+              <StyledParagraph
+                onClick={() => {
+                  promoteAnswer(comment);
+                  toggleMenu();
+                }}
+              >
                 Promote as Answer
               </StyledParagraph>
               <hr></hr>
@@ -59,7 +71,12 @@ const TeacherMenu = ({
           )
         )}
 
-        <StyledParagraph onClick={() => deleteUserComment(comment)}>
+        <StyledParagraph
+          onClick={() => {
+            deleteUserComment(comment);
+            toggleMenu();
+          }}
+        >
           Remove Post
         </StyledParagraph>
       </StyledTeacherMenu>
