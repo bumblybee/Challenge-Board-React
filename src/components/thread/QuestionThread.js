@@ -5,11 +5,9 @@ import Truncate from "react-truncate";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { editComment } from "../../api/commentsApi";
-import { deleteComment } from "../../api/commentsApi";
 
 import { selectAnswer } from "../../api/commentsApi";
 import { deselectAnswer } from "../../api/commentsApi";
-import { updateAnswer } from "../../api/questionsApi";
 
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { UserContext } from "../../context/user/UserContext";
@@ -114,21 +112,6 @@ const QuestionThread = () => {
     }
   };
 
-  const deleteUserComment = async (comment) => {
-    if (window.confirm("Are you sure you want to delete this comment?")) {
-      const updatedComments = await deleteComment(
-        comment.id,
-        comment.questionId
-      );
-
-      if (updatedComments.error) {
-        setError(updatedComments.error);
-      } else {
-        setComments(updatedComments.data.comments);
-      }
-    }
-  };
-
   const updateComment = async (comment, data) => {
     const editedComment = await editComment(comment.id, data);
 
@@ -136,14 +119,6 @@ const QuestionThread = () => {
       setError(editedComment.error);
     } else {
       setComments(editedComment.data.comments);
-    }
-  };
-
-  const updateIsAnswered = async (comment) => {
-    const updatedQuestion = await updateAnswer(comment.questionId);
-
-    if (updatedQuestion.error) {
-      setError(updatedQuestion.error);
     }
   };
 
@@ -213,8 +188,6 @@ const QuestionThread = () => {
               key={comment.id}
               comment={comment}
               demoteAnswer={demoteAnswer}
-              deleteUserComment={deleteUserComment}
-              updateIsAnswered={updateIsAnswered}
               updateComment={updateComment}
             />
           ))}
@@ -223,7 +196,6 @@ const QuestionThread = () => {
         questionId={questionId}
         promoteAnswer={promoteAnswer}
         demoteAnswer={demoteAnswer}
-        deleteUserComment={deleteUserComment}
         updateComment={updateComment}
       />
     </Fragment>

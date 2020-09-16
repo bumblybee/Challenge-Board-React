@@ -3,6 +3,7 @@ import DOMPurify from "dompurify";
 import moment from "moment";
 import Truncate from "react-truncate";
 
+import { ThreadContext } from "../../../context/thread/ThreadContext";
 import { UserContext } from "../../../context/user/UserContext";
 
 import TeacherMenu from "../../menus/TeacherMenu";
@@ -22,7 +23,7 @@ const CommentCard = ({
   answer,
   promoteAnswer,
   demoteAnswer,
-  deleteUserComment,
+
   updateIsAnswered,
   updateComment,
 }) => {
@@ -32,6 +33,7 @@ const CommentCard = ({
   const sanitize = DOMPurify.sanitize;
 
   const { user } = useContext(UserContext);
+  const { deleteUserComment } = useContext(ThreadContext);
 
   const date = moment(comment.createdAt).format("L");
   const time = moment(comment.createdAt).format("LT");
@@ -80,9 +82,7 @@ const CommentCard = ({
             }}
             deleteUserComment={() => {
               deleteUserComment(comment);
-              if (comment.isAnswer) {
-                updateIsAnswered(comment);
-              }
+
               toggleMenu();
             }}
           ></TeacherMenu>

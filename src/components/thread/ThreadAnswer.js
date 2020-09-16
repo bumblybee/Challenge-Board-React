@@ -2,12 +2,7 @@ import React from "react";
 import CommentCard from "./comments/CommentCard";
 import { StyledAnswerIcon } from "./comments/StyledComments";
 
-const ThreadAnswer = ({
-  comment,
-  demoteAnswer,
-  updateIsAnswered,
-  deleteUserComment,
-}) => {
+const ThreadAnswer = ({ comment, demoteAnswer }) => {
   return (
     comment.isAnswer && (
       <div className="chosen-answer">
@@ -17,8 +12,6 @@ const ThreadAnswer = ({
             comment={comment}
             answer={true}
             demoteAnswer={demoteAnswer}
-            deleteUserComment={deleteUserComment}
-            updateIsAnswered={updateIsAnswered}
           />
         </div>
       </div>

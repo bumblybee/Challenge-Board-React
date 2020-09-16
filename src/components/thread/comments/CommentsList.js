@@ -14,7 +14,6 @@ import {
 
 const CommentsList = ({
   questionId,
-  deleteUserComment,
   promoteAnswer,
   demoteAnswer,
   updateComment,
@@ -35,7 +34,6 @@ const CommentsList = ({
             key={comment.id}
             promoteAnswer={promoteAnswer}
             demoteAnswer={demoteAnswer}
-            deleteUserComment={deleteUserComment}
             updateComment={updateComment}
           />
         ))}
