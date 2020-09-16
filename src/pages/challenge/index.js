@@ -26,7 +26,6 @@ const Challenge = () => {
           <SubmissionArea />
         </div>
       )}
-
       <QuestionArea />
     </div>
   );

@@ -27,10 +27,10 @@ function App() {
   return (
     <Router>
       <UserState>
-        <ErrorState>
-          <div role="main" className="App">
-            <Nav />
+        <div role="main" className="App">
+          <ErrorState>
             <Error />
+            <Nav />
             <Switch>
               <Route path="/signup">
                 <Signup />
@@ -62,8 +62,8 @@ function App() {
                 <Redirect to="/challenge" />
               </Route>
             </Switch>
-          </div>
-        </ErrorState>
+          </ErrorState>
+        </div>
       </UserState>
     </Router>
   );
