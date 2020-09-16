@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 import { editComment } from "../../api/commentsApi";
 import { deleteComment } from "../../api/commentsApi";
-import { deleteQuestion } from "../../api/questionsApi";
+
 import { selectAnswer } from "../../api/commentsApi";
 import { deselectAnswer } from "../../api/commentsApi";
 import { updateAnswer } from "../../api/questionsApi";
@@ -139,20 +139,6 @@ const QuestionThread = () => {
     }
   };
 
-  const deleteThreadQuestion = async (question) => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      const deletedQuestion = await deleteQuestion(question.id);
-
-      if (deletedQuestion.error) {
-        setError(deletedQuestion.error);
-        toggleMenu();
-      } else {
-        toggleMenu();
-        history.push("/challenge");
-      }
-    }
-  };
-
   const updateIsAnswered = async (comment) => {
     const updatedQuestion = await updateAnswer(comment.questionId);
 
@@ -184,8 +170,8 @@ const QuestionThread = () => {
             {isOpen && user.role === "Teacher" ? (
               <TeacherMenu
                 question={threadQuestion}
-                deleteThreadQuestion={deleteThreadQuestion}
                 threadQuestion={true}
+                toggleMenu={toggleMenu}
               ></TeacherMenu>
             ) : isOpen && user.role === "Student" ? (
               <StudentMenu

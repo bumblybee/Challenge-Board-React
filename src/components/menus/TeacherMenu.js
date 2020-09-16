@@ -1,17 +1,21 @@
 import React, { Fragment } from "react";
-
+import { useHistory } from "react-router-dom";
+import { ThreadContext } from "../../context/thread/ThreadContext";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
 const TeacherMenu = ({
   question,
   comment,
   threadQuestion,
-  deleteThreadQuestion,
   deleteUserQuestion,
   deleteUserComment,
   promoteAnswer,
   demoteAnswer,
+  toggleMenu,
 }) => {
+  const { deleteThreadQuestion } = ThreadContext;
+  const history = useHistory();
+
   if (question) {
     return (
       <Fragment>
@@ -19,7 +23,11 @@ const TeacherMenu = ({
           <StyledParagraph
             onClick={
               threadQuestion
-                ? () => deleteThreadQuestion(question)
+                ? () => {
+                    deleteThreadQuestion(question);
+                    toggleMenu();
+                    history.push("/challenge");
+                  }
                 : () => deleteUserQuestion(question)
             }
           >
