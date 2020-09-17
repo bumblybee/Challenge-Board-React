@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
-import { loginUser } from "../../api/userApi";
+
 import { getLoginDiscordUrl } from "../../api/discordApi";
 
 import {
@@ -15,8 +15,9 @@ import { StyledDiscordButton, StyledHr } from "./StyledLogin";
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const { setError } = useContext(ErrorContext);
+  const { handleLogin } = useContext(UserContext);
   const [discordUrl, setDiscordUrl] = useState(undefined);
-  const { setUser } = useContext(UserContext);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -27,20 +28,6 @@ const Login = () => {
     fetchDiscordUrl();
   }, []);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    const user = await loginUser(userDetails);
-
-    if (user.error) {
-      setError(user.error);
-    } else {
-      user && setUser(user.data);
-
-      history.push("/challenge");
-    }
-  };
-
   return (
     <div className="login-form-content">
       <div className="login-form-header">
@@ -48,7 +35,17 @@ const Login = () => {
         <p>Log in with your email and password</p>
       </div>
       <div className="login-form-body">
-        <form id="login-form" onSubmit={handleLogin}>
+        <form
+          id="login-form"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const loginUser = await handleLogin(userDetails);
+            console.log(loginUser);
+            loginUser.error
+              ? setError(loginUser.error)
+              : history.push("/challenge");
+          }}
+        >
           <div className="input-area">
             <label htmlFor="login-email">Email</label>
             <input

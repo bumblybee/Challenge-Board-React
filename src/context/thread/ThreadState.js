@@ -97,7 +97,7 @@ const ThreadState = ({ children }) => {
       );
 
       if (updatedComments.error) {
-        return updatedComments.error;
+        return updatedComments;
         //  setError(updatedComments.error);
       } else if (updatedComments.data) {
         setComments(updatedComments.data.comments);

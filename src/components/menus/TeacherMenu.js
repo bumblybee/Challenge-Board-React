@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { ErrorContext } from "../../context/error/ErrorContext";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
@@ -11,6 +12,7 @@ const TeacherMenu = ({
   toggleMenu,
 }) => {
   const history = useHistory();
+  const { setError } = useContext(ErrorContext);
   const {
     deleteThreadQuestion,
     deleteUserComment,
@@ -59,9 +61,9 @@ const TeacherMenu = ({
           !comment.question.isAnswered && (
             <Fragment>
               <StyledParagraph
-                onClick={() => {
-                  promoteAnswer(comment);
-                  toggleMenu();
+                onClick={async () => {
+                  const answer = await promoteAnswer(comment);
+                  answer.error ? setError(answer.error) : toggleMenu();
                 }}
               >
                 Promote as Answer
