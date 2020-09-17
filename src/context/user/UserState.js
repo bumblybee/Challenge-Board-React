@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getUser } from "../../api/userApi";
+import { signupUser } from "../../api/userApi";
 import { loginUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
 
@@ -15,19 +16,35 @@ const UserState = ({ children }) => {
     }
   };
 
-  const handleLogin = async (userDetails) => {
-    const user = await loginUser(userDetails);
+  const handleSignup = async (userDetails) => {
+    let userData = await signupUser(userDetails);
+    //if length, returning array of errors from sequelize email validation
+    if (userData.length) {
+      userData = userData[0];
+    }
 
-    if (user.error) {
-      return user;
+    if (userData.error) {
+      return userData;
     } else {
-      user && setUser(user.data);
+      setUser(userData.data);
+    }
+
+    //TODO: change minlength of password before deploy
+  };
+
+  const handleLogin = async (userDetails) => {
+    const userData = await loginUser(userDetails);
+
+    if (userData.error) {
+      return userData;
+    } else {
+      userData && setUser(userData.data);
     }
   };
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, getCurrentUser, handleLogin }}
+      value={{ user, setUser, getCurrentUser, handleSignup, handleLogin }}
     >
       {children}
     </UserContext.Provider>

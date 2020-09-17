@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
-import { signupUser } from "../../api/userApi";
+
 import { getSignupDiscordUrl } from "../../api/discordApi";
 
 import {
@@ -14,8 +14,8 @@ import { StyledDiscordButton, StyledHr } from "./StyledSignup";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
-  const { setUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { handleSignup } = useContext(UserContext);
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -40,20 +40,8 @@ const Signup = () => {
       password: newUser.password,
     };
 
-    let res = await signupUser(data);
-    //if length, returning array of errors from sequelize email validation
-    if (res.length) {
-      res = res[0];
-    }
-
-    if (res.error) {
-      setError(res.error);
-    } else {
-      setUser(res.data);
-      res && history.push("/challenge");
-    }
-
-    //TODO: change minlength of password before deploy
+    const user = await handleSignup(data);
+    user.error ? setError(user.error) : history.push("/challenge");
   };
 
   return (
