@@ -2,11 +2,11 @@ import React, { Fragment, useState, useEffect, useContext } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
+
 import { useHistory, useLocation } from "react-router-dom";
 
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { UserContext } from "../../context/user/UserContext";
-import { ErrorContext } from "../../context/error/ErrorContext";
 
 import CommentsList from "./comments/CommentsList";
 import ThreadAnswer from "./ThreadAnswer";
@@ -31,11 +31,10 @@ const QuestionThread = () => {
 
   const history = useHistory();
   const location = useLocation();
+
   const { user } = useContext(UserContext);
-  // const { setError } = useContext(ErrorContext);
-  const { fetchThread, threadQuestion, comments, username } = useContext(
-    ThreadContext
-  );
+  const { fetchThread, threadQuestion, comments } = useContext(ThreadContext);
+
   const date = moment(threadQuestion.createdAt).format("L");
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];

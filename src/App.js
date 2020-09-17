@@ -30,8 +30,8 @@ function App() {
       <UserState>
         <div role="main" className="App">
           <ErrorState>
-            <Error />
             <Nav />
+            <Error />
             <Switch>
               <Route path="/signup">
                 <Signup />

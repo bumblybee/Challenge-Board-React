@@ -34,18 +34,6 @@ const StyledPurpleButton = styled.button`
   }
 `;
 
-const StyledError = styled.div`
-  color: #f77;
-  text-align: center;
-  font-size: 1.5rem;
-  background: #202225;
-  padding: ${(props) => (props.discordError === true ? "4rem" : "2rem")};
-  margin: 0 auto;
-  width: 80%;
-  border-radius: 6px;
-  z-index: 1000;
-`;
-
 const StyledTextarea = styled.textarea`
   resize: none;
 `;
@@ -69,7 +57,6 @@ const StyledFormLink = styled(Link)`
 export {
   StyledSpan,
   StyledFormLink,
-  StyledError,
   StyledTransparentButton,
   StyledPurpleButton,
   StyledTextarea,
