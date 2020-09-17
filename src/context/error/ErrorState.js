@@ -10,7 +10,7 @@ const ErrorState = ({ children }) => {
 
     setTimeout(() => {
       setError(null);
-    }, 3000);
+    }, 8000);
   };
 
   const value = useMemo(() => ({ errorMessage, setError }), [errorMessage]);
