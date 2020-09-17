@@ -11,6 +11,7 @@ import "./styles/App.css";
 import ErrorState from "./context/error/ErrorState";
 import UserState from "./context/user/UserState";
 import ThreadState from "./context/thread/ThreadState";
+import QuestionState from "./context/question/QuestionState";
 
 import Error from "./components/errors/Error";
 import Nav from "./components/layout/Nav";
@@ -54,12 +55,14 @@ function App() {
                 <ResetPassword />
               </Route>
               <ThreadState>
-                <Route path="/challenge">
-                  <Challenge />
-                </Route>
-                <Route path="/" exact>
-                  <Redirect to="/challenge" />
-                </Route>
+                <QuestionState>
+                  <Route path="/challenge">
+                    <Challenge />
+                  </Route>
+                  <Route path="/" exact>
+                    <Redirect to="/challenge" />
+                  </Route>
+                </QuestionState>
               </ThreadState>
             </Switch>
           </ErrorState>

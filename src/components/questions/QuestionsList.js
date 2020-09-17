@@ -3,8 +3,10 @@ import React, { useState, useEffect, useContext, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
+import { QuestionContext } from "../../context/question/QuestionContext";
+
 import { createQuestion } from "../../api/questionsApi";
-import { getQuestions } from "../../api/questionsApi";
+
 import { deleteQuestion } from "../../api/questionsApi";
 import { editQuestion } from "../../api/questionsApi";
 
@@ -22,20 +24,15 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { questions } = useContext(QuestionContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [questions, setQuestions] = useState([]);
-
+  const [getQuestions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
   });
 
-  //TODO: get rid of refresh state and instead return questions from server and updated getQuestions
-  useEffect(() => {
-    getQuestions().then((data) => {
-      setQuestions(data);
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   const submitNewQuestion = async (e) => {
     e.preventDefault();
