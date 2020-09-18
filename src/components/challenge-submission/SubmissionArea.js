@@ -47,8 +47,8 @@ const SubmissionArea = () => {
       });
       setTimestamp({
         ...timestamp,
-        date: moment(user.projects[0].createdAt).format("L"),
-        time: moment(user.projects[0].createdAt).format("h:mm"),
+        date: moment(user.projects[0].updatedAt).format("L"),
+        time: moment(user.projects[0].updatedAt).format("h:mm"),
       });
     }
     //eslint-disable-next-line
