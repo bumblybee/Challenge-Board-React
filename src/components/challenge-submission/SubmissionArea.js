@@ -47,16 +47,18 @@ const SubmissionArea = () => {
     if (user) {
       const userProject = await getProject(user.id);
       const { githubLink, additionalLink, comment } = userProject.data.project;
+
       setProjectData({
         githubLink,
         additionalLink,
         comment,
         userData: user,
       });
+
       setTimestamp({
         ...timestamp,
-        date: moment(user.projects[0].updatedAt).format("L"),
-        time: moment(user.projects[0].updatedAt).format("h:mm"),
+        date: moment(userProject.data.project.updatedAt).format("L"),
+        time: moment(userProject.data.project.updatedAt).format("h:mm"),
       });
     }
   };
@@ -69,6 +71,7 @@ const SubmissionArea = () => {
       setError(submission.error);
       setIsOpen(!isOpen);
     } else {
+      //! Better way to handle this refresh of user data?
       getCurrentUser();
       setIsSubmitted(true);
 
