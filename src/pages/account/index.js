@@ -30,8 +30,10 @@ const Account = () => {
               <StyledPostList>
                 {user.questions.length === 0 && user.comments.length === 0 ? (
                   <h3>Looks like you haven't created any posts yet.</h3>
-                ) : (
+                ) : user.questions.length > 0 ? (
                   <h3>Questions</h3>
+                ) : (
+                  ""
                 )}
                 {user.questions
                   ? user.questions.map((question) => (

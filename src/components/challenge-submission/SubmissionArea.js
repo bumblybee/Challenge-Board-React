@@ -18,13 +18,12 @@ import {
 } from "./StyledSubmissionArea";
 
 const SubmissionArea = () => {
-  const { user } = useContext(UserContext);
+  const { user, getCurrentUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [showEditButton, setShowEditButton] = useState(false);
-  const [submissionData, setSubmissionData] = useState();
+
   const [timestamp, setTimestamp] = useState({
     date: "",
     time: "",
@@ -39,7 +38,19 @@ const SubmissionArea = () => {
   const history = useHistory();
 
   useEffect(() => {
-    setProjectData({ ...projectData, userData: user });
+    if (user && user.projects && user.projects.length > 0) {
+      setProjectData({
+        githubLink: user.projects[0].githubLink,
+        additionLink: user.projects[0].additionalLink,
+        comment: user.projects[0].comment,
+        userData: user,
+      });
+      setTimestamp({
+        ...timestamp,
+        date: moment(user.projects[0].createdAt).format("L"),
+        time: moment(user.projects[0].createdAt).format("h:mm"),
+      });
+    }
     //eslint-disable-next-line
   }, [user]);
 
@@ -52,23 +63,17 @@ const SubmissionArea = () => {
       setError(submission.error);
       setIsOpen(!isOpen);
     } else {
+      getCurrentUser();
       setIsSubmitted(true);
-      setShowEditButton(true);
-      setIsOpen(!isOpen);
-      setTimestamp({
-        ...timestamp,
 
-        date: moment(submission.createdAt).format("L"),
-        time: moment(submission.createdAt).format("h:mm"),
-      });
-      setSubmissionData(submission.data);
+      setIsOpen(!isOpen);
     }
   };
 
   const handleEditedSubmission = async (e) => {
     e.preventDefault();
 
-    const projectId = submissionData.id;
+    const projectId = user.projects[0].id;
     const editedSubmissionData = { ...projectData };
     const editedSubmission = await editProject(projectId, editedSubmissionData);
 
@@ -76,15 +81,10 @@ const SubmissionArea = () => {
       setError(editedSubmission.error);
       setIsOpen(!isOpen);
     } else if (editedSubmission.data[0] === 1) {
+      getCurrentUser();
       setIsSubmitted(true);
-      setShowEditButton(true);
 
       setIsOpen(!isOpen);
-      setTimestamp({
-        ...timestamp,
-        date: moment(editedSubmission.createdAt).format("L"),
-        time: moment(editedSubmission.createdAt).format("h:mm"),
-      });
     }
   };
 
@@ -99,7 +99,9 @@ const SubmissionArea = () => {
           <div className="modal-body">
             <form
               onSubmit={
-                showEditButton ? handleEditedSubmission : handleProjectSubmit
+                user.projects && user.projects.length
+                  ? handleEditedSubmission
+                  : handleProjectSubmit
               }
               id="submit-form"
             >
@@ -170,7 +172,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {showEditButton && user ? (
+      {user && user.projects && user.projects.length ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>

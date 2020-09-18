@@ -5,8 +5,6 @@ import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 
-import { createQuestion } from "../../api/questionsApi";
-
 import { deleteQuestion } from "../../api/questionsApi";
 import { editQuestion } from "../../api/questionsApi";
 
@@ -24,42 +22,13 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { questions } = useContext(QuestionContext);
+  const { questions, submitNewQuestion } = useContext(QuestionContext);
   const [isOpen, setIsOpen] = useState(false);
   const [getQuestions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
   });
-
-  useEffect(() => {}, []);
-
-  const submitNewQuestion = async (e) => {
-    e.preventDefault();
-
-    const data = {
-      title: newQuestion.title,
-      body: newQuestion.body,
-    };
-
-    if (user) {
-      const updatedQuestions = await createQuestion(data);
-
-      if (updatedQuestions.error) {
-        setError(updatedQuestions.error);
-        setIsOpen(!isOpen);
-      } else {
-        setIsOpen(!isOpen);
-        setQuestions(updatedQuestions.data.questions);
-
-        //clear input after submit
-        setNewQuestion({
-          question: "",
-          questionDetails: "",
-        });
-      }
-    }
-  };
 
   const deleteUserQuestion = async (question) => {
     if (window.confirm("Are you sure you want to delete this question?")) {
@@ -83,6 +52,26 @@ const QuestionsList = () => {
     }
   };
 
+  const handleSubmitQuestion = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      title: newQuestion.title,
+      body: newQuestion.body,
+    };
+
+    const getUpdatedQuestions = await submitNewQuestion(data);
+
+    getUpdatedQuestions &&
+      getUpdatedQuestions.error &&
+      setError(getUpdatedQuestions.error);
+    setIsOpen(!isOpen);
+    setNewQuestion({
+      question: "",
+      questionDetails: "",
+    });
+  };
+
   return (
     <Fragment>
       {isOpen && (
@@ -92,7 +81,7 @@ const QuestionsList = () => {
             <p>Make sure to add enough detail to provide context for others.</p>
           </div>
           <div className="modal-body">
-            <form id="question-form" onSubmit={submitNewQuestion}>
+            <form id="question-form" onSubmit={handleSubmitQuestion}>
               <input
                 onChange={(e) =>
                   setNewQuestion({

@@ -41,7 +41,7 @@ const Signup = () => {
     };
 
     const user = await handleSignup(data);
-    user.error ? setError(user.error) : history.push("/challenge");
+    user && user.error ? setError(user.error) : history.push("/challenge");
   };
 
   return (

@@ -38,7 +38,8 @@ const UserState = ({ children }) => {
     if (userData.error) {
       return userData;
     } else {
-      userData && setUser(userData.data);
+      setUser(userData.data);
+      return userData;
     }
   };
 

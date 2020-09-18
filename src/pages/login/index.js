@@ -28,6 +28,15 @@ const Login = () => {
     fetchDiscordUrl();
   }, []);
 
+  const handleLoginUser = async (e) => {
+    e.preventDefault();
+    const loginUser = await handleLogin(userDetails);
+
+    loginUser && loginUser.error
+      ? setError(loginUser.error)
+      : history.push("/challenge");
+  };
+
   return (
     <div className="login-form-content">
       <div className="login-form-header">
@@ -35,17 +44,7 @@ const Login = () => {
         <p>Log in with your email and password</p>
       </div>
       <div className="login-form-body">
-        <form
-          id="login-form"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const loginUser = await handleLogin(userDetails);
-            console.log(loginUser);
-            loginUser.error
-              ? setError(loginUser.error)
-              : history.push("/challenge");
-          }}
-        >
+        <form id="login-form" onSubmit={handleLoginUser}>
           <div className="input-area">
             <label htmlFor="login-email">Email</label>
             <input
