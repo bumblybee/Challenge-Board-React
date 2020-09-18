@@ -48,9 +48,9 @@ const SubmissionArea = () => {
       const userProject = await getProject(user.id);
       const { githubLink, additionalLink, comment } = userProject.data.project;
       setProjectData({
-        githubLink: githubLink,
-        additionalLink: additionalLink,
-        comment: comment,
+        githubLink,
+        additionalLink,
+        comment,
         userData: user,
       });
       setTimestamp({
