@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 import Modal from "../../components/layout/Modal";
-import { submitProject, editProject } from "../../api/projectsApi";
+import { getProject, submitProject, editProject } from "../../api/projectsApi";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
@@ -20,8 +20,9 @@ import {
 const SubmissionArea = () => {
   const { user, getCurrentUser } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-
+  //Handles modal
   const [isOpen, setIsOpen] = useState(false);
+  //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [timestamp, setTimestamp] = useState({
@@ -38,11 +39,18 @@ const SubmissionArea = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (user && user.projects && user.projects.length > 0) {
+    getUserProject();
+    //eslint-disable-next-line
+  }, [user]);
+
+  const getUserProject = async () => {
+    if (user) {
+      const userProject = await getProject(user.id);
+      const { githubLink, additionalLink, comment } = userProject.data.project;
       setProjectData({
-        githubLink: user.projects[0].githubLink,
-        additionLink: user.projects[0].additionalLink,
-        comment: user.projects[0].comment,
+        githubLink: githubLink,
+        additionalLink: additionalLink,
+        comment: comment,
         userData: user,
       });
       setTimestamp({
@@ -51,9 +59,7 @@ const SubmissionArea = () => {
         time: moment(user.projects[0].updatedAt).format("h:mm"),
       });
     }
-    //eslint-disable-next-line
-  }, [user]);
-
+  };
   const handleProjectSubmit = async (e) => {
     e.preventDefault();
 
