@@ -28,24 +28,36 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
     toggleMenu();
   };
 
+  const handleQuestionUpdate = (e) => {
+    e.preventDefault();
+    const data = {
+      title: questionTitle,
+      body: questionBody,
+      userId: question.userId,
+    };
+    updateQuestion(question, data);
+    setOpenModal(!openModal);
+    toggleMenu();
+  };
+
+  const handleCommentUpdate = (e) => {
+    e.preventDefault();
+    const data = {
+      body: commentBody,
+      userId: comment.userId,
+      questionId: comment.questionId,
+    };
+    updateComment(comment, data);
+    setOpenModal(!openModal);
+    toggleMenu();
+  };
+
   if (comment) {
     if (openModal) {
       return (
         <Modal>
           <div className="modal-body">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const data = {
-                  body: commentBody,
-                  userId: comment.userId,
-                  questionId: comment.questionId,
-                };
-                updateComment(comment, data);
-                setOpenModal(!openModal);
-                toggleMenu();
-              }}
-            >
+            <form onSubmit={handleCommentUpdate}>
               <StyledTextarea
                 onChange={(e) => setCommentBody(e.target.value)}
                 id="body"
@@ -77,19 +89,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
       {openModal ? (
         <Modal>
           <div className="modal-body">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const data = {
-                  title: questionTitle,
-                  body: questionBody,
-                  userId: question.userId,
-                };
-                updateQuestion(question, data);
-                setOpenModal(!openModal);
-                toggleMenu();
-              }}
-            >
+            <form onSubmit={handleQuestionUpdate}>
               <input
                 onChange={(e) => setQuestionTitle(e.target.value)}
                 type="text"
