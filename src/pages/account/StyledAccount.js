@@ -8,9 +8,10 @@ const StyledHelloH1 = styled.h1`
 `;
 
 const StyledCategoryDiv = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
-  width: 68.5%;
+  width: 90%;
   margin: 1.5rem auto 0;
 `;
 
