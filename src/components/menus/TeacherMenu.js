@@ -16,6 +16,11 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   } = useContext(ThreadContext);
   const { deleteUserQuestion } = useContext(QuestionContext);
 
+  const handlePromoteAnswer = async () => {
+    const answer = await promoteAnswer(comment);
+    answer && answer.error ? setError(answer.error) : toggleMenu();
+  };
+
   if (question) {
     return (
       <Fragment>
@@ -56,12 +61,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
           //If question isn't already answered, give option to promote as answer
           !comment.question.isAnswered && (
             <Fragment>
-              <StyledParagraph
-                onClick={async () => {
-                  const answer = await promoteAnswer(comment);
-                  answer.error ? setError(answer.error) : toggleMenu();
-                }}
-              >
+              <StyledParagraph onClick={handlePromoteAnswer}>
                 Promote as Answer
               </StyledParagraph>
               <hr></hr>
