@@ -1,5 +1,5 @@
-import React, { useContext, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, Fragment } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 import { UserContext } from "../../context/user/UserContext";
@@ -15,23 +15,22 @@ import {
 } from "./StyledAccount";
 
 const Account = () => {
-  const { user } = useContext(UserContext);
-
+  const { user, getCurrentUser } = useContext(UserContext);
+  const history = useHistory();
+  !user && history.push("/");
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
   return (
     <div>
       <StyledAccountDiv>
-        <StyledHelloH1>Hello, {user.username}. Nice to see you.</StyledHelloH1>
         {user && (
           <Fragment>
+            <StyledHelloH1>Hello, {user.username}.</StyledHelloH1>
             <StyledAccountPostsDiv className="account-div">
               <StyledPostList>
-                {user.questions &&
-                user.questions.length === 0 &&
-                user.comments.length === 0 ? (
-                  <h3>Looks like you haven't created any posts yet.</h3>
-                ) : (
-                  <StyledCategoryH3>Questions</StyledCategoryH3>
-                )}
+                <StyledCategoryH3>Questions</StyledCategoryH3>
+
                 {user.questions
                   ? user.questions.map((question) => (
                       <Link
@@ -50,9 +49,8 @@ const Account = () => {
                   : ""}
               </StyledPostList>
               <StyledPostList>
-                {user.comments && user.comments.length > 0 && (
-                  <StyledCategoryH3>Comments</StyledCategoryH3>
-                )}
+                <StyledCategoryH3>Comments</StyledCategoryH3>
+
                 {user.comments
                   ? user.comments.map((comment) => (
                       //TODO: styled component for links
@@ -70,9 +68,8 @@ const Account = () => {
               </StyledPostList>
 
               <StyledPostList>
-                {user.projects && user.projects.length > 0 && (
-                  <StyledCategoryH3>Projects</StyledCategoryH3>
-                )}
+                <StyledCategoryH3>Projects</StyledCategoryH3>
+
                 {user.projects
                   ? user.projects.map((project) => (
                       <a

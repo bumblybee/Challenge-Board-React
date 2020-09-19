@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledHelloH1 = styled.h1`
   text-align: center;
   padding: 2rem 0;
+  color: #fff;
 `;
 
 const StyledCategoryH3 = styled.h3`
@@ -34,7 +35,7 @@ const StyledAccountDiv = styled.div`
 
 const StyledAccountPostsDiv = styled.div`
  width: 90%; 
-  margin: 0 auto;
+  margin: 1rem auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
