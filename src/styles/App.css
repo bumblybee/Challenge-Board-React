@@ -321,8 +321,7 @@ iframe {
   width: 1.32rem;
 }
 
-.questions-container::-webkit-scrollbar-track,
-.account-div::-webkit-scrollbar-track {
+.questions-container::-webkit-scrollbar-track {
   background: #18191b;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;

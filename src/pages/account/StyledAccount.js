@@ -4,11 +4,19 @@ const StyledHelloH1 = styled.h1`
   text-align: center;
   padding: 2rem 0;
   color: #fff;
+  font-family: "Arial", "Helvetica", sans-serif;
+`;
+
+const StyledCategoryDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 68.5%;
+  margin: 1.5rem auto 0;
 `;
 
 const StyledCategoryH3 = styled.h3`
   color: #809bff;
-
+  font-family: "Roboto-Slab", serif;
   font-size: 1.5rem;
 `;
 
@@ -34,14 +42,19 @@ const StyledAccountDiv = styled.div`
 `;
 
 const StyledAccountPostsDiv = styled.div`
- width: 90%; 
-  margin: 1rem auto;
+  width: 90%; 
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
   border-radius: 6px;
   border-bottom-right-radius: 6px;
   }
+`;
+
+const StyledPostList = styled.ul`
+  background: #2f3136;
+  padding: 0 0.5rem 1rem;
 `;
 
 const StyledAccountPost = styled.li`
@@ -59,13 +72,9 @@ const StyledAccountPost = styled.li`
   }
 `;
 
-const StyledPostList = styled.ul`
-  background: #202225;
-  padding: 1rem 0.5rem 1rem;
-`;
-
 export {
   StyledHelloH1,
+  StyledCategoryDiv,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,
