@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
-
-import { deleteQuestion } from "../../api/questionsApi";
 
 import QuestionCard from "./QuestionCard";
 import Modal from "../../components/layout/Modal";
@@ -21,27 +19,13 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { questions, submitNewQuestion, updateQuestion } = useContext(
-    QuestionContext
-  );
+  const { questions, submitNewQuestion } = useContext(QuestionContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [getQuestions, setQuestions] = useState([]);
+
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
   });
-
-  const deleteUserQuestion = async (question) => {
-    if (window.confirm("Are you sure you want to delete this question?")) {
-      const updatedQuestions = await deleteQuestion(question.id);
-
-      if (updatedQuestions.error) {
-        setError(updatedQuestions.error);
-      } else {
-        setQuestions(updatedQuestions.data.questions);
-      }
-    }
-  };
 
   const handleSubmitQuestion = async (e) => {
     e.preventDefault();
@@ -148,11 +132,7 @@ const QuestionsList = () => {
       <div className="questions-container">
         <ul className="questions-thread">
           {questions.map((question) => (
-            <QuestionCard
-              question={question}
-              deleteUserQuestion={deleteUserQuestion}
-              key={question.id}
-            />
+            <QuestionCard question={question} key={question.id} />
           ))}
         </ul>
       </div>

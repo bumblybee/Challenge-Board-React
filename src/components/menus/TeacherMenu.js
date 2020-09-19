@@ -2,15 +2,10 @@ import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ErrorContext } from "../../context/error/ErrorContext";
 import { ThreadContext } from "../../context/thread/ThreadContext";
+import { QuestionContext } from "../../context/question/QuestionContext";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
-const TeacherMenu = ({
-  question,
-  comment,
-  threadQuestion,
-  deleteUserQuestion,
-  toggleMenu,
-}) => {
+const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   const history = useHistory();
   const { setError } = useContext(ErrorContext);
   const {
@@ -19,6 +14,7 @@ const TeacherMenu = ({
     promoteAnswer,
     demoteAnswer,
   } = useContext(ThreadContext);
+  const { deleteUserQuestion } = useContext(QuestionContext);
 
   if (question) {
     return (
