@@ -44,31 +44,19 @@ const SubmissionArea = () => {
   }, [user]);
 
   const getUserProject = async () => {
-    if (user) {
-      const userProject = await getProject(user.id);
+    if (user && user.projects && user.projects.length > 0) {
+      setProjectData({
+        githubLink: user.projects[0].githubLink,
+        additionLink: user.projects[0].additionalLink,
+        comment: user.projects[0].comment,
+        userData: user,
+      });
+      setTimestamp({
+        ...timestamp,
 
-      if (user.project) {
-        const {
-          githubLink,
-          additionalLink,
-          comment,
-        } = userProject.data.project;
-
-        setProjectData({
-          githubLink,
-          additionalLink,
-          comment,
-          userData: user,
-        });
-
-        setTimestamp({
-          ...timestamp,
-          date: moment(userProject.data.project.updatedAt).format("L"),
-          time: moment(userProject.data.project.updatedAt).format("h:mm"),
-        });
-      } else {
-        return;
-      }
+        date: moment(user.projects[0].updatedAt).format("L"),
+        time: moment(user.projects[0].updatedAt).format("h:mm"),
+      });
     }
   };
   const handleProjectSubmit = async (e) => {
@@ -205,7 +193,7 @@ const SubmissionArea = () => {
               Edit Submission
             </StyledPurpleButton>
             <StyledTimestampParagraph>
-              Project submitted at {timestamp.time} on {timestamp.date}{" "}
+              Project submitted at {timestamp.time} on {timestamp.date}
             </StyledTimestampParagraph>
           </div>
         </div>
