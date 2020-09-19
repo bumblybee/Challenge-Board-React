@@ -5,12 +5,11 @@ import { Link, useHistory } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
   const { user, setUser } = useContext(UserContext);
-  const history = useHistory();
-
+  // const history = useHistory();
+  //TODO: push history to /challenge after log out on server side
   const logout = () => {
     setUser(null);
     handleClose(false);
-    history.push("/challenge");
   };
 
   return (

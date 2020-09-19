@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 const StyledHelloH1 = styled.h1`
   text-align: center;
-  padding: 4rem;
+  padding: 2rem 0;
+`;
+
+const StyledCategoryH3 = styled.h3`
+  color: #809bff;
+
+  font-size: 1.5rem;
 `;
 
 const StyledQuestionTitle = styled.h4`
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const StyledAccountDiv = styled.div`
@@ -27,22 +33,23 @@ const StyledAccountDiv = styled.div`
 `;
 
 const StyledAccountPostsDiv = styled.div`
-  width: 50%;
+ width: 90%; 
   margin: 0 auto;
-  padding: 1rem;
-  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow-y: scroll;
   border-radius: 6px;
+  border-bottom-right-radius: 6px;
+  }
 `;
 
 const StyledAccountPost = styled.li`
-  width: 80%;
-  margin: 0 auto;
-
+  margin: 0.5rem auto 0;
   padding: 1rem;
   background: #3a3c42;
-  margin-top: 0.5rem;
+
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02), 0 4.5px 5.3px rgba(0, 0, 0, 0.028);
+
   transition: transform 0.1s ease-in;
   :hover {
     cursor: pointer;
@@ -53,11 +60,12 @@ const StyledAccountPost = styled.li`
 
 const StyledPostList = styled.ul`
   background: #202225;
-  padding: 2rem 0.5rem 1rem;
+  padding: 1rem 0.5rem 1rem;
 `;
 
 export {
   StyledHelloH1,
+  StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,
   StyledAccountPostsDiv,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getUser } from "../../api/userApi";
 import { signupUser } from "../../api/userApi";
 import { loginUser } from "../../api/userApi";
@@ -6,6 +6,10 @@ import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   const getCurrentUser = async () => {
     const userData = await getUser();
