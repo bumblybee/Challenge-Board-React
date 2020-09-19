@@ -1,5 +1,6 @@
 import React, { useState, useContext, Fragment } from "react";
 import { ThreadContext } from "../../context/thread/ThreadContext";
+import { QuestionContext } from "../../context/question/QuestionContext";
 import { StyledStudentMenu } from "./StyledMenus";
 
 import {
@@ -10,8 +11,9 @@ import {
 import Modal from "../../components/layout/Modal";
 
 //TODO: Define local question state as an object w/title and body
-const StudentMenu = ({ question, comment, toggleMenu, updateQuestion }) => {
+const StudentMenu = ({ question, comment, toggleMenu }) => {
   const { updateComment } = useContext(ThreadContext);
+  const { updateQuestion } = useContext(QuestionContext);
 
   const [openModal, setOpenModal] = useState(false);
   const [questionTitle, setQuestionTitle] = useState(

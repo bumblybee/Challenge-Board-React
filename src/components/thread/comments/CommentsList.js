@@ -20,6 +20,15 @@ const CommentsList = ({ questionId, demoteAnswer }) => {
     body: "",
   });
 
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    submitComment(questionId, newComment);
+    setNewComment({
+      ...newComment,
+      body: "",
+    });
+  };
+
   return (
     <div className="comments-container">
       <StyledCommentsThread className="comments-thread">
@@ -31,16 +40,7 @@ const CommentsList = ({ questionId, demoteAnswer }) => {
           />
         ))}
       </StyledCommentsThread>
-      <StyledCommentsForm
-        onSubmit={(e) => {
-          e.preventDefault();
-          submitComment(questionId, newComment);
-          setNewComment({
-            ...newComment,
-            body: "",
-          });
-        }}
-      >
+      <StyledCommentsForm onSubmit={handleCommentSubmit}>
         <TextareaAutosize
           onChange={(e) =>
             setNewComment({

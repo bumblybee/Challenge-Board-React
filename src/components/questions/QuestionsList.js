@@ -6,7 +6,6 @@ import { ErrorContext } from "../../context/error/ErrorContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 
 import { deleteQuestion } from "../../api/questionsApi";
-import { editQuestion } from "../../api/questionsApi";
 
 import QuestionCard from "./QuestionCard";
 import Modal from "../../components/layout/Modal";
@@ -22,7 +21,9 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { questions, submitNewQuestion } = useContext(QuestionContext);
+  const { questions, submitNewQuestion, updateQuestion } = useContext(
+    QuestionContext
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [getQuestions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState({
@@ -39,16 +40,6 @@ const QuestionsList = () => {
       } else {
         setQuestions(updatedQuestions.data.questions);
       }
-    }
-  };
-
-  const updateQuestion = async (question, data) => {
-    const updatedQuestions = await editQuestion(question.id, data);
-
-    if (updatedQuestions.error) {
-      setError(updatedQuestions.error);
-    } else {
-      setQuestions(updatedQuestions.data.questions);
     }
   };
 
@@ -160,7 +151,6 @@ const QuestionsList = () => {
             <QuestionCard
               question={question}
               deleteUserQuestion={deleteUserQuestion}
-              updateQuestion={updateQuestion}
               key={question.id}
             />
           ))}

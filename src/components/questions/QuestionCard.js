@@ -16,7 +16,7 @@ import {
 const QuestionCard = ({
   question,
   deleteUserQuestion,
-  updateQuestion,
+
   reRenderList,
 }) => {
   const date = moment(question.createdAt).format("L");
@@ -73,7 +73,6 @@ const QuestionCard = ({
             toggleMenu={toggleMenu}
             question={question}
             reRenderList={reRenderList}
-            updateQuestion={updateQuestion}
           />
         ) : (
           ""
