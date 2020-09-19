@@ -10,7 +10,6 @@ import {
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../components/layout/Modal";
 
-//TODO: Define local question state as an object w/title and body
 const StudentMenu = ({ question, comment, toggleMenu }) => {
   const { updateComment } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
@@ -23,6 +22,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
     question ? question.body : ""
   );
   const [commentBody, setCommentBody] = useState(comment && comment.body);
+
   const handleCancel = () => {
     setOpenModal(!openModal);
     toggleMenu();

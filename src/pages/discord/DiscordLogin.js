@@ -26,6 +26,7 @@ const DiscordLogin = () => {
         history.push("/login");
       } else if (user.data.id) {
         setUser(user.data);
+
         history.push("/challenge");
       }
     };

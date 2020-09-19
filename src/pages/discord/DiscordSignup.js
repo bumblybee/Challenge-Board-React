@@ -37,7 +37,7 @@ const DiscordSignup = () => {
 
     postDiscordSignup();
     // eslint-disable-next-line
-  }, [setUser]);
+  }, []);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };

@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
-import Modal from "../../components/layout/Modal";
-import { submitProject, editProject } from "../../api/projectsApi";
+
+import { submitProject, editProject, getProject } from "../../api/projectsApi";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
+
+import Modal from "../../components/layout/Modal";
 import {
   StyledPurpleButton,
   StyledTransparentButton,
@@ -38,39 +40,43 @@ const SubmissionArea = () => {
 
   const history = useHistory();
 
+  //TODO: Look into refactoring this mess - form not filling previous data
+
   useEffect(() => {
     getUserProject();
     //eslint-disable-next-line
   }, [user]);
 
-  const getUserProject = () => {
-    if (user && user.projects && user.projects.length) {
-      setProjectData({
-        githubLink: user.projects[0].githubLink,
-        additionLink: user.projects[0].additionalLink,
-        comment: user.projects[0].comment,
-        userData: user,
-      });
+  const getUserProject = async () => {
+    if (user) {
+      const project = await getProject(user.id);
+      project &&
+        setProjectData({
+          githubLink: project.githubLink,
+          additionalLink: project.additionalLink,
+          comment: project.comment,
+          userData: user,
+        });
+
       setTimestamp({
         ...timestamp,
 
-        date: moment(user.projects[0].updatedAt).format("L"),
-        time: moment(user.projects[0].updatedAt).format("h:mm"),
+        date: moment(project.updatedAt).format("L"),
+        time: moment(project.updatedAt).format("h:mm"),
       });
     }
   };
 
   const handleProjectSubmit = async (e) => {
     e.preventDefault();
-
+    setProjectData({ ...projectData, userData: user });
     const submission = await submitProject(projectData);
 
     if (submission.error || !submission) {
       setError(submission.error);
       setIsOpen(!isOpen);
     } else {
-      //! Better way to handle this refresh of user data?
-      getCurrentUser();
+      // getCurrentUser();
       setIsSubmitted(true);
 
       setIsOpen(!isOpen);
@@ -88,7 +94,7 @@ const SubmissionArea = () => {
       setError(editedSubmission.error);
       setIsOpen(!isOpen);
     } else if (editedSubmission.data[0] === 1) {
-      getCurrentUser();
+      // getCurrentUser();
       setIsSubmitted(true);
 
       setIsOpen(!isOpen);
