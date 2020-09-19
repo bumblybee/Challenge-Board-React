@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
@@ -16,24 +16,23 @@ import {
 const Account = () => {
   const { user } = useContext(UserContext);
 
-  //TODO: add project submissions
   return (
     <div>
       <StyledAccountDiv>
         {user && (
           <Fragment>
             <StyledHelloH1>
-              Hello, {user.username}. Nice to see you.
+              Hello {user.username}. Nice to see you.
             </StyledHelloH1>
 
             <StyledAccountPostsDiv>
               <StyledPostList>
-                {user.questions.length === 0 && user.comments.length === 0 ? (
+                {user.questions &&
+                user.questions.length === 0 &&
+                user.comments.length === 0 ? (
                   <h3>Looks like you haven't created any posts yet.</h3>
-                ) : user.questions.length > 0 ? (
-                  <h3>Questions</h3>
                 ) : (
-                  ""
+                  <h3>Questions</h3>
                 )}
                 {user.questions
                   ? user.questions.map((question) => (
@@ -53,7 +52,7 @@ const Account = () => {
                   : ""}
               </StyledPostList>
               <StyledPostList>
-                {user.comments.length > 0 && <h3>Comments</h3>}
+                {user.comments && user.comments.length > 0 && <h3>Comments</h3>}
                 {user.comments
                   ? user.comments.map((comment) => (
                       //TODO: styled component for links
@@ -71,7 +70,7 @@ const Account = () => {
               </StyledPostList>
 
               <StyledPostList>
-                {user.projects.length > 0 && <h3>Projects</h3>}
+                {user.projects && user.projects.length > 0 && <h3>Projects</h3>}
                 {user.projects
                   ? user.projects.map((project) => (
                       <a

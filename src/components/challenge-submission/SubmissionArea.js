@@ -43,8 +43,8 @@ const SubmissionArea = () => {
     //eslint-disable-next-line
   }, [user]);
 
-  const getUserProject = async () => {
-    if (user && user.projects && user.projects.length > 0) {
+  const getUserProject = () => {
+    if (user && user.projects && user.projects.length) {
       setProjectData({
         githubLink: user.projects[0].githubLink,
         additionLink: user.projects[0].additionalLink,
@@ -59,6 +59,7 @@ const SubmissionArea = () => {
       });
     }
   };
+
   const handleProjectSubmit = async (e) => {
     e.preventDefault();
 

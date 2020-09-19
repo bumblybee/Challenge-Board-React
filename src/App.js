@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,6 +9,7 @@ import {
 import "./styles/App.css";
 
 import ErrorState from "./context/error/ErrorState";
+import { UserContext } from "./context/user/UserContext";
 import UserState from "./context/user/UserState";
 import ThreadState from "./context/thread/ThreadState";
 import QuestionState from "./context/question/QuestionState";

@@ -27,7 +27,7 @@ const StyledAccountDiv = styled.div`
 `;
 
 const StyledAccountPostsDiv = styled.div`
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   padding: 1rem;
   overflow-y: auto;
