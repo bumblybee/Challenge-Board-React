@@ -4,15 +4,13 @@ import SubmissionArea from "../../components/challenge-submission/SubmissionArea
 import QuestionArea from "../../components/questions/QuestionArea";
 
 import { UserContext } from "../../context/user/UserContext";
-import { QuestionContext } from "../../context/question/QuestionContext";
 
 const Challenge = () => {
   const { user, getCurrentUser } = useContext(UserContext);
-  const { fetchQuestions } = useContext(QuestionContext);
 
   useEffect(() => {
     getCurrentUser();
-    fetchQuestions();
+
     //eslint-disable-next-line
   }, []);
 

@@ -66,6 +66,8 @@ const SubmissionArea = () => {
           date: moment(userProject.data.project.updatedAt).format("L"),
           time: moment(userProject.data.project.updatedAt).format("h:mm"),
         });
+      } else {
+        return;
       }
     }
   };

@@ -1,4 +1,4 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, useContext, useEffect, Fragment } from "react";
 
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
@@ -19,13 +19,19 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { questions, submitNewQuestion } = useContext(QuestionContext);
+  const { questions, submitNewQuestion, fetchQuestions } = useContext(
+    QuestionContext
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
     title: "",
     body: "",
   });
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
   const handleSubmitQuestion = async (e) => {
     e.preventDefault();
