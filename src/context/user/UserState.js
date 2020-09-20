@@ -6,6 +6,7 @@ import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
   const [user, setUser] = useState({});
+  const [project, setProject] = useState({});
 
   useEffect(() => {
     getCurrentUser();

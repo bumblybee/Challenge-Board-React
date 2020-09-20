@@ -20,51 +20,45 @@ import {
 } from "./StyledSubmissionArea";
 
 const SubmissionArea = () => {
-  const { user, getCurrentUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const history = useHistory();
+
   //Handles modal
   const [isOpen, setIsOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const [timestamp, setTimestamp] = useState({
-    date: "",
-    time: "",
-  });
   const [projectData, setProjectData] = useState({
     githubLink: "",
     additionalLink: "",
     comment: "",
     userData: {},
   });
+  const [priorProject, setPriorProject] = useState({
+    githubLink: "",
+    additionalLink: "",
+    comment: "",
+    updatedAt: "",
+  });
 
-  const history = useHistory();
+  const hasProject = user && user.projects && user.projects.length;
 
-  //TODO: Look into refactoring this mess - form not filling previous data
+  const projectDate = moment(priorProject.updatedAt).format("L");
+  const projectTime = moment(priorProject.updatedAt).format("h:mm");
 
   useEffect(() => {
     getUserProject();
-    //eslint-disable-next-line
-  }, [user]);
+  }, []);
 
   const getUserProject = async () => {
-    if (user) {
-      const project = await getProject(user.id);
-      project &&
-        setProjectData({
-          githubLink: project.githubLink,
-          additionalLink: project.additionalLink,
-          comment: project.comment,
-          userData: user,
-        });
-
-      setTimestamp({
-        ...timestamp,
-
-        date: moment(project.updatedAt).format("L"),
-        time: moment(project.updatedAt).format("h:mm"),
-      });
-    }
+    const project = await getProject();
+    setPriorProject({
+      id: project.id,
+      githubLink: project.githubLink,
+      additionalLink: project.additionalLink,
+      comment: project.comment,
+      updatedAt: project.updatedAt,
+    });
   };
 
   const handleProjectSubmit = async (e) => {
@@ -86,15 +80,14 @@ const SubmissionArea = () => {
   const handleEditedSubmission = async (e) => {
     e.preventDefault();
 
-    const projectId = user.projects[0].id;
-    const editedSubmissionData = { ...projectData };
-    const editedSubmission = await editProject(projectId, editedSubmissionData);
+    const projectId = priorProject.id;
+    const data = { ...priorProject, userData: user };
+    const editedSubmission = await editProject(projectId, data);
 
     if (editedSubmission.error || !editedSubmission) {
       setError(editedSubmission.error);
       setIsOpen(!isOpen);
     } else if (editedSubmission.data[0] === 1) {
-      // getCurrentUser();
       setIsSubmitted(true);
 
       setIsOpen(!isOpen);
@@ -112,43 +105,68 @@ const SubmissionArea = () => {
           <div className="modal-body">
             <form
               onSubmit={
-                user.projects && user.projects.length
-                  ? handleEditedSubmission
-                  : handleProjectSubmit
+                hasProject ? handleEditedSubmission : handleProjectSubmit
               }
               id="submit-form"
             >
               <input
                 onChange={(e) =>
-                  setProjectData({ ...projectData, githubLink: e.target.value })
+                  hasProject
+                    ? setPriorProject({
+                        ...priorProject,
+                        githubLink: e.target.value,
+                      })
+                    : setProjectData({
+                        ...projectData,
+                        githubLink: e.target.value,
+                      })
                 }
                 type="url"
                 title="Link starts with https://"
                 id="githubLink"
                 placeholder="Github Link"
-                value={projectData.githubLink}
+                value={
+                  hasProject ? priorProject.githubLink : projectData.githubLink
+                }
                 required
                 noValidate
               ></input>
               <input
                 onChange={(e) =>
-                  setProjectData({
-                    ...projectData,
-                    additionalLink: e.target.value,
-                  })
+                  hasProject
+                    ? setPriorProject({
+                        ...priorProject,
+                        additionalLink: e.target.value,
+                      })
+                    : setProjectData({
+                        ...projectData,
+                        additionalLink: e.target.value,
+                      })
                 }
                 title="Link starts with https://"
                 type="url"
                 placeholder="Additional Link (optional)"
-                value={projectData.additionalLink}
+                value={
+                  hasProject
+                    ? priorProject.additionalLink
+                    : projectData.additionalLink
+                }
               ></input>
               <textarea
                 onChange={(e) =>
-                  setProjectData({ ...projectData, comment: e.target.value })
+                  hasProject
+                    ? setPriorProject({
+                        ...priorProject,
+                        comment: e.target.value,
+                      })
+                    : setProjectData({
+                        ...projectData,
+                        comment: e.target.value,
+                      })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
-                value={projectData.comment}
+                value={hasProject ? priorProject.comment : projectData.comment}
               ></textarea>
               <div className="modal-footer">
                 <StyledTransparentButton
@@ -185,7 +203,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {user && user.projects && user.projects.length ? (
+      {hasProject ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
@@ -200,7 +218,7 @@ const SubmissionArea = () => {
               Edit Submission
             </StyledPurpleButton>
             <StyledTimestampParagraph>
-              Project submitted at {timestamp.time} on {timestamp.date}
+              Project submitted at {projectTime} on {projectDate}
             </StyledTimestampParagraph>
           </div>
         </div>
