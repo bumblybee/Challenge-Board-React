@@ -49,8 +49,12 @@ const SubmissionArea = () => {
   }, []);
 
   const getUserProject = async () => {
-    const project = await getProject();
+    const res = await getProject();
 
+    if (res.error) {
+      return;
+    }
+    const project = res.data.project;
     if (project !== null) {
       setPriorProject(project);
       setHasPriorProject(true);

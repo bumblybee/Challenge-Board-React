@@ -1,8 +1,7 @@
 import { put, post, get } from "./baseApi";
 
 const getProject = async () => {
-  const res = await get(`/projects`);
-  return res.data.project;
+  return await get(`/projects`);
 };
 
 const submitProject = async (data) => {
