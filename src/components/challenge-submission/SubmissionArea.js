@@ -52,13 +52,14 @@ const SubmissionArea = () => {
 
   const getUserProject = async () => {
     const project = await getProject();
-    setPriorProject({
-      id: project.id,
-      githubLink: project.githubLink,
-      additionalLink: project.additionalLink,
-      comment: project.comment,
-      updatedAt: project.updatedAt,
-    });
+    project !== null &&
+      setPriorProject({
+        id: project.id,
+        githubLink: project.githubLink,
+        additionalLink: project.additionalLink,
+        comment: project.comment,
+        updatedAt: project.updatedAt,
+      });
   };
 
   const handleProjectSubmit = async (e) => {
