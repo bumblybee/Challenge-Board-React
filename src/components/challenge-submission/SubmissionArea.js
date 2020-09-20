@@ -34,8 +34,12 @@ const SubmissionArea = () => {
     comment: "",
     userData: {},
   });
-  const [priorProject, setPriorProject] = useState({});
   const [hasPriorProject, setHasPriorProject] = useState(false);
+  const [priorProject, setPriorProject] = useState({});
+  const [projectTimestamp, setProjectTimestamp] = useState({
+    date: "",
+    time: "",
+  });
 
   const projectDate = moment(priorProject.updatedAt).format("L");
   const projectTime = moment(priorProject.updatedAt).format("h:mm");
@@ -47,8 +51,16 @@ const SubmissionArea = () => {
   const getUserProject = async () => {
     const project = await getProject();
 
-    project !== null && setPriorProject(project);
-    project !== null && setHasPriorProject(true);
+    if (project !== null) {
+      setPriorProject(project);
+      setHasPriorProject(true);
+
+      setProjectTimestamp({
+        ...projectTimestamp,
+        date: moment(project.updatedAt).format("L"),
+        time: moment(priorProject.updatedAt).format("h:mm"),
+      });
+    }
   };
 
   const submitInitialProject = async (e) => {
@@ -63,6 +75,11 @@ const SubmissionArea = () => {
       setIsSubmitted(true);
       setIsOpen(!isOpen);
       setHasPriorProject(true);
+      setProjectTimestamp({
+        ...projectTimestamp,
+        date: moment(submission.updatedAt).format("L"),
+        time: moment(submission.updatedAt).format("h:mm"),
+      });
     }
   };
 
@@ -71,14 +88,19 @@ const SubmissionArea = () => {
 
     const projectId = priorProject.id;
     const data = { ...priorProject, userData: user };
-    const editedSubmission = await editProject(projectId, data);
+    const editedProject = await editProject(projectId, data);
 
-    if (editedSubmission.error || !editedSubmission) {
-      setError(editedSubmission.error);
+    if (editedProject.error || !editedProject) {
+      setError(editedProject.error);
       setIsOpen(!isOpen);
     } else {
       setIsSubmitted(true);
       setIsOpen(!isOpen);
+      setProjectTimestamp({
+        ...projectTimestamp,
+        date: moment(editedProject.updatedAt).format("L"),
+        time: moment(editedProject.updatedAt).format("h:mm"),
+      });
     }
   };
 
@@ -212,7 +234,8 @@ const SubmissionArea = () => {
               Edit Submission
             </StyledPurpleButton>
             <StyledTimestampParagraph>
-              Project submitted at {projectTime} on {projectDate}
+              Project submitted at {projectTimestamp.time} on{" "}
+              {projectTimestamp.date}
             </StyledTimestampParagraph>
           </div>
         </div>
