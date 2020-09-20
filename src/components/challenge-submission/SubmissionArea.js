@@ -28,20 +28,14 @@ const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [projectData, setProjectData] = useState({
+  const [initialProject, setInitialProject] = useState({
     githubLink: "",
     additionalLink: "",
     comment: "",
     userData: {},
   });
-  const [priorProject, setPriorProject] = useState({
-    githubLink: "",
-    additionalLink: "",
-    comment: "",
-    updatedAt: "",
-  });
-
-  const hasProject = user && user.projects && user.projects.length;
+  const [priorProject, setPriorProject] = useState({});
+  const [hasPriorProject, setHasPriorProject] = useState(false);
 
   const projectDate = moment(priorProject.updatedAt).format("L");
   const projectTime = moment(priorProject.updatedAt).format("h:mm");
@@ -52,33 +46,27 @@ const SubmissionArea = () => {
 
   const getUserProject = async () => {
     const project = await getProject();
-    project !== null &&
-      setPriorProject({
-        id: project.id,
-        githubLink: project.githubLink,
-        additionalLink: project.additionalLink,
-        comment: project.comment,
-        updatedAt: project.updatedAt,
-      });
+
+    project !== null && setPriorProject(project);
+    project !== null && setHasPriorProject(true);
   };
 
-  const handleProjectSubmit = async (e) => {
+  const submitInitialProject = async (e) => {
     e.preventDefault();
-    setProjectData({ ...projectData, userData: user });
-    const submission = await submitProject(projectData);
+    setInitialProject({ ...initialProject, userData: user });
+    const submission = await submitProject(initialProject);
 
     if (submission.error || !submission) {
       setError(submission.error);
       setIsOpen(!isOpen);
     } else {
-      // getCurrentUser();
       setIsSubmitted(true);
-
       setIsOpen(!isOpen);
+      setHasPriorProject(true);
     }
   };
 
-  const handleEditedSubmission = async (e) => {
+  const submitEditedProject = async (e) => {
     e.preventDefault();
 
     const projectId = priorProject.id;
@@ -88,9 +76,8 @@ const SubmissionArea = () => {
     if (editedSubmission.error || !editedSubmission) {
       setError(editedSubmission.error);
       setIsOpen(!isOpen);
-    } else if (editedSubmission.data[0] === 1) {
+    } else {
       setIsSubmitted(true);
-
       setIsOpen(!isOpen);
     }
   };
@@ -106,19 +93,19 @@ const SubmissionArea = () => {
           <div className="modal-body">
             <form
               onSubmit={
-                hasProject ? handleEditedSubmission : handleProjectSubmit
+                hasPriorProject ? submitEditedProject : submitInitialProject
               }
               id="submit-form"
             >
               <input
                 onChange={(e) =>
-                  hasProject
+                  hasPriorProject
                     ? setPriorProject({
                         ...priorProject,
                         githubLink: e.target.value,
                       })
-                    : setProjectData({
-                        ...projectData,
+                    : setInitialProject({
+                        ...initialProject,
                         githubLink: e.target.value,
                       })
                 }
@@ -127,20 +114,22 @@ const SubmissionArea = () => {
                 id="githubLink"
                 placeholder="Github Link"
                 value={
-                  hasProject ? priorProject.githubLink : projectData.githubLink
+                  hasPriorProject
+                    ? priorProject.githubLink
+                    : initialProject.githubLink
                 }
                 required
                 noValidate
               ></input>
               <input
                 onChange={(e) =>
-                  hasProject
+                  hasPriorProject
                     ? setPriorProject({
                         ...priorProject,
                         additionalLink: e.target.value,
                       })
-                    : setProjectData({
-                        ...projectData,
+                    : setInitialProject({
+                        ...initialProject,
                         additionalLink: e.target.value,
                       })
                 }
@@ -148,26 +137,30 @@ const SubmissionArea = () => {
                 type="url"
                 placeholder="Additional Link (optional)"
                 value={
-                  hasProject
+                  hasPriorProject
                     ? priorProject.additionalLink
-                    : projectData.additionalLink
+                    : initialProject.additionalLink
                 }
               ></input>
               <textarea
                 onChange={(e) =>
-                  hasProject
+                  hasPriorProject
                     ? setPriorProject({
                         ...priorProject,
                         comment: e.target.value,
                       })
-                    : setProjectData({
-                        ...projectData,
+                    : setInitialProject({
+                        ...initialProject,
                         comment: e.target.value,
                       })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
-                value={hasProject ? priorProject.comment : projectData.comment}
+                value={
+                  hasPriorProject
+                    ? priorProject.comment
+                    : initialProject.comment
+                }
               ></textarea>
               <div className="modal-footer">
                 <StyledTransparentButton
@@ -204,7 +197,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {hasProject ? (
+      {hasPriorProject ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
