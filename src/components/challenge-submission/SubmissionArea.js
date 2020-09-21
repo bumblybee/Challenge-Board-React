@@ -220,7 +220,7 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {hasPriorProject ? (
+      {hasPriorProject && user ? (
         <div className="submission-content">
           <h4 className="heading">SUBMISSION</h4>
           <h1>Submit Your Project</h1>
