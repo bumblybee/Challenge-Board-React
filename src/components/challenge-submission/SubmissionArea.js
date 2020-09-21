@@ -41,9 +41,6 @@ const SubmissionArea = () => {
     time: "",
   });
 
-  const projectDate = moment(priorProject.updatedAt).format("L");
-  const projectTime = moment(priorProject.updatedAt).format("h:mm");
-
   useEffect(() => {
     getUserProject();
   }, []);
@@ -62,7 +59,7 @@ const SubmissionArea = () => {
       setProjectTimestamp({
         ...projectTimestamp,
         date: moment(project.updatedAt).format("L"),
-        time: moment(priorProject.updatedAt).format("h:mm"),
+        time: moment(project.updatedAt).format("h:mm"),
       });
     }
   };
