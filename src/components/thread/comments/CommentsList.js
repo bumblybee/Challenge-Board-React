@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
-import { ErrorContext } from "../../../context/error/ErrorContext";
+// import { ErrorContext } from "../../../context/error/ErrorContext";
 import { UserContext } from "../../../context/user/UserContext";
 import { ThreadContext } from "../../../context/thread/ThreadContext";
 import TextareaAutosize from "react-autosize-textarea";

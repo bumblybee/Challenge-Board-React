@@ -12,7 +12,7 @@ const StyledTimestampParagraph = styled.p`
 `;
 
 const StyledConfirmationH1 = styled.h1`
-  margin-top: 24%;
+  margin-top: 20%;
 `;
 
 const StyledConfirmationParagraph = styled.p`

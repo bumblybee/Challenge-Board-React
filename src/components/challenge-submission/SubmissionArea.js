@@ -32,7 +32,6 @@ const SubmissionArea = () => {
     githubLink: "",
     additionalLink: "",
     comment: "",
-    userData: {},
   });
   const [hasPriorProject, setHasPriorProject] = useState(false);
   const [priorProject, setPriorProject] = useState({});
@@ -43,6 +42,7 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     getUserProject();
+    //eslint-disable-next-line
   }, []);
 
   const getUserProject = async () => {
