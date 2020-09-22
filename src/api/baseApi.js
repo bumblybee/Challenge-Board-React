@@ -2,7 +2,8 @@ import axios from "axios";
 import { handleErrors, handleErrorsArray } from "../handlers/errorHandler";
 
 const instance = axios.create({
-  baseURL: "http://localhost:9000",
+  //https://salty-anchorage-50289.herokuapp.com
+  baseURL: "https://salty-anchorage-50289.herokuapp.com",
   withCredentials: true,
   crossDomain: true,
 });
@@ -56,5 +57,3 @@ const deleteRequest = async (url) => {
 };
 
 export { post, put, deleteRequest, get };
-
-//https://salty-anchorage-50289.herokuapp.com

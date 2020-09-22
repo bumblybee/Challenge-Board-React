@@ -6,7 +6,6 @@ import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
   const [user, setUser] = useState({});
-  const [project, setProject] = useState({});
 
   useEffect(() => {
     getCurrentUser();
@@ -14,7 +13,7 @@ const UserState = ({ children }) => {
 
   const getCurrentUser = async () => {
     const userData = await getUser();
-    if (userData.error) {
+    if (userData.error || !userData) {
       return;
     } else {
       setUser(userData.data.user);
