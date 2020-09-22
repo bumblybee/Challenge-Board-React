@@ -43,7 +43,6 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     getUserProject();
-    //eslint-disable-next-line
   }, []);
 
   const getUserProject = async () => {
@@ -67,7 +66,7 @@ const SubmissionArea = () => {
 
   const submitInitialProject = async (e) => {
     e.preventDefault();
-    setInitialProject({ ...initialProject, userData: user });
+
     const submission = await submitProject(initialProject);
 
     if (submission.error || !submission) {
@@ -89,8 +88,8 @@ const SubmissionArea = () => {
     e.preventDefault();
 
     const projectId = priorProject.id;
-    const data = { ...priorProject, userData: user };
-    const editedProject = await editProject(projectId, data);
+
+    const editedProject = await editProject(projectId, priorProject);
 
     if (editedProject.error || !editedProject) {
       setError(editedProject.error);

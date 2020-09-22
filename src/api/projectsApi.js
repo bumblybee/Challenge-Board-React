@@ -9,7 +9,7 @@ const submitProject = async (data) => {
 };
 
 const editProject = async (id, data, user) => {
-  return await put(`/projects/${id}`, data, user);
+  return await put(`/projects/${id}`, data);
 };
 
 export { getProject, submitProject, editProject };
