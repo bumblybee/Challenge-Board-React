@@ -10,7 +10,7 @@ const instance = axios.create({
 
 const get = async (url) => {
   return await instance.get(url).catch((e) => {
-    if (e.response.data.errors) {
+    if (e.response && e.response.data.errors) {
       const errors = handleErrorsArray(e.response.data.errors);
 
       return errors;
