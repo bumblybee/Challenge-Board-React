@@ -22,7 +22,7 @@ const get = async (url) => {
 
 const post = async (url, data) => {
   return await instance.post(url, data).catch((e) => {
-    if (e.response.data.errors) {
+    if (e.response && e.response.data.errors) {
       const errors = handleErrorsArray(e.response.data.errors);
 
       return errors;
@@ -34,7 +34,7 @@ const post = async (url, data) => {
 
 const put = async (url, data) => {
   return await instance.put(url, data).catch((e) => {
-    if (e.response.data.errors) {
+    if (e.response && e.response.data.errors) {
       const errors = handleErrorsArray(e.response.data.errors);
 
       return errors;
@@ -46,7 +46,7 @@ const put = async (url, data) => {
 
 const deleteRequest = async (url) => {
   return await instance.delete(url).catch((e) => {
-    if (e.response.data.errors) {
+    if (e.response && e.response.data.errors) {
       const errors = handleErrorsArray(e.response.data.errors);
 
       return errors;
