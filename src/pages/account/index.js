@@ -21,6 +21,7 @@ const Account = () => {
   !user && history.push("/");
   useEffect(() => {
     getCurrentUser();
+    //eslint-disable-next-line
   }, []);
   return (
     <div>

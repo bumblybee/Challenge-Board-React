@@ -29,6 +29,12 @@ const CommentsList = ({ questionId }) => {
     });
   };
 
+  const handleSubmitByKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleCommentSubmit(e);
+    }
+  };
+
   return (
     <div className="comments-container">
       <StyledCommentsThread className="comments-thread">
@@ -36,7 +42,10 @@ const CommentsList = ({ questionId }) => {
           <CommentCard comment={comment} key={comment.id} />
         ))}
       </StyledCommentsThread>
-      <StyledCommentsForm onSubmit={handleCommentSubmit}>
+      <StyledCommentsForm
+        onSubmit={handleCommentSubmit}
+        onKeyPress={handleSubmitByKeyPress}
+      >
         <TextareaAutosize
           onChange={(e) =>
             setNewComment({

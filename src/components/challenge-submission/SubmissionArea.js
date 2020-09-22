@@ -43,6 +43,7 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     getUserProject();
+    //eslint-disable-next-line
   }, []);
 
   const getUserProject = async () => {
