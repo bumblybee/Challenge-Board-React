@@ -28,6 +28,7 @@ const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
   const [initialProject, setInitialProject] = useState({
     githubLink: "",
     additionalLink: "",

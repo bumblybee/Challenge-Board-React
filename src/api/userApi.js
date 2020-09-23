@@ -16,7 +16,7 @@ const getUser = async () => {
 };
 
 const logoutUser = async () => {
-  const res = await get("/users/logout");
+  const res = await post("/users/logout");
   console.log(res);
 };
 

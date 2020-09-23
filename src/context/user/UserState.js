@@ -5,7 +5,7 @@ import { loginUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   useEffect(() => {
     getCurrentUser();

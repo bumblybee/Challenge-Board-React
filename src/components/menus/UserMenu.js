@@ -1,15 +1,19 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { logoutUser } from "../../api/userApi";
 import { UserContext } from "../../context/user/UserContext";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
   const { user, setUser } = useContext(UserContext);
-  // const history = useHistory();
-  //TODO: push history to /challenge after log out on server side
-  const logout = () => {
+  const history = useHistory();
+
+  const logout = async () => {
+    await logoutUser();
     setUser(null);
     handleClose(false);
+    history.push("/challenge");
   };
 
   return (
