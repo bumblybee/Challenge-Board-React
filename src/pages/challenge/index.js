@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
 import SubmissionArea from "../../components/challenge-submission/SubmissionArea";
 import QuestionArea from "../../components/questions/QuestionArea";
-import Test from "../../components/challenge-submission/Test";
+
 
 import { UserContext } from "../../context/user/UserContext";
 
@@ -23,11 +23,11 @@ const Challenge = () => {
           <ChallengeArea />
         </div>
       ) : (
-        <div className="challenge-submission-area">
-          <ChallengeArea />
-          <Test />
-        </div>
-      )}
+          <div className="challenge-submission-area">
+            <ChallengeArea />
+            <SubmissionArea />
+          </div>
+        )}
       <QuestionArea />
     </div>
   );

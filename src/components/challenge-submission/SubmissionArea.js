@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
+import { useQuery, useMutation, queryCache } from "react-query";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 
@@ -26,85 +27,88 @@ const SubmissionArea = () => {
 
   //Handles modal
   const [isOpen, setIsOpen] = useState(false);
-  //Handles submission confirmation
+
+  //Handles display of submission confirmation message
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
-  const [initialProject, setInitialProject] = useState({
+
+  const [projectDetails, setProjectDetails] = useState({
     githubLink: "",
     additionalLink: "",
     comment: "",
   });
+
   const [hasPriorProject, setHasPriorProject] = useState(false);
-  const [priorProject, setPriorProject] = useState({});
+
   const [projectTimestamp, setProjectTimestamp] = useState({
     date: "",
     time: "",
   });
 
-  useEffect(() => {
-    getUserProject();
-    //eslint-disable-next-line
-  }, []);
-
   const getUserProject = async () => {
-    const res = await getProject();
+    const project = await getProject();
 
-    if (res.error) {
-      return;
-    }
-    const project = res.data.project;
-    if (project !== null) {
-      setPriorProject(project);
+    console.log(project);
+    if (project.data.project !== null) {
+
       setHasPriorProject(true);
 
+      //TODO: Need to handle in useQuery
+      setProjectDetails(project.data.project);
       setProjectTimestamp({
         ...projectTimestamp,
-        date: moment(project.updatedAt).format("L"),
-        time: moment(project.updatedAt).format("h:mm"),
+        date: moment(project.data.project.updatedAt).format("L"),
+        time: moment(project.data.project.updatedAt).format("h:mm"),
       });
     }
+
+    return project;
   };
 
   const submitInitialProject = async (e) => {
     e.preventDefault();
-
-    const submission = await submitProject(initialProject);
-
-    if (submission.error || !submission) {
-      setError(submission.error);
-      setIsOpen(!isOpen);
-    } else {
-      setIsSubmitted(true);
-      setIsOpen(!isOpen);
-      setHasPriorProject(true);
-      setProjectTimestamp({
-        ...projectTimestamp,
-        date: moment(submission.updatedAt).format("L"),
-        time: moment(submission.updatedAt).format("h:mm"),
-      });
-    }
+    const submission = await submitProject(projectDetails);
+    setHasPriorProject(true);
+    setIsSubmitted(true);
+    setIsOpen(!isOpen);
+    return submission;
   };
 
   const submitEditedProject = async (e) => {
     e.preventDefault();
-
-    const projectId = priorProject.id;
-
-    const editedProject = await editProject(projectId, priorProject);
-
-    if (editedProject.error || !editedProject) {
-      setError(editedProject.error);
-      setIsOpen(!isOpen);
-    } else {
-      setIsSubmitted(true);
-      setIsOpen(!isOpen);
-      setProjectTimestamp({
-        ...projectTimestamp,
-        date: moment(editedProject.updatedAt).format("L"),
-        time: moment(editedProject.updatedAt).format("h:mm"),
-      });
-    }
+    const projectId = projectDetails.id;
+    const editedProject = await editProject(projectId, projectDetails);
+    setIsSubmitted(true);
+    setIsOpen(!isOpen);
+    setHasPriorProject(true);
+    return editedProject;
   };
+
+  const { data: project } = useQuery("project", getUserProject, {
+    onError: () => console.log(project),
+  });
+
+  const [postNewProject] = useMutation(submitInitialProject, {
+    onError: (submission) => {
+      setIsOpen(!isOpen);
+      setError(submission.error);
+    },
+    onSuccess: () => {
+      queryCache.refetchQueries("project");
+    },
+  });
+
+  const [postEditedProject] = useMutation(submitEditedProject, {
+    onError: (error, editedProject, rollback) => {
+      setIsOpen(!isOpen);
+      setError(editedProject.error);
+      rollback();
+    },
+    onSuccess: (editedProject) => {
+      queryCache.refetchQueries("project");
+    },
+  });
+
+
 
   return (
     <div className="submission-container">
@@ -123,68 +127,41 @@ const SubmissionArea = () => {
             >
               <input
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        githubLink: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        githubLink: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    githubLink: e.target.value,
+                  })
                 }
                 type="url"
                 title="Link starts with https://"
                 id="githubLink"
                 placeholder="Github Link"
-                value={
-                  hasPriorProject
-                    ? priorProject.githubLink
-                    : initialProject.githubLink
-                }
+                value={projectDetails.githubLink}
                 required
                 noValidate
               ></input>
               <input
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        additionalLink: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        additionalLink: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    additionalLink: e.target.value,
+                  })
                 }
                 title="Link starts with https://"
                 type="url"
                 placeholder="Additional Link (optional)"
-                value={
-                  hasPriorProject
-                    ? priorProject.additionalLink
-                    : initialProject.additionalLink
-                }
+                value={projectDetails.additionalLink}
               ></input>
               <textarea
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        comment: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        comment: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    comment: e.target.value,
+                  })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
-                value={
-                  hasPriorProject
-                    ? priorProject.comment
-                    : initialProject.comment
-                }
+                value={projectDetails.comment}
               ></textarea>
               <div className="modal-footer">
                 <StyledTransparentButton
@@ -242,45 +219,45 @@ const SubmissionArea = () => {
           </div>
         </div>
       ) : (
-        <div className="submission-content">
-          <h4 className="heading">SUBMISSION</h4>
-          {user && user.role === "Teacher" ? (
-            <Fragment>
-              <h1>View Student Submissions</h1>
-              <p>Project submissions page</p>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <h1>Submit Your Project</h1>
-              <p>When you're ready, submit your Github link here for review.</p>
-            </Fragment>
-          )}
+          <div className="submission-content">
+            <h4 className="heading">SUBMISSION</h4>
+            {user && user.role === "Teacher" ? (
+              <Fragment>
+                <h1>View Student Submissions</h1>
+                <p>Project submissions page</p>
+              </Fragment>
+            ) : (
+                <Fragment>
+                  <h1>Submit Your Project</h1>
+                  <p>When you're ready, submit your Github link here for review.</p>
+                </Fragment>
+              )}
 
-          {user && user.role === "Student" ? (
-            <StyledPurpleButton
-              onClick={() => setIsOpen(!isOpen)}
-              className="modal-button"
-              id="submit-button"
-            >
-              Submit Project
-            </StyledPurpleButton>
-          ) : user && user.role === "Teacher" ? (
-            <StyledPurpleButton
-              onClick={(e) => e.preventDefault()}
-              className="modal-button"
-            >
-              View Submissions
-            </StyledPurpleButton>
-          ) : (
-            <StyledPurpleButton
-              className="modal-button"
-              onClick={() => history.push("/login")}
-            >
-              Log in to Submit Project
-            </StyledPurpleButton>
-          )}
-        </div>
-      )}
+            {user && user.role === "Student" ? (
+              <StyledPurpleButton
+                onClick={() => setIsOpen(!isOpen)}
+                className="modal-button"
+                id="submit-button"
+              >
+                Submit Project
+              </StyledPurpleButton>
+            ) : user && user.role === "Teacher" ? (
+              <StyledPurpleButton
+                onClick={(e) => e.preventDefault()}
+                className="modal-button"
+              >
+                View Submissions
+              </StyledPurpleButton>
+            ) : (
+                  <StyledPurpleButton
+                    className="modal-button"
+                    onClick={() => history.push("/login")}
+                  >
+                    Log in to Submit Project
+                  </StyledPurpleButton>
+                )}
+          </div>
+        )}
     </div>
   );
 };

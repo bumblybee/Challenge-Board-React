@@ -37,8 +37,8 @@ const UserMenu = ({ handleClose }) => {
               Sign Up
             </Link>
           ) : (
-            ""
-          )}
+              ""
+            )}
         </li>
         <li className="login">
           {!user ? (
@@ -46,8 +46,8 @@ const UserMenu = ({ handleClose }) => {
               Login
             </Link>
           ) : (
-            <p onClick={logout}>Logout</p>
-          )}
+              <p onClick={logout}>Logout</p>
+            )}
         </li>
       </ul>
     </div>

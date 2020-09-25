@@ -2,9 +2,9 @@ import { getUser } from "../api/userApi";
 import { useQuery } from "react-query";
 
 const getCurrentUser = async () => {
-  const { data } = await getUser();
+  const data = await getUser();
 
-  return data.data;
+  return data.data.user;
 };
 
 export const useCurrentUser = () => {
