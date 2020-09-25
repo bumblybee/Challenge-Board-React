@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import { useQuery, useMutation, queryCache } from "react-query";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
@@ -46,14 +46,15 @@ const Test = () => {
 
   const getUserProject = async () => {
     const project = await getProject();
-
+    console.log(project);
     if (project.data.project !== null) {
       setProjectDetails(project.data.project);
       setHasPriorProject(true);
+
       setProjectTimestamp({
         ...projectTimestamp,
-        date: moment(project.updatedAt).format("L"),
-        time: moment(project.updatedAt).format("h:mm"),
+        date: moment(project.data.project.updatedAt).format("L"),
+        time: moment(project.data.project.updatedAt).format("h:mm"),
       });
     }
 
