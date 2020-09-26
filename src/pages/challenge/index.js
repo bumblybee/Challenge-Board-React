@@ -22,11 +22,11 @@ const Challenge = () => {
           <ChallengeArea />
         </div>
       ) : (
-        <div className="challenge-submission-area">
-          <ChallengeArea />
-          <SubmissionArea />
-        </div>
-      )}
+          <div className="challenge-submission-area">
+            <ChallengeArea />
+            <SubmissionArea />
+          </div>
+        )}
       <QuestionArea />
     </div>
   );

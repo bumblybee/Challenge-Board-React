@@ -15,6 +15,7 @@ import {
 import {
   StyledModalBody,
   StyledTimestampParagraph,
+  StyledSubmitYourProjectH1,
   StyledConfirmationH1,
   StyledConfirmationParagraph,
 } from "./StyledSubmissionArea";
@@ -28,7 +29,7 @@ const SubmissionArea = () => {
   const [isOpen, setIsOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+
   const [initialProject, setInitialProject] = useState({
     githubLink: "",
     additionalLink: "",
@@ -111,7 +112,7 @@ const SubmissionArea = () => {
       {isOpen && (
         <Modal>
           <div className="modal-header">
-            <h1>Submit your Project</h1>
+            <StyledSubmitYourProjectH1>Submit your Project</StyledSubmitYourProjectH1>
             <p>Provide your Github and any additional relevant links.</p>
           </div>
           <div className="modal-body">
@@ -125,16 +126,16 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                        ...priorProject,
-                        githubLink: e.target.value,
-                      })
+                      ...priorProject,
+                      githubLink: e.target.value,
+                    })
                     : setInitialProject({
-                        ...initialProject,
-                        githubLink: e.target.value,
-                      })
+                      ...initialProject,
+                      githubLink: e.target.value,
+                    })
                 }
                 type="url"
-                title="Link starts with https://"
+                title="Link must start with https://"
                 id="githubLink"
                 placeholder="Github Link"
                 value={
@@ -149,15 +150,15 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                        ...priorProject,
-                        additionalLink: e.target.value,
-                      })
+                      ...priorProject,
+                      additionalLink: e.target.value,
+                    })
                     : setInitialProject({
-                        ...initialProject,
-                        additionalLink: e.target.value,
-                      })
+                      ...initialProject,
+                      additionalLink: e.target.value,
+                    })
                 }
-                title="Link starts with https://"
+                title="Link must start with https://"
                 type="url"
                 placeholder="Additional Link (optional)"
                 value={
@@ -170,13 +171,13 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                        ...priorProject,
-                        comment: e.target.value,
-                      })
+                      ...priorProject,
+                      comment: e.target.value,
+                    })
                     : setInitialProject({
-                        ...initialProject,
-                        comment: e.target.value,
-                      })
+                      ...initialProject,
+                      comment: e.target.value,
+                    })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
@@ -242,45 +243,45 @@ const SubmissionArea = () => {
           </div>
         </div>
       ) : (
-        <div className="submission-content">
-          <h4 className="heading">SUBMISSION</h4>
-          {user && user.role === "Teacher" ? (
-            <Fragment>
-              <h1>View Student Submissions</h1>
-              <p>Project submissions page</p>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <h1>Submit Your Project</h1>
-              <p>When you're ready, submit your Github link here for review.</p>
-            </Fragment>
-          )}
+          <div className="submission-content">
+            <h4 className="heading">SUBMISSION</h4>
+            {user && user.role === "Teacher" ? (
+              <Fragment>
+                <h1>View Student Submissions</h1>
+                <p>Project submissions page</p>
+              </Fragment>
+            ) : (
+                <Fragment>
+                  <h1>Submit Your Project</h1>
+                  <p>When you're ready, submit your Github link here for review.</p>
+                </Fragment>
+              )}
 
-          {user && user.role === "Student" ? (
-            <StyledPurpleButton
-              onClick={() => setIsOpen(!isOpen)}
-              className="modal-button"
-              id="submit-button"
-            >
-              Submit Project
-            </StyledPurpleButton>
-          ) : user && user.role === "Teacher" ? (
-            <StyledPurpleButton
-              onClick={(e) => e.preventDefault()}
-              className="modal-button"
-            >
-              View Submissions
-            </StyledPurpleButton>
-          ) : (
-            <StyledPurpleButton
-              className="modal-button"
-              onClick={() => history.push("/login")}
-            >
-              Log in to Submit Project
-            </StyledPurpleButton>
-          )}
-        </div>
-      )}
+            {user && user.role === "Student" ? (
+              <StyledPurpleButton
+                onClick={() => setIsOpen(!isOpen)}
+                className="modal-button"
+                id="submit-button"
+              >
+                Submit Project
+              </StyledPurpleButton>
+            ) : user && user.role === "Teacher" ? (
+              <StyledPurpleButton
+                onClick={(e) => e.preventDefault()}
+                className="modal-button"
+              >
+                View Submissions
+              </StyledPurpleButton>
+            ) : (
+                  <StyledPurpleButton
+                    className="modal-button"
+                    onClick={() => history.push("/login")}
+                  >
+                    Log in to Submit Project
+                  </StyledPurpleButton>
+                )}
+          </div>
+        )}
     </div>
   );
 };

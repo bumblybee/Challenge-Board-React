@@ -11,8 +11,15 @@ const StyledTimestampParagraph = styled.p`
   margin-bottom: 0.5rem;
 `;
 
+const StyledSubmitYourProjectH1 = styled.h1`
+font-size: 1.4rem;
+`;
+
 const StyledConfirmationH1 = styled.h1`
   margin-top: 20%;
+  @media (max-width: 600px) {
+    margin-top: 40%;
+  }
 `;
 
 const StyledConfirmationParagraph = styled.p`
@@ -22,6 +29,7 @@ const StyledConfirmationParagraph = styled.p`
 export {
   StyledModalBody,
   StyledTimestampParagraph,
+  StyledSubmitYourProjectH1,
   StyledConfirmationH1,
   StyledConfirmationParagraph,
 };
