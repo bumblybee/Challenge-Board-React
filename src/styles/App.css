@@ -42,6 +42,8 @@ h1 {
   margin: 0;
 }
 
+
+
 i {
   color: var(--secondary-text);
 }
@@ -158,6 +160,7 @@ i:hover {
   background: var(--secondary-background);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5rem 1rem;
 }
 
