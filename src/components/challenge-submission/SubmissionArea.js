@@ -15,7 +15,6 @@ import {
 import {
   StyledModalBody,
   StyledTimestampParagraph,
-  StyledSubmitYourProjectH1,
   StyledConfirmationH1,
   StyledConfirmationParagraph,
 } from "./StyledSubmissionArea";
@@ -112,7 +111,7 @@ const SubmissionArea = () => {
       {isOpen && (
         <Modal>
           <div className="modal-header">
-            <StyledSubmitYourProjectH1>Submit your Project</StyledSubmitYourProjectH1>
+            <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
           </div>
           <div className="modal-body">
@@ -207,9 +206,9 @@ const SubmissionArea = () => {
       {isSubmitted && (
         <Modal>
           <StyledModalBody className="modal-body">
-            <StyledConfirmationH1>
+            <h1>
               Your project has been Submitted!
-            </StyledConfirmationH1>
+            </h1>
             <StyledConfirmationParagraph>
               Look for an email confirmation shortly.
             </StyledConfirmationParagraph>
