@@ -3,7 +3,6 @@ import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
 import SubmissionArea from "../../components/challenge-submission/SubmissionArea";
 import QuestionArea from "../../components/questions/QuestionArea";
 
-
 import { UserContext } from "../../context/user/UserContext";
 
 const Challenge = () => {
@@ -23,11 +22,11 @@ const Challenge = () => {
           <ChallengeArea />
         </div>
       ) : (
-          <div className="challenge-submission-area">
-            <ChallengeArea />
-            <SubmissionArea />
-          </div>
-        )}
+        <div className="challenge-submission-area">
+          <ChallengeArea />
+          <SubmissionArea />
+        </div>
+      )}
       <QuestionArea />
     </div>
   );

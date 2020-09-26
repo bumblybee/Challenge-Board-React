@@ -4,23 +4,17 @@ import { logoutUser } from "../../api/userApi";
 import { UserContext } from "../../context/user/UserContext";
 
 import { Link } from "react-router-dom";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
-
-
 
 const UserMenu = ({ handleClose }) => {
-
-  const { user, status, getCurrentUser } = useCurrentUser();
-
-  // const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const history = useHistory();
 
-  // const logout = async () => {
-  //   await logoutUser();
-  //   setUser(null);
-  //   handleClose(false);
-  //   history.push("/challenge");
-  // };
+  const logout = async () => {
+    await logoutUser();
+    setUser(null);
+    handleClose(false);
+    history.push("/challenge");
+  };
 
   return (
     <div className="user-menu-container">
@@ -43,14 +37,16 @@ const UserMenu = ({ handleClose }) => {
               Sign Up
             </Link>
           ) : (
-              ""
-            )}
+            ""
+          )}
         </li>
         <li className="login">
-          {!user && (
+          {!user ? (
             <Link to="/login" onClick={() => handleClose(false)}>
               Login
             </Link>
+          ) : (
+            <p onClick={logout}>Logout</p>
           )}
         </li>
       </ul>
