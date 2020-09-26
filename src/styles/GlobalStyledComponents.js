@@ -32,6 +32,11 @@ const StyledPurpleButton = styled.button`
     cursor: pointer;
     background: #809bff;
   }
+ @media (max-width: 600px) {
+    font-size: 0.9rem;
+    
+  }
+
 `;
 
 const StyledTextarea = styled.textarea`

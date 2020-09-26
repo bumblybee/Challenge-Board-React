@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap&family=Roboto:wght@300;400&display=swap");
 
 :root {
   --primary-background: #202225;
@@ -19,7 +19,8 @@
 body {
   background-color: #202225;
   color: var(--primary-text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Helvetica, sans-serif;
+  font-weight: 400;
   height: 100%;
 }
 
@@ -164,11 +165,6 @@ i:hover {
   padding: 0.5rem 1rem;
 }
 
-.nav h3 {
-  color: #6271c0;
-  letter-spacing: 0.15rem;
-  font-family: "Times New Roman", Times, serif;
-}
 
 .fa-chess-knight {
   color: var(--secondary-background);
@@ -371,7 +367,8 @@ iframe {
 
 .name {
   margin-right: 1rem;
-  font-weight: lighter;
+  font-weight: 300;
+  font-size: 0.9rem;
   color: var(--secondary-text);
 }
 
@@ -379,9 +376,6 @@ iframe {
   color: var(--tertiary-text);
 }
 
-/* .fa-bookmark {
-  margin-left: auto;
-} */
 
 .icons {
   margin-left: auto;
@@ -390,7 +384,11 @@ iframe {
 .question-body,
 .comment-body {
   padding: 0.5rem 0;
+  font-size: 1rem;
+ word-spacing: 0.1rem;
 }
+
+
 
 .question-footer {
   display: flex;
@@ -413,8 +411,9 @@ iframe {
 .view-thread a {
   color: #809bff;
   font-size: 0.9rem;
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
+  font-family: "Roboto Slab", Times, serif;
+  font-weight: 500;
+  
 }
 
 .thread-question {
@@ -528,7 +527,7 @@ iframe {
   }
 
   .challenge-submission-area p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .heading {
