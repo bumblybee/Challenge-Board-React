@@ -9,6 +9,7 @@ const StyledTimestampParagraph = styled.p`
   color: #7d8088;
   margin-top: auto;
   margin-bottom: 0.5rem;
+  font-weight: 400;
 `;
 
 
