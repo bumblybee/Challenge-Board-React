@@ -12,7 +12,12 @@ import {
 } from "../../styles/GlobalStyledComponents";
 import { StyledDiscordButton, StyledHr } from "./StyledLogin";
 
+import { useCurrentUser } from "../../hooks/useCurrentUser";
+
 const Login = () => {
+
+
+  // const { user, status, getCurrentUser } = useCurrentUser();
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const { setError } = useContext(ErrorContext);
   const { handleLogin } = useContext(UserContext);

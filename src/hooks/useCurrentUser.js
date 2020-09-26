@@ -8,5 +8,11 @@ const getCurrentUser = async () => {
 };
 
 export const useCurrentUser = () => {
-  return useQuery("currentUser", getCurrentUser);
+
+
+  const { data, status, refetch } = useQuery("currentUser", getCurrentUser, {
+    enabled: false
+  });
+
+  return { user: data, status, getCurrentUser: refetch };
 };

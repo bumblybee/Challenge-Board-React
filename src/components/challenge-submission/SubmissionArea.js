@@ -5,8 +5,10 @@ import moment from "moment";
 
 import { submitProject, editProject, getProject } from "../../api/projectsApi";
 
-import { UserContext } from "../../context/user/UserContext";
+// import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
+
 
 import Modal from "../../components/layout/Modal";
 import {
@@ -21,7 +23,8 @@ import {
 } from "./StyledSubmissionArea";
 
 const SubmissionArea = () => {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
+  const { user, status } = useCurrentUser();
   const { setError } = useContext(ErrorContext);
   const history = useHistory();
 
@@ -47,21 +50,21 @@ const SubmissionArea = () => {
   const getUserProject = async () => {
     const project = await getProject();
 
-    console.log(project);
     if (project.data.project !== null) {
 
       setHasPriorProject(true);
 
-      //TODO: Need to handle in useQuery
+      //TODO: Need to handle in useQuery?
       setProjectDetails(project.data.project);
       setProjectTimestamp({
         ...projectTimestamp,
         date: moment(project.data.project.updatedAt).format("L"),
         time: moment(project.data.project.updatedAt).format("h:mm"),
       });
-    }
 
+    }
     return project;
+
   };
 
   const submitInitialProject = async (e) => {
@@ -85,7 +88,18 @@ const SubmissionArea = () => {
 
   const { data: project } = useQuery("project", getUserProject, {
     onError: () => console.log(project),
+    // onSuccess: (project) => {
+
+    //   setProjectDetails(project.data.project);
+    //   setProjectTimestamp({
+    //     ...projectTimestamp,
+    //     date: moment(project.data.project.updatedAt).format("L"),
+    //     time: moment(project.data.project.updatedAt).format("h:mm"),
+    //   });
+    // }
   });
+
+
 
   const [postNewProject] = useMutation(submitInitialProject, {
     onError: (submission) => {
@@ -103,7 +117,12 @@ const SubmissionArea = () => {
       setError(editedProject.error);
       rollback();
     },
-    onSuccess: (editedProject) => {
+    onMutate: (projectUpdate) => {
+      const prevProject = queryCache.getQueryData("project");
+      queryCache.setQueryData("project", stale => [...stale, projectUpdate]);
+
+    },
+    onSettled: (editedProject) => {
       queryCache.refetchQueries("project");
     },
   });

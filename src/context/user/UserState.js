@@ -12,12 +12,12 @@ const UserState = ({ children }) => {
   }, []);
 
   const getCurrentUser = async () => {
-    const userData = await getUser();
-    if (userData.error || !userData) {
-      return;
-    } else {
-      setUser(userData.data.user);
-    }
+    // const userData = await getUser();
+    // if (userData.error || !userData) {
+    //   return;
+    // } else {
+    //   setUser(userData.data.user);
+    // }
   };
 
   const handleSignup = async (userDetails) => {

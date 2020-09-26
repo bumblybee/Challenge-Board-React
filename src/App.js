@@ -5,7 +5,11 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
+import { QueryCache, ReactQueryCacheProvider } from "react-query";
+
 import { ReactQueryDevtools } from 'react-query-devtools';
+
 
 import "./styles/App.css";
 
@@ -27,58 +31,60 @@ import ResetPassword from "./pages/password/ResetPassword";
 
 import { useCurrentUser } from "./hooks/useCurrentUser";
 
-
+const queryCache = new QueryCache();
 
 function App() {
-  const { data: user, status } = useCurrentUser();
+  // const { data: user, status } = useCurrentUser();
 
-  status === "success" && console.log(user);
+  // status === "success" && console.log(user);
 
   return (
     <>
-      <Router>
-        <UserState>
-          <div role="main" className="App">
-            <ErrorState>
-              <Nav />
-              <Error />
-              <Switch>
-                <Route path="/signup">
-                  <Signup />
-                </Route>
-                <Route path="/discord-signup" exact>
-                  <DiscordSignup />
-                </Route>
-                <Route path="/discord-login">
-                  <DiscordLogin />
-                </Route>
-                <Route path="/login" exact>
-                  <Login />
-                </Route>
-                <Route path="/account">
-                  <Account />
-                </Route>
-                <Route path="/reset-password-request">
-                  <ResetPasswordRequest />
-                </Route>
-                <Route path="/reset-password/:token">
-                  <ResetPassword />
-                </Route>
-                <ThreadState>
-                  <QuestionState>
-                    <Route path="/challenge">
-                      <Challenge />
-                    </Route>
-                    <Route path="/" exact>
-                      <Redirect to="/challenge" />
-                    </Route>
-                  </QuestionState>
-                </ThreadState>
-              </Switch>
-            </ErrorState>
-          </div>
-        </UserState>
-      </Router>
+      <ReactQueryCacheProvider queryCache={queryCache}>
+        <Router>
+          <UserState>
+            <div role="main" className="App">
+              <ErrorState>
+                <Nav />
+                <Error />
+                <Switch>
+                  <Route path="/signup">
+                    <Signup />
+                  </Route>
+                  <Route path="/discord-signup" exact>
+                    <DiscordSignup />
+                  </Route>
+                  <Route path="/discord-login">
+                    <DiscordLogin />
+                  </Route>
+                  <Route path="/login" exact>
+                    <Login />
+                  </Route>
+                  <Route path="/account">
+                    <Account />
+                  </Route>
+                  <Route path="/reset-password-request">
+                    <ResetPasswordRequest />
+                  </Route>
+                  <Route path="/reset-password/:token">
+                    <ResetPassword />
+                  </Route>
+                  <ThreadState>
+                    <QuestionState>
+                      <Route path="/challenge">
+                        <Challenge />
+                      </Route>
+                      <Route path="/" exact>
+                        <Redirect to="/challenge" />
+                      </Route>
+                    </QuestionState>
+                  </ThreadState>
+                </Switch>
+              </ErrorState>
+            </div>
+          </UserState>
+        </Router>
+      </ReactQueryCacheProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </>
   );
