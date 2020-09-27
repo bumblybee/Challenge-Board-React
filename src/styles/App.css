@@ -492,6 +492,11 @@ iframe {
 }
 
 @media all and (max-width: 620px) {
+
+   h1 {
+    font-size: 1.3rem;
+  }
+
   .modal-content {
     width: 90%;
     margin: 40% auto;
@@ -507,6 +512,17 @@ iframe {
     font-size: 1.5rem;
   }
 
+  .signup-form-header,
+.login-form-header {
+  text-align: center;
+}
+
+   .signup-form-header h1,
+.login-form-header h1{
+  margin: 0;
+  padding: 0.5rem;
+}
+
   .signup-form-content,
   .login-form-content {
     width: 90%;
@@ -514,9 +530,12 @@ iframe {
     padding: 0.5rem;
   }
 
-  h1 {
-    font-size: 1.3rem;
+  .signup-form-body,
+  .login-form-body {
+padding-bottom: 0.5rem;
   }
+
+ 
 
   iframe {
     height: 220px;
