@@ -34,7 +34,7 @@ const StyledPurpleButton = styled.button`
   }
  @media (max-width: 600px) {
     font-size: 0.9rem;
-    
+  width: 50%;
   }
 
 `;

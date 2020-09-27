@@ -296,6 +296,7 @@ iframe {
 .discussion-header-container {
   display: flex;
   flex-shrink: 0;
+  align-items: center;
   margin-bottom: 1rem;
   padding: 3rem 1.5rem 0;
 }
