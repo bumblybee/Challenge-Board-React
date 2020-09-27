@@ -43,8 +43,6 @@ h1 {
   margin: 0;
 }
 
-
-
 i {
   color: var(--secondary-text);
 }
@@ -85,7 +83,7 @@ i:hover {
 }
 
 .modal-header p {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .modal-body,
@@ -168,7 +166,6 @@ i:hover {
   align-items: center;
   padding: 0.5rem 1rem;
 }
-
 
 .fa-chess-knight {
   color: var(--secondary-background);
@@ -271,8 +268,6 @@ i:hover {
 .submission-content h1 {
   margin-bottom: 0.2rem;
 }
-
-
 
 iframe {
   margin: 1.5rem 0 1rem;
@@ -384,7 +379,6 @@ iframe {
   color: var(--tertiary-text);
 }
 
-
 .icons {
   margin-left: auto;
 }
@@ -395,8 +389,6 @@ iframe {
   font-size: 1rem;
   word-spacing: 0.1rem;
 }
-
-
 
 .question-footer {
   display: flex;
@@ -421,7 +413,6 @@ iframe {
   font-size: 0.9rem;
   font-family: "Roboto Slab", Times, serif;
   font-weight: 500;
-  
 }
 
 .thread-question {
@@ -493,9 +484,12 @@ iframe {
 }
 
 @media all and (max-width: 620px) {
+  h1 {
+    font-size: 1.15rem;
+  }
 
-   h1 {
-    font-size: 1.3rem;
+  h4 {
+    font-size: 0.85rem;
   }
 
   .modal-content {
@@ -514,15 +508,15 @@ iframe {
   }
 
   .signup-form-header,
-.login-form-header {
-  text-align: center;
-}
+  .login-form-header {
+    text-align: center;
+  }
 
-   .signup-form-header h1,
-.login-form-header h1{
-  margin: 0;
-  padding: 0.5rem;
-}
+  .signup-form-header h1,
+  .login-form-header h1 {
+    margin: 0;
+    padding: 0.5rem;
+  }
 
   .signup-form-content,
   .login-form-content {
@@ -533,10 +527,8 @@ iframe {
 
   .signup-form-body,
   .login-form-body {
-padding-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
   }
-
- 
 
   iframe {
     height: 220px;
@@ -555,7 +547,6 @@ padding-bottom: 0.5rem;
 
   .challenge-submission-area p {
     font-size: 0.9rem;
-  
   }
 
   .heading {
@@ -564,10 +555,11 @@ padding-bottom: 0.5rem;
 
   .challenge-container,
   .submission-container,
+  .submission-content,
   .discussion-area,
   .discussion-header-container {
     margin: 0 0 0.5rem;
-    padding: 1rem;
+    padding: 0.4rem;
     border-radius: 0;
   }
 
