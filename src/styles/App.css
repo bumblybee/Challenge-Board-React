@@ -388,7 +388,7 @@ iframe {
 .comment-body {
   padding: 0.5rem 0;
   font-size: 1rem;
-  word-spacing: 0.1rem;
+  word-spacing: 0.03rem;
 }
 
 .question-footer {
