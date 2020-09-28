@@ -7,18 +7,13 @@ const StyledHelloH1 = styled.h1`
   font-family: "Arial", "Helvetica", sans-serif;
 `;
 
-const StyledCategoryDiv = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: space-between;
-  width: 90%;
-  margin: 1.5rem auto 0;
-`;
-
 const StyledCategoryH3 = styled.h3`
   color: #809bff;
   font-family: "Roboto-Slab", serif;
   font-size: 1.5rem;
+  @media (max-width: 620px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const StyledQuestionTitle = styled.h4`
@@ -40,6 +35,12 @@ const StyledAccountDiv = styled.div`
   border-radius: 6px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
+
+  @media (max-width: 620px) {
+    width: 90%;
+    margin: 1rem auto;
+    height: 90vh;
+  }
 `;
 
 const StyledAccountPostsDiv = styled.div`
@@ -50,12 +51,22 @@ const StyledAccountPostsDiv = styled.div`
   overflow-y: scroll;
   border-radius: 6px;
   border-bottom-right-radius: 6px;
+
+   @media (max-width: 620px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
   }
 `;
 
 const StyledPostList = styled.ul`
   background: #2f3136;
   padding: 0 0.5rem 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
 `;
 
 const StyledAccountPost = styled.li`
@@ -75,7 +86,6 @@ const StyledAccountPost = styled.li`
 
 export {
   StyledHelloH1,
-  StyledCategoryDiv,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,

@@ -29,13 +29,9 @@ const Account = () => {
         {user && (
           <Fragment>
             <StyledHelloH1>Hello, {user.username}.</StyledHelloH1>
-            <StyledCategoryDiv>
-              <StyledCategoryH3>Questions</StyledCategoryH3>
-              <StyledCategoryH3>Comments</StyledCategoryH3>
-              <StyledCategoryH3>Projects</StyledCategoryH3>
-            </StyledCategoryDiv>
             <StyledAccountPostsDiv className="account-div">
               <StyledPostList>
+                <StyledCategoryH3>Questions</StyledCategoryH3>
                 {user.questions
                   ? user.questions.map((question) => (
                       <Link
@@ -54,6 +50,7 @@ const Account = () => {
                   : ""}
               </StyledPostList>
               <StyledPostList>
+                <StyledCategoryH3>Comments</StyledCategoryH3>
                 {user.comments
                   ? user.comments.map((comment) => (
                       //TODO: styled component for links
@@ -71,6 +68,7 @@ const Account = () => {
               </StyledPostList>
 
               <StyledPostList>
+                <StyledCategoryH3>Projects</StyledCategoryH3>
                 {user.projects
                   ? user.projects.map((project) => (
                       <a
