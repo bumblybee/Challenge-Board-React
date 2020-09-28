@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import DOMPurify from "dompurify";
 import moment from "moment";
-import Truncate from "react-truncate";
 
 import { UserContext } from "../../../context/user/UserContext";
 
@@ -15,6 +14,7 @@ import {
   StyledDateDiv,
   StyledSpan,
   StyledCommentText,
+  StyledTruncate,
 } from "./StyledComments";
 
 const CommentCard = ({ comment, answer }) => {
@@ -70,21 +70,18 @@ const CommentCard = ({ comment, answer }) => {
 
       <div className="comment-body">
         {isTruncated ? (
-          <Truncate
-            lines={3}
-            ellipsis={
-              <span>
-                ... <StyledSpan onClick={handleTruncate}>more</StyledSpan>
-              </span>
+          <StyledTruncate
+            line={3}
+            element="div"
+            truncateText="..."
+            text={sanitize(comment.body)}
+            textTruncateChild={
+              <StyledSpan onClick={handleTruncate}>more</StyledSpan>
             }
-            trimWhitespace
-            style={{ color: "#dcddde", fontWeight: "300" }}
-          >
-            {sanitize(comment.body)}
-          </Truncate>
+          />
         ) : (
           <StyledCommentText>
-            {sanitize(comment.body)}{" "}
+            {sanitize(comment.body)}
             <StyledSpan onClick={handleTruncate}>less</StyledSpan>
           </StyledCommentText>
         )}

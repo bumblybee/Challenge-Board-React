@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import TextTruncate from "react-text-truncate";
 
 const StyledCommentsThread = styled.ul`
   background: #202225;
@@ -74,6 +75,11 @@ const StyledSubmitButton = styled.button`
   background: #18191b;
 `;
 
+const StyledTruncate = styled(TextTruncate)`
+  color: #dcddde;
+  fontweight: 300;
+`;
+
 export {
   StyledCommentsThread,
   StyledCommentCard,
@@ -86,4 +92,5 @@ export {
   StyledCommentText,
   StyledSubmitButton,
   StyledCommentsForm,
+  StyledTruncate,
 };
