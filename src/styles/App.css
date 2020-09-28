@@ -553,7 +553,11 @@ iframe {
     font-size: 0.8rem;
   }
 
-  .challenge-container,
+  .challenge-container {
+    padding: 1rem;
+    border-radius: 0;
+  }
+
   .submission-container,
   .submission-content,
   .discussion-area,
@@ -561,6 +565,10 @@ iframe {
     margin: 0 0 0.5rem;
     padding: 0.4rem;
     border-radius: 0;
+  }
+
+  .challenge-submission-area > div:first-child {
+    margin-bottom: 0.5rem;
   }
 
   .discussion-area {
