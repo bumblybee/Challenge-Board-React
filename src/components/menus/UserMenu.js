@@ -13,7 +13,7 @@ const UserMenu = ({ handleClose }) => {
     await logoutUser();
     setUser(null);
     handleClose(false);
-    history.push("/challenge");
+    history.replace("/challenge");
   };
 
   return (
