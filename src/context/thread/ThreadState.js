@@ -133,6 +133,7 @@ const ThreadState = ({ children }) => {
         deleteUserComment,
         deleteThreadQuestion,
         promoteAnswer,
+        demoteAnswer,
       }}
     >
       {children}

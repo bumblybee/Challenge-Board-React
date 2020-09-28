@@ -13,7 +13,11 @@ const ErrorState = ({ children }) => {
     }, 8000);
   };
 
-  const value = useMemo(() => ({ errorMessage, setError }), [errorMessage]);
+  const value = useMemo(
+    () => ({ errorMessage, setError }),
+    //eslint-disable-next-line
+    [errorMessage]
+  );
 
   return (
     <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>

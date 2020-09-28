@@ -13,8 +13,7 @@ const Challenge = () => {
   const { user, getCurrentUser, isLoading } = useContext(UserContext);
 
   useEffect(() => {
-    getCurrentUser();
-
+    // getCurrentUser();
     //eslint-disable-next-line
   }, []);
 

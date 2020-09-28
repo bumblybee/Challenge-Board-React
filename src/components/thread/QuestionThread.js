@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
-import TextTruncate from "react-text-truncate";
 
 import { useHistory, useLocation } from "react-router-dom";
 
