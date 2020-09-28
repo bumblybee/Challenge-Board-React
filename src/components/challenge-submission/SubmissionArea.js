@@ -206,8 +206,10 @@ const SubmissionArea = () => {
 
       {isSubmitted && (
         <Modal>
-          <StyledModalBody className="modal-body">
-            <h1>Your project has been Submitted!</h1>
+          <StyledModalBody>
+            <StyledConfirmationH1>
+              Your project has been Submitted!
+            </StyledConfirmationH1>
             <StyledConfirmationParagraph>
               Look for an email confirmation shortly.
             </StyledConfirmationParagraph>

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const StyledModalBody = styled.div`
-  height: 19rem;
-  padding: 1rem;
+  height: 10rem;
+
+  width: 110%;
 `;
 
 const StyledTimestampParagraph = styled.p`
@@ -13,9 +14,8 @@ const StyledTimestampParagraph = styled.p`
   font-size: 1rem;
 `;
 
-
 const StyledConfirmationH1 = styled.h1`
-  margin-top: 20%;
+  margin-top: 24%;
   @media (max-width: 600px) {
     margin-top: 40%;
   }
