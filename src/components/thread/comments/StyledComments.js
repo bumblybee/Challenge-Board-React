@@ -73,6 +73,10 @@ const StyledSubmitButton = styled.button`
   margin-left: auto;
   border: none;
   background: #18191b;
+
+  :focus {
+    outline: none;
+  }
 `;
 
 const StyledTruncate = styled(TextTruncate)`
