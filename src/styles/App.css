@@ -293,7 +293,7 @@ iframe {
   flex-shrink: 0;
   align-items: center;
   margin-bottom: 1rem;
-  padding: 3rem 1.5rem 0;
+  padding: 3rem 1rem 0;
 }
 
 .discussion-header-container button {
@@ -564,7 +564,7 @@ iframe {
   .discussion-area,
   .discussion-header-container {
     margin: 0 0 0.5rem;
-    padding: 0.4rem;
+    padding: 0.5rem;
     border-radius: 0;
   }
 
