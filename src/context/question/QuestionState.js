@@ -10,9 +10,13 @@ import {
 const QuestionState = ({ children }) => {
   const [questions, setQuestions] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchQuestions = async () => {
+    setIsLoading(true);
     const questionsArray = await getQuestions();
     setQuestions(questionsArray);
+    questionsArray && setIsLoading(false);
   };
 
   const submitNewQuestion = async (data) => {
@@ -22,7 +26,6 @@ const QuestionState = ({ children }) => {
       return updatedQuestions;
     } else {
       setQuestions(updatedQuestions.data.questions);
-      // return updatedQuestions;
     }
   };
 
@@ -56,6 +59,7 @@ const QuestionState = ({ children }) => {
         submitNewQuestion,
         updateQuestion,
         deleteUserQuestion,
+        isLoading,
       }}
     >
       {children}

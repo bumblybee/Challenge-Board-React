@@ -58,10 +58,16 @@ const StyledFormLink = styled(Link)`
   display: block;
 `;
 
+const StyledLoader = styled.img`
+  display: block;
+  margin: ${(props) => (props.isInThread ? "30% auto" : "50% auto")};
+`;
+
 export {
   StyledSpan,
   StyledFormLink,
   StyledTransparentButton,
   StyledPurpleButton,
   StyledTextarea,
+  StyledLoader,
 };
