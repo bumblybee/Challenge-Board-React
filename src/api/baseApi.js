@@ -3,7 +3,7 @@ import { handleErrors, handleErrorsArray } from "../handlers/errorHandler";
 
 const instance = axios.create({
   //https://salty-anchorage-50289.herokuapp.com
-  baseURL: "http://localhost:9000",
+  baseURL: "https://salty-anchorage-50289.herokuapp.com",
   withCredentials: true,
   crossDomain: true,
 });
