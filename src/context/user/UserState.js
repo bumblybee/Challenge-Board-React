@@ -6,17 +6,20 @@ import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
   const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getCurrentUser();
   }, []);
 
   const getCurrentUser = async () => {
+    setIsLoading(true);
     const userData = await getUser();
     if (userData.error || !userData) {
       return;
     } else {
       setUser(userData.data.user);
+      setIsLoading(false);
     }
   };
 
@@ -49,7 +52,14 @@ const UserState = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, getCurrentUser, handleSignup, handleLogin }}
+      value={{
+        user,
+        setUser,
+        getCurrentUser,
+        handleSignup,
+        handleLogin,
+        isLoading,
+      }}
     >
       {children}
     </UserContext.Provider>

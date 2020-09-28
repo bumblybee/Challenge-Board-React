@@ -19,16 +19,13 @@ import {
 const ThreadState = ({ children }) => {
   const [threadQuestion, setThreadQuestion] = useState("");
   const [comments, setComments] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const fetchThread = async (questionId) => {
-    setIsLoading(true);
     const data = await getQuestionThread(questionId);
 
     setThreadQuestion(data.question);
 
     setComments(data.question.comments);
-    setIsLoading(false);
   };
 
   const deleteThreadQuestion = async (question) => {
@@ -136,8 +133,6 @@ const ThreadState = ({ children }) => {
         deleteUserComment,
         deleteThreadQuestion,
         promoteAnswer,
-        demoteAnswer,
-        isLoading,
       }}
     >
       {children}

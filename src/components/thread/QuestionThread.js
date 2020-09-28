@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
-import loading from "../../assets/loading.gif";
 import moment from "moment";
 import DOMPurify from "dompurify";
 import Truncate from "react-truncate";
@@ -14,10 +13,7 @@ import ThreadAnswer from "./ThreadAnswer";
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 
-import {
-  StyledPurpleButton,
-  StyledLoader,
-} from "../../styles/GlobalStyledComponents";
+import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
 
 import {
   StyledSpan,
@@ -37,9 +33,7 @@ const QuestionThread = () => {
   const location = useLocation();
 
   const { user } = useContext(UserContext);
-  const { fetchThread, threadQuestion, comments, isLoading } = useContext(
-    ThreadContext
-  );
+  const { fetchThread, threadQuestion, comments } = useContext(ThreadContext);
 
   const date = moment(threadQuestion.createdAt).format("L");
   const path = location.pathname.split("/");
@@ -140,11 +134,7 @@ const QuestionThread = () => {
             <ThreadAnswer key={comment.id} comment={comment} />
           ))}
       </div>
-      {isLoading ? (
-        <StyledLoader isInThread={true} src={loading} alt="" />
-      ) : (
-        <CommentsList questionId={questionId} />
-      )}
+      <CommentsList questionId={questionId} />
     </Fragment>
   );
 };

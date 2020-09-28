@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
-import loading from "../../assets/loading.gif";
 
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
@@ -13,7 +12,6 @@ import {
   StyledPurpleButton,
   StyledTransparentButton,
   StyledTextarea,
-  StyledLoader,
 } from "../../styles/GlobalStyledComponents";
 
 const QuestionsList = () => {
@@ -21,12 +19,9 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const {
-    questions,
-    submitNewQuestion,
-    fetchQuestions,
-    isLoading,
-  } = useContext(QuestionContext);
+  const { questions, submitNewQuestion, fetchQuestions } = useContext(
+    QuestionContext
+  );
   const [isOpen, setIsOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
@@ -142,15 +137,11 @@ const QuestionsList = () => {
         )}
       </div>
       <div className="questions-container">
-        {isLoading ? (
-          <StyledLoader src={loading} alt="" />
-        ) : (
-          <ul className="questions-thread">
-            {questions.map((question) => (
-              <QuestionCard question={question} key={question.id} />
-            ))}
-          </ul>
-        )}
+        <ul className="questions-thread">
+          {questions.map((question) => (
+            <QuestionCard question={question} key={question.id} />
+          ))}
+        </ul>
       </div>
     </Fragment>
   );
