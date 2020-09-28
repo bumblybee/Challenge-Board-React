@@ -82,6 +82,7 @@ const SubmissionArea = () => {
         date: moment(submission.updatedAt).format("L"),
         time: moment(submission.updatedAt).format("h:mm"),
       });
+      setPriorProject(submission.data);
     }
   };
 
@@ -125,13 +126,13 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                      ...priorProject,
-                      githubLink: e.target.value,
-                    })
+                        ...priorProject,
+                        githubLink: e.target.value,
+                      })
                     : setInitialProject({
-                      ...initialProject,
-                      githubLink: e.target.value,
-                    })
+                        ...initialProject,
+                        githubLink: e.target.value,
+                      })
                 }
                 type="url"
                 title="Link must start with https://"
@@ -149,13 +150,13 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                      ...priorProject,
-                      additionalLink: e.target.value,
-                    })
+                        ...priorProject,
+                        additionalLink: e.target.value,
+                      })
                     : setInitialProject({
-                      ...initialProject,
-                      additionalLink: e.target.value,
-                    })
+                        ...initialProject,
+                        additionalLink: e.target.value,
+                      })
                 }
                 title="Link must start with https://"
                 type="url"
@@ -170,13 +171,13 @@ const SubmissionArea = () => {
                 onChange={(e) =>
                   hasPriorProject
                     ? setPriorProject({
-                      ...priorProject,
-                      comment: e.target.value,
-                    })
+                        ...priorProject,
+                        comment: e.target.value,
+                      })
                     : setInitialProject({
-                      ...initialProject,
-                      comment: e.target.value,
-                    })
+                        ...initialProject,
+                        comment: e.target.value,
+                      })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
@@ -206,9 +207,7 @@ const SubmissionArea = () => {
       {isSubmitted && (
         <Modal>
           <StyledModalBody className="modal-body">
-            <h1>
-              Your project has been Submitted!
-            </h1>
+            <h1>Your project has been Submitted!</h1>
             <StyledConfirmationParagraph>
               Look for an email confirmation shortly.
             </StyledConfirmationParagraph>
@@ -242,45 +241,45 @@ const SubmissionArea = () => {
           </div>
         </div>
       ) : (
-          <div className="submission-content">
-            <h4 className="heading">SUBMISSION</h4>
-            {user && user.role === "Teacher" ? (
-              <Fragment>
-                <h1>View Student Submissions</h1>
-                <p>Project submissions page</p>
-              </Fragment>
-            ) : (
-                <Fragment>
-                  <h1>Submit Your Project</h1>
-                  <p>When you're ready, submit your Github link here for review.</p>
-                </Fragment>
-              )}
+        <div className="submission-content">
+          <h4 className="heading">SUBMISSION</h4>
+          {user && user.role === "Teacher" ? (
+            <Fragment>
+              <h1>View Student Submissions</h1>
+              <p>Project submissions page</p>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <h1>Submit Your Project</h1>
+              <p>When you're ready, submit your Github link here for review.</p>
+            </Fragment>
+          )}
 
-            {user && user.role === "Student" ? (
-              <StyledPurpleButton
-                onClick={() => setIsOpen(!isOpen)}
-                className="modal-button"
-                id="submit-button"
-              >
-                Submit Project
-              </StyledPurpleButton>
-            ) : user && user.role === "Teacher" ? (
-              <StyledPurpleButton
-                onClick={(e) => e.preventDefault()}
-                className="modal-button"
-              >
-                View Submissions
-              </StyledPurpleButton>
-            ) : (
-                  <StyledPurpleButton
-                    className="modal-button"
-                    onClick={() => history.push("/login")}
-                  >
-                    Log in to Submit Project
-                  </StyledPurpleButton>
-                )}
-          </div>
-        )}
+          {user && user.role === "Student" ? (
+            <StyledPurpleButton
+              onClick={() => setIsOpen(!isOpen)}
+              className="modal-button"
+              id="submit-button"
+            >
+              Submit Project
+            </StyledPurpleButton>
+          ) : user && user.role === "Teacher" ? (
+            <StyledPurpleButton
+              onClick={(e) => e.preventDefault()}
+              className="modal-button"
+            >
+              View Submissions
+            </StyledPurpleButton>
+          ) : (
+            <StyledPurpleButton
+              className="modal-button"
+              onClick={() => history.push("/login")}
+            >
+              Log in to Submit Project
+            </StyledPurpleButton>
+          )}
+        </div>
+      )}
     </div>
   );
 };
