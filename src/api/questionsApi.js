@@ -2,7 +2,7 @@ import { get, post, put, deleteRequest } from "./baseApi";
 
 const getQuestions = async () => {
   const res = await get("/questions");
-  return res.data;
+  return res;
 };
 
 const getQuestionThread = async (id) => {

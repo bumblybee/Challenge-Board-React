@@ -12,7 +12,12 @@ const QuestionState = ({ children }) => {
 
   const fetchQuestions = async () => {
     const questionsArray = await getQuestions();
-    setQuestions(questionsArray);
+
+    if (questionsArray && questionsArray.error) {
+      return;
+    } else {
+      setQuestions(questionsArray.data);
+    }
   };
 
   const submitNewQuestion = async (data) => {

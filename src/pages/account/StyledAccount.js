@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const StyledHelloH1 = styled.h1`
-  text-align: center;
   padding: 2rem 0;
   color: #fff;
-  font-family: "Arial", "Helvetica", sans-serif;
+  font-family: "Roboto", "Helvetica", sans-serif;
 `;
 
 const StyledCategoryH3 = styled.h3`
@@ -44,7 +43,7 @@ const StyledAccountDiv = styled.div`
 `;
 
 const StyledAccountPostsDiv = styled.div`
-  width: 90%; 
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -52,13 +51,8 @@ const StyledAccountPostsDiv = styled.div`
   border-radius: 6px;
   border-bottom-right-radius: 6px;
 
-   @media (max-width: 620px) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+  @media (max-width: 620px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -67,6 +61,10 @@ const StyledPostList = styled.ul`
   padding: 0 0.5rem 1rem;
   width: 100%;
   margin-bottom: 1rem;
+
+  @media (max-width: 620px) {
+    padding: 0;
+  }
 `;
 
 const StyledAccountPost = styled.li`
@@ -81,6 +79,10 @@ const StyledAccountPost = styled.li`
     cursor: pointer;
     transform: scale(0.99);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 620px) {
+    width: 100%;
   }
 `;
 

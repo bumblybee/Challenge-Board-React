@@ -49,19 +49,22 @@ const SubmissionArea = () => {
   const getUserProject = async () => {
     const res = await getProject();
 
-    if (res.error) {
+    if (res && res.error) {
       return;
     }
-    const project = res.data.project;
-    if (project !== null) {
-      setPriorProject(project);
-      setHasPriorProject(true);
 
-      setProjectTimestamp({
-        ...projectTimestamp,
-        date: moment(project.updatedAt).format("L"),
-        time: moment(project.updatedAt).format("h:mm"),
-      });
+    if (res && res.project && res.project.data) {
+      const project = res.data.project;
+      if (project !== null) {
+        setPriorProject(project);
+        setHasPriorProject(true);
+
+        setProjectTimestamp({
+          ...projectTimestamp,
+          date: moment(project.updatedAt).format("L"),
+          time: moment(project.updatedAt).format("h:mm"),
+        });
+      }
     }
   };
 
