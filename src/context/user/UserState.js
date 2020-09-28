@@ -16,6 +16,7 @@ const UserState = ({ children }) => {
     setIsLoading(true);
     const userData = await getUser();
     if (userData.error || !userData) {
+      setIsLoading(false);
       return;
     } else {
       setUser(userData.data.user);

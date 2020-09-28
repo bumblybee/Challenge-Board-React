@@ -60,12 +60,7 @@ const StyledFormLink = styled(Link)`
 
 const StyledLoader = styled.img`
   display: block;
-  margin: ${(props) =>
-    props.isInThread
-      ? "30% auto"
-      : props.isUserState
-      ? "25% auto"
-      : "50% auto"};
+  margin: 25% auto;
 `;
 
 export {
