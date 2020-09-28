@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
-import Truncate from "react-truncate";
+import TextTruncate from "react-text-truncate";
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -22,6 +22,7 @@ import {
   StyledQuestionTitle,
   StyledQuestionText,
   StyledDateDiv,
+  StyledTruncate,
 } from "../questions/StyledQuestions";
 
 const QuestionThread = () => {
@@ -109,18 +110,15 @@ const QuestionThread = () => {
               {sanitize(threadQuestion.title)}
             </StyledQuestionTitle>
             {isTruncated ? (
-              <Truncate
-                lines={3}
-                ellipsis={
-                  <span>
-                    ... <StyledSpan onClick={handleTruncate}>more</StyledSpan>
-                  </span>
+              <StyledTruncate
+                line={3}
+                element="div"
+                truncateText="..."
+                text={sanitize(threadQuestion.body)}
+                textTruncateChild={
+                  <StyledSpan onClick={handleTruncate}>more</StyledSpan>
                 }
-                trimWhitespace
-                style={{ color: "#dcddde", fontWeight: "300" }}
-              >
-                {sanitize(threadQuestion.body)}
-              </Truncate>
+              />
             ) : (
               <StyledQuestionText>
                 {sanitize(threadQuestion.body)}{" "}

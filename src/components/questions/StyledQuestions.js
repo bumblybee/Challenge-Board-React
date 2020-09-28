@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import TextTruncate from "react-text-truncate";
 
 const StyledMenuIcon = styled.i`
   ${(props) =>
@@ -64,6 +65,11 @@ const StyledViewThreadDiv = styled.div`
   padding: 0 1rem 0;
 `;
 
+const StyledTruncate = styled(TextTruncate)`
+  color: #dcddde;
+  fontweight: 300;
+`;
+
 export {
   StyledMenuIcon,
   StyledAnswerIcon,
@@ -75,4 +81,5 @@ export {
   StyledDateDiv,
   StyledViewThreadDiv,
   StyledIsAnsweredIcon,
+  StyledTruncate,
 };
