@@ -32,7 +32,7 @@ const StyledPurpleButton = styled.button`
     cursor: pointer;
     background: #809bff;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     font-size: 0.9rem;
     padding: 8px 12px;
   }
@@ -60,7 +60,15 @@ const StyledFormLink = styled(Link)`
 
 const StyledLoader = styled.img`
   display: block;
-  margin: 25% auto;
+  margin: 20% auto;
+
+  @media (max-width: 900px) {
+    margin: 50% auto;
+  }
+
+  @media (max-width: 620px) {
+    margin: 55% auto;
+  }
 `;
 
 export {
