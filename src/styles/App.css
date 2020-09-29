@@ -217,32 +217,6 @@ i:hover {
   color: var(--primary-text);
 }
 
-.container {
-  width: 80%;
-  margin: 3rem auto;
-
-  height: 900px;
-
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-}
-
-.heading {
-  font-weight: lighter;
-  color: var(--secondary-text);
-}
-
-.challenge-submission-area {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  max-height: 900px;
-}
-
-.challenge-submission-area > div:first-child {
-  margin-bottom: 1rem;
-}
-
 .challenge-container,
 .submission-container {
   background: var(--secondary-background);
@@ -394,11 +368,6 @@ iframe {
   font-weight: 500;
 }
 
-.thread-question {
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
 .comments-container {
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -414,18 +383,9 @@ iframe {
   .login-form-content {
     width: 45%;
   }
-
-  .container {
-    width: 90%;
-  }
 }
 
 @media all and (max-width: 1045px) {
-  .container {
-    display: flex;
-    flex-direction: column;
-  }
-
   .modal-content,
   .signup-form-content,
   .login-form-content {
@@ -519,24 +479,6 @@ iframe {
     margin-bottom: 0.5rem;
   }
 
-  .container {
-    /* height: 100%; */
-    margin: 1rem 0 0;
-    width: 100%;
-  }
-
-  .challenge-submission-area {
-    height: 100%;
-  }
-
-  .challenge-submission-area p {
-    font-size: 0.95rem;
-  }
-
-  .heading {
-    font-size: 0.8rem;
-  }
-
   .challenge-container {
     padding: 1rem;
     border-radius: 0;
@@ -549,10 +491,6 @@ iframe {
     margin: 0 0 0.5rem;
     padding: 0.5rem;
     border-radius: 0;
-  }
-
-  .challenge-submission-area > div:first-child {
-    margin-bottom: 0.5rem;
   }
 
   .discussion-area {

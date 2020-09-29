@@ -77,7 +77,7 @@ const QuestionThread = () => {
   return (
     <Fragment>
       <div className="discussion-header-container thread">
-        <div className="discussion-header">
+        <div>
           <StyledHeading>DISCUSSION</StyledHeading>
           <h1>Ask a Question</h1>
         </div>

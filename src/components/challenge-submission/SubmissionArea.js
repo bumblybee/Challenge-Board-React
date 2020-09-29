@@ -249,7 +249,7 @@ const SubmissionArea = () => {
         </div>
       ) : (
         <div className="submission-content">
-          <h4 className="heading">SUBMISSION</h4>
+          <StyledHeading>SUBMISSION</StyledHeading>
           {user && user.role === "Teacher" ? (
             <Fragment>
               <h1>View Student Submissions</h1>

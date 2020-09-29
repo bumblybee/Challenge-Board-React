@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledHeading = styled.h4`
-  font-weight: lighter;
+  font-weight: 300;
   color: #dcddde;
 
   @media (max-width: 620px) {
@@ -40,6 +40,10 @@ const StyledPurpleButton = styled.button`
   :hover {
     cursor: pointer;
     background: #809bff;
+  }
+
+  @media (max-width: 620px) {
+    font-size: 0.95rem;
   }
 `;
 
