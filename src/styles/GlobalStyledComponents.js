@@ -59,16 +59,10 @@ const StyledFormLink = styled(Link)`
 `;
 
 const StyledLoader = styled.img`
-  display: block;
-  margin: 20% auto;
-
-  @media (max-width: 900px) {
-    margin: 50% auto;
-  }
-
-  @media (max-width: 620px) {
-    margin: 55% auto;
-  }
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export {
