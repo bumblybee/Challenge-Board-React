@@ -39,7 +39,7 @@ export const StyledChallengeSubmissionArea = styled.div`
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
   }
 `;

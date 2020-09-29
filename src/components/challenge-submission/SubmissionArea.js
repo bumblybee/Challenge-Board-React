@@ -107,7 +107,7 @@ const SubmissionArea = () => {
   };
 
   return (
-    <div className="submission-container">
+    <sc.StyledSubmissionContainer>
       {isOpen && (
         <Modal>
           <div className="modal-header">
@@ -223,11 +223,11 @@ const SubmissionArea = () => {
       )}
 
       {hasPriorProject && user ? (
-        <div className="submission-content">
+        <sc.StyledSubmissionContent>
           <StyledHeading>SUBMISSION</StyledHeading>
-          <h1>Submit Your Project</h1>
+          <sc.StyledH1>Submit Your Project</sc.StyledH1>
           <p>When you're ready, submit your Github link here for review.</p>
-          <div className="edit-submission">
+          <sc.StyledEditSubmission>
             <StyledPurpleButton
               onClick={() => setIsOpen(!isOpen)}
               className="modal-button edit-submission-button"
@@ -240,10 +240,10 @@ const SubmissionArea = () => {
               Project submitted at {projectTimestamp.time} on{" "}
               {projectTimestamp.date}
             </sc.StyledTimestampParagraph>
-          </div>
-        </div>
+          </sc.StyledEditSubmission>
+        </sc.StyledSubmissionContent>
       ) : (
-        <div className="submission-content">
+        <sc.StyledSubmissionContent>
           <StyledHeading>SUBMISSION</StyledHeading>
           {user && user.role === "Teacher" ? (
             <Fragment>
@@ -280,9 +280,9 @@ const SubmissionArea = () => {
               Log In to Submit Project
             </StyledPurpleButton>
           )}
-        </div>
+        </sc.StyledSubmissionContent>
       )}
-    </div>
+    </sc.StyledSubmissionContainer>
   );
 };
 

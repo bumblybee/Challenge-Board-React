@@ -217,8 +217,7 @@ i:hover {
   color: var(--primary-text);
 }
 
-.challenge-container,
-.submission-container {
+.challenge-container {
   background: var(--secondary-background);
   padding: 2.9rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -235,19 +234,6 @@ i:hover {
 
 .challenge-container {
   flex-grow: 1;
-}
-
-.submission-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.submission-container .edit-submission {
-  display: flex;
-}
-
-.submission-content h1 {
-  margin-bottom: 0.2rem;
 }
 
 iframe {
@@ -392,7 +378,6 @@ iframe {
     width: 50%;
   }
 
-  .submission-container,
   .challenge-container {
     margin-right: 0;
   }
@@ -402,8 +387,7 @@ iframe {
     margin-bottom: 1rem;
   }
 
-  .challenge-container,
-  .submission-container {
+  .challenge-container {
     width: 100%;
     margin-bottom: 1rem;
   }
@@ -484,8 +468,6 @@ iframe {
     border-radius: 0;
   }
 
-  .submission-container,
-  .submission-content,
   .discussion-area,
   .discussion-header-container {
     margin: 0 0 0.5rem;
