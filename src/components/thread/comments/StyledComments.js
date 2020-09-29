@@ -73,13 +73,34 @@ const StyledCommentsForm = styled.form`
 `;
 
 const StyledSubmitButton = styled.button`
-  margin-left: auto;
-  border: none;
-  background: #18191b;
-
+  ${(props) =>
+    props.isTyping
+      ? css`
+          margin-left: auto;
+          border: none;
+          background: #809bff;
+          border-radius: 6px;
+        `
+      : css`
+          margin-left: auto;
+          border: none;
+          background: #18191b;
+        `}
   :focus {
     outline: none;
   }
+`;
+
+const StyledSubmitIcon = styled.i`
+  ${(props) =>
+    props.isTyping
+      ? css`
+          color: #fff;
+          padding: 5px 10px;
+        `
+      : css`
+          color: #7d8088;
+        `}
 `;
 
 const StyledTruncate = styled(TextTruncate)`
@@ -98,6 +119,7 @@ export {
   StyledSpan,
   StyledCommentText,
   StyledSubmitButton,
+  StyledSubmitIcon,
   StyledCommentsForm,
   StyledTruncate,
 };

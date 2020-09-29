@@ -9,6 +9,7 @@ import TextareaAutosize from "react-autosize-textarea";
 import {
   StyledCommentsThread,
   StyledSubmitButton,
+  StyledSubmitIcon,
   StyledCommentsForm,
 } from "./StyledComments";
 
@@ -71,8 +72,15 @@ const CommentsList = ({ questionId }) => {
           disabled={!user ? true : false}
         />
 
-        <StyledSubmitButton className="submit-comment" type="submit">
-          <i className="fas fa-paper-plane"></i>
+        <StyledSubmitButton
+          className="submit-comment"
+          type="submit"
+          isTyping={newComment.body ? true : false}
+        >
+          <StyledSubmitIcon
+            className="fas fa-paper-plane"
+            isTyping={newComment.body ? true : false}
+          ></StyledSubmitIcon>
         </StyledSubmitButton>
       </StyledCommentsForm>
     </div>
