@@ -14,11 +14,21 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
     promoteAnswer,
     demoteAnswer,
   } = useContext(ThreadContext);
+
   const { deleteUserQuestion } = useContext(QuestionContext);
 
   const handlePromoteAnswer = async () => {
     const answer = await promoteAnswer(comment);
-    answer && answer.error ? setError(answer.error) : toggleMenu();
+
+    answer && answer.error && setError(answer.error);
+
+    toggleMenu();
+  };
+
+  const handleDeleteThreadQuestion = async (question) => {
+    const deletedQuestion = await deleteThreadQuestion(question);
+    deletedQuestion && deletedQuestion.data && history.push("/challenge");
+    toggleMenu();
   };
 
   if (question) {
@@ -29,9 +39,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
             onClick={
               threadQuestion
                 ? () => {
-                    deleteThreadQuestion(question);
-                    toggleMenu();
-                    history.push("/challenge");
+                    handleDeleteThreadQuestion(question);
                   }
                 : () => deleteUserQuestion(question)
             }
