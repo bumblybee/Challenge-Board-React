@@ -49,9 +49,9 @@ const StyledSpan = styled.span`
 `;
 const StyledFormLink = styled(Link)`
   color: #809bff;
-  font-size: 1rem;
-  font-family: "Times New Roman", Times, serif;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-family: "Roboto Slab", Times, serif;
+  font-weight: 400;
   text-align: center;
   margin-top: 1rem;
   display: block;

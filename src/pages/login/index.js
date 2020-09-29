@@ -70,11 +70,11 @@ const Login = () => {
               name="login-password"
               id="login-password"
               required
-              minLength="5"
+              minLength="8"
             ></input>
           </div>
 
-          <StyledPurpleButton type="submit">Log in</StyledPurpleButton>
+          <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
         </form>
         {discordUrl && (
           <Fragment>
@@ -89,14 +89,14 @@ const Login = () => {
                 }}
                 className="fab fa-discord fa-2x"
               ></i>
-              Log in with Discord
+              Log In with Discord
             </StyledDiscordButton>
           </Fragment>
         )}
         <StyledFormLink to="/reset-password-request">
-          Forgot password?
+          Forgot your password?
         </StyledFormLink>
-        <StyledFormLink to="/signup">Need to Register?</StyledFormLink>
+        <StyledFormLink to="/signup">Need to sign up?</StyledFormLink>
       </div>
     </div>
   );
