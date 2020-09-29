@@ -31,6 +31,11 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
     toggleMenu();
   };
 
+  const handleDeleteUserQuestion = async (question) => {
+    const deletedQuestion = await deleteUserQuestion(question);
+    toggleMenu();
+  };
+
   if (question) {
     return (
       <Fragment>
@@ -41,7 +46,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
                 ? () => {
                     handleDeleteThreadQuestion(question);
                   }
-                : () => deleteUserQuestion(question)
+                : () => handleDeleteUserQuestion(question)
             }
           >
             Remove Post
