@@ -1,10 +1,12 @@
 import React from "react";
 
+import { StyledHeading } from "../../styles/GlobalStyledComponents";
+
 const ChallengeArea = () => {
   return (
     <div className="challenge-container">
       <div className="challenge-header">
-        <h4 className="heading">CHALLENGE #1</h4>
+        <StyledHeading>CHALLENGE #1</StyledHeading>
         <h1>Turn any Design into HTML</h1>
       </div>
       <div className="challenge-video-area">

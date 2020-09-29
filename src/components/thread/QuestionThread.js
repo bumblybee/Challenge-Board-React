@@ -12,7 +12,10 @@ import ThreadAnswer from "./ThreadAnswer";
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 
-import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+import {
+  StyledHeading,
+  StyledPurpleButton,
+} from "../../styles/GlobalStyledComponents";
 
 import {
   StyledSpan,
@@ -25,6 +28,7 @@ import {
   StyledName,
   StyledDate,
   StyledTruncate,
+  StyledIconsDiv,
 } from "../questions/StyledQuestions";
 
 const QuestionThread = () => {
@@ -74,7 +78,7 @@ const QuestionThread = () => {
     <Fragment>
       <div className="discussion-header-container thread">
         <div className="discussion-header">
-          <h4 className="heading">DISCUSSION</h4>
+          <StyledHeading>DISCUSSION</StyledHeading>
           <h1>Ask a Question</h1>
         </div>
 
@@ -83,15 +87,15 @@ const QuestionThread = () => {
         </StyledPurpleButton>
       </div>
 
-      <div className="thread-container">
-        <StyledThreadQuestion className="thread-question">
+      <div>
+        <StyledThreadQuestion>
           <StyledQuestionHeader>
             <StyledName>
               {threadQuestion.user && threadQuestion.user.username}
             </StyledName>
             <StyledDate>{date}</StyledDate>
 
-            <div className="icons">{user && renderMenuIcon()}</div>
+            <StyledIconsDiv>{user && renderMenuIcon()}</StyledIconsDiv>
             {isOpen && user !== null && user.role === "Teacher" ? (
               <TeacherMenu
                 question={threadQuestion}

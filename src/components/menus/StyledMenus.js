@@ -26,7 +26,7 @@ const StyledTeacherMenu = styled.div`
     width: 20%;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 620px) {
     width: 35%;
   }
 

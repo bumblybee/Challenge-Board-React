@@ -9,6 +9,7 @@ import { ErrorContext } from "../../context/error/ErrorContext";
 
 import Modal from "../../components/layout/Modal";
 import {
+  StyledHeading,
   StyledPurpleButton,
   StyledTransparentButton,
 } from "../../styles/GlobalStyledComponents";
@@ -228,7 +229,7 @@ const SubmissionArea = () => {
 
       {hasPriorProject && user ? (
         <div className="submission-content">
-          <h4 className="heading">SUBMISSION</h4>
+          <StyledHeading>SUBMISSION</StyledHeading>
           <h1>Submit Your Project</h1>
           <p>When you're ready, submit your Github link here for review.</p>
           <div className="edit-submission">

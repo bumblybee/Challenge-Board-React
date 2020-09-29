@@ -70,6 +70,8 @@ const StyledThreadQuestion = styled.div`
   background: #3a3c42;
   padding: 1rem;
   position: relative;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `;
 
 const StyledQuestionTitle = styled.div`

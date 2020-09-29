@@ -9,6 +9,7 @@ import QuestionCard from "./QuestionCard";
 import Modal from "../../components/layout/Modal";
 
 import {
+  StyledHeading,
   StyledPurpleButton,
   StyledTransparentButton,
   StyledTextarea,
@@ -112,7 +113,7 @@ const QuestionsList = () => {
 
       <div className="discussion-header-container">
         <div className="discussion-header">
-          <h4 className="heading">DISCUSSION</h4>
+          <StyledHeading>DISCUSSION</StyledHeading>
           {user && user.role === "Teacher" ? (
             <h1>Challenge Questions</h1>
           ) : (
