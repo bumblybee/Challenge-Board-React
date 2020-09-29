@@ -26,9 +26,12 @@ const UserMenu = ({ handleClose }) => {
             </Link>
           </li>
         )}
-        <li className="settings">
-          <Link to="/settings">Settings</Link>
-        </li>
+        {user && (
+          <li className="settings">
+            <Link to="/settings">Settings</Link>
+          </li>
+        )}
+
         <hr />
         <li className="signup-link">
           {/* Handle close closes user menu */}
@@ -46,7 +49,7 @@ const UserMenu = ({ handleClose }) => {
               Login
             </Link>
           ) : (
-            <p onClick={logout}>Logout</p>
+            <p onClick={logout}>Log Out</p>
           )}
         </li>
       </ul>

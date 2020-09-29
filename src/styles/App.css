@@ -200,8 +200,12 @@ i:hover {
   display: block;
 }
 
-.user-menu li {
+.user-menu li:not(:first-child) {
   margin-top: 1rem;
+}
+
+.user-menu li:first-child {
+  margin-bottom: 2rem;
 }
 
 .user-menu hr {
