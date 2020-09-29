@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const StyledTeacherMenu = styled.div`
   background: #18191b;
-  ont-size: 1.05rem;
+  font-size: 1rem;
+  font-weight: 300;
   padding: 0.5rem 1rem;
   width: 30%;
   position: absolute;
@@ -36,7 +37,8 @@ const StyledTeacherMenu = styled.div`
 
 const StyledStudentMenu = styled.div`
   background: #18191b;
-  font-size: 1.05rem;
+  font-size: 1rem;
+  font-weight: 300;
   padding: 1rem;
   width: 35%;
   position: absolute;

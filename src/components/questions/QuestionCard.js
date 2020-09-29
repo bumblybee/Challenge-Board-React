@@ -55,14 +55,14 @@ const QuestionCard = ({ question, reRenderList }) => {
           {user && renderMenuIcon()}
         </StyledIconsDiv>
 
-        {isOpen && user.role === "Teacher" ? (
+        {isOpen && user !== null && user.role === "Teacher" ? (
           <TeacherMenu
             question={question}
             deleteUserQuestion={() => {
               toggleMenu();
             }}
           ></TeacherMenu>
-        ) : isOpen && user.role === "Student" ? (
+        ) : isOpen && user !== null && user.role === "Student" ? (
           <StudentMenu
             toggleMenu={toggleMenu}
             question={question}
