@@ -18,9 +18,12 @@ import {
   StyledSpan,
   StyledMenuIcon,
   StyledThreadQuestion,
+  StyledQuestionHeader,
   StyledQuestionTitle,
+  StyledQuestionBody,
   StyledQuestionText,
-  StyledDateDiv,
+  StyledName,
+  StyledDate,
   StyledTruncate,
 } from "../questions/StyledQuestions";
 
@@ -82,11 +85,11 @@ const QuestionThread = () => {
 
       <div className="thread-container">
         <StyledThreadQuestion className="thread-question">
-          <div className="question-header">
-            <div className="name">
+          <StyledQuestionHeader>
+            <StyledName>
               {threadQuestion.user && threadQuestion.user.username}
-            </div>
-            <StyledDateDiv className="created-at">{date}</StyledDateDiv>
+            </StyledName>
+            <StyledDate>{date}</StyledDate>
 
             <div className="icons">{user && renderMenuIcon()}</div>
             {isOpen && user !== null && user.role === "Teacher" ? (
@@ -103,8 +106,8 @@ const QuestionThread = () => {
             ) : (
               ""
             )}
-          </div>
-          <div className="question-body">
+          </StyledQuestionHeader>
+          <StyledQuestionBody>
             <StyledQuestionTitle>
               {sanitize(threadQuestion.title)}
             </StyledQuestionTitle>
@@ -124,7 +127,7 @@ const QuestionThread = () => {
                 <StyledSpan onClick={handleTruncate}>less</StyledSpan>
               </StyledQuestionText>
             )}
-          </div>
+          </StyledQuestionBody>
         </StyledThreadQuestion>
         {comments &&
           comments.map((comment) => (

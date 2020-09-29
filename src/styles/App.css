@@ -357,20 +357,6 @@ iframe {
   flex-direction: column;
 }
 
-.question-card {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 1rem 0 1rem 1rem;
-  background: var(--card-background);
-  flex-shrink: 0;
-  position: relative;
-}
-
-.question-card:nth-child(n + 2) {
-  margin-top: 0.5rem;
-}
-
-.question-header,
 .comment-header {
   display: flex;
   font-size: 0.9rem;
@@ -391,25 +377,10 @@ iframe {
   margin-left: auto;
 }
 
-.question-body,
 .comment-body {
   padding: 0.5rem 0;
   font-size: 1rem;
   word-spacing: 0.03rem;
-}
-
-.question-footer {
-  display: flex;
-}
-
-.answer-count,
-.comment-count {
-  color: var(--tertiary-text);
-  font-size: 0.9rem;
-}
-
-.answer-count {
-  margin-right: 1rem;
 }
 
 .view-thread {

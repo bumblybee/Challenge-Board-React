@@ -7,9 +7,17 @@ import { UserContext } from "../../context/user/UserContext";
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
 import {
+  StyledQuestionCard,
+  StyledQuestionHeader,
+  StyledQuestionBody,
+  StyledName,
+  StyledDate,
+  StyledQuestionFooter,
   StyledMenuIcon,
   StyledIconsDiv,
+  StyledCommentCount,
   StyledViewThreadDiv,
+  StyledViewThreadLink,
   StyledIsAnsweredIcon,
 } from "./StyledQuestions";
 
@@ -41,11 +49,11 @@ const QuestionCard = ({ question, reRenderList }) => {
   };
 
   return (
-    <li className="question-card">
-      <div className="question-header">
-        <div className="name">{question.user.username}</div>
-        <div className="created-at">{date}</div>
-        <StyledIconsDiv className="icons" isOpen={isOpen}>
+    <StyledQuestionCard>
+      <StyledQuestionHeader>
+        <StyledName>{question.user.username}</StyledName>
+        <StyledDate>{date}</StyledDate>
+        <StyledIconsDiv isOpen={isOpen}>
           {question.isAnswered ? (
             <StyledIsAnsweredIcon className="fas fa-bookmark fa-lg"></StyledIsAnsweredIcon>
           ) : (
@@ -69,24 +77,26 @@ const QuestionCard = ({ question, reRenderList }) => {
         ) : (
           ""
         )}
-      </div>
+      </StyledQuestionHeader>
 
-      <div className="question-body">
+      <StyledQuestionBody>
         <p>{sanitize(question.title)}</p>
-      </div>
-      <div className="question-footer">
-        <div className="comment-count">
+      </StyledQuestionBody>
+      <StyledQuestionFooter>
+        <StyledCommentCount>
           {question.comments.length}
           {question.comments.length > 1 || question.comments.length === 0
             ? " Comments"
             : " Comment"}
-        </div>
+        </StyledCommentCount>
 
-        <StyledViewThreadDiv className="view-thread">
-          <Link to={`/challenge/question/${question.id}`}>View Thread</Link>
+        <StyledViewThreadDiv>
+          <StyledViewThreadLink to={`/challenge/question/${question.id}`}>
+            View Thread
+          </StyledViewThreadLink>
         </StyledViewThreadDiv>
-      </div>
-    </li>
+      </StyledQuestionFooter>
+    </StyledQuestionCard>
   );
 };
 

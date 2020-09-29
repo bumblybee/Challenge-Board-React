@@ -1,5 +1,29 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
+
+const StyledQuestionCard = styled.li`
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem 0 1rem 1rem;
+  background: var(--card-background);
+  flex-shrink: 0;
+  position: relative;
+
+  :nth-child(n + 2) {
+    margin-top: 0.5rem;
+  }
+`;
+
+const StyledQuestionBody = styled.div`
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  word-spacing: 0.03rem;
+`;
+
+const StyledQuestionFooter = styled.div`
+  display: flex;
+`;
 
 const StyledMenuIcon = styled.i`
   ${(props) =>
@@ -53,17 +77,42 @@ const StyledQuestionTitle = styled.div`
   color: #fff;
 `;
 
+const StyledQuestionHeader = styled.div`
+  display: flex;
+  font-size: 0.9rem;
+`;
+
 const StyledQuestionText = styled.div`
   color: #dcddde;
   font-weight: 300;
 `;
 
-const StyledDateDiv = styled.div`
+const StyledName = styled.div`
+  margin-right: 1rem;
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: var(--secondary-text);
+`;
+
+const StyledDate = styled.div`
   color: #7d8088;
+`;
+
+const StyledCommentCount = styled.div`
+  color: var(--tertiary-text);
+  font-size: 0.9rem;
 `;
 
 const StyledViewThreadDiv = styled.div`
   padding: 0 1rem 0;
+  margin-left: auto;
+`;
+
+const StyledViewThreadLink = styled(Link)`
+  color: #809bff;
+  font-size: 0.9rem;
+  font-family: "Roboto Slab", Times, serif;
+  font-weight: 500;
 `;
 
 const StyledTruncate = styled(TextTruncate)`
@@ -72,6 +121,11 @@ const StyledTruncate = styled(TextTruncate)`
 `;
 
 export {
+  StyledQuestionCard,
+  StyledQuestionHeader,
+  StyledQuestionBody,
+  StyledName,
+  StyledQuestionFooter,
   StyledMenuIcon,
   StyledAnswerIcon,
   StyledIconsDiv,
@@ -79,8 +133,10 @@ export {
   StyledThreadQuestion,
   StyledQuestionTitle,
   StyledQuestionText,
-  StyledDateDiv,
+  StyledDate,
+  StyledCommentCount,
   StyledViewThreadDiv,
+  StyledViewThreadLink,
   StyledIsAnsweredIcon,
   StyledTruncate,
 };
