@@ -40,7 +40,7 @@ const ResetPassword = () => {
               type="password"
               id="new-password"
               name="new-password"
-              minLength="5"
+              minLength="8"
               required
             ></input>
           </div>
