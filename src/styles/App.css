@@ -68,8 +68,11 @@ i:hover {
 .signup-form-content,
 .login-form-content {
   background: var(--secondary-background);
-  width: 30%;
-  margin: 11% auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 30%;
   padding: 2rem;
   box-shadow: 0 2px 4.1px -43px rgba(0, 0, 0, 0.101),
     0 4.7px 13.8px -43px rgba(0, 0, 0, 0.129),
@@ -430,12 +433,13 @@ iframe {
   iframe {
     height: 395px;
   }
+
   .modal-content,
   .signup-form-content,
   .login-form-content {
-    width: 50%;
-    margin: 10% auto;
+    width: 45%;
   }
+
   .container {
     width: 90%;
   }
@@ -445,6 +449,12 @@ iframe {
   .container {
     display: flex;
     flex-direction: column;
+  }
+
+  .modal-content,
+  .signup-form-content,
+  .login-form-content {
+    width: 50%;
   }
 
   .submission-container,
@@ -465,9 +475,10 @@ iframe {
 }
 
 @media all and (max-width: 900px) {
-  .modal-content {
+  .modal-content,
+  .signup-form-content,
+  .login-form-content {
     width: 65%;
-    margin: 20% auto;
   }
 
   iframe {
@@ -486,7 +497,7 @@ iframe {
 
 @media all and (max-width: 620px) {
   h1 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   h4 {
@@ -495,7 +506,15 @@ iframe {
 
   .modal-content {
     width: 90%;
-    margin: 45% auto;
+    padding: 1rem;
+    top: 40%;
+    left: 35%;
+    transform: translate(-34%, -35%);
+  }
+
+  .signup-form-content,
+  .login-form-content {
+    width: 90%;
     padding: 0.5rem;
   }
 
@@ -508,22 +527,11 @@ iframe {
     font-size: 1.5rem;
   }
 
-  .signup-form-header,
-  .login-form-header {
-    text-align: center;
-  }
-
   .signup-form-header h1,
   .login-form-header h1 {
     margin: 0;
     padding: 0.5rem;
-  }
-
-  .signup-form-content,
-  .login-form-content {
-    width: 90%;
-    margin: 25% auto;
-    padding: 0.5rem;
+    font-size: 1.7rem;
   }
 
   .signup-form-body,
@@ -582,17 +590,10 @@ iframe {
   }
 }
 
-@media all and (max-width: 620px) {
-  .modal-content {
-    margin: 32% auto;
-  }
-}
-
 @media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 900px) {
   .modal-content,
   .signup-form-content,
   .login-form-content {
-    margin: 2% auto;
-    width: 75%;
+    width: 70%;
   }
 }

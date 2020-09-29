@@ -16,7 +16,7 @@ const StyledPurpleButton = styled.button`
   background: #6271c0;
   color: #fff;
   padding: 8px 15px;
-  border-radius: 4px;
+  border-radius: 6px;
   border: none;
   font-size: 0.95rem;
   font-family: "Roboto Slab", serif;
