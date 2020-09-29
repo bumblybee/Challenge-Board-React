@@ -89,13 +89,13 @@ const QuestionThread = () => {
             <StyledDateDiv className="created-at">{date}</StyledDateDiv>
 
             <div className="icons">{user && renderMenuIcon()}</div>
-            {isOpen && user.role === "Teacher" ? (
+            {isOpen && user !== null && user.role === "Teacher" ? (
               <TeacherMenu
                 question={threadQuestion}
                 threadQuestion={true}
                 toggleMenu={toggleMenu}
               ></TeacherMenu>
-            ) : isOpen && user.role === "Student" ? (
+            ) : isOpen && user !== null && user.role === "Student" ? (
               <StudentMenu
                 question={threadQuestion}
                 toggleMenu={toggleMenu}
