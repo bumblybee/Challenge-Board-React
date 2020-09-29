@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   width: 80%;
   margin: 3rem auto;
   height: 900px;
@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const StyledChallengeSubmissionArea = styled.div`
+export const StyledChallengeSubmissionArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -43,5 +43,3 @@ const StyledChallengeSubmissionArea = styled.div`
     }
   }
 `;
-
-export { StyledContainer, StyledChallengeSubmissionArea };

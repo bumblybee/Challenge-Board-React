@@ -9,10 +9,7 @@ import { UserContext } from "../../context/user/UserContext";
 
 import { StyledLoader } from "../../styles/GlobalStyledComponents";
 
-import {
-  StyledContainer,
-  StyledChallengeSubmissionArea,
-} from "./StyledChallenge";
+import * as sc from "./StyledChallenge";
 
 const Challenge = () => {
   const { user, getCurrentUser, isLoading } = useContext(UserContext);
@@ -27,20 +24,20 @@ const Challenge = () => {
       {isLoading ? (
         <StyledLoader src={loading} alt="loading" isUserState={true} />
       ) : (
-        <StyledContainer>
+        <sc.StyledContainer>
           {user && user.role === "Teacher" ? (
-            <StyledChallengeSubmissionArea>
+            <sc.StyledChallengeSubmissionArea>
               <SubmissionArea />
               <ChallengeArea />
-            </StyledChallengeSubmissionArea>
+            </sc.StyledChallengeSubmissionArea>
           ) : (
-            <StyledChallengeSubmissionArea>
+            <sc.StyledChallengeSubmissionArea>
               <ChallengeArea />
               <SubmissionArea />
-            </StyledChallengeSubmissionArea>
+            </sc.StyledChallengeSubmissionArea>
           )}
           <QuestionArea />
-        </StyledContainer>
+        </sc.StyledContainer>
       )}
     </Fragment>
   );

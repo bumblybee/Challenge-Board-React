@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledHeading = styled.h4`
+export const StyledHeading = styled.h4`
   font-weight: 300;
   color: #dcddde;
 
@@ -10,7 +10,7 @@ const StyledHeading = styled.h4`
   }
 `;
 
-const StyledTransparentButton = styled.button`
+export const StyledTransparentButton = styled.button`
   background: transparent;
   border: none;
   color: #fff;
@@ -20,7 +20,7 @@ const StyledTransparentButton = styled.button`
   }
 `;
 
-const StyledPurpleButton = styled.button`
+export const StyledPurpleButton = styled.button`
   margin-top: 1rem;
   background: #6271c0;
   color: #fff;
@@ -47,17 +47,18 @@ const StyledPurpleButton = styled.button`
   }
 `;
 
-const StyledTextarea = styled.textarea`
+export const StyledTextarea = styled.textarea`
   resize: none;
 `;
 
-const StyledSpan = styled.span`
+export const StyledSpan = styled.span`
   color: #809bff;
   :hover {
     cursor: pointer;
   }
 `;
-const StyledFormLink = styled(Link)`
+
+export const StyledFormLink = styled(Link)`
   color: #809bff;
   font-size: 0.9rem;
   font-family: "Roboto Slab", Times, serif;
@@ -67,19 +68,19 @@ const StyledFormLink = styled(Link)`
   display: block;
 `;
 
-const StyledLoader = styled.img`
+export const StyledLoader = styled.img`
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 `;
 
-export {
-  StyledHeading,
-  StyledSpan,
-  StyledFormLink,
-  StyledTransparentButton,
-  StyledPurpleButton,
-  StyledTextarea,
-  StyledLoader,
-};
+// export {
+//   StyledHeading,
+//   StyledSpan,
+//   StyledFormLink,
+//   StyledTransparentButton,
+//   StyledPurpleButton,
+//   StyledTextarea,
+//   StyledLoader,
+// };
