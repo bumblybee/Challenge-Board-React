@@ -81,7 +81,7 @@ const StyledSubmitButton = styled.button`
 
 const StyledTruncate = styled(TextTruncate)`
   color: #dcddde;
-  fontweight: 300;
+  font-weight: 300;
 `;
 
 export {

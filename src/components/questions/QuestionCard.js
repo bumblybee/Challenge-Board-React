@@ -80,8 +80,8 @@ const QuestionCard = ({ question, reRenderList }) => {
         <div className="comment-count">
           {question.comments.length}
           {question.comments.length > 1 || question.comments.length === 0
-            ? " comments"
-            : " comment"}
+            ? " Comments"
+            : " Comment"}
         </div>
 
         <StyledViewThreadDiv className="view-thread">

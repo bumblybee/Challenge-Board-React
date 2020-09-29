@@ -48,7 +48,6 @@ const StyledThreadQuestion = styled.div`
 
 const StyledQuestionTitle = styled.div`
   margin-bottom: 1rem;
-  font-weight: 500;
   color: #fff;
 `;
 
