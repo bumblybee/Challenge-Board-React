@@ -80,6 +80,9 @@ const StyledSubmitButton = styled.button`
           border: none;
           background: #809bff;
           border-radius: 6px;
+          width: 40px;
+          height: 30px;
+          text-align: center;
         `
       : css`
           margin-left: auto;
@@ -96,7 +99,6 @@ const StyledSubmitIcon = styled.i`
     props.isTyping
       ? css`
           color: #fff;
-          padding: 5px 10px;
         `
       : css`
           color: #7d8088;
