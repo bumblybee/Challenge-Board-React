@@ -77,6 +77,7 @@ const StyledThreadQuestion = styled.div`
 const StyledQuestionTitle = styled.div`
   margin-bottom: 0.5rem;
   color: #fff;
+  font-size: 1rem;
 `;
 
 const StyledQuestionHeader = styled.div`
@@ -87,6 +88,7 @@ const StyledQuestionHeader = styled.div`
 const StyledQuestionText = styled.div`
   color: #dcddde;
   font-weight: 300;
+  font-size: 1rem;
 `;
 
 const StyledName = styled.div`
@@ -120,6 +122,7 @@ const StyledViewThreadLink = styled(Link)`
 const StyledTruncate = styled(TextTruncate)`
   color: #dcddde;
   font-weight: 300;
+  font-size: 1rem;
 `;
 
 export {
