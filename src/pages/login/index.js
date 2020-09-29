@@ -70,7 +70,7 @@ const Login = () => {
               name="login-password"
               id="login-password"
               required
-              minLength="8"
+              title="Password is 8 or more characters"
             ></input>
           </div>
 

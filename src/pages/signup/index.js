@@ -90,7 +90,7 @@ const Signup = () => {
               type="password"
               name="signup-password"
               id="signup-password"
-              minLength="5"
+              minLength="8"
               required
             ></input>
           </div>
@@ -111,7 +111,7 @@ const Signup = () => {
                 }}
                 className="fab fa-discord fa-2x"
               ></i>
-              Sign up with Discord
+              Sign Up with Discord
             </StyledDiscordButton>
           </Fragment>
         )}
