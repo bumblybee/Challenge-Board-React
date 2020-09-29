@@ -40,7 +40,7 @@ const ResetPassword = () => {
       ) : (
         <Fragment>
           <div className="login-form-header">
-            <h3>Check your email</h3>
+            <h2>Check your email for a link to reset your password.</h2>
           </div>
         </Fragment>
       )}
