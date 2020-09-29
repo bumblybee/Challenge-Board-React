@@ -6,6 +6,7 @@ const StyledMenuIcon = styled.i`
     props.isOpen
       ? css`
           background-color: #18191b;
+          color: #b3b3b3;
           padding: 1rem;
           position: absolute;
           top: ${(props) => (props.inList ? "-1rem" : "0")};
@@ -14,6 +15,7 @@ const StyledMenuIcon = styled.i`
         `
       : css`
           padding: ${(props) => (props.inList ? "0 1rem" : "0")};
+          color: #b3b3b3;
         `}
 `;
 
@@ -47,7 +49,7 @@ const StyledThreadQuestion = styled.div`
 `;
 
 const StyledQuestionTitle = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #fff;
 `;
 

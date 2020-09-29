@@ -28,17 +28,20 @@ const StyledMenuIcon = styled.i`
     props.isOpen
       ? css`
           background: #18191b;
+          color: #b3b3b3;
           padding: 1rem;
           position: absolute;
           top: 0;
           right: 0;
         `
-      : css``}
+      : css`
+          color: #b3b3b3;
+        `}
 `;
 
 const StyledAnswerIcon = styled.i`
   float: left;
-  margin: 2.4rem 0 0 0.5rem;
+  margin: 2.2rem 0.7rem 0 0.5rem;
   color: #6271c0;
 `;
 
