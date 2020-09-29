@@ -77,6 +77,7 @@ const QuestionsList = () => {
                 type="text"
                 placeholder="Question"
                 maxLength="100"
+                autoFocus
                 required
               ></input>
               <StyledTextarea

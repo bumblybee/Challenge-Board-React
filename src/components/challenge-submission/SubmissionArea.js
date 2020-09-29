@@ -148,6 +148,7 @@ const SubmissionArea = () => {
                 }
                 required
                 noValidate
+                autoFocus
               ></input>
               <input
                 onChange={(e) =>
