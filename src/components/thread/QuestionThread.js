@@ -120,7 +120,11 @@ const QuestionThread = () => {
                 line={3}
                 element="div"
                 truncateText="..."
-                text={sanitize(threadQuestion.body)}
+                text={
+                  <StyledQuestionText>
+                    {sanitize(threadQuestion.body)}
+                  </StyledQuestionText>
+                }
                 textTruncateChild={
                   <StyledSpan onClick={handleTruncate}>more</StyledSpan>
                 }
