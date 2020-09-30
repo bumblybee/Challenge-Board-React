@@ -15,7 +15,7 @@ const StyledCategoryH3 = styled.h3`
   padding: 0.5rem 0 0.5rem;
   border-bottom: 2px solid #809bffee;
   @media (max-width: 620px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 `;
 
@@ -70,13 +70,18 @@ const StyledPostList = styled.ul`
   width: 100%;
   height: 100%;
 
-  @media (max-width: 620px) {
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-
   :not(:last-child) {
     border-right: 3px inset rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 620px) {
+    padding: 0;
+
+    :not(:last-child) {
+      margin-bottom: 1.5rem;
+      border-right: none;
+    }
   }
 `;
 
