@@ -6,20 +6,7 @@ import { UserContext } from "../../context/user/UserContext";
 
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
-import {
-  StyledQuestionCard,
-  StyledQuestionHeader,
-  StyledQuestionBody,
-  StyledName,
-  StyledDate,
-  StyledQuestionFooter,
-  StyledMenuIcon,
-  StyledIconsDiv,
-  StyledCommentCount,
-  StyledViewThreadDiv,
-  StyledViewThreadLink,
-  StyledIsAnsweredIcon,
-} from "./StyledQuestions";
+import * as sc from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
   const date = moment(question.createdAt).format("DD/MM/YYYY");
@@ -36,12 +23,12 @@ const QuestionCard = ({ question, reRenderList }) => {
   const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === question.userId) {
       return (
-        <StyledMenuIcon
+        <sc.StyledMenuIcon
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
           menuOpen={menuOpen}
           inList={true}
-        ></StyledMenuIcon>
+        ></sc.StyledMenuIcon>
       );
     } else {
       return null;
@@ -49,19 +36,19 @@ const QuestionCard = ({ question, reRenderList }) => {
   };
 
   return (
-    <StyledQuestionCard>
-      <StyledQuestionHeader>
-        <StyledName>{question.user.username}</StyledName>
-        <StyledDate>{date}</StyledDate>
-        <StyledIconsDiv menuOpen={menuOpen}>
+    <sc.StyledQuestionCard>
+      <sc.StyledQuestionHeader>
+        <sc.StyledName>{question.user.username}</sc.StyledName>
+        <sc.StyledDate>{date}</sc.StyledDate>
+        <sc.StyledIconsDiv menuOpen={menuOpen}>
           {question.isAnswered ? (
-            <StyledIsAnsweredIcon className="fas fa-bookmark fa-lg"></StyledIsAnsweredIcon>
+            <sc.StyledIsAnsweredIcon className="fas fa-bookmark fa-lg"></sc.StyledIsAnsweredIcon>
           ) : (
             ""
           )}
 
           {user && renderMenuIcon()}
-        </StyledIconsDiv>
+        </sc.StyledIconsDiv>
 
         {menuOpen && user !== null && user.role === "Teacher" ? (
           <TeacherMenu
@@ -77,26 +64,26 @@ const QuestionCard = ({ question, reRenderList }) => {
         ) : (
           ""
         )}
-      </StyledQuestionHeader>
+      </sc.StyledQuestionHeader>
 
-      <StyledQuestionBody>
+      <sc.StyledQuestionBody>
         <p>{sanitize(question.title)}</p>
-      </StyledQuestionBody>
-      <StyledQuestionFooter>
-        <StyledCommentCount>
+      </sc.StyledQuestionBody>
+      <sc.StyledQuestionFooter>
+        <sc.StyledCommentCount>
           {question.comments.length}
           {question.comments.length > 1 || question.comments.length === 0
             ? " Comments"
             : " Comment"}
-        </StyledCommentCount>
+        </sc.StyledCommentCount>
 
-        <StyledViewThreadDiv>
-          <StyledViewThreadLink to={`/challenge/question/${question.id}`}>
+        <sc.StyledViewThreadDiv>
+          <sc.StyledViewThreadLink to={`/challenge/question/${question.id}`}>
             View Thread
-          </StyledViewThreadLink>
-        </StyledViewThreadDiv>
-      </StyledQuestionFooter>
-    </StyledQuestionCard>
+          </sc.StyledViewThreadLink>
+        </sc.StyledViewThreadDiv>
+      </sc.StyledQuestionFooter>
+    </sc.StyledQuestionCard>
   );
 };
 
