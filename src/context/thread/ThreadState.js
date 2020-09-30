@@ -17,15 +17,19 @@ import {
 //TODO: Handle errors within components
 
 const ThreadState = ({ children }) => {
-  const [threadQuestion, setThreadQuestion] = useState("");
+  const [threadQuestion, setThreadQuestion] = useState({});
   const [comments, setComments] = useState([]);
+  const [threadLoading, setThreadLoading] = useState(false);
 
   const fetchThread = async (questionId) => {
+    setThreadLoading(true);
     const data = await getQuestionThread(questionId);
 
     setThreadQuestion(data.question);
 
     setComments(data.question.comments);
+
+    setThreadLoading(false);
   };
 
   const deleteThreadQuestion = async (question) => {
@@ -134,6 +138,7 @@ const ThreadState = ({ children }) => {
         deleteThreadQuestion,
         promoteAnswer,
         demoteAnswer,
+        threadLoading,
       }}
     >
       {children}

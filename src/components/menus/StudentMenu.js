@@ -78,7 +78,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
     } else {
       return (
         <StyledStudentMenu>
-          <p onClick={() => setOpenModal(!openModal)}>Edit Post</p>
+          <p onClick={() => setOpenModal(!openModal)}>Edit Comment</p>
         </StyledStudentMenu>
       );
     }
@@ -114,7 +114,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
         </Modal>
       ) : (
         <StyledStudentMenu>
-          <p onClick={() => setOpenModal(!openModal)}>Edit Post</p>
+          <p onClick={() => setOpenModal(!openModal)}>Edit Question</p>
         </StyledStudentMenu>
       )}
     </Fragment>

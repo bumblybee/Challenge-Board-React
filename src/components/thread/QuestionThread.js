@@ -40,9 +40,12 @@ const QuestionThread = () => {
   const location = useLocation();
 
   const { user } = useContext(UserContext);
-  const { fetchThread, threadQuestion, comments } = useContext(ThreadContext);
+  const { fetchThread, threadQuestion, comments, threadLoading } = useContext(
+    ThreadContext
+  );
 
   const date = moment(threadQuestion.createdAt).format("DD/MM/YYYY");
+
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
@@ -73,6 +76,8 @@ const QuestionThread = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  if (threadLoading) return <span>Loading...</span>;
 
   return (
     <Fragment>
