@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
-import { Link } from "react-router-dom";
+
 import { UserContext } from "../../context/user/UserContext";
 
 import TeacherMenu from "../menus/TeacherMenu";
@@ -26,10 +26,10 @@ const QuestionCard = ({ question, reRenderList }) => {
 
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setMenuOpen(!menuOpen);
   };
 
   // If user is teacher or if user.id matches question.userId, render menu icon
@@ -39,7 +39,7 @@ const QuestionCard = ({ question, reRenderList }) => {
         <StyledMenuIcon
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-          isOpen={isOpen}
+          menuOpen={menuOpen}
           inList={true}
         ></StyledMenuIcon>
       );
@@ -53,7 +53,7 @@ const QuestionCard = ({ question, reRenderList }) => {
       <StyledQuestionHeader>
         <StyledName>{question.user.username}</StyledName>
         <StyledDate>{date}</StyledDate>
-        <StyledIconsDiv isOpen={isOpen}>
+        <StyledIconsDiv menuOpen={menuOpen}>
           {question.isAnswered ? (
             <StyledIsAnsweredIcon className="fas fa-bookmark fa-lg"></StyledIsAnsweredIcon>
           ) : (
@@ -63,12 +63,12 @@ const QuestionCard = ({ question, reRenderList }) => {
           {user && renderMenuIcon()}
         </StyledIconsDiv>
 
-        {isOpen && user !== null && user.role === "Teacher" ? (
+        {menuOpen && user !== null && user.role === "Teacher" ? (
           <TeacherMenu
             question={question}
             toggleMenu={toggleMenu}
           ></TeacherMenu>
-        ) : isOpen && user !== null && user.role === "Student" ? (
+        ) : menuOpen && user !== null && user.role === "Student" ? (
           <StudentMenu
             toggleMenu={toggleMenu}
             question={question}

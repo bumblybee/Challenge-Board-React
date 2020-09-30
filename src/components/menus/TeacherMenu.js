@@ -32,7 +32,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   };
 
   const handleDeleteUserQuestion = async (question) => {
-    const deletedQuestion = await deleteUserQuestion(question);
+    await deleteUserQuestion(question);
     toggleMenu();
   };
 

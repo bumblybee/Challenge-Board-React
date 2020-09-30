@@ -7,8 +7,6 @@ import QuestionArea from "../../components/questions/QuestionArea";
 
 import { UserContext } from "../../context/user/UserContext";
 
-import { StyledLoader } from "../../styles/GlobalStyledComponents";
-
 import * as sc from "./StyledChallenge";
 
 const Challenge = () => {

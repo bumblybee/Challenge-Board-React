@@ -11,14 +11,6 @@ const Modal = (props) => {
       </div>
     )
   );
-
-  // return (
-  //   modalOpen && (
-  //     <div className="modal">
-  //       <div className="modal-content">{props.children}</div>
-  //     </div>
-  //   )
-  // );
 };
 
 export default Modal;

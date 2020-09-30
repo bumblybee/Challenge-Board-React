@@ -16,8 +16,7 @@ const getUser = async () => {
 };
 
 const logoutUser = async () => {
-  const res = await post("/users/logout");
-  console.log(res);
+  await post("/users/logout");
 };
 
 export { loginUser, getUser, logoutUser, signupUser };

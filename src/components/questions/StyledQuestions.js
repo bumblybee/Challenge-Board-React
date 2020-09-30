@@ -27,7 +27,7 @@ const StyledQuestionFooter = styled.div`
 
 const StyledMenuIcon = styled.i`
   ${(props) =>
-    props.isOpen
+    props.menuOpen
       ? css`
           background-color: #18191b;
           color: #b3b3b3;
@@ -56,7 +56,7 @@ const StyledIsAnsweredIcon = styled.i`
 const StyledIconsDiv = styled.div`
   position: relative;
   margin-left: auto;
-  background: ${(props) => (props.isOpen ? "#18191b" : "#3a3c42")};
+  background: ${(props) => (props.menuOpen ? "#18191b" : "#3a3c42")};
 `;
 
 const StyledSpan = styled.span`
