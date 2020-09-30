@@ -38,7 +38,7 @@ import {
 const QuestionThread = () => {
   const sanitize = DOMPurify.sanitize;
   const [isTruncated, setIsTruncated] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
@@ -66,7 +66,7 @@ const QuestionThread = () => {
     if (user.role === "Teacher" || user.id === threadQuestion.userId) {
       return (
         <StyledMenuIcon
-          isOpen={isOpen}
+          menuOpen={menuOpen}
           inList={false}
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
@@ -78,7 +78,7 @@ const QuestionThread = () => {
   };
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setMenuOpen(!menuOpen);
   };
 
   // if (threadLoading) return <span>Loading...</span>;
@@ -105,13 +105,13 @@ const QuestionThread = () => {
             <StyledDate>{date}</StyledDate>
 
             <StyledIconsDiv>{user && renderMenuIcon()}</StyledIconsDiv>
-            {isOpen && user !== null && user.role === "Teacher" ? (
+            {menuOpen && user !== null && user.role === "Teacher" ? (
               <TeacherMenu
                 question={threadQuestion}
                 threadQuestion={true}
                 toggleMenu={toggleMenu}
               ></TeacherMenu>
-            ) : isOpen && user !== null && user.role === "Student" ? (
+            ) : menuOpen && user !== null && user.role === "Student" ? (
               <StudentMenu
                 question={threadQuestion}
                 toggleMenu={toggleMenu}

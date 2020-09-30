@@ -49,11 +49,13 @@ const QuestionsList = () => {
     getUpdatedQuestions &&
       getUpdatedQuestions.error &&
       setError(getUpdatedQuestions.error);
-    toggleModal();
+
     setNewQuestion({
       question: "",
       questionDetails: "",
     });
+
+    toggleModal();
   };
 
   return (
