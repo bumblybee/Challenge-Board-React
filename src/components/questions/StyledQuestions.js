@@ -33,8 +33,8 @@ export const StyledMenuIcon = styled.i`
           color: #b3b3b3;
           padding: 1rem;
           position: absolute;
-          top: ${(props) => (props.inList ? "-1rem" : "0")};
-          right: 0;
+          top: ${(props) => (props.inList ? "-1rem" : "-1rem")};
+          right: ${(props) => (props.inList ? "-0" : "-1rem")};
           border-top-right-radius: 6px;
         `
       : css`

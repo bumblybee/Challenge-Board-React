@@ -1,5 +1,4 @@
 import React, { useState, useContext, Fragment } from "react";
-import { ModalContext } from "../../context/modal/ModalContext";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 import { StyledStudentMenu } from "./StyledMenus";
@@ -14,10 +13,8 @@ import Modal from "../../components/layout/Modal";
 const StudentMenu = ({ question, comment, toggleMenu }) => {
   const { updateComment } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
-  const { showEditQuestionModal, toggleEditQuestionModal } = useContext(
-    ModalContext
-  );
 
+  const [openModal, setOpenModal] = useState(false);
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
@@ -27,7 +24,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
   const [commentBody, setCommentBody] = useState(comment && comment.body);
 
   const handleCancel = () => {
-    toggleEditQuestionModal();
+    setOpenModal(!openModal);
     toggleMenu();
   };
 
@@ -39,7 +36,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
       userId: question.userId,
     };
     updateQuestion(question, data);
-    toggleEditQuestionModal();
+    setOpenModal(!openModal);
     toggleMenu();
   };
 
@@ -51,14 +48,14 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
       questionId: comment.questionId,
     };
     updateComment(comment, data);
-    toggleEditQuestionModal();
+    setOpenModal(!openModal);
     toggleMenu();
   };
 
   if (comment) {
-    if (showEditQuestionModal) {
+    if (openModal) {
       return (
-        <Modal studentMenu={true}>
+        <Modal>
           <div className="modal-body">
             <form onSubmit={handleCommentUpdate}>
               <StyledTextarea
@@ -81,7 +78,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
     } else {
       return (
         <StyledStudentMenu>
-          <p onClick={() => toggleEditQuestionModal()}>Edit Comment</p>
+          <p onClick={() => setOpenModal(!openModal)}>Edit Comment</p>
         </StyledStudentMenu>
       );
     }
@@ -89,7 +86,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
 
   return (
     <Fragment>
-      {showEditQuestionModal ? (
+      {openModal ? (
         <Modal>
           <div className="modal-body">
             <form onSubmit={handleQuestionUpdate}>
@@ -103,7 +100,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
               <StyledTextarea
                 onChange={(e) => setQuestionBody(e.target.value)}
                 id="body"
-                rows="7"
+                rows="6"
                 value={questionBody}
               ></StyledTextarea>
               <div className="modal-footer">
@@ -117,7 +114,7 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
         </Modal>
       ) : (
         <StyledStudentMenu>
-          <p onClick={() => toggleEditQuestionModal()}>Edit Question</p>
+          <p onClick={() => setOpenModal(!openModal)}>Edit Question</p>
         </StyledStudentMenu>
       )}
     </Fragment>

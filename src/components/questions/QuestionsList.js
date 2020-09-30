@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
-import { ModalContext } from "../../context/modal/ModalContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 
 import QuestionCard from "./QuestionCard";
@@ -21,10 +20,10 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { showModal, toggleModal } = useContext(ModalContext);
   const { questions, submitNewQuestion, fetchQuestions } = useContext(
     QuestionContext
   );
+  const [isOpen, setIsOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
     title: "",
@@ -49,18 +48,16 @@ const QuestionsList = () => {
     getUpdatedQuestions &&
       getUpdatedQuestions.error &&
       setError(getUpdatedQuestions.error);
-
+    setIsOpen(!isOpen);
     setNewQuestion({
       question: "",
       questionDetails: "",
     });
-
-    toggleModal();
   };
 
   return (
     <Fragment>
-      {showModal && (
+      {isOpen && (
         <Modal>
           <div className="modal-header">
             <h1>Post a Question</h1>
@@ -101,7 +98,7 @@ const QuestionsList = () => {
               <div className="modal-footer">
                 <StyledTransparentButton
                   className="close-modal"
-                  onClick={() => toggleModal()}
+                  onClick={() => setIsOpen(!isOpen)}
                 >
                   Cancel
                 </StyledTransparentButton>
@@ -128,7 +125,7 @@ const QuestionsList = () => {
         ) : user && user.role === "Student" ? (
           <StyledPurpleButton
             className="modal-button"
-            onClick={() => toggleModal()}
+            onClick={() => setIsOpen(!isOpen)}
           >
             Post a Question
           </StyledPurpleButton>

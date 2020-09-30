@@ -6,7 +6,6 @@ import { submitProject, editProject, getProject } from "../../api/projectsApi";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
-import { ModalContext } from "../../context/modal/ModalContext";
 
 import Modal from "../../components/layout/Modal";
 import {
@@ -20,8 +19,9 @@ const SubmissionArea = () => {
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const history = useHistory();
-  const { showModal, toggleModal } = useContext(ModalContext);
 
+  //Handles modal
+  const [isOpen, setIsOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -71,10 +71,10 @@ const SubmissionArea = () => {
 
     if (submission.error || !submission) {
       setError(submission.error);
-      toggleModal();
+      setIsOpen(!isOpen);
     } else {
       setIsSubmitted(true);
-      toggleModal();
+      setIsOpen(!isOpen);
       setHasPriorProject(true);
       setProjectTimestamp({
         ...projectTimestamp,
@@ -94,10 +94,10 @@ const SubmissionArea = () => {
 
     if (editedProject.error || !editedProject) {
       setError(editedProject.error);
-      toggleModal();
+      setIsOpen(!isOpen);
     } else {
       setIsSubmitted(true);
-      toggleModal();
+      setIsOpen(!isOpen);
       setProjectTimestamp({
         ...projectTimestamp,
         date: moment(editedProject.updatedAt).format("L"),
@@ -108,7 +108,7 @@ const SubmissionArea = () => {
 
   return (
     <sc.StyledSubmissionContainer>
-      {showModal && (
+      {isOpen && (
         <Modal>
           <div className="modal-header">
             <h1>Submit your Project</h1>
@@ -191,7 +191,7 @@ const SubmissionArea = () => {
                 <StyledTransparentButton
                   className="close-modal"
                   href="#"
-                  onClick={() => toggleModal()}
+                  onClick={() => setIsOpen(!isOpen)}
                 >
                   Cancel
                 </StyledTransparentButton>
@@ -229,7 +229,7 @@ const SubmissionArea = () => {
           <p>When you're ready, submit your Github link here for review.</p>
           <sc.StyledEditSubmission>
             <StyledPurpleButton
-              onClick={() => toggleModal()}
+              onClick={() => setIsOpen(!isOpen)}
               className="modal-button edit-submission-button"
               id="submit-button"
               editButton={true}
@@ -259,7 +259,7 @@ const SubmissionArea = () => {
 
           {user && user.role === "Student" ? (
             <StyledPurpleButton
-              onClick={() => toggleModal()}
+              onClick={() => setIsOpen(!isOpen)}
               className="modal-button"
               id="submit-button"
             >

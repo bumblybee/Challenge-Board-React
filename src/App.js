@@ -9,7 +9,6 @@ import {
 import "./styles/App.css";
 
 import ErrorState from "./context/error/ErrorState";
-import ModalState from "./context/modal/ModalState";
 import UserState from "./context/user/UserState";
 import ThreadState from "./context/thread/ThreadState";
 import QuestionState from "./context/question/QuestionState";
@@ -55,18 +54,16 @@ function App() {
               <Route path="/reset-password/:token">
                 <ResetPassword />
               </Route>
-              <ModalState>
-                <ThreadState>
-                  <QuestionState>
-                    <Route path="/challenge">
-                      <Challenge />
-                    </Route>
-                    <Route path="/" exact>
-                      <Redirect to="/challenge" />
-                    </Route>
-                  </QuestionState>
-                </ThreadState>
-              </ModalState>
+              <ThreadState>
+                <QuestionState>
+                  <Route path="/challenge">
+                    <Challenge />
+                  </Route>
+                  <Route path="/" exact>
+                    <Redirect to="/challenge" />
+                  </Route>
+                </QuestionState>
+              </ThreadState>
             </Switch>
           </ErrorState>
         </div>
