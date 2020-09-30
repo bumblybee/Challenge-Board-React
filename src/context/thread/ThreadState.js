@@ -3,6 +3,7 @@ import { ThreadContext } from "./ThreadContext";
 
 import {
   getQuestionThread,
+  editThreadQuestion,
   updateAnswer,
   deleteQuestion,
 } from "../../api/questionsApi";
@@ -32,15 +33,22 @@ const ThreadState = ({ children }) => {
     setThreadLoading(false);
   };
 
+  const updateThreadQuestion = async (question, data) => {
+    const updatedQuestion = await editThreadQuestion(question.id, data);
+
+    if (updatedQuestion.error) {
+      return updatedQuestion;
+    } else {
+      setThreadQuestion(updatedQuestion.data.question);
+    }
+  };
+
   const deleteThreadQuestion = async (question) => {
     if (window.confirm("Are you sure you want to delete this question?")) {
       const deletedQuestion = await deleteQuestion(question.id);
 
       if (deletedQuestion.error) {
         return deletedQuestion.error;
-        // setError(deletedQuestion.error);
-        // toggleMenu();
-      } else {
       }
     }
   };
@@ -132,6 +140,7 @@ const ThreadState = ({ children }) => {
         setComments,
         threadQuestion,
         fetchThread,
+        updateThreadQuestion,
         submitComment,
         updateComment,
         deleteUserComment,

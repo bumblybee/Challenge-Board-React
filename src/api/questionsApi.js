@@ -18,6 +18,10 @@ const editQuestion = async (id, data) => {
   return await put(`/questions/edit-question/${id}`, data);
 };
 
+const editThreadQuestion = async (id, data) => {
+  return await put(`/questions/edit-thread-question/${id}`, data);
+};
+
 const deleteQuestion = async (questionId) => {
   return await deleteRequest(`/questions/${questionId}`);
 };
@@ -31,6 +35,7 @@ export {
   getQuestionThread,
   createQuestion,
   editQuestion,
+  editThreadQuestion,
   deleteQuestion,
   updateAnswer,
 };

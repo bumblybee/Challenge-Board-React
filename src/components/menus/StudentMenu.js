@@ -10,8 +10,8 @@ import {
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../components/layout/Modal";
 
-const StudentMenu = ({ question, comment, toggleMenu }) => {
-  const { updateComment } = useContext(ThreadContext);
+const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
+  const { updateComment, updateThreadQuestion } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
 
   const [openModal, setOpenModal] = useState(false);
@@ -28,14 +28,25 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
     toggleMenu();
   };
 
-  const handleQuestionUpdate = (e) => {
-    e.preventDefault();
+  const handleQuestionUpdate = (question) => {
     const data = {
       title: questionTitle,
       body: questionBody,
       userId: question.userId,
     };
     updateQuestion(question, data);
+    setOpenModal(!openModal);
+    toggleMenu();
+  };
+
+  const handleThreadQuestionUpdate = (question) => {
+    const data = {
+      title: questionTitle,
+      body: questionBody,
+      userId: question.userId,
+    };
+
+    updateThreadQuestion(question, data);
     setOpenModal(!openModal);
     toggleMenu();
   };
@@ -89,7 +100,19 @@ const StudentMenu = ({ question, comment, toggleMenu }) => {
       {openModal ? (
         <Modal>
           <div className="modal-body">
-            <form onSubmit={handleQuestionUpdate}>
+            <form
+              onSubmit={
+                threadQuestion
+                  ? (e) => {
+                      e.preventDefault();
+                      handleThreadQuestionUpdate(question);
+                    }
+                  : (e) => {
+                      e.preventDefault();
+                      handleQuestionUpdate(question);
+                    }
+              }
+            >
               <input
                 onChange={(e) => setQuestionTitle(e.target.value)}
                 type="text"

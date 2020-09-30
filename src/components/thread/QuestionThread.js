@@ -115,6 +115,7 @@ const QuestionThread = () => {
               <StudentMenu
                 question={threadQuestion}
                 toggleMenu={toggleMenu}
+                threadQuestion={true}
               ></StudentMenu>
             ) : (
               ""
