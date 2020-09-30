@@ -1,15 +1,19 @@
 import styled from "styled-components";
 
-const StyledHelloH1 = styled.h1`
-  padding: 2rem 0;
-  color: #fff;
-  font-family: "Roboto", "Helvetica", sans-serif;
+const StyledUserMessage = styled.h1`
+  padding: 1rem;
+  color: #dcdddefb;
+  text-shadow: 0 2px 14px #809bff;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.9rem;
 `;
 
 const StyledCategoryH3 = styled.h3`
-  color: #809bff;
-  font-family: "Roboto-Slab", serif;
-  font-size: 1.5rem;
+  color: #809bffee;
+  font-family: "Roboto", serif;
+  font-size: 1.7rem;
+  padding: 0.5rem 0 0.5rem;
+  border-bottom: 2px solid #809bffee;
   @media (max-width: 620px) {
     font-size: 1.2rem;
   }
@@ -17,6 +21,7 @@ const StyledCategoryH3 = styled.h3`
 
 const StyledQuestionTitle = styled.h4`
   margin-bottom: 0.5rem;
+  font-weight: 500;
 `;
 
 const StyledAccountDiv = styled.div`
@@ -27,7 +32,7 @@ const StyledAccountDiv = styled.div`
   margin: 3rem auto;
   padding: 1rem;
   text-align: center;
-  background-color: #2f3136;
+  background-color: #3a3c42;
   height: 85vh;
 
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -44,12 +49,15 @@ const StyledAccountDiv = styled.div`
 
 const StyledAccountPostsDiv = styled.div`
   width: 100%;
+  height: 110%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
   border-radius: 6px;
-  border-bottom-right-radius: 6px;
+  /* border-bottom-right-radius: 6px; */
+  border: 4px inset rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 
   @media (max-width: 620px) {
     grid-template-columns: 1fr;
@@ -58,27 +66,41 @@ const StyledAccountPostsDiv = styled.div`
 
 const StyledPostList = styled.ul`
   background: #2f3136;
-  padding: 0 0.5rem 1rem;
+  padding: 0 0 1rem;
   width: 100%;
-  margin-bottom: 1rem;
+  height: 100%;
 
   @media (max-width: 620px) {
     padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  :not(:last-child) {
+    border-right: 3px inset rgba(0, 0, 0, 0.1);
   }
 `;
 
 const StyledAccountPost = styled.li`
   margin: 0.5rem auto 0;
   padding: 1rem;
-  background: #3a3c42;
-
   border-radius: 6px;
 
   transition: transform 0.1s ease-in;
   :hover {
-    cursor: pointer;
-    transform: scale(0.99);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    cursor: ${(props) => (props.noLength ? "default" : "pointer")};
+    transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
+    box-shadow: ${(props) =>
+      props.noLength ? "" : "0 2px 8px rgba(0, 0, 0, 0.3)"};
+  }
+
+  :active {
+    box-shadow: ${(props) =>
+      props.noLength ? "" : "0 1px 2px rgba(0, 0, 0, 0.1)"};
+    transform: scale(1);
+  }
+
+  p {
+    font-weight: 300;
   }
 
   @media (max-width: 620px) {
@@ -87,7 +109,7 @@ const StyledAccountPost = styled.li`
 `;
 
 export {
-  StyledHelloH1,
+  StyledUserMessage,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,

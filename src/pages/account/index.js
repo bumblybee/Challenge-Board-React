@@ -5,8 +5,7 @@ import { HashLink } from "react-router-hash-link";
 import { UserContext } from "../../context/user/UserContext";
 
 import {
-  StyledHelloH1,
-  StyledCategoryDiv,
+  StyledUserMessage,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,
@@ -28,62 +27,82 @@ const Account = () => {
       <StyledAccountDiv>
         {user && (
           <Fragment>
-            <StyledHelloH1>Hello, {user.username}.</StyledHelloH1>
+            <StyledUserMessage>{user.username}'s Dashboard</StyledUserMessage>
             <StyledAccountPostsDiv className="account-div">
               <StyledPostList>
                 <StyledCategoryH3>Questions</StyledCategoryH3>
-                {user.questions
-                  ? user.questions.map((question) => (
-                      <Link
-                        key={question.id}
-                        style={whiteText}
-                        to={`/challenge/question/${question.id}`}
-                      >
-                        <StyledAccountPost>
-                          <StyledQuestionTitle>
-                            {question.title}
-                          </StyledQuestionTitle>
-                          <p>{question.body}</p>
-                        </StyledAccountPost>
-                      </Link>
-                    ))
-                  : ""}
+                {user.questions ? (
+                  user.questions.map((question) => (
+                    <Link
+                      key={question.id}
+                      style={whiteText}
+                      to={`/challenge/question/${question.id}`}
+                    >
+                      <StyledAccountPost>
+                        <StyledQuestionTitle>
+                          {question.title}
+                        </StyledQuestionTitle>
+                        <p>{question.body}</p>
+                      </StyledAccountPost>
+                    </Link>
+                  ))
+                ) : (
+                  <StyledAccountPost noLength={true}>
+                    <p>
+                      <em>
+                        You seriously don't have <strong>any </strong>questions?
+                      </em>
+                    </p>
+                  </StyledAccountPost>
+                )}
               </StyledPostList>
               <StyledPostList>
                 <StyledCategoryH3>Comments</StyledCategoryH3>
-                {user.comments
-                  ? user.comments.map((comment) => (
-                      //TODO: styled component for links
-                      <HashLink
-                        key={comment.id}
-                        style={whiteText}
-                        to={`/challenge/question/${comment.questionId}#${comment.id}`}
-                      >
-                        <StyledAccountPost>
-                          <p>{comment.body}</p>
-                        </StyledAccountPost>
-                      </HashLink>
-                    ))
-                  : ""}
+                {user.comments ? (
+                  user.comments.map((comment) => (
+                    //TODO: styled component for links
+                    <HashLink
+                      key={comment.id}
+                      style={whiteText}
+                      to={`/challenge/question/${comment.questionId}#${comment.id}`}
+                    >
+                      <StyledAccountPost>
+                        <p>{comment.body}</p>
+                      </StyledAccountPost>
+                    </HashLink>
+                  ))
+                ) : (
+                  <StyledAccountPost noLength={true}>
+                    <p>
+                      <em>Do some mingling!</em>
+                    </p>
+                  </StyledAccountPost>
+                )}
               </StyledPostList>
 
               <StyledPostList>
                 <StyledCategoryH3>Projects</StyledCategoryH3>
-                {user.projects
-                  ? user.projects.map((project) => (
-                      <a
-                        key={project.id}
-                        href={project.githubLink}
-                        style={whiteText}
-                      >
-                        <StyledAccountPost>
-                          <p>{project.githubLink}</p>
-                          <p>{project.additionLink}</p>
-                          <p>{project.comment}</p>
-                        </StyledAccountPost>
-                      </a>
-                    ))
-                  : ""}
+                {user.projects && user.projects.length ? (
+                  user.projects.map((project) => (
+                    <a
+                      key={project.id}
+                      href={project.githubLink}
+                      style={whiteText}
+                    >
+                      <StyledAccountPost>
+                        <p>{project.githubLink}</p>
+                        <p>{project.additionLink}</p>
+                        <p>{project.comment}</p>
+                      </StyledAccountPost>
+                    </a>
+                  ))
+                ) : (
+                  <StyledAccountPost noLength={true}>
+                    <p>
+                      <em>Get to work on those projects!</em>
+                    </p>
+                  </StyledAccountPost>
+                )}
               </StyledPostList>
             </StyledAccountPostsDiv>
           </Fragment>
