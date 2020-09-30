@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
+import { ModalContext } from "../../context/modal/ModalContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 
 import QuestionCard from "./QuestionCard";
@@ -20,10 +21,10 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
+  const { showModal, toggleModal } = useContext(ModalContext);
   const { questions, submitNewQuestion, fetchQuestions } = useContext(
     QuestionContext
   );
-  const [isOpen, setIsOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
     title: "",
@@ -48,7 +49,7 @@ const QuestionsList = () => {
     getUpdatedQuestions &&
       getUpdatedQuestions.error &&
       setError(getUpdatedQuestions.error);
-    setIsOpen(!isOpen);
+    toggleModal();
     setNewQuestion({
       question: "",
       questionDetails: "",
@@ -57,7 +58,7 @@ const QuestionsList = () => {
 
   return (
     <Fragment>
-      {isOpen && (
+      {showModal && (
         <Modal>
           <div className="modal-header">
             <h1>Post a Question</h1>
@@ -98,7 +99,7 @@ const QuestionsList = () => {
               <div className="modal-footer">
                 <StyledTransparentButton
                   className="close-modal"
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => toggleModal()}
                 >
                   Cancel
                 </StyledTransparentButton>
@@ -125,7 +126,7 @@ const QuestionsList = () => {
         ) : user && user.role === "Student" ? (
           <StyledPurpleButton
             className="modal-button"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => toggleModal()}
           >
             Post a Question
           </StyledPurpleButton>

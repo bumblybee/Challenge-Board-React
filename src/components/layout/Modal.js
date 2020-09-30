@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { ModalContext } from "../../context/modal/ModalContext";
 
 const Modal = (props) => {
-  const [modalOpen, setModalOpen] = useState(true);
-
-  // const handleClickOutside = () => {
-  //   setModalOpen(false);
-  // };
+  const { showModal, toggleModal } = useContext(ModalContext);
 
   return (
-    modalOpen && (
-      <div className="modal">
+    showModal && (
+      <div className="modal" onClick={() => toggleModal()}>
         <div className="modal-content">{props.children}</div>
       </div>
     )
   );
+
+  // return (
+  //   modalOpen && (
+  //     <div className="modal">
+  //       <div className="modal-content">{props.children}</div>
+  //     </div>
+  //   )
+  // );
 };
 
 export default Modal;
