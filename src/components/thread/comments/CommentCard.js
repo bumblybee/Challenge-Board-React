@@ -25,7 +25,7 @@ const CommentCard = ({ comment, answer }) => {
 
   const { user } = useContext(UserContext);
 
-  const date = moment(comment.createdAt).format("L");
+  const date = moment(comment.createdAt).format("DD/MM/YYYY");
   const time = moment(comment.createdAt).format("LT");
 
   const handleTruncate = () => {

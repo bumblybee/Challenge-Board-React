@@ -16,7 +16,6 @@ import {
 const CommentsList = ({ questionId }) => {
   const { user } = useContext(UserContext);
   const { submitComment, comments } = useContext(ThreadContext);
-  // const { setError } = useContext(ErrorContext);
   const [newComment, setNewComment] = useState({
     body: "",
   });

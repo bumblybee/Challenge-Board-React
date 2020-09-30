@@ -22,7 +22,7 @@ import {
 } from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
-  const date = moment(question.createdAt).format("L");
+  const date = moment(question.createdAt).format("DD/MM/YYYY");
 
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);

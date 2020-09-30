@@ -42,7 +42,7 @@ const QuestionThread = () => {
   const { user } = useContext(UserContext);
   const { fetchThread, threadQuestion, comments } = useContext(ThreadContext);
 
-  const date = moment(threadQuestion.createdAt).format("L");
+  const date = moment(threadQuestion.createdAt).format("DD/MM/YYYY");
   const path = location.pathname.split("/");
   const questionId = path[path.indexOf("question") + 1];
 
@@ -116,19 +116,17 @@ const QuestionThread = () => {
               {sanitize(threadQuestion.title)}
             </StyledQuestionTitle>
             {isTruncated ? (
-              <StyledTruncate
-                line={3}
-                element="div"
-                truncateText="..."
-                text={
-                  <StyledQuestionText>
-                    {sanitize(threadQuestion.body)}
-                  </StyledQuestionText>
-                }
-                textTruncateChild={
-                  <StyledSpan onClick={handleTruncate}>more</StyledSpan>
-                }
-              />
+              <StyledQuestionText>
+                <StyledTruncate
+                  line={3}
+                  element="div"
+                  truncateText="..."
+                  text={sanitize(threadQuestion.body)}
+                  textTruncateChild={
+                    <StyledSpan onClick={handleTruncate}>more</StyledSpan>
+                  }
+                />
+              </StyledQuestionText>
             ) : (
               <StyledQuestionText>
                 {sanitize(threadQuestion.body)}{" "}
