@@ -64,6 +64,7 @@ const StyledSpan = styled.span`
 const StyledCommentText = styled.div`
   color: #dcddde;
   font-weight: 300;
+  white-space: pre-wrap;
 `;
 
 const StyledCommentsForm = styled.form`
@@ -108,6 +109,7 @@ const StyledSubmitIcon = styled.i`
 const StyledTruncate = styled(TextTruncate)`
   color: #dcddde;
   font-weight: 300;
+  white-space: pre-wrap;
 `;
 
 export {

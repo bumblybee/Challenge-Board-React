@@ -46,7 +46,7 @@ const UserMenu = ({ handleClose }) => {
         <li className="login">
           {!user ? (
             <Link to="/login" onClick={() => handleClose(false)}>
-              Login
+              Log In
             </Link>
           ) : (
             <p onClick={logout}>Log Out</p>
