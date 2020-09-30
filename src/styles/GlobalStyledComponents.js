@@ -67,20 +67,3 @@ export const StyledFormLink = styled(Link)`
   margin-top: 1rem;
   display: block;
 `;
-
-export const StyledLoader = styled.img`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-// export {
-//   StyledHeading,
-//   StyledSpan,
-//   StyledFormLink,
-//   StyledTransparentButton,
-//   StyledPurpleButton,
-//   StyledTextarea,
-//   StyledLoader,
-// };

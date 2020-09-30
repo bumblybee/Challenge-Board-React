@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, Fragment } from "react";
-import loading from "../../assets/loading.gif";
+import loader from "../../assets/loading.gif";
 
 import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
 import SubmissionArea from "../../components/challenge-submission/SubmissionArea";
@@ -12,17 +12,18 @@ import { StyledLoader } from "../../styles/GlobalStyledComponents";
 import * as sc from "./StyledChallenge";
 
 const Challenge = () => {
-  const { user, getCurrentUser, isLoading } = useContext(UserContext);
+  const { user, userLoading } = useContext(UserContext);
 
-  useEffect(() => {
-    // getCurrentUser();
-    //eslint-disable-next-line
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Fragment>
-      {isLoading ? (
-        <StyledLoader src={loading} alt="loading" isUserState={true} />
+      {userLoading ? (
+        <sc.StyledChallengeLoader
+          src={loader}
+          alt="loading"
+          isUserState={true}
+        />
       ) : (
         <sc.StyledContainer>
           {user && user.role === "Teacher" ? (

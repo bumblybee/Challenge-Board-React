@@ -6,21 +6,21 @@ import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
   const [user, setUser] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(false);
 
   useEffect(() => {
     getCurrentUser();
   }, []);
 
   const getCurrentUser = async () => {
-    setIsLoading(true);
+    setUserLoading(true);
     const userData = await getUser();
     if (userData.error || !userData) {
-      setIsLoading(false);
+      setUserLoading(false);
       return;
     } else {
       setUser(userData.data.user);
-      setIsLoading(false);
+      setUserLoading(false);
     }
   };
 
@@ -59,7 +59,7 @@ const UserState = ({ children }) => {
         getCurrentUser,
         handleSignup,
         handleLogin,
-        isLoading,
+        userLoading,
       }}
     >
       {children}

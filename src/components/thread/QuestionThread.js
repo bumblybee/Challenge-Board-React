@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect, useContext } from "react";
+import loader from "../../assets/loading.gif";
+
 import moment from "moment";
 import DOMPurify from "dompurify";
 
@@ -16,6 +18,8 @@ import {
   StyledHeading,
   StyledPurpleButton,
 } from "../../styles/GlobalStyledComponents";
+
+import { StyledThreadLoader } from "./StyledThread";
 
 import {
   StyledSpan,
@@ -77,7 +81,7 @@ const QuestionThread = () => {
     setIsOpen(!isOpen);
   };
 
-  if (threadLoading) return <span>Loading...</span>;
+  // if (threadLoading) return <span>Loading...</span>;
 
   return (
     <Fragment>
@@ -145,7 +149,11 @@ const QuestionThread = () => {
             <ThreadAnswer key={comment.id} comment={comment} />
           ))}
       </div>
-      <CommentsList questionId={questionId} />
+      {threadLoading ? (
+        <StyledThreadLoader src={loader} alt="loading" />
+      ) : (
+        <CommentsList questionId={questionId} />
+      )}
     </Fragment>
   );
 };
