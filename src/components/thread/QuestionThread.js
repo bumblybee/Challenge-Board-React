@@ -81,7 +81,7 @@ const QuestionThread = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // if (threadLoading) return <span>Loading...</span>;
+  if (threadLoading) return <StyledThreadLoader src={loader} alt="loading" />;
 
   return (
     <Fragment>
@@ -150,11 +150,7 @@ const QuestionThread = () => {
             <ThreadAnswer key={comment.id} comment={comment} />
           ))}
       </div>
-      {threadLoading ? (
-        <StyledThreadLoader src={loader} alt="loading" />
-      ) : (
-        <CommentsList questionId={questionId} />
-      )}
+      <CommentsList questionId={questionId} />
     </Fragment>
   );
 };
