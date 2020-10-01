@@ -192,8 +192,8 @@ const SubmissionArea = () => {
             </StyledPurpleButton>
             <sc.StyledTimestampParagraph>
               Project submitted at{" "}
-              {moment(projectDetails.updatedAt).format("L")} on{" "}
-              {moment(projectDetails.updatedAt).format("h:mm")}
+              {moment(projectDetails.updatedAt).format("h:mm")} on{" "}
+              {moment(projectDetails.updatedAt).format("L")}
             </sc.StyledTimestampParagraph>
           </sc.StyledEditSubmission>
         </sc.StyledSubmissionContent>
