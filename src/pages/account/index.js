@@ -34,7 +34,7 @@ const Account = () => {
             <StyledAccountPostsDiv className="account-div">
               <StyledPostList>
                 <StyledCategoryH3>Questions</StyledCategoryH3>
-                {user.questions ? (
+                {user.questions && user.questions.length ? (
                   user.questions.map((question) => (
                     <Link
                       key={question.id}
@@ -43,27 +43,26 @@ const Account = () => {
                     >
                       <StyledAccountPost>
                         <StyledDate>
-                          {moment(question.updatedAt).format("DD/MM/YYYY")}
+                          {moment(question.createdAt).format("DD/MM/YYYY")}
                         </StyledDate>
                         <StyledQuestionTitle>
                           {question.title}
                         </StyledQuestionTitle>
+                        <p>{question.body}</p>
                       </StyledAccountPost>
                     </Link>
                   ))
                 ) : (
                   <StyledAccountPost noLength={true}>
                     <p>
-                      <em>
-                        You seriously don't have <strong>any </strong>questions?
-                      </em>
+                      <em>Looks like nothing's stumped you yet!</em>
                     </p>
                   </StyledAccountPost>
                 )}
               </StyledPostList>
               <StyledPostList>
                 <StyledCategoryH3>Comments</StyledCategoryH3>
-                {user.comments ? (
+                {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
                     //TODO: styled component for links
                     <HashLink
@@ -73,7 +72,7 @@ const Account = () => {
                     >
                       <StyledAccountPost>
                         <StyledDate>
-                          {moment(comment.updatedAt).format("DD/MM/YYYY")}
+                          {moment(comment.createdAt).format("DD/MM/YYYY")}
                         </StyledDate>
                         <p>{comment.body}</p>
                       </StyledAccountPost>
@@ -100,7 +99,7 @@ const Account = () => {
                     >
                       <StyledAccountPost>
                         <StyledDate>
-                          {moment(project.updatedAt).format("DD/MM/YYYY")}
+                          {moment(project.createdAt).format("DD/MM/YYYY")}
                         </StyledDate>
                         <p>{project.githubLink}</p>
                         <p>{project.additionLink}</p>

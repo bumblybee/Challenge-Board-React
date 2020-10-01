@@ -22,6 +22,7 @@ const SubmissionArea = () => {
 
   //Handles modal
   const [isOpen, setIsOpen] = useState(false);
+
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
 
