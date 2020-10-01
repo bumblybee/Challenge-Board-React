@@ -23,7 +23,7 @@ const QuestionsList = () => {
   const { questions, submitNewQuestion, fetchQuestions } = useContext(
     QuestionContext
   );
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setmodalOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
     title: "",
@@ -48,7 +48,7 @@ const QuestionsList = () => {
     getUpdatedQuestions &&
       getUpdatedQuestions.error &&
       setError(getUpdatedQuestions.error);
-    setIsOpen(!isOpen);
+    setModalOpen(!modalOpen);
     setNewQuestion({
       question: "",
       questionDetails: "",
@@ -57,7 +57,7 @@ const QuestionsList = () => {
 
   return (
     <Fragment>
-      {isOpen && (
+      {modalOpen && (
         <Modal>
           <div className="modal-header">
             <h1>Post a Question</h1>
@@ -98,7 +98,7 @@ const QuestionsList = () => {
               <div className="modal-footer">
                 <StyledTransparentButton
                   className="close-modal"
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => setModalOpen(!modalOpen)}
                 >
                   Cancel
                 </StyledTransparentButton>
@@ -125,7 +125,7 @@ const QuestionsList = () => {
         ) : user && user.role === "Student" ? (
           <StyledPurpleButton
             className="modal-button"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setModalOpen(!modalOpen)}
           >
             Post a Question
           </StyledPurpleButton>

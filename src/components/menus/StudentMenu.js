@@ -14,7 +14,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
   const { updateComment, updateThreadQuestion } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
 
-  const [openModal, setOpenModal] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [questionTitle, setQuestionTitle] = useState(
     question ? question.title : ""
   );
@@ -24,7 +24,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
   const [commentBody, setCommentBody] = useState(comment && comment.body);
 
   const handleCancel = () => {
-    setOpenModal(!openModal);
+    setModalOpen(!modalOpen);
     toggleMenu();
   };
 
@@ -35,7 +35,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
       userId: question.userId,
     };
     updateQuestion(question, data);
-    setOpenModal(!openModal);
+    setModalOpen(!modalOpen);
     toggleMenu();
   };
 
@@ -47,7 +47,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
     };
 
     updateThreadQuestion(question, data);
-    setOpenModal(!openModal);
+    setModalOpen(!modalOpen);
     toggleMenu();
   };
 
@@ -59,12 +59,12 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
       questionId: comment.questionId,
     };
     updateComment(comment, data);
-    setOpenModal(!openModal);
+    setModalOpen(!modalOpen);
     toggleMenu();
   };
 
   if (comment) {
-    if (openModal) {
+    if (modalOpen) {
       return (
         <Modal>
           <div className="modal-body">
@@ -89,7 +89,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
     } else {
       return (
         <StyledStudentMenu>
-          <p onClick={() => setOpenModal(!openModal)}>Edit Comment</p>
+          <p onClick={() => setModalOpen(!modalOpen)}>Edit Comment</p>
         </StyledStudentMenu>
       );
     }
@@ -97,7 +97,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
 
   return (
     <Fragment>
-      {openModal ? (
+      {modalOpen ? (
         <Modal>
           <div className="modal-body">
             <form
@@ -137,7 +137,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
         </Modal>
       ) : (
         <StyledStudentMenu>
-          <p onClick={() => setOpenModal(!openModal)}>Edit Question</p>
+          <p onClick={() => setModalOpen(!modalOpen)}>Edit Question</p>
         </StyledStudentMenu>
       )}
     </Fragment>

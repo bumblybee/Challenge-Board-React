@@ -22,15 +22,14 @@ const SubmissionArea = () => {
 
   //Handles modal
   const [modalOpen, setModalOpen] = useState(false);
-
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
-
   const [projectDetails, setProjectDetails] = useState({});
   const [hasPriorProject, setHasPriorProject] = useState(false);
 
   useEffect(() => {
     let mounted = true;
+
     const getUserProject = async () => {
       const res = await getProject();
 
