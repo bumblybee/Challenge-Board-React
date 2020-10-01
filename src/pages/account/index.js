@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, Fragment } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import moment from "moment";
 
 import { UserContext } from "../../context/user/UserContext";
 
@@ -12,7 +13,7 @@ import {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
-  StyledHr,
+  StyledDate,
 } from "./StyledAccount";
 
 const Account = () => {
@@ -23,6 +24,7 @@ const Account = () => {
     getCurrentUser();
     //eslint-disable-next-line
   }, []);
+
   return (
     <div>
       <StyledAccountDiv>
@@ -40,6 +42,9 @@ const Account = () => {
                       to={`/challenge/question/${question.id}`}
                     >
                       <StyledAccountPost>
+                        <StyledDate>
+                          {moment(question.updatedAt).format("DD/MM/YYYY")}
+                        </StyledDate>
                         <StyledQuestionTitle>
                           {question.title}
                         </StyledQuestionTitle>
@@ -67,9 +72,12 @@ const Account = () => {
                       to={`/challenge/question/${comment.questionId}#${comment.id}`}
                     >
                       <StyledAccountPost>
+                        <StyledDate>
+                          {moment(comment.updatedAt).format("DD/MM/YYYY")}
+                        </StyledDate>
                         <p>{comment.body}</p>
                       </StyledAccountPost>
-                      <StyledHr />
+                      {/* <StyledHr /> */}
                     </HashLink>
                   ))
                 ) : (
@@ -91,6 +99,9 @@ const Account = () => {
                       style={whiteText}
                     >
                       <StyledAccountPost>
+                        <StyledDate>
+                          {moment(project.updatedAt).format("DD/MM/YYYY")}
+                        </StyledDate>
                         <p>{project.githubLink}</p>
                         <p>{project.additionLink}</p>
                         <p>{project.comment}</p>

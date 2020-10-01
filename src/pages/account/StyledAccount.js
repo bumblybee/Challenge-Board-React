@@ -13,6 +13,7 @@ const StyledCategoryH3 = styled.h3`
   font-family: "Roboto", serif;
   font-size: 1.7rem;
   padding: 0.5rem 0 0.5rem;
+  border-top: 3px solid #809bffee;
   border-bottom: 3px solid #809bffee;
   @media (max-width: 620px) {
     font-size: 1.3rem;
@@ -70,12 +71,12 @@ const StyledPostList = styled.ul`
   width: 100%;
   height: 100%;
   box-shadow: inset -5px 0 rgba(0, 0, 0, 0.1);
+  border: 3px solid #809bffee;
 
   @media (max-width: 620px) {
     padding: 0;
-
+    height: auto;
     :not(:last-child) {
-      margin-bottom: 1.5rem;
       border-right: none;
     }
   }
@@ -84,9 +85,8 @@ const StyledPostList = styled.ul`
 const StyledAccountPost = styled.li`
   margin: 0 auto;
   padding: 1rem;
-  /* border-radius: 6px; */
   white-space: pre-wrap;
-  /* border-bottom: 1px inset rgba(0, 0, 0, 0.05); */
+  text-align: left;
 
   transition: transform 0.1s ease-in;
   :hover {
@@ -109,17 +109,27 @@ const StyledAccountPost = styled.li`
   @media (max-width: 620px) {
     width: 100%;
     margin: 0 auto;
+
+    :not(:last-of-type) {
+      border-bottom: 0.5px inset #fff;
+    }
   }
 `;
 
 export const StyledHr = styled.hr`
   display: none;
   @media (max-width: 620px) {
-    border: 0.5px inset rgba(0, 0, 0, 0.3);
+    border: 0.5px inset transparent;
 
     display: block;
     margin: 0 auto;
   }
+`;
+
+export const StyledDate = styled.div`
+  color: #7d8088;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
 `;
 
 export {
