@@ -12,6 +12,7 @@ import {
   StyledAccountPostsDiv,
   StyledAccountPost,
   StyledPostList,
+  StyledHr,
 } from "./StyledAccount";
 
 const Account = () => {
@@ -42,7 +43,6 @@ const Account = () => {
                         <StyledQuestionTitle>
                           {question.title}
                         </StyledQuestionTitle>
-                        <p>{question.body}</p>
                       </StyledAccountPost>
                     </Link>
                   ))
@@ -69,6 +69,7 @@ const Account = () => {
                       <StyledAccountPost>
                         <p>{comment.body}</p>
                       </StyledAccountPost>
+                      <StyledHr />
                     </HashLink>
                   ))
                 ) : (

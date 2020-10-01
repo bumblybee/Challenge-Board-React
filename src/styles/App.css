@@ -293,7 +293,7 @@ iframe {
 
 .account-div::-webkit-scrollbar-track {
   background: #3a3c42;
-  border-left: 4px inset rgba(0, 0, 0, 0.2);
+
   box-shadow: inset 0 0 13px #809cffd5;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -302,7 +302,6 @@ iframe {
 .account-div::-webkit-scrollbar-thumb {
   background-color: #2f3136;
   border: 3px solid transparent;
-  border-left: 6px solid transparent;
   border-radius: 10px;
   background-clip: content-box;
 }

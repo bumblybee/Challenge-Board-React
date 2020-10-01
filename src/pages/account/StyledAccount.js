@@ -13,7 +13,7 @@ const StyledCategoryH3 = styled.h3`
   font-family: "Roboto", serif;
   font-size: 1.7rem;
   padding: 0.5rem 0 0.5rem;
-  border-bottom: 2px solid #809bffee;
+  border-bottom: 3px solid #809bffee;
   @media (max-width: 620px) {
     font-size: 1.3rem;
   }
@@ -41,7 +41,7 @@ const StyledAccountDiv = styled.div`
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
 
   @media (max-width: 620px) {
-    width: 90%;
+    width: 96%;
     margin: 1rem auto;
     height: 90vh;
   }
@@ -69,11 +69,7 @@ const StyledPostList = styled.ul`
   padding: 0 0 1rem;
   width: 100%;
   height: 100%;
-
-  :not(:last-child) {
-    border-right: 3px inset rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
-  }
+  box-shadow: inset -5px 0 rgba(0, 0, 0, 0.1);
 
   @media (max-width: 620px) {
     padding: 0;
@@ -86,16 +82,18 @@ const StyledPostList = styled.ul`
 `;
 
 const StyledAccountPost = styled.li`
-  margin: 0.5rem auto 0;
+  margin: 0 auto;
   padding: 1rem;
-  border-radius: 6px;
+  /* border-radius: 6px; */
+  white-space: pre-wrap;
+  /* border-bottom: 1px inset rgba(0, 0, 0, 0.05); */
 
   transition: transform 0.1s ease-in;
   :hover {
     cursor: ${(props) => (props.noLength ? "default" : "pointer")};
     transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
     box-shadow: ${(props) =>
-      props.noLength ? "" : "0 2px 8px rgba(0, 0, 0, 0.3)"};
+      props.noLength ? "" : "inset 1px 2px 8px rgba(0, 0, 0, 0.3)"};
   }
 
   :active {
@@ -110,6 +108,17 @@ const StyledAccountPost = styled.li`
 
   @media (max-width: 620px) {
     width: 100%;
+    margin: 0 auto;
+  }
+`;
+
+export const StyledHr = styled.hr`
+  display: none;
+  @media (max-width: 620px) {
+    border: 0.5px inset rgba(0, 0, 0, 0.3);
+
+    display: block;
+    margin: 0 auto;
   }
 `;
 
