@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-const Modal = (props) => {
+const Modal = ({ children }) => {
   const [modalOpen, setModalOpen] = useState(true);
 
-  // const handleClickOutside = () => {
-  //   setModalOpen(false);
-  // };
+  const handleClickOutside = () => {
+    setModalOpen(false);
+  };
 
   return (
     modalOpen && (
       <div className="modal">
-        <div className="modal-content">{props.children}</div>
+        <div className="modal-content">{children}</div>
       </div>
     )
   );

@@ -25,13 +25,9 @@ const SubmissionArea = () => {
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const [initialProject, setInitialProject] = useState({
-    githubLink: "",
-    additionalLink: "",
-    comment: "",
-  });
+  const [projectDetails, setProjectDetails] = useState({});
   const [hasPriorProject, setHasPriorProject] = useState(false);
-  const [priorProject, setPriorProject] = useState({});
+  // const [priorProject, setPriorProject] = useState({});
   const [projectTimestamp, setProjectTimestamp] = useState({
     date: "",
     time: "",
@@ -39,12 +35,11 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     getUserProject();
-
-    //eslint-disable-next-line
   }, []);
 
   const getUserProject = async () => {
     const res = await getProject();
+
     if (res && res.error) {
       return;
     }
@@ -53,7 +48,7 @@ const SubmissionArea = () => {
       const project = res.data.project;
 
       if (project !== null) {
-        setPriorProject(project);
+        setProjectDetails(project);
         setHasPriorProject(true);
 
         setProjectTimestamp({
@@ -68,7 +63,7 @@ const SubmissionArea = () => {
   const submitInitialProject = async (e) => {
     e.preventDefault();
 
-    const submission = await submitProject(initialProject);
+    const submission = await submitProject(projectDetails);
 
     if (submission.error || !submission) {
       setError(submission.error);
@@ -82,16 +77,16 @@ const SubmissionArea = () => {
         date: moment(submission.updatedAt).format("L"),
         time: moment(submission.updatedAt).format("h:mm"),
       });
-      setPriorProject(submission.data);
+      setProjectDetails(submission.data);
     }
   };
 
   const submitEditedProject = async (e) => {
     e.preventDefault();
 
-    const projectId = priorProject.id;
+    const projectId = projectDetails.id;
 
-    const editedProject = await editProject(projectId, priorProject);
+    const editedProject = await editProject(projectId, projectDetails);
 
     if (editedProject.error || !editedProject) {
       setError(editedProject.error);
@@ -124,69 +119,42 @@ const SubmissionArea = () => {
             >
               <input
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        githubLink: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        githubLink: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    githubLink: e.target.value,
+                  })
                 }
                 type="url"
                 title="Link must start with https://"
                 id="githubLink"
                 placeholder="Github Link"
-                value={
-                  hasPriorProject
-                    ? priorProject.githubLink
-                    : initialProject.githubLink
-                }
+                value={projectDetails.githubLink}
                 required
                 noValidate
                 autoFocus
               ></input>
               <input
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        additionalLink: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        additionalLink: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    additionalLink: e.target.value,
+                  })
                 }
                 title="Link must start with https://"
                 type="url"
                 placeholder="Additional Link (optional)"
-                value={
-                  hasPriorProject
-                    ? priorProject.additionalLink
-                    : initialProject.additionalLink
-                }
+                value={projectDetails.additionalLink}
               ></input>
               <textarea
                 onChange={(e) =>
-                  hasPriorProject
-                    ? setPriorProject({
-                        ...priorProject,
-                        comment: e.target.value,
-                      })
-                    : setInitialProject({
-                        ...initialProject,
-                        comment: e.target.value,
-                      })
+                  setProjectDetails({
+                    ...projectDetails,
+                    comment: e.target.value,
+                  })
                 }
                 rows="5"
                 placeholder="Comments (optional)"
-                value={
-                  hasPriorProject
-                    ? priorProject.comment
-                    : initialProject.comment
-                }
+                value={projectDetails.comment}
               ></textarea>
               <div className="modal-footer">
                 <StyledTransparentButton
