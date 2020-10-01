@@ -59,7 +59,7 @@ const StyledAccountPostsDiv = styled.div`
   border-radius: 6px;
   border: 4px inset rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 620px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -78,17 +78,16 @@ const StyledPostList = styled.ul`
     border-right: 4px solid #809bffee;
   }
 
-  @media (max-width: 1278px) {
+  @media (max-width: 1024px) {
     border-right: 4px solid #809bffee;
+    :not(:last-child) {
+      border-bottom: none;
+    }
   }
 
   @media (max-width: 620px) {
     padding: 0;
     height: auto;
-
-    :not(:last-child) {
-      border-bottom: none;
-    }
   }
 `;
 
