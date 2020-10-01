@@ -39,18 +39,19 @@ const SubmissionArea = () => {
 
   useEffect(() => {
     getUserProject();
+
     //eslint-disable-next-line
   }, []);
 
   const getUserProject = async () => {
     const res = await getProject();
-
     if (res && res.error) {
       return;
     }
 
-    if (res && res.project && res.project.data) {
+    if (res && res.data && res.data.project) {
       const project = res.data.project;
+
       if (project !== null) {
         setPriorProject(project);
         setHasPriorProject(true);

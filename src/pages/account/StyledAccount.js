@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledUserMessage = styled.h1`
   padding: 1rem;
   color: #dcdddefb;
-  text-shadow: 0 2px 14px #809bff;
+  text-shadow: 0 2px 14px #809bffee;
   font-family: "Roboto Slab", serif;
   font-size: 1.9rem;
 `;
@@ -80,6 +80,7 @@ const StyledPostList = styled.ul`
 
   @media (max-width: 1024px) {
     border-right: 4px solid #809bffee;
+    padding: 0;
     :not(:last-child) {
       border-bottom: none;
     }
@@ -102,7 +103,7 @@ const StyledAccountPost = styled.li`
     cursor: ${(props) => (props.noLength ? "default" : "pointer")};
     transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
     box-shadow: ${(props) =>
-      props.noLength ? "" : "inset 0 0 10px rgba(0, 0, 0, 0.3)"};
+      props.noLength ? "" : "inset 0 0 10px rgba(0, 0, 0, 0.3);"};
   }
 
   p {
