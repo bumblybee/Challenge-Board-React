@@ -27,38 +27,32 @@ const SubmissionArea = () => {
 
   const [projectDetails, setProjectDetails] = useState({});
   const [hasPriorProject, setHasPriorProject] = useState(false);
-  // const [priorProject, setPriorProject] = useState({});
-  const [projectTimestamp, setProjectTimestamp] = useState({
-    date: "",
-    time: "",
-  });
 
   useEffect(() => {
-    getUserProject();
-  }, []);
+    let mounted = true;
+    const getUserProject = async () => {
+      const res = await getProject();
 
-  const getUserProject = async () => {
-    const res = await getProject();
-
-    if (res && res.error) {
-      return;
-    }
-
-    if (res && res.data && res.data.project) {
-      const project = res.data.project;
-
-      if (project !== null) {
-        setProjectDetails(project);
-        setHasPriorProject(true);
-
-        setProjectTimestamp({
-          ...projectTimestamp,
-          date: moment(project.updatedAt).format("L"),
-          time: moment(project.updatedAt).format("h:mm"),
-        });
+      if (res && res.error) {
+        return;
       }
-    }
-  };
+
+      if (res && res.data && res.data.project) {
+        const project = res.data.project;
+
+        if (project !== null && mounted) {
+          setProjectDetails(project);
+          setHasPriorProject(true);
+        }
+      }
+    };
+
+    getUserProject();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const submitInitialProject = async (e) => {
     e.preventDefault();
@@ -72,11 +66,6 @@ const SubmissionArea = () => {
       setIsSubmitted(true);
       setIsOpen(!isOpen);
       setHasPriorProject(true);
-      setProjectTimestamp({
-        ...projectTimestamp,
-        date: moment(submission.updatedAt).format("L"),
-        time: moment(submission.updatedAt).format("h:mm"),
-      });
       setProjectDetails(submission.data);
     }
   };
@@ -94,11 +83,7 @@ const SubmissionArea = () => {
     } else {
       setIsSubmitted(true);
       setIsOpen(!isOpen);
-      setProjectTimestamp({
-        ...projectTimestamp,
-        date: moment(editedProject.updatedAt).format("L"),
-        time: moment(editedProject.updatedAt).format("h:mm"),
-      });
+      setProjectDetails(editedProject.data);
     }
   };
 
@@ -143,7 +128,7 @@ const SubmissionArea = () => {
                 title="Link must start with https://"
                 type="url"
                 placeholder="Additional Link (optional)"
-                value={projectDetails.additionalLink}
+                value={projectDetails.additionalLink || ""}
               ></input>
               <textarea
                 onChange={(e) =>
@@ -154,7 +139,7 @@ const SubmissionArea = () => {
                 }
                 rows="5"
                 placeholder="Comments (optional)"
-                value={projectDetails.comment}
+                value={projectDetails.comment || ""}
               ></textarea>
               <div className="modal-footer">
                 <StyledTransparentButton
@@ -206,8 +191,9 @@ const SubmissionArea = () => {
               Edit Submission
             </StyledPurpleButton>
             <sc.StyledTimestampParagraph>
-              Project submitted at {projectTimestamp.time} on{" "}
-              {projectTimestamp.date}
+              Project submitted at{" "}
+              {moment(projectDetails.updatedAt).format("L")} on{" "}
+              {moment(projectDetails.updatedAt).format("h:mm")}
             </sc.StyledTimestampParagraph>
           </sc.StyledEditSubmission>
         </sc.StyledSubmissionContent>
