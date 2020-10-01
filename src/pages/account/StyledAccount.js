@@ -13,8 +13,8 @@ const StyledCategoryH3 = styled.h3`
   font-family: "Roboto", serif;
   font-size: 1.7rem;
   padding: 0.5rem 0 0.5rem;
-  border-top: 3px solid #809bffee;
-  border-bottom: 3px solid #809bffee;
+  border-bottom: 4px solid #809bffee;
+
   @media (max-width: 620px) {
     font-size: 1.3rem;
   }
@@ -23,6 +23,7 @@ const StyledCategoryH3 = styled.h3`
 const StyledQuestionTitle = styled.h4`
   margin-bottom: 0.5rem;
   font-weight: 500;
+  font-size: 1rem;
 `;
 
 const StyledAccountDiv = styled.div`
@@ -56,9 +57,7 @@ const StyledAccountPostsDiv = styled.div`
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
   border-radius: 6px;
-  /* border-bottom-right-radius: 6px; */
   border: 4px inset rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
 
   @media (max-width: 620px) {
     grid-template-columns: 1fr;
@@ -70,14 +69,25 @@ const StyledPostList = styled.ul`
   padding: 0 0 1rem;
   width: 100%;
   height: 100%;
-  box-shadow: inset -5px 0 rgba(0, 0, 0, 0.1);
-  border: 3px solid #809bffee;
+
+  border-left: 4px solid #809bffee;
+  border-top: 4px solid #809bffee;
+  border-bottom: 4px solid #809bffee;
+
+  :last-child {
+    border-right: 4px solid #809bffee;
+  }
+
+  @media (max-width: 1278px) {
+    border-right: 4px solid #809bffee;
+  }
 
   @media (max-width: 620px) {
     padding: 0;
     height: auto;
+
     :not(:last-child) {
-      border-right: none;
+      border-bottom: none;
     }
   }
 `;
@@ -93,13 +103,7 @@ const StyledAccountPost = styled.li`
     cursor: ${(props) => (props.noLength ? "default" : "pointer")};
     transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
     box-shadow: ${(props) =>
-      props.noLength ? "" : "inset 1px 2px 8px rgba(0, 0, 0, 0.3)"};
-  }
-
-  :active {
-    box-shadow: ${(props) =>
-      props.noLength ? "" : "0 1px 2px rgba(0, 0, 0, 0.1)"};
-    transform: scale(1);
+      props.noLength ? "" : "inset 0 0 10px rgba(0, 0, 0, 0.3)"};
   }
 
   p {
@@ -128,7 +132,7 @@ export const StyledHr = styled.hr`
 
 export const StyledDate = styled.div`
   color: #7d8088;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin-bottom: 0.4rem;
 `;
 
