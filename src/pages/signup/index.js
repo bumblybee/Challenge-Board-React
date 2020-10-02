@@ -8,8 +8,10 @@ import { getSignupDiscordUrl } from "../../api/discordApi";
 import {
   StyledPurpleButton,
   StyledFormLink,
+  StyledDiscordIcon,
+  StyledDiscordButton,
 } from "../../styles/GlobalStyledComponents";
-import { StyledDiscordButton, StyledHr } from "./StyledSignup";
+import { StyledHr } from "./StyledSignup";
 
 import { useHistory } from "react-router-dom";
 
@@ -102,15 +104,7 @@ const Signup = () => {
           <Fragment>
             <StyledHr></StyledHr>
             <StyledDiscordButton href={discordUrl}>
-              <i
-                style={{
-                  position: "absolute",
-                  opacity: "0.3",
-                  left: "47%",
-                  top: "2px",
-                }}
-                className="fab fa-discord fa-2x"
-              ></i>
+              <StyledDiscordIcon className="fab fa-discord fa-2x"></StyledDiscordIcon>
               Sign Up with Discord
             </StyledDiscordButton>
           </Fragment>

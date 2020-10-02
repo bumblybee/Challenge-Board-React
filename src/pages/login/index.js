@@ -9,12 +9,10 @@ import { getLoginDiscordUrl } from "../../api/discordApi";
 import {
   StyledPurpleButton,
   StyledFormLink,
-} from "../../styles/GlobalStyledComponents";
-import {
-  StyledDiscordButton,
-  StyledHr,
   StyledDiscordIcon,
-} from "./StyledLogin";
+  StyledDiscordButton,
+} from "../../styles/GlobalStyledComponents";
+import { StyledHr } from "./StyledLogin";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
