@@ -23,7 +23,7 @@ const QuestionsList = () => {
   const { questions, submitNewQuestion, fetchQuestions } = useContext(
     QuestionContext
   );
-  const [modalOpen, setmodalOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
     title: "",

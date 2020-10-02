@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import getParameterByName from "../../utilities/getParameterByName";
 import { discordSignup } from "../../api/discordApi";
 import { UserContext } from "../../context/user/UserContext";
@@ -12,10 +12,15 @@ const DiscordSignup = () => {
   const { setUser } = useContext(UserContext);
 
   const history = useHistory();
-
+  const location = useLocation();
   useEffect(() => {
     const state = getParameterByName("state");
     const code = getParameterByName("code");
+    // const { search } = location;
+    // const query = new URLSearchParams(search);
+    // const field = query.get("field");
+    // const val = query.get("val");
+    // console.log(field, val);
 
     const postDiscordSignup = async () => {
       const user = await discordSignup(code, state);
@@ -25,7 +30,7 @@ const DiscordSignup = () => {
         setError(user.error);
 
         if (user.error === "User credentials already in use. Please log in.") {
-          history.push("/login");
+          // history.push("/login");
         } else {
           history.push("/signup");
         }
@@ -36,7 +41,6 @@ const DiscordSignup = () => {
     };
 
     postDiscordSignup();
-    // eslint-disable-next-line
   }, []);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;

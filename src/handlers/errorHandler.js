@@ -3,6 +3,9 @@ const errorCodeToMessage = {
 
   "auth.discordError": "Discord sign in unsuccessful, please try again.",
 
+  "auth.discordLoginError": "Discord sign in unsuccessful, please try again.",
+  "auth.discordSignupError": "Discord sign in unsuccessful, please try again.",
+
   "auth.invalidCredentials": "Invalid credentials, please try again.",
 
   "auth.noToken":

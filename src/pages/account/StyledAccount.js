@@ -51,38 +51,66 @@ const StyledAccountDiv = styled.div`
 
 const StyledAccountPostsDiv = styled.div`
   width: 100%;
-  height: 110%;
+  height: 100%;
   margin: 0 auto;
   display: grid;
+  padding: 0.9rem;
+  background: #2f3136;
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
   border-radius: 6px;
-  border: 4px inset rgba(0, 0, 0, 0.2);
+  /* border: 4px inset rgba(0, 0, 0, 0.2); */
+  border-style: inset;
+  border-width: 12px;
+  border-top-color: rgba(0, 0, 0, 0.06);
+  border-left-color: rgba(0, 0, 0, 0.06);
+  border-right-color: #3a3c42;
+  border-bottom-color: #3a3c42;
 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
+    padding: 0.4rem;
+    border-width: 8px;
   }
 `;
 
 const StyledPostList = styled.ul`
-  background: #2f3136;
   padding: 0 0 1rem;
+  margin-bottom: 0.5rem;
   width: 100%;
   height: 100%;
-
+  border-radius: 6px;
   border-left: 4px solid #809bffee;
   border-top: 4px solid #809bffee;
   border-bottom: 4px solid #809bffee;
+  border-right: 4px solid #809bffee;
 
-  :last-child {
-    border-right: 4px solid #809bffee;
+  :not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   @media (max-width: 1024px) {
     border-right: 4px solid #809bffee;
     padding: 0;
+    margin-bottom: 0;
+    :first-child {
+      border-top-right-radius: 6px;
+    }
+
+    :not(:first-child) {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
     :not(:last-child) {
       border-bottom: none;
+      border-bottom-left-radius: 0;
     }
   }
 
@@ -96,7 +124,7 @@ const StyledAccountPost = styled.li`
   margin: 0 auto;
   padding: 1rem;
   white-space: pre-wrap;
-  text-align: left;
+  text-align: ${(props) => (props.noLength ? "center" : "left")};
 
   transition: transform 0.1s ease-in;
   :hover {

@@ -52,7 +52,7 @@ const SubmissionArea = () => {
     return () => {
       mounted = false;
     };
-  }, [setProjectDetails]);
+  }, []);
 
   const submitInitialProject = async (e) => {
     e.preventDefault();
@@ -83,6 +83,7 @@ const SubmissionArea = () => {
     } else {
       setIsSubmitted(true);
       setModalOpen(!modalOpen);
+      setHasPriorProject(true);
       setProjectDetails(editedProject.data);
     }
   };

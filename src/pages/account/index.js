@@ -73,6 +73,7 @@ const Account = () => {
                       <StyledAccountPost>
                         <StyledDate>
                           {moment(comment.createdAt).format("DD/MM/YYYY")}
+                          {""} {moment(comment.createdAt).format("LT")}
                         </StyledDate>
                         <p>{comment.body}</p>
                       </StyledAccountPost>
