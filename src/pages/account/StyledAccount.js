@@ -18,10 +18,13 @@ const StyledDashboardHeader = styled.h1`
 const StyledButton = styled.div`
   height: 40px;
   width: 40px;
-  background: #809bffee;
+  background: #95acffee;
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  border-bottom: 2px solid #809bff;
+  border-top: 2px solid #738ce4;
+  border-bottom: 4px solid #738ce4;
+  border-left: 2px solid #738ce4;
+  border-right: 2px solid #738ce4;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -34,6 +37,7 @@ const StyledButton = styled.div`
   :active {
     transform: scale(0.99);
     box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+    border: none;
   }
 
   @media (max-width: 620px) {
@@ -49,7 +53,7 @@ const StyledCategoryH3 = styled.h3`
   font-size: 1.7rem;
   padding: 0.5rem 0 0.5rem;
   border-bottom: 4px solid #809bffee;
-  text-shadow: 0 0 10px #809cff3b;
+  text-shadow: 0 0 10px #809cff5b;
   @media (max-width: 620px) {
     font-size: 1.3rem;
   }
