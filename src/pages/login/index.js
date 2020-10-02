@@ -10,7 +10,11 @@ import {
   StyledPurpleButton,
   StyledFormLink,
 } from "../../styles/GlobalStyledComponents";
-import { StyledDiscordButton, StyledHr } from "./StyledLogin";
+import {
+  StyledDiscordButton,
+  StyledHr,
+  StyledDiscordIcon,
+} from "./StyledLogin";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
@@ -80,15 +84,7 @@ const Login = () => {
           <Fragment>
             <StyledHr></StyledHr>
             <StyledDiscordButton href={discordUrl}>
-              <i
-                style={{
-                  position: "absolute",
-                  opacity: "0.3",
-                  left: "47%",
-                  top: "2px",
-                }}
-                className="fab fa-discord fa-2x"
-              ></i>
+              <StyledDiscordIcon className="fab fa-discord fa-2x"></StyledDiscordIcon>
               Log In with Discord
             </StyledDiscordButton>
           </Fragment>

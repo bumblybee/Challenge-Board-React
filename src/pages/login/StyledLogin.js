@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledDiscordButton = styled.a`
+export const StyledDiscordButton = styled.a`
   background: #6271c0;
   display: block;
   width: 100%;
@@ -19,7 +19,7 @@ const StyledDiscordButton = styled.a`
   }
 `;
 
-const StyledHr = styled.hr`
+export const StyledHr = styled.hr`
   margin: 1rem auto;
   border: none;
   background: #202225;
@@ -27,4 +27,9 @@ const StyledHr = styled.hr`
   width: 80%;
 `;
 
-export { StyledDiscordButton, StyledHr };
+export const StyledDiscordIcon = styled.i`
+  position: absolute;
+  opacity: 0.3;
+  left: 47%;
+  top: 2px;
+`;
