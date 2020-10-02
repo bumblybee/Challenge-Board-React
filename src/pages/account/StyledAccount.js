@@ -1,11 +1,37 @@
 import styled from "styled-components";
 
-const StyledUserMessage = styled.h1`
+const StyledDashboardHeader = styled.h1`
   padding: 1rem;
   color: #dcdddefb;
   text-shadow: 0 2px 14px #809bffee;
   font-family: "Roboto Slab", serif;
   font-size: 1.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 620px) {
+    font-size: 1.6rem;
+  }
+`;
+
+const StyledButton = styled.div`
+  height: 40px;
+  width: 40px;
+  background: #809bffee;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid #809bff;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 620px) {
+    height: 30px;
+    width: 30px;
+    font-size: 1rem;
+  }
 `;
 
 const StyledCategoryH3 = styled.h3`
@@ -14,7 +40,7 @@ const StyledCategoryH3 = styled.h3`
   font-size: 1.7rem;
   padding: 0.5rem 0 0.5rem;
   border-bottom: 4px solid #809bffee;
-
+  text-shadow: 0 0 10px #809cff3b;
   @media (max-width: 620px) {
     font-size: 1.3rem;
   }
@@ -59,11 +85,11 @@ const StyledAccountPostsDiv = styled.div`
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
   border-radius: 6px;
-  /* border: 4px inset rgba(0, 0, 0, 0.2); */
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
   border-style: inset;
   border-width: 12px;
-  border-top-color: rgba(0, 0, 0, 0.06);
-  border-left-color: rgba(0, 0, 0, 0.06);
+  border-top-color: rgba(0, 0, 0, 0.03);
+  border-left-color: rgba(0, 0, 0, 0.03);
   border-right-color: #3a3c42;
   border-bottom-color: #3a3c42;
 
@@ -80,14 +106,15 @@ const StyledPostList = styled.ul`
   width: 100%;
   height: 100%;
   border-radius: 6px;
-  border-left: 4px solid #809bffee;
-  border-top: 4px solid #809bffee;
-  border-bottom: 4px solid #809bffee;
-  border-right: 4px solid #809bffee;
-
+  border-left: 5px solid #809bffee;
+  border-top: 5px solid #809bffee;
+  border-bottom: 5px solid #809bffee;
+  border-right: 5px solid #809bffee;
+  box-shadow: 0 0 10px #809cff3b, -1px -1px 4px #809cff3b, 0 0 8px #809cff3b;
   :not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-left: none;
   }
 
   :not(:last-child) {
@@ -165,7 +192,8 @@ export const StyledDate = styled.div`
 `;
 
 export {
-  StyledUserMessage,
+  StyledDashboardHeader,
+  StyledButton,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,

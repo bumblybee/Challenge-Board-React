@@ -6,7 +6,8 @@ import moment from "moment";
 import { UserContext } from "../../context/user/UserContext";
 
 import {
-  StyledUserMessage,
+  StyledDashboardHeader,
+  StyledButton,
   StyledCategoryH3,
   StyledQuestionTitle,
   StyledAccountDiv,
@@ -25,14 +26,37 @@ const Account = () => {
     //eslint-disable-next-line
   }, []);
 
+  const powerOff = (e) => {
+    if (e.target.id === "powerBtn") {
+      const postList = document.querySelectorAll(".post-list");
+
+      postList.forEach((list) => {
+        if (list.style.display === "block") {
+          list.style.display = "none";
+        } else {
+          list.style.display = "block";
+        }
+      });
+    }
+  };
+
   return (
     <div>
       <StyledAccountDiv>
         {user && (
           <Fragment>
-            <StyledUserMessage>{user.username}'s Dashboard</StyledUserMessage>
+            <StyledDashboardHeader>
+              {user.username}'s Dashboard
+              <StyledButton>
+                <i
+                  onClick={powerOff}
+                  id="powerBtn"
+                  className="fas fa-power-off"
+                ></i>
+              </StyledButton>
+            </StyledDashboardHeader>
             <StyledAccountPostsDiv className="account-div">
-              <StyledPostList>
+              <StyledPostList className="post-list">
                 <StyledCategoryH3>Questions</StyledCategoryH3>
                 {user.questions && user.questions.length ? (
                   user.questions.map((question) => (
@@ -60,7 +84,7 @@ const Account = () => {
                   </StyledAccountPost>
                 )}
               </StyledPostList>
-              <StyledPostList>
+              <StyledPostList className="post-list">
                 <StyledCategoryH3>Comments</StyledCategoryH3>
                 {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
@@ -89,7 +113,7 @@ const Account = () => {
                 )}
               </StyledPostList>
 
-              <StyledPostList>
+              <StyledPostList className="post-list">
                 <StyledCategoryH3>Projects</StyledCategoryH3>
                 {user.projects && user.projects.length ? (
                   user.projects.map((project) => (
