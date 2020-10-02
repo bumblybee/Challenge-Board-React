@@ -12,7 +12,8 @@ export const StyledDashboardHeader = styled.h1`
   align-items: center;
 
   @media (max-width: 620px) {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    padding: 1rem 0.7rem;
   }
 `;
 
@@ -21,8 +22,8 @@ export const StyledButton = styled.div`
   width: 40px;
   background: #95acffee;
   border-radius: 50%;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  border-top: 2px solid #738ce4;
+  box-shadow: 0 1px 6px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid #738ce4;
   border-bottom: 4px solid #738ce4;
   border-left: 2px solid #738ce4;
   border-right: 2px solid #738ce4;
@@ -30,20 +31,28 @@ export const StyledButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform ease-out;
 
   :hover {
     cursor: pointer;
   }
 
   :active {
-    transform: scale(0.99);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.4);
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    transform: scale(0.98);
+    font-size: 1.45rem;
+    border: none;
+    background: #809bffee;
+    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.4),
+      inset 0 2px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  :focus {
+    outline: none;
   }
 
   @media (max-width: 620px) {
-    height: 30px;
-    width: 30px;
+    height: 32px;
+    width: 32px;
     font-size: 1rem;
   }
 `;
@@ -146,6 +155,7 @@ export const StyledPostList = styled.ul`
 
   @media (max-width: 1024px) {
     border-right: 4px solid #809bffee;
+
     padding: 0;
     margin-bottom: 0;
     :first-child {
@@ -155,6 +165,7 @@ export const StyledPostList = styled.ul`
     :not(:first-child) {
       border-top-right-radius: 0;
       border-top-left-radius: 0;
+      border-left: 4px solid #809bffee;
     }
 
     :not(:last-child) {
