@@ -22,7 +22,7 @@ export const StyledButton = styled.div`
   width: 40px;
   background: #95acffee;
   border-radius: 50%;
-  box-shadow: 0 1px 6px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
   border-top: 1px solid #738ce4;
   border-bottom: 4px solid #738ce4;
   border-left: 2px solid #738ce4;
@@ -32,6 +32,7 @@ export const StyledButton = styled.div`
   align-items: center;
   justify-content: center;
   transition: transform ease-out;
+  -webkit-tap-highlight-color: transparent;
 
   :hover {
     cursor: pointer;
@@ -51,9 +52,9 @@ export const StyledButton = styled.div`
   }
 
   @media (max-width: 620px) {
-    height: 32px;
-    width: 32px;
-    font-size: 1rem;
+    height: 34px;
+    width: 34px;
+    font-size: 1.2rem;
   }
 `;
 
@@ -147,6 +148,7 @@ export const StyledPostList = styled.ul`
   :not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-left: none;
   }
 
   :not(:last-child) {
@@ -159,8 +161,14 @@ export const StyledPostList = styled.ul`
 
     padding: 0;
     margin-bottom: 0;
+
     :first-child {
       border-top-right-radius: 6px;
+      border-bottom-left-radius: 0;
+    }
+
+    :last-child {
+      border-bottom-left-radius: 6px;
     }
 
     :not(:first-child) {
@@ -171,7 +179,6 @@ export const StyledPostList = styled.ul`
 
     :not(:last-child) {
       border-bottom: none;
-      border-bottom-left-radius: 0;
     }
   }
 

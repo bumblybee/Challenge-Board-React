@@ -46,7 +46,6 @@ const Account = () => {
               </sc.StyledButton>
             </sc.StyledDashboardHeader>
             <sc.StyledAccountPostsDiv className="account-div">
-              <sc.StyledFilter></sc.StyledFilter>
               <sc.StyledPostList className="post-list">
                 <sc.StyledCategoryH3>Questions</sc.StyledCategoryH3>
                 {user.questions && user.questions.length ? (
