@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { triggerPasswordReset } from "../../api/passwordApi";
 import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+import { StyledH2 } from "./StyledResetPassword";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -40,9 +41,9 @@ const ResetPassword = () => {
       ) : (
         <Fragment>
           <div className="login-form-header">
-            <h2 style={{ padding: "2rem" }}>
+            <StyledH2>
               Check your email for a link to reset your password.
-            </h2>
+            </StyledH2>
           </div>
         </Fragment>
       )}
