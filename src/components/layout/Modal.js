@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
+import { StyledModal, StyledModalContent } from "./StyledLayout";
+
 const useClickOutside = (cb) => {
   const domNode = useRef();
 
@@ -27,11 +29,9 @@ const Modal = ({ children }) => {
 
   return (
     modalOpen && (
-      <div className="modal">
-        <div className="modal-content" ref={modalRef}>
-          {children}
-        </div>
-      </div>
+      <StyledModal>
+        <StyledModalContent ref={modalRef}>{children}</StyledModalContent>
+      </StyledModal>
     )
   );
 };

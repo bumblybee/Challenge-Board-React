@@ -53,18 +53,6 @@ i:hover {
   cursor: pointer;
 }
 
-.modal {
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-.modal-content,
 .signup-form-content,
 .login-form-content {
   background: var(--secondary-background);
@@ -365,7 +353,6 @@ iframe {
     height: 395px;
   }
 
-  .modal-content,
   .signup-form-content,
   .login-form-content {
     width: 45%;
@@ -373,7 +360,6 @@ iframe {
 }
 
 @media all and (max-width: 1045px) {
-  .modal-content,
   .signup-form-content,
   .login-form-content {
     width: 50%;
@@ -395,7 +381,6 @@ iframe {
 }
 
 @media all and (max-width: 900px) {
-  .modal-content,
   .signup-form-content,
   .login-form-content {
     width: 65%;
@@ -422,14 +407,6 @@ iframe {
 
   h4 {
     font-size: 0.95rem;
-  }
-
-  .modal-content {
-    width: 90%;
-    padding: 1rem;
-    top: 40%;
-    left: 35%;
-    transform: translate(-34%, -35%);
   }
 
   .signup-form-content,
@@ -487,7 +464,6 @@ iframe {
 }
 
 @media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 900px) {
-  .modal-content,
   .signup-form-content,
   .login-form-content {
     width: 70%;
