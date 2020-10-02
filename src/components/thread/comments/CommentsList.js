@@ -1,17 +1,11 @@
 import React, { useState, useContext } from "react";
 
 import CommentCard from "./CommentCard";
-// import { ErrorContext } from "../../../context/error/ErrorContext";
 import { UserContext } from "../../../context/user/UserContext";
 import { ThreadContext } from "../../../context/thread/ThreadContext";
 import TextareaAutosize from "react-autosize-textarea";
 
-import {
-  StyledCommentsThread,
-  StyledSubmitButton,
-  StyledSubmitIcon,
-  StyledCommentsForm,
-} from "./StyledComments";
+import * as sc from "./StyledComments";
 
 const CommentsList = ({ questionId }) => {
   const { user } = useContext(UserContext);
@@ -31,13 +25,13 @@ const CommentsList = ({ questionId }) => {
 
   return (
     <div className="comments-container">
-      <StyledCommentsThread className="comments-thread">
+      <sc.StyledCommentsThread className="comments-thread">
         {comments.map((comment) => (
           <CommentCard comment={comment} key={comment.id} />
         ))}
-      </StyledCommentsThread>
-      <StyledCommentsForm onSubmit={handleCommentSubmit}>
-        <TextareaAutosize
+      </sc.StyledCommentsThread>
+      <sc.StyledCommentsForm onSubmit={handleCommentSubmit}>
+        <sc.StyledTextarea
           onChange={(e) =>
             setNewComment({
               ...newComment,
@@ -45,16 +39,6 @@ const CommentsList = ({ questionId }) => {
             })
           }
           value={newComment.body}
-          style={{
-            background: "#18191B",
-            border: "none",
-            outline: "none",
-            color: "#fff",
-            width: "80%",
-            fontSize: "1rem",
-            fontFamily: "Arial",
-            resize: "none",
-          }}
           className="question-thread-input"
           placeholder={user ? "Comment" : "Log in to comment"}
           rows={1}
@@ -62,17 +46,17 @@ const CommentsList = ({ questionId }) => {
           disabled={!user ? true : false}
         />
 
-        <StyledSubmitButton
+        <sc.StyledSubmitButton
           className="submit-comment"
           type="submit"
           isTyping={newComment.body ? true : false}
         >
-          <StyledSubmitIcon
+          <sc.StyledSubmitIcon
             className="fas fa-paper-plane"
             isTyping={newComment.body ? true : false}
-          ></StyledSubmitIcon>
-        </StyledSubmitButton>
-      </StyledCommentsForm>
+          ></sc.StyledSubmitIcon>
+        </sc.StyledSubmitButton>
+      </sc.StyledCommentsForm>
     </div>
   );
 };

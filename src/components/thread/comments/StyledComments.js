@@ -1,17 +1,18 @@
 import styled, { css } from "styled-components";
 import TextTruncate from "react-text-truncate";
+import TextareaAutosize from "react-autosize-textarea";
 
-const StyledCommentsThread = styled.ul`
+export const StyledCommentsThread = styled.ul`
   background: #202225;
 `;
 
-const StyledCommentCard = styled.li`
+export const StyledCommentCard = styled.li`
   color: #dcddde;
   position: relative;
   padding: ${(props) => (props.answer ? "1rem 1rem 1rem 2rem" : "1rem")};
 `;
 
-const StyledIconsDiv = styled.div`
+export const StyledIconsDiv = styled.div`
   ${(props) =>
     props.isOpen
       ? css`
@@ -23,7 +24,7 @@ const StyledIconsDiv = styled.div`
         `}
 `;
 
-const StyledMenuIcon = styled.i`
+export const StyledMenuIcon = styled.i`
   ${(props) =>
     props.isOpen
       ? css`
@@ -39,41 +40,52 @@ const StyledMenuIcon = styled.i`
         `}
 `;
 
-const StyledAnswerIcon = styled.i`
+export const StyledAnswerIcon = styled.i`
   float: left;
   margin: 2.2rem 0.7rem 0 0.5rem;
   color: #6271c0;
 `;
 
-const StyledTimeDiv = styled.div`
+export const StyledTimeDiv = styled.div`
   margin-right: 1rem;
   color: #7d8088;
 `;
 
-const StyledDateDiv = styled.div`
+export const StyledDateDiv = styled.div`
   color: #7d8088;
 `;
 
-const StyledSpan = styled.span`
+export const StyledSpan = styled.span`
   color: #809bff;
   :hover {
     cursor: pointer;
   }
 `;
 
-const StyledCommentText = styled.div`
+export const StyledCommentText = styled.div`
   color: #dcddde;
   font-weight: 300;
   white-space: pre-wrap;
 `;
 
-const StyledCommentsForm = styled.form`
+export const StyledCommentsForm = styled.form`
   background: #18191b;
   display: flex;
   padding: 1rem;
 `;
 
-const StyledSubmitButton = styled.button`
+export const StyledTextarea = styled(TextareaAutosize)`
+  background: #18191b;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 80%;
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+  resize: none;
+`;
+
+export const StyledSubmitButton = styled.button`
   ${(props) =>
     props.isTyping
       ? css`
@@ -95,7 +107,7 @@ const StyledSubmitButton = styled.button`
   }
 `;
 
-const StyledSubmitIcon = styled.i`
+export const StyledSubmitIcon = styled.i`
   ${(props) =>
     props.isTyping
       ? css`
@@ -104,26 +116,13 @@ const StyledSubmitIcon = styled.i`
       : css`
           color: #7d8088;
         `}
+  :hover {
+    cursor: pointer;
+  }
 `;
 
-const StyledTruncate = styled(TextTruncate)`
+export const StyledTruncate = styled(TextTruncate)`
   color: #dcddde;
   font-weight: 300;
   white-space: pre-wrap;
 `;
-
-export {
-  StyledCommentsThread,
-  StyledCommentCard,
-  StyledMenuIcon,
-  StyledAnswerIcon,
-  StyledIconsDiv,
-  StyledTimeDiv,
-  StyledDateDiv,
-  StyledSpan,
-  StyledCommentText,
-  StyledSubmitButton,
-  StyledSubmitIcon,
-  StyledCommentsForm,
-  StyledTruncate,
-};

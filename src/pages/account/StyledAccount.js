@@ -20,7 +20,7 @@ const StyledButton = styled.div`
   width: 40px;
   background: #95acffee;
   border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #738ce4;
   border-bottom: 4px solid #738ce4;
   border-left: 2px solid #738ce4;
@@ -36,8 +36,8 @@ const StyledButton = styled.div`
 
   :active {
     transform: scale(0.99);
-    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
-    border: none;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 620px) {
