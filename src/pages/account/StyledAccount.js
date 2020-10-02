@@ -84,6 +84,7 @@ export const StyledHashLink = styled(Link)`
 `;
 
 export const StyledAccountDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-content: space-between;
@@ -142,10 +143,10 @@ export const StyledPostList = styled.ul`
   border-bottom: 5px solid #809bffee;
   border-right: 5px solid #809bffee;
   box-shadow: 0 0 10px #809cff3b, -1px -1px 4px #809cff3b, 0 0 8px #809cff3b;
+
   :not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border-left: none;
   }
 
   :not(:last-child) {
@@ -223,4 +224,13 @@ export const StyledDate = styled.div`
   color: #7d8088;
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
+`;
+
+export const StyledFilter = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100;
+  height: 100%;
+  backdrop-filter: saturate(130%);
 `;
