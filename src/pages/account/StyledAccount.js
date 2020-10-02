@@ -22,10 +22,19 @@ const StyledButton = styled.div`
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border-bottom: 2px solid #809bff;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  :active {
+    transform: scale(0.99);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  }
 
   @media (max-width: 620px) {
     height: 30px;
@@ -156,9 +165,10 @@ const StyledAccountPost = styled.li`
   transition: transform 0.1s ease-in;
   :hover {
     cursor: ${(props) => (props.noLength ? "default" : "pointer")};
-    transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
+    /* transform: ${(props) => (props.noLength ? "" : "scale(0.99)")};
     box-shadow: ${(props) =>
-      props.noLength ? "" : "inset 0 0 10px rgba(0, 0, 0, 0.3);"};
+      props.noLength ? "" : "inset 0 0 10px rgba(0, 0, 0, 0.3);"}; */
+    filter: ${(props) => (props.noLength ? "" : "brightness(75%)")};
   }
 
   p {
