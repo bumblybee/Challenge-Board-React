@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledDiscordButton = styled.a`
+export const StyledDiscordButton = styled.a`
   background: #6271c0;
   display: block;
   width: 100%;
@@ -19,9 +19,7 @@ const StyledDiscordButton = styled.a`
   }
 `;
 
-const StyledDiscordDiv = styled.div`
+export const StyledDiscordDiv = styled.div`
   margin: 15% auto;
   width: 80%;
 `;
-
-export { StyledDiscordDiv, StyledDiscordButton };

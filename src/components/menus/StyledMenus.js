@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledTeacherMenu = styled.div`
+export const StyledTeacherMenu = styled.div`
   background: #18191b;
   font-size: 1rem;
   font-weight: 300;
@@ -35,7 +35,7 @@ const StyledTeacherMenu = styled.div`
   }
 `;
 
-const StyledStudentMenu = styled.div`
+export const StyledStudentMenu = styled.div`
   background: #18191b;
   font-size: 1rem;
   font-weight: 300;
@@ -62,8 +62,6 @@ const StyledStudentMenu = styled.div`
   }
 `;
 
-const StyledParagraph = styled.p`
+export const StyledParagraph = styled.p`
   padding: 0.8rem 0;
 `;
-
-export { StyledStudentMenu, StyledTeacherMenu, StyledParagraph };
