@@ -12,6 +12,9 @@ import {
   StyledHeading,
   StyledPurpleButton,
   StyledTransparentButton,
+  StyledModalHeader,
+  StyledModalBody,
+  StyledModalFooter,
 } from "../../styles/GlobalStyledComponents";
 import * as sc from "./StyledSubmissionArea";
 
@@ -92,11 +95,11 @@ const SubmissionArea = () => {
     <sc.StyledSubmissionContainer>
       {modalOpen && (
         <Modal>
-          <div className="modal-header">
+          <StyledModalHeader>
             <h1>Submit your Project</h1>
             <p>Provide your Github and any additional relevant links.</p>
-          </div>
-          <div className="modal-body">
+          </StyledModalHeader>
+          <StyledModalBody>
             <form
               onSubmit={
                 hasPriorProject ? submitEditedProject : submitInitialProject
@@ -142,7 +145,7 @@ const SubmissionArea = () => {
                 placeholder="Comments (optional)"
                 value={projectDetails.comment || ""}
               ></textarea>
-              <div className="modal-footer">
+              <StyledModalFooter>
                 <StyledTransparentButton
                   className="close-modal"
                   href="#"
@@ -153,9 +156,9 @@ const SubmissionArea = () => {
                 <StyledPurpleButton type="submit" id="submit-project-button">
                   Submit
                 </StyledPurpleButton>
-              </div>
+              </StyledModalFooter>
             </form>
-          </div>
+          </StyledModalBody>
         </Modal>
       )}
 
@@ -169,11 +172,11 @@ const SubmissionArea = () => {
               Look for an email confirmation shortly.
             </sc.StyledConfirmationParagraph>
           </sc.StyledModalBody>
-          <div className="modal-footer">
+          <StyledModalFooter>
             <StyledPurpleButton onClick={() => setIsSubmitted(false)}>
               Close
             </StyledPurpleButton>
-          </div>
+          </StyledModalFooter>
         </Modal>
       )}
 

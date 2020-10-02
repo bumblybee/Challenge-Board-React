@@ -69,53 +69,15 @@ i:hover {
   border-radius: 6px;
 }
 
-.modal-header {
-  padding: 1rem 1rem 0;
-}
-
-.modal-header p {
-  font-weight: 300;
-}
-
-.modal-body,
 .signup-form-body,
 .login-form-body {
   padding: 1rem 1rem 0;
 }
 
-.modal-body form,
 .signup-form-body form,
 .login-form-body form {
   display: flex;
   flex-direction: column;
-}
-
-.modal-body input,
-.modal-body textarea {
-  padding: 1rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid rgba(128, 127, 127, 0.2);
-  border-radius: 6px;
-  background: #18191b;
-  color: var(--primary-text);
-  font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.modal-footer {
-  color: var(--primary-text);
-  margin: 0.5rem 0.5rem 0 0;
-  background: transparent;
-}
-
-.modal-footer {
-  cursor: pointer;
 }
 
 .signup-form-header,
@@ -413,15 +375,6 @@ iframe {
   .login-form-content {
     width: 90%;
     padding: 0.5rem;
-  }
-
-  .modal-footer {
-    padding-bottom: 0.5rem;
-    margin: 0;
-  }
-
-  .modal-header h1 {
-    font-size: 1.5rem;
   }
 
   .signup-form-header h1,

@@ -84,6 +84,7 @@ export const StyledDiscordButton = styled.a`
   position: relative;
   :hover {
     background: #809bff;
+    cursor: pointer;
   }
 `;
 
@@ -92,4 +93,52 @@ export const StyledDiscordIcon = styled.i`
   opacity: 0.3;
   left: 47%;
   top: 2px;
+`;
+
+export const StyledModalHeader = styled.div`
+  padding: 1rem 1rem 0;
+
+  p {
+    font-weight: 300;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+`;
+
+export const StyledModalBody = styled.div`
+  padding: 1rem 1rem 0;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input,
+  textarea {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(128, 127, 127, 0.2);
+    border-radius: 6px;
+    background: #18191b;
+    color: #fff;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+`;
+
+export const StyledModalFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  color: #fff;
+  margin: 0.5rem 0.5rem 0 0;
+  background: transparent;
+
+  @media (max-width: 620px) {
+    padding-bottom: 0.5rem;
+    margin: 0;
+  }
 `;

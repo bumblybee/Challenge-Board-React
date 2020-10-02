@@ -13,6 +13,9 @@ import {
   StyledPurpleButton,
   StyledTransparentButton,
   StyledTextarea,
+  StyledModalHeader,
+  StyledModalBody,
+  StyledModalFooter,
 } from "../../styles/GlobalStyledComponents";
 
 const QuestionsList = () => {
@@ -59,11 +62,11 @@ const QuestionsList = () => {
     <Fragment>
       {modalOpen && (
         <Modal>
-          <div className="modal-header">
+          <StyledModalHeader>
             <h1>Post a Question</h1>
             <p>Make sure to add enough detail to provide context for others.</p>
-          </div>
-          <div className="modal-body">
+          </StyledModalHeader>
+          <StyledModalBody>
             <form id="question-form" onSubmit={handleSubmitQuestion}>
               <input
                 onChange={(e) =>
@@ -95,7 +98,7 @@ const QuestionsList = () => {
                 placeholder="More Details"
                 required
               ></StyledTextarea>
-              <div className="modal-footer">
+              <StyledModalFooter>
                 <StyledTransparentButton
                   className="close-modal"
                   onClick={() => setModalOpen(!modalOpen)}
@@ -105,9 +108,9 @@ const QuestionsList = () => {
                 <StyledPurpleButton id="post-question-button" type="submit">
                   Post
                 </StyledPurpleButton>
-              </div>
+              </StyledModalFooter>
             </form>
-          </div>{" "}
+          </StyledModalBody>{" "}
         </Modal>
       )}
 
