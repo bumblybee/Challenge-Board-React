@@ -5,17 +5,7 @@ import moment from "moment";
 
 import { UserContext } from "../../context/user/UserContext";
 
-import {
-  StyledDashboardHeader,
-  StyledButton,
-  StyledCategoryH3,
-  StyledQuestionTitle,
-  StyledAccountDiv,
-  StyledAccountPostsDiv,
-  StyledAccountPost,
-  StyledPostList,
-  StyledDate,
-} from "./StyledAccount";
+import * as sc from "./StyledAccount";
 
 const Account = () => {
   const { user, getCurrentUser } = useContext(UserContext);
@@ -42,79 +32,76 @@ const Account = () => {
 
   return (
     <div>
-      <StyledAccountDiv>
+      <sc.StyledAccountDiv>
         {user && (
           <Fragment>
-            <StyledDashboardHeader>
+            <sc.StyledDashboardHeader>
               {user.username}'s Dashboard
-              <StyledButton>
+              <sc.StyledButton>
                 <i
                   onClick={powerOff}
                   id="powerBtn"
                   className="fas fa-power-off"
                 ></i>
-              </StyledButton>
-            </StyledDashboardHeader>
-            <StyledAccountPostsDiv className="account-div">
-              <StyledPostList className="post-list">
-                <StyledCategoryH3>Questions</StyledCategoryH3>
+              </sc.StyledButton>
+            </sc.StyledDashboardHeader>
+            <sc.StyledAccountPostsDiv className="account-div">
+              <sc.StyledPostList className="post-list">
+                <sc.StyledCategoryH3>Questions</sc.StyledCategoryH3>
                 {user.questions && user.questions.length ? (
                   user.questions.map((question) => (
-                    <Link
+                    <sc.StyledLink
                       key={question.id}
-                      style={whiteText}
                       to={`/challenge/question/${question.id}`}
                     >
-                      <StyledAccountPost>
-                        <StyledDate>
+                      <sc.StyledAccountPost>
+                        <sc.StyledDate>
                           {moment(question.createdAt).format("DD/MM/YYYY")}
-                        </StyledDate>
-                        <StyledQuestionTitle>
+                        </sc.StyledDate>
+                        <sc.StyledQuestionTitle>
                           {question.title}
-                        </StyledQuestionTitle>
+                        </sc.StyledQuestionTitle>
                         <p>{question.body}</p>
-                      </StyledAccountPost>
-                    </Link>
+                      </sc.StyledAccountPost>
+                    </sc.StyledLink>
                   ))
                 ) : (
-                  <StyledAccountPost noLength={true}>
+                  <sc.StyledAccountPost noLength={true}>
                     <p>
                       <em>Looks like nothing's stumped you yet!</em>
                     </p>
-                  </StyledAccountPost>
+                  </sc.StyledAccountPost>
                 )}
-              </StyledPostList>
-              <StyledPostList className="post-list">
-                <StyledCategoryH3>Comments</StyledCategoryH3>
+              </sc.StyledPostList>
+              <sc.StyledPostList className="post-list">
+                <sc.StyledCategoryH3>Comments</sc.StyledCategoryH3>
                 {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
                     //TODO: styled component for links
-                    <HashLink
+                    <sc.StyledHashLink
                       key={comment.id}
-                      style={whiteText}
                       to={`/challenge/question/${comment.questionId}#${comment.id}`}
                     >
-                      <StyledAccountPost>
-                        <StyledDate>
+                      <sc.StyledAccountPost>
+                        <sc.StyledDate>
                           {moment(comment.createdAt).format("DD/MM/YYYY")}
                           {""} {moment(comment.createdAt).format("LT")}
-                        </StyledDate>
+                        </sc.StyledDate>
                         <p>{comment.body}</p>
-                      </StyledAccountPost>
-                      {/* <StyledHr /> */}
-                    </HashLink>
+                      </sc.StyledAccountPost>
+                    </sc.StyledHashLink>
                   ))
                 ) : (
-                  <StyledAccountPost noLength={true}>
+                  <sc.StyledAccountPost noLength={true}>
                     <p>
                       <em>Do some mingling!</em>
                     </p>
-                  </StyledAccountPost>
+                  </sc.StyledAccountPost>
                 )}
-              </StyledPostList>
+              </sc.StyledPostList>
 
-              <StyledPostList className="post-list">
-                <StyledCategoryH3>Projects</StyledCategoryH3>
+              <sc.StyledPostList className="post-list">
+                <sc.StyledCategoryH3>Projects</sc.StyledCategoryH3>
                 {user.projects && user.projects.length ? (
                   user.projects.map((project) => (
                     <a
@@ -122,28 +109,28 @@ const Account = () => {
                       href={project.githubLink}
                       style={whiteText}
                     >
-                      <StyledAccountPost>
-                        <StyledDate>
+                      <sc.StyledAccountPost>
+                        <sc.StyledDate>
                           {moment(project.createdAt).format("DD/MM/YYYY")}
-                        </StyledDate>
+                        </sc.StyledDate>
                         <p>{project.githubLink}</p>
                         <p>{project.additionLink}</p>
                         <p>{project.comment}</p>
-                      </StyledAccountPost>
+                      </sc.StyledAccountPost>
                     </a>
                   ))
                 ) : (
-                  <StyledAccountPost noLength={true}>
+                  <sc.StyledAccountPost noLength={true}>
                     <p>
                       <em>Get to work on those projects!</em>
                     </p>
-                  </StyledAccountPost>
+                  </sc.StyledAccountPost>
                 )}
-              </StyledPostList>
-            </StyledAccountPostsDiv>
+              </sc.StyledPostList>
+            </sc.StyledAccountPostsDiv>
           </Fragment>
         )}
-      </StyledAccountDiv>
+      </sc.StyledAccountDiv>
     </div>
   );
 };

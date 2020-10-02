@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const StyledDashboardHeader = styled.h1`
+export const StyledDashboardHeader = styled.h1`
   padding: 1rem;
   color: #dcdddefb;
   text-shadow: 0 2px 14px #809bffee;
@@ -15,7 +16,7 @@ const StyledDashboardHeader = styled.h1`
   }
 `;
 
-const StyledButton = styled.div`
+export const StyledButton = styled.div`
   height: 40px;
   width: 40px;
   background: #95acffee;
@@ -47,7 +48,7 @@ const StyledButton = styled.div`
   }
 `;
 
-const StyledCategoryH3 = styled.h3`
+export const StyledCategoryH3 = styled.h3`
   color: #809bffee;
   font-family: "Roboto", serif;
   font-size: 1.7rem;
@@ -59,13 +60,21 @@ const StyledCategoryH3 = styled.h3`
   }
 `;
 
-const StyledQuestionTitle = styled.h4`
+export const StyledQuestionTitle = styled.h4`
   margin-bottom: 0.5rem;
   font-weight: 500;
   font-size: 1rem;
 `;
 
-const StyledAccountDiv = styled.div`
+export const StyledLink = styled(Link)`
+  color: #fff;
+`;
+
+export const StyledHashLink = styled(Link)`
+  color: #fff;
+`;
+
+export const StyledAccountDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-content: space-between;
@@ -88,7 +97,7 @@ const StyledAccountDiv = styled.div`
   }
 `;
 
-const StyledAccountPostsDiv = styled.div`
+export const StyledAccountPostsDiv = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -113,7 +122,7 @@ const StyledAccountPostsDiv = styled.div`
   }
 `;
 
-const StyledPostList = styled.ul`
+export const StyledPostList = styled.ul`
   padding: 0 0 1rem;
   margin-bottom: 0.5rem;
   width: 100%;
@@ -160,7 +169,7 @@ const StyledPostList = styled.ul`
   }
 `;
 
-const StyledAccountPost = styled.li`
+export const StyledAccountPost = styled.li`
   margin: 0 auto;
   padding: 1rem;
   white-space: pre-wrap;
@@ -204,14 +213,3 @@ export const StyledDate = styled.div`
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
 `;
-
-export {
-  StyledDashboardHeader,
-  StyledButton,
-  StyledCategoryH3,
-  StyledQuestionTitle,
-  StyledAccountDiv,
-  StyledAccountPostsDiv,
-  StyledAccountPost,
-  StyledPostList,
-};
