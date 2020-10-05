@@ -69,31 +69,6 @@ i:hover {
   display: block;
 }
 
-.challenge-container {
-  background: var(--secondary-background);
-  padding: 2.9rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.05),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.06), 0 12.5px 10px rgba(0, 0, 0, 0.07);
-  margin-right: 1rem;
-  font-weight: 300;
-}
-
-.challenge-header h1 {
-  color: var(--primary-text);
-}
-
-.challenge-container {
-  flex-grow: 1;
-}
-
-iframe {
-  margin: 1.5rem 0 1rem;
-  width: 100%;
-  height: 400px;
-}
-
 .discussion-area {
   background: var(--secondary-background);
   padding: 0.5rem;
@@ -212,33 +187,14 @@ iframe {
   border-bottom-right-radius: 6px;
 }
 
-@media all and (max-width: 1540px) {
-  iframe {
-    height: 395px;
-  }
-}
-
 @media all and (max-width: 1045px) {
-  .challenge-container {
-    margin-right: 0;
-  }
-
   .discussion-area {
     overflow: visible;
-    margin-bottom: 1rem;
-  }
-
-  .challenge-container {
-    width: 100%;
     margin-bottom: 1rem;
   }
 }
 
 @media all and (max-width: 900px) {
-  iframe {
-    height: 360px;
-  }
-
   .discussion-header-container {
     padding: 3rem 0.5rem 0;
   }
@@ -256,16 +212,6 @@ iframe {
 
   h4 {
     font-size: 0.95rem;
-  }
-
-  iframe {
-    height: 220px;
-    margin-bottom: 0.5rem;
-  }
-
-  .challenge-container {
-    padding: 1rem;
-    border-radius: 0;
   }
 
   .discussion-area,

@@ -2,21 +2,23 @@ import React from "react";
 
 import { StyledHeading } from "../../styles/GlobalStyledComponents";
 
+import * as sc from "./StyledChallengeArea";
+
 const ChallengeArea = () => {
   return (
-    <div className="challenge-container">
-      <div className="challenge-header">
+    <sc.StyledChallengeContainer>
+      <sc.StyledChallengeHeader>
         <StyledHeading>CHALLENGE #1</StyledHeading>
         <h1>Turn any Design into HTML</h1>
-      </div>
+      </sc.StyledChallengeHeader>
       <div className="challenge-video-area">
-        <iframe
+        <sc.StyledVideo
           src="https://www.youtube.com/embed/mcw4AViN7jw"
           frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           title="Turn Design into HTML and CSS"
           allowFullScreen
-        ></iframe>
+        ></sc.StyledVideo>
 
         <p>
           First challenge, turning any design into HTML and CSS. First
@@ -24,7 +26,7 @@ const ChallengeArea = () => {
           turning any design into HTML and CSS.
         </p>
       </div>
-    </div>
+    </sc.StyledChallengeContainer>
   );
 };
 
