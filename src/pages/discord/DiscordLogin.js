@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import getParameterByName from "../../utilities/getParameterByName";
+import queryString from "query-string";
+import { useHistory, useLocation } from "react-router-dom";
 import { discordLogin } from "../../api/discordApi";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
@@ -12,10 +12,12 @@ const DiscordLogin = () => {
   const { setUser } = useContext(UserContext);
 
   const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
-    const state = getParameterByName("state");
-    const code = getParameterByName("code");
+    const values = queryString.parse(location.search);
+    const state = values.state;
+    const code = values.code;
 
     const postDiscordLogin = async () => {
       const user = await discordLogin(code, state);

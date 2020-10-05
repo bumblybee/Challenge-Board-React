@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, Fragment } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
+import { useHistory } from "react-router-dom";
+
 import moment from "moment";
 
 import { UserContext } from "../../context/user/UserContext";
