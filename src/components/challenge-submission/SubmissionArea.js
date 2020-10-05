@@ -85,7 +85,7 @@ const SubmissionArea = () => {
       setModalOpen(!modalOpen);
     } else {
       setIsSubmitted(true);
-      setModalOpen(!modalOpen);
+      // setModalOpen(!modalOpen);
       setHasPriorProject(true);
       setProjectDetails(editedProject.data);
     }
@@ -93,77 +93,75 @@ const SubmissionArea = () => {
 
   return (
     <sc.StyledSubmissionContainer>
-      {modalOpen && (
-        <Modal>
-          <StyledModalHeader>
-            <h1>Submit your Project</h1>
-            <p>Provide your Github and any additional relevant links.</p>
-          </StyledModalHeader>
-          <StyledModalBody>
-            <form
-              onSubmit={
-                hasPriorProject ? submitEditedProject : submitInitialProject
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <StyledModalHeader>
+          <h1>Submit your Project</h1>
+          <p>Provide your Github and any additional relevant links.</p>
+        </StyledModalHeader>
+        <StyledModalBody>
+          <form
+            onSubmit={
+              hasPriorProject ? submitEditedProject : submitInitialProject
+            }
+            id="submit-form"
+          >
+            <input
+              onChange={(e) =>
+                setProjectDetails({
+                  ...projectDetails,
+                  githubLink: e.target.value,
+                })
               }
-              id="submit-form"
-            >
-              <input
-                onChange={(e) =>
-                  setProjectDetails({
-                    ...projectDetails,
-                    githubLink: e.target.value,
-                  })
-                }
-                type="url"
-                title="Link must start with https://"
-                id="githubLink"
-                placeholder="Github Link"
-                value={projectDetails.githubLink}
-                required
-                noValidate
-                autoFocus
-              ></input>
-              <input
-                onChange={(e) =>
-                  setProjectDetails({
-                    ...projectDetails,
-                    additionalLink: e.target.value,
-                  })
-                }
-                title="Link must start with https://"
-                type="url"
-                placeholder="Additional Link (optional)"
-                value={projectDetails.additionalLink || ""}
-              ></input>
-              <textarea
-                onChange={(e) =>
-                  setProjectDetails({
-                    ...projectDetails,
-                    comment: e.target.value,
-                  })
-                }
-                rows="5"
-                placeholder="Comments (optional)"
-                value={projectDetails.comment || ""}
-              ></textarea>
-              <StyledModalFooter>
-                <StyledTransparentButton
-                  className="close-modal"
-                  href="#"
-                  onClick={() => setModalOpen(!modalOpen)}
-                >
-                  Cancel
-                </StyledTransparentButton>
-                <StyledPurpleButton type="submit" id="submit-project-button">
-                  Submit
-                </StyledPurpleButton>
-              </StyledModalFooter>
-            </form>
-          </StyledModalBody>
-        </Modal>
-      )}
+              type="url"
+              title="Link must start with https://"
+              id="githubLink"
+              placeholder="Github Link"
+              value={projectDetails.githubLink}
+              required
+              noValidate
+              autoFocus
+            ></input>
+            <input
+              onChange={(e) =>
+                setProjectDetails({
+                  ...projectDetails,
+                  additionalLink: e.target.value,
+                })
+              }
+              title="Link must start with https://"
+              type="url"
+              placeholder="Additional Link (optional)"
+              value={projectDetails.additionalLink || ""}
+            ></input>
+            <textarea
+              onChange={(e) =>
+                setProjectDetails({
+                  ...projectDetails,
+                  comment: e.target.value,
+                })
+              }
+              rows="5"
+              placeholder="Comments (optional)"
+              value={projectDetails.comment || ""}
+            ></textarea>
+            <StyledModalFooter>
+              <StyledTransparentButton
+                className="close-modal"
+                href="#"
+                onClick={() => setModalOpen(!modalOpen)}
+              >
+                Cancel
+              </StyledTransparentButton>
+              <StyledPurpleButton type="submit" id="submit-project-button">
+                Submit
+              </StyledPurpleButton>
+            </StyledModalFooter>
+          </form>
+        </StyledModalBody>
+      </Modal>
 
       {isSubmitted && (
-        <Modal>
+        <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
           <sc.StyledModalBody>
             <sc.StyledConfirmationH1>
               Your project has been Submitted!
@@ -173,7 +171,12 @@ const SubmissionArea = () => {
             </sc.StyledConfirmationParagraph>
           </sc.StyledModalBody>
           <StyledModalFooter>
-            <StyledPurpleButton onClick={() => setIsSubmitted(false)}>
+            <StyledPurpleButton
+              onClick={() => {
+                setIsSubmitted(false);
+                setModalOpen(!modalOpen);
+              }}
+            >
               Close
             </StyledPurpleButton>
           </StyledModalFooter>

@@ -7,6 +7,7 @@ import {
   StyledTransparentButton,
   StyledPurpleButton,
   StyledTextarea,
+  StyledModalBody,
 } from "../../styles/GlobalStyledComponents";
 import Modal from "../../components/layout/Modal";
 
@@ -64,10 +65,10 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
   };
 
   if (comment) {
-    if (modalOpen) {
-      return (
-        <Modal>
-          <div className="modal-body">
+    return (
+      <Fragment>
+        <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+          <StyledModalBody>
             <form onSubmit={handleCommentUpdate}>
               <StyledTextarea
                 onChange={(e) => setCommentBody(e.target.value)}
@@ -83,63 +84,59 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
                 <StyledPurpleButton>Submit</StyledPurpleButton>
               </div>
             </form>
-          </div>
+          </StyledModalBody>
         </Modal>
-      );
-    } else {
-      return (
+
         <StyledStudentMenu>
           <p onClick={() => setModalOpen(!modalOpen)}>Edit Comment</p>
         </StyledStudentMenu>
-      );
-    }
+      </Fragment>
+    );
   }
 
   return (
     <Fragment>
-      {modalOpen ? (
-        <Modal>
-          <div className="modal-body">
-            <form
-              onSubmit={
-                threadQuestion
-                  ? (e) => {
-                      e.preventDefault();
-                      handleThreadQuestionUpdate(question);
-                    }
-                  : (e) => {
-                      e.preventDefault();
-                      handleQuestionUpdate(question);
-                    }
-              }
-            >
-              <input
-                onChange={(e) => setQuestionTitle(e.target.value)}
-                type="text"
-                id="title"
-                value={questionTitle}
-                autoFocus
-              />
-              <StyledTextarea
-                onChange={(e) => setQuestionBody(e.target.value)}
-                id="body"
-                rows="6"
-                value={questionBody}
-              ></StyledTextarea>
-              <div className="modal-footer">
-                <StyledTransparentButton onClick={handleCancel}>
-                  Cancel
-                </StyledTransparentButton>
-                <StyledPurpleButton>Submit</StyledPurpleButton>
-              </div>
-            </form>
-          </div>
-        </Modal>
-      ) : (
-        <StyledStudentMenu>
-          <p onClick={() => setModalOpen(!modalOpen)}>Edit Question</p>
-        </StyledStudentMenu>
-      )}
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <StyledModalBody>
+          <form
+            onSubmit={
+              threadQuestion
+                ? (e) => {
+                    e.preventDefault();
+                    handleThreadQuestionUpdate(question);
+                  }
+                : (e) => {
+                    e.preventDefault();
+                    handleQuestionUpdate(question);
+                  }
+            }
+          >
+            <input
+              onChange={(e) => setQuestionTitle(e.target.value)}
+              type="text"
+              id="title"
+              value={questionTitle}
+              autoFocus
+            />
+            <StyledTextarea
+              onChange={(e) => setQuestionBody(e.target.value)}
+              id="body"
+              rows="6"
+              value={questionBody}
+            ></StyledTextarea>
+            <div className="modal-footer">
+              <StyledTransparentButton onClick={handleCancel}>
+                Cancel
+              </StyledTransparentButton>
+              <StyledPurpleButton>Submit</StyledPurpleButton>
+            </div>
+          </form>
+        </StyledModalBody>
+      </Modal>
+
+      <StyledStudentMenu>
+        <p onClick={() => setModalOpen(!modalOpen)}>Edit Question</p>
+      </StyledStudentMenu>
     </Fragment>
   );
 };

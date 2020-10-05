@@ -22,10 +22,10 @@ const useClickOutside = (cb) => {
   return domNode;
 };
 
-const Modal = ({ children }) => {
-  const [modalOpen, setModalOpen] = useState(true);
+const Modal = ({ children, modalOpen, setModalOpen }) => {
+  // const [modalOpen, setModalOpen] = useState(true);
 
-  const modalRef = useClickOutside(() => setModalOpen(false));
+  const modalRef = useClickOutside(() => setModalOpen(!modalOpen));
 
   return (
     modalOpen && (

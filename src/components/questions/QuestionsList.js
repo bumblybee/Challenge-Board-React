@@ -60,59 +60,57 @@ const QuestionsList = () => {
 
   return (
     <Fragment>
-      {modalOpen && (
-        <Modal>
-          <StyledModalHeader>
-            <h1>Post a Question</h1>
-            <p>Make sure to add enough detail to provide context for others.</p>
-          </StyledModalHeader>
-          <StyledModalBody>
-            <form id="question-form" onSubmit={handleSubmitQuestion}>
-              <input
-                onChange={(e) =>
-                  setNewQuestion({
-                    ...newQuestion,
-                    title: e.target.value,
-                  })
-                }
-                value={newQuestion.title || ""}
-                id="question-input"
-                name="question"
-                type="text"
-                placeholder="Question"
-                maxLength="100"
-                autoFocus
-                required
-              ></input>
-              <StyledTextarea
-                onChange={(e) =>
-                  setNewQuestion({
-                    ...newQuestion,
-                    body: e.target.value,
-                  })
-                }
-                value={newQuestion.body}
-                id="question-details"
-                name="question-details"
-                rows="8"
-                placeholder="More Details"
-                required
-              ></StyledTextarea>
-              <StyledModalFooter>
-                <StyledTransparentButton
-                  className="close-modal"
-                  onClick={() => setModalOpen(!modalOpen)}
-                >
-                  Cancel
-                </StyledTransparentButton>
-                <StyledPurpleButton id="post-question-button" type="submit">
-                  Post
-                </StyledPurpleButton>
-              </StyledModalFooter>
-            </form>
-          </StyledModalBody>{" "}
-        </Modal>
-      )}
+      <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <StyledModalHeader>
+          <h1>Post a Question</h1>
+          <p>Make sure to add enough detail to provide context for others.</p>
+        </StyledModalHeader>
+        <StyledModalBody>
+          <form id="question-form" onSubmit={handleSubmitQuestion}>
+            <input
+              onChange={(e) =>
+                setNewQuestion({
+                  ...newQuestion,
+                  title: e.target.value,
+                })
+              }
+              value={newQuestion.title || ""}
+              id="question-input"
+              name="question"
+              type="text"
+              placeholder="Question"
+              maxLength="100"
+              autoFocus
+              required
+            ></input>
+            <StyledTextarea
+              onChange={(e) =>
+                setNewQuestion({
+                  ...newQuestion,
+                  body: e.target.value,
+                })
+              }
+              value={newQuestion.body}
+              id="question-details"
+              name="question-details"
+              rows="8"
+              placeholder="More Details"
+              required
+            ></StyledTextarea>
+            <StyledModalFooter>
+              <StyledTransparentButton
+                className="close-modal"
+                onClick={() => setModalOpen(!modalOpen)}
+              >
+                Cancel
+              </StyledTransparentButton>
+              <StyledPurpleButton id="post-question-button" type="submit">
+                Post
+              </StyledPurpleButton>
+            </StyledModalFooter>
+          </form>
+        </StyledModalBody>{" "}
+      </Modal>
 
       <div className="discussion-header-container">
         <div className="discussion-header">
