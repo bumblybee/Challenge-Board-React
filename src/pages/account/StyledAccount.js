@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 export const StyledDashboardHeader = styled.h1`
   padding: 1rem;
-  color: #dcdddefb;
-  text-shadow: 0 2px 14px #809bffee;
+  color: #fff;
+  /* text-shadow: 0 2px 14px #809bffee; */
   font-family: "Roboto Slab", serif;
   font-size: 1.9rem;
   display: flex;
@@ -121,8 +121,8 @@ export const StyledAccountPostsDiv = styled.div`
   background: #2f3136;
   grid-template-columns: repeat(3, 1fr);
   overflow-y: scroll;
-  border-radius: 6px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
   border-style: inset;
   border-width: 12px;
   border-top-color: rgba(0, 0, 0, 0.03);
