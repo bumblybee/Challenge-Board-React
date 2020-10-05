@@ -65,39 +65,8 @@ i:hover {
   color: var(--secondary-background);
 }
 
-.user-menu-container {
-  background: #18191b;
-  position: absolute;
-  top: 3rem;
-  right: 0;
-  padding: 1rem;
-  width: 12rem;
-  z-index: 100;
-}
-
-.user-menu-container p:hover {
-  cursor: pointer;
-}
-
 .show {
   display: block;
-}
-
-.user-menu li:not(:first-child) {
-  margin-top: 1rem;
-}
-
-.user-menu li:first-child {
-  margin-bottom: 2rem;
-}
-
-.user-menu hr {
-  margin-top: 1rem;
-}
-
-.user-menu a {
-  text-decoration: none;
-  color: var(--primary-text);
 }
 
 .challenge-container {

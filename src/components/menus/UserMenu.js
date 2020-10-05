@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 
 import { Link } from "react-router-dom";
+import * as sc from "./StyledMenus";
 
 const UserMenu = ({ handleClose }) => {
   const { user, handleLogout } = useContext(UserContext);
@@ -15,8 +16,8 @@ const UserMenu = ({ handleClose }) => {
   };
 
   return (
-    <div className="user-menu-container">
-      <ul className="user-menu">
+    <sc.StyledUserMenuContainer>
+      <sc.StyledUserMenu>
         {user && (
           <li className="my-account">
             <Link to="/account" onClick={() => handleClose(false)}>
@@ -50,8 +51,8 @@ const UserMenu = ({ handleClose }) => {
             <p onClick={logout}>Log Out</p>
           )}
         </li>
-      </ul>
-    </div>
+      </sc.StyledUserMenu>
+    </sc.StyledUserMenuContainer>
   );
 };
 

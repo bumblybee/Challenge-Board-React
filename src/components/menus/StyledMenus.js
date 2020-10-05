@@ -35,6 +35,41 @@ export const StyledTeacherMenu = styled.div`
   }
 `;
 
+export const StyledUserMenuContainer = styled.div`
+  background: #18191b;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  padding: 1rem;
+  width: 12rem;
+  z-index: 100;
+
+  p {
+    :hover {
+      cursor: pointer;
+    }
+  }
+`;
+
+export const StyledUserMenu = styled.ul`
+  li:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  .user-menu li:first-child {
+    margin-bottom: 2rem;
+  }
+
+  hr {
+    margin-top: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--primary-text);
+  }
+`;
+
 export const StyledStudentMenu = styled.div`
   background: #18191b;
   font-size: 1rem;
