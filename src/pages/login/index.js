@@ -6,17 +6,7 @@ import { ErrorContext } from "../../context/error/ErrorContext";
 
 import { getLoginDiscordUrl } from "../../api/discordApi";
 
-import {
-  StyledPurpleButton,
-  StyledFormLink,
-  StyledDiscordIcon,
-  StyledDiscordButton,
-  StyledFormContent,
-  StyledFormHeader,
-  StyledFormBody,
-  StyledFormInputArea,
-} from "../../styles/GlobalStyledComponents";
-import { StyledHr } from "./StyledLogin";
+import * as sc from "../../styles/GlobalStyledComponents";
 
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
@@ -44,14 +34,14 @@ const Login = () => {
   };
 
   return (
-    <StyledFormContent>
-      <StyledFormHeader>
+    <sc.StyledFormContent>
+      <sc.StyledFormHeader>
         <h1>Log In</h1>
         <p>Log in with your email and password</p>
-      </StyledFormHeader>
-      <StyledFormBody>
+      </sc.StyledFormHeader>
+      <sc.StyledFormBody>
         <form id="login-form" onSubmit={handleLoginUser}>
-          <StyledFormInputArea>
+          <sc.StyledFormInputArea>
             <label htmlFor="login-email">Email</label>
             <input
               onChange={(e) =>
@@ -64,8 +54,8 @@ const Login = () => {
               autoFocus
               required
             ></input>
-          </StyledFormInputArea>
-          <StyledFormInputArea>
+          </sc.StyledFormInputArea>
+          <sc.StyledFormInputArea>
             <label htmlFor="login-password">Password</label>
             <input
               onChange={(e) => {
@@ -78,25 +68,25 @@ const Login = () => {
               required
               title="Password is 8 or more characters"
             ></input>
-          </StyledFormInputArea>
+          </sc.StyledFormInputArea>
 
-          <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
+          <sc.StyledPurpleButton type="submit">Log In</sc.StyledPurpleButton>
         </form>
         {discordUrl && (
           <Fragment>
-            <StyledHr></StyledHr>
-            <StyledDiscordButton href={discordUrl}>
-              <StyledDiscordIcon className="fab fa-discord fa-2x"></StyledDiscordIcon>
+            <sc.StyledHr></sc.StyledHr>
+            <sc.StyledDiscordButton href={discordUrl}>
+              <sc.StyledDiscordIcon className="fab fa-discord fa-2x"></sc.StyledDiscordIcon>
               Log In with Discord
-            </StyledDiscordButton>
+            </sc.StyledDiscordButton>
           </Fragment>
         )}
-        <StyledFormLink to="/reset-password-request">
+        <sc.StyledFormLink to="/reset-password-request">
           Forgot your password?
-        </StyledFormLink>
-        <StyledFormLink to="/signup">Need to sign up?</StyledFormLink>
-      </StyledFormBody>
-    </StyledFormContent>
+        </sc.StyledFormLink>
+        <sc.StyledFormLink to="/signup">Need to sign up?</sc.StyledFormLink>
+      </sc.StyledFormBody>
+    </sc.StyledFormContent>
   );
 };
 

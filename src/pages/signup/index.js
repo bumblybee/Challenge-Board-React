@@ -5,18 +5,7 @@ import { ErrorContext } from "../../context/error/ErrorContext";
 
 import { getSignupDiscordUrl } from "../../api/discordApi";
 
-import {
-  StyledPurpleButton,
-  StyledFormLink,
-  StyledDiscordIcon,
-  StyledDiscordButton,
-  StyledFormContent,
-  StyledFormHeader,
-  StyledFormBody,
-  StyledFormInputArea,
-} from "../../styles/GlobalStyledComponents";
-
-import { StyledHr } from "./StyledSignup";
+import * as sc from "../../styles/GlobalStyledComponents";
 
 import { useHistory } from "react-router-dom";
 
@@ -52,15 +41,15 @@ const Signup = () => {
   };
 
   return (
-    <StyledFormContent>
-      <StyledFormHeader>
+    <sc.StyledFormContent>
+      <sc.StyledFormHeader>
         <h1>Sign Up</h1>
         <p>Sign up with your email and password</p>
-      </StyledFormHeader>
+      </sc.StyledFormHeader>
 
-      <StyledFormBody>
+      <sc.StyledFormBody>
         <form id="submit-form" onSubmit={handleSubmit}>
-          <StyledFormInputArea>
+          <sc.StyledFormInputArea>
             <label htmlFor="signup-username">Username</label>
             <input
               onChange={(e) =>
@@ -73,8 +62,8 @@ const Signup = () => {
               autoFocus
               required
             ></input>
-          </StyledFormInputArea>
-          <StyledFormInputArea>
+          </sc.StyledFormInputArea>
+          <sc.StyledFormInputArea>
             <label htmlFor="signup-email">Email</label>
             <input
               onChange={(e) =>
@@ -86,8 +75,8 @@ const Signup = () => {
               name="signup-email"
               required
             ></input>
-          </StyledFormInputArea>
-          <StyledFormInputArea>
+          </sc.StyledFormInputArea>
+          <sc.StyledFormInputArea>
             <label htmlFor="signup-password">Password</label>
             <input
               onChange={(e) => {
@@ -100,24 +89,26 @@ const Signup = () => {
               minLength="8"
               required
             ></input>
-          </StyledFormInputArea>
+          </sc.StyledFormInputArea>
 
-          <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
+          <sc.StyledPurpleButton type="submit">Submit</sc.StyledPurpleButton>
         </form>
 
         {discordUrl && (
           <Fragment>
-            <StyledHr></StyledHr>
-            <StyledDiscordButton href={discordUrl}>
-              <StyledDiscordIcon className="fab fa-discord fa-2x"></StyledDiscordIcon>
+            <sc.StyledHr></sc.StyledHr>
+            <sc.StyledDiscordButton href={discordUrl}>
+              <sc.StyledDiscordIcon className="fab fa-discord fa-2x"></sc.StyledDiscordIcon>
               Sign Up with Discord
-            </StyledDiscordButton>
+            </sc.StyledDiscordButton>
           </Fragment>
         )}
 
-        <StyledFormLink to="/login">Already have an account?</StyledFormLink>
-      </StyledFormBody>
-    </StyledFormContent>
+        <sc.StyledFormLink to="/login">
+          Already have an account?
+        </sc.StyledFormLink>
+      </sc.StyledFormBody>
+    </sc.StyledFormContent>
   );
 };
 

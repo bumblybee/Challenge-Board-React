@@ -224,3 +224,11 @@ export const StyledFormInputArea = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const StyledHr = styled.hr`
+  margin: 1rem auto;
+  border: none;
+  background: #202225;
+  height: 1px;
+  width: 80%;
+`;
