@@ -30,7 +30,7 @@ const DiscordSignup = () => {
         if (user.error === "User credentials already in use. Please log in.") {
           history.push("/login");
         } else {
-          history.push("/signup");
+          // history.push("/signup");
         }
       } else if (user.data.id) {
         setUser(user.data);
