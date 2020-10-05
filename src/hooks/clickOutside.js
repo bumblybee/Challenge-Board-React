@@ -1,11 +1,11 @@
-import { useRef, useEffect } from "React";
+import { useRef, useEffect } from "react";
 
-const useClickOutside = (cb) => {
+export const useClickOutside = (cb) => {
   const domNode = useRef();
 
   useEffect(() => {
     const handler = (e) => {
-      if (!domNode.current.contains(e.target)) {
+      if (domNode.current && !domNode.current.contains(e.target)) {
         cb();
       }
     };
@@ -19,5 +19,3 @@ const useClickOutside = (cb) => {
 
   return domNode;
 };
-
-export default useClickOutside;
