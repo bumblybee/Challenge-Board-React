@@ -19,12 +19,21 @@ const Account = () => {
   const powerOff = (e) => {
     if (e.target.id === "powerBtn") {
       const postList = document.querySelectorAll(".post-list");
+      const styledBtn = document.querySelector("#styled-btn");
 
       postList.forEach((list) => {
         if (list.style.display === "block") {
           list.style.display = "none";
+          styledBtn.style.boxShadow = "inset 0 -1px 3px rgba(0, 0, 0, 0.2)";
+
+          styledBtn.style.background = "#809bff";
+          e.target.style.color = "#fffa";
         } else {
           list.style.display = "block";
+          styledBtn.style.boxShadow =
+            "0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2)";
+          styledBtn.style.background = "#95acffee";
+          e.target.style.color = "#fff";
         }
       });
     }
@@ -37,7 +46,7 @@ const Account = () => {
           <Fragment>
             <sc.StyledDashboardHeader>
               {user.username}'s Dashboard
-              <sc.StyledButton>
+              <sc.StyledButton id="styled-btn">
                 <i
                   onClick={powerOff}
                   id="powerBtn"

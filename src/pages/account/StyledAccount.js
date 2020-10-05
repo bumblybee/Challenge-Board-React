@@ -24,9 +24,9 @@ export const StyledButton = styled.div`
   border-radius: 50%;
   box-shadow: 0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
   border-top: 1px solid #738ce4;
-  border-bottom: 4px solid #738ce4;
-  border-left: 2px solid #738ce4;
-  border-right: 2px solid #738ce4;
+  border-bottom: 3px solid #738ce4;
+  border-left: 1.5px solid #738ce4;
+  border-right: 1.5px solid #738ce4;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -54,7 +54,11 @@ export const StyledButton = styled.div`
   @media (max-width: 620px) {
     height: 34px;
     width: 34px;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+
+    :active {
+      font-size: 1.21rem;
+    }
   }
 `;
 
