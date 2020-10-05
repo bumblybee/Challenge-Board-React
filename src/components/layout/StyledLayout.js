@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const StyledNav = styled.div`
+  background: var(--secondary-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+`;
+
 export const StyledNavHeader = styled(Link)`
   color: var(--title-text);
   font-family: "Roboto Slab", serif;

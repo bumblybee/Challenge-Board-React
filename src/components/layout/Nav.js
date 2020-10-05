@@ -1,32 +1,26 @@
 import React, { useState } from "react";
 import UserMenu from "../menus/UserMenu";
 import { Link } from "react-router-dom";
-import { StyledNavHeader } from "./StyledLayout";
+import { StyledNav, StyledNavHeader } from "./StyledLayout";
 
 const Nav = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClose = (open) => {
-    setIsOpen(open);
-  };
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="nav">
-      {isOpen && <UserMenu handleClose={handleClose} />}
+    <StyledNav>
+      {menuOpen && <UserMenu handleClose={setMenuOpen} />}
       <Link to="/challenge">
         <i className="fas fa-chess-knight fa-lg"></i>
       </Link>
 
-      <StyledNavHeader to="/challenge">
-        CHALLENGE BOARD
-        </StyledNavHeader>
+      <StyledNavHeader to="/challenge">CHALLENGE BOARD</StyledNavHeader>
 
       <i
         id="user-menu-toggle"
         className="fas fa-user-circle fa-2x"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setMenuOpen(!menuOpen)}
       ></i>
-    </div>
+    </StyledNav>
   );
 };
 
