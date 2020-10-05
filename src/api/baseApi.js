@@ -1,9 +1,14 @@
 import axios from "axios";
 import { handleErrors, handleErrorsArray } from "../handlers/errorHandler";
 
+const url =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:9000"
+    : "https://salty-anchorage-50289.herokuapp.com";
+
 const instance = axios.create({
   //https://salty-anchorage-50289.herokuapp.com
-  baseURL: "https://salty-anchorage-50289.herokuapp.com",
+  baseURL: url,
   withCredentials: true,
   crossDomain: true,
 });
