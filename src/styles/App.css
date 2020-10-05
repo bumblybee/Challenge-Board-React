@@ -53,65 +53,6 @@ i:hover {
   cursor: pointer;
 }
 
-.signup-form-content,
-.login-form-content {
-  background: var(--secondary-background);
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 30%;
-  padding: 2rem;
-  box-shadow: 0 2px 4.1px -43px rgba(0, 0, 0, 0.101),
-    0 4.7px 13.8px -43px rgba(0, 0, 0, 0.129),
-    0 20px 62px -43px rgba(0, 0, 0, 0.18);
-
-  border-radius: 6px;
-}
-
-.signup-form-body,
-.login-form-body {
-  padding: 1rem 1rem 0;
-}
-
-.signup-form-body form,
-.login-form-body form {
-  display: flex;
-  flex-direction: column;
-}
-
-.signup-form-header,
-.login-form-header {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.signup-form-header h1,
-.login-form-header h1 {
-  margin-bottom: 1rem;
-}
-
-.signup-form-body .input-area,
-.login-form-body .input-area {
-  display: flex;
-  flex-direction: column;
-}
-
-.signup-form-body input,
-.login-form-body input {
-  padding: 0.7rem;
-  margin: 0.3rem 0 0.5rem 0;
-  border: 1px solid rgba(128, 127, 127, 0.2);
-  border-radius: 6px;
-  background: #18191b;
-  color: var(--primary-text);
-  font-size: 1rem;
-}
-.signup-form-body p {
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .fa-chess-knight {
   color: var(--secondary-background);
   background: var(--secondary-text);
@@ -306,19 +247,9 @@ iframe {
   iframe {
     height: 395px;
   }
-
-  .signup-form-content,
-  .login-form-content {
-    width: 45%;
-  }
 }
 
 @media all and (max-width: 1045px) {
-  .signup-form-content,
-  .login-form-content {
-    width: 50%;
-  }
-
   .challenge-container {
     margin-right: 0;
   }
@@ -335,11 +266,6 @@ iframe {
 }
 
 @media all and (max-width: 900px) {
-  .signup-form-content,
-  .login-form-content {
-    width: 65%;
-  }
-
   iframe {
     height: 360px;
   }
@@ -361,24 +287,6 @@ iframe {
 
   h4 {
     font-size: 0.95rem;
-  }
-
-  .signup-form-content,
-  .login-form-content {
-    width: 90%;
-    padding: 0.5rem;
-  }
-
-  .signup-form-header h1,
-  .login-form-header h1 {
-    margin: 0;
-    padding: 0.5rem;
-    font-size: 1.7rem;
-  }
-
-  .signup-form-body,
-  .login-form-body {
-    padding-bottom: 0.5rem;
   }
 
   iframe {
@@ -405,12 +313,5 @@ iframe {
 
   .discussion-header-container.thread button {
     margin: 0.7rem 0 0;
-  }
-}
-
-@media screen and (orientation: landscape) and (min-device-width: 319px) and (max-device-width: 900px) {
-  .signup-form-content,
-  .login-form-content {
-    width: 70%;
   }
 }

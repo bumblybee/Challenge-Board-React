@@ -11,6 +11,10 @@ import {
   StyledFormLink,
   StyledDiscordIcon,
   StyledDiscordButton,
+  StyledFormContent,
+  StyledFormHeader,
+  StyledFormBody,
+  StyledFormInputArea,
 } from "../../styles/GlobalStyledComponents";
 import { StyledHr } from "./StyledLogin";
 
@@ -40,14 +44,14 @@ const Login = () => {
   };
 
   return (
-    <div className="login-form-content">
-      <div className="login-form-header">
+    <StyledFormContent>
+      <StyledFormHeader>
         <h1>Log In</h1>
         <p>Log in with your email and password</p>
-      </div>
-      <div className="login-form-body">
+      </StyledFormHeader>
+      <StyledFormBody>
         <form id="login-form" onSubmit={handleLoginUser}>
-          <div className="input-area">
+          <StyledFormInputArea>
             <label htmlFor="login-email">Email</label>
             <input
               onChange={(e) =>
@@ -60,8 +64,8 @@ const Login = () => {
               autoFocus
               required
             ></input>
-          </div>
-          <div className="input-area">
+          </StyledFormInputArea>
+          <StyledFormInputArea>
             <label htmlFor="login-password">Password</label>
             <input
               onChange={(e) => {
@@ -74,7 +78,7 @@ const Login = () => {
               required
               title="Password is 8 or more characters"
             ></input>
-          </div>
+          </StyledFormInputArea>
 
           <StyledPurpleButton type="submit">Log In</StyledPurpleButton>
         </form>
@@ -91,8 +95,8 @@ const Login = () => {
           Forgot your password?
         </StyledFormLink>
         <StyledFormLink to="/signup">Need to sign up?</StyledFormLink>
-      </div>
-    </div>
+      </StyledFormBody>
+    </StyledFormContent>
   );
 };
 

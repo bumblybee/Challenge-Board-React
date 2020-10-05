@@ -10,7 +10,12 @@ import {
   StyledFormLink,
   StyledDiscordIcon,
   StyledDiscordButton,
+  StyledFormContent,
+  StyledFormHeader,
+  StyledFormBody,
+  StyledFormInputArea,
 } from "../../styles/GlobalStyledComponents";
+
 import { StyledHr } from "./StyledSignup";
 
 import { useHistory } from "react-router-dom";
@@ -47,15 +52,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-form-content">
-      <div className="signup-form-header">
+    <StyledFormContent>
+      <StyledFormHeader>
         <h1>Sign Up</h1>
-        <p>Sign up with your email</p>
-      </div>
+        <p>Sign up with your email and password</p>
+      </StyledFormHeader>
 
-      <div className="signup-form-body">
+      <StyledFormBody>
         <form id="submit-form" onSubmit={handleSubmit}>
-          <div className="input-area">
+          <StyledFormInputArea>
             <label htmlFor="signup-username">Username</label>
             <input
               onChange={(e) =>
@@ -68,8 +73,8 @@ const Signup = () => {
               autoFocus
               required
             ></input>
-          </div>
-          <div className="input-area">
+          </StyledFormInputArea>
+          <StyledFormInputArea>
             <label htmlFor="signup-email">Email</label>
             <input
               onChange={(e) =>
@@ -81,8 +86,8 @@ const Signup = () => {
               name="signup-email"
               required
             ></input>
-          </div>
-          <div className="input-area">
+          </StyledFormInputArea>
+          <StyledFormInputArea>
             <label htmlFor="signup-password">Password</label>
             <input
               onChange={(e) => {
@@ -95,7 +100,7 @@ const Signup = () => {
               minLength="8"
               required
             ></input>
-          </div>
+          </StyledFormInputArea>
 
           <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
         </form>
@@ -111,8 +116,8 @@ const Signup = () => {
         )}
 
         <StyledFormLink to="/login">Already have an account?</StyledFormLink>
-      </div>
-    </div>
+      </StyledFormBody>
+    </StyledFormContent>
   );
 };
 
