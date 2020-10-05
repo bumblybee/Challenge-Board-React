@@ -25,6 +25,7 @@ const SubmissionArea = () => {
 
   //Handles modal
   const [modalOpen, setModalOpen] = useState(false);
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
   //Handles submission confirmation
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [projectDetails, setProjectDetails] = useState({});
@@ -68,6 +69,7 @@ const SubmissionArea = () => {
     } else {
       setIsSubmitted(true);
       setModalOpen(!modalOpen);
+      setConfirmationModalOpen(!confirmationModalOpen);
       setHasPriorProject(true);
       setProjectDetails(submission.data);
     }
@@ -84,8 +86,9 @@ const SubmissionArea = () => {
       setError(editedProject.error);
       setModalOpen(!modalOpen);
     } else {
+      setModalOpen(!modalOpen);
+      setConfirmationModalOpen(!confirmationModalOpen);
       setIsSubmitted(true);
-      // setModalOpen(!modalOpen);
       setHasPriorProject(true);
       setProjectDetails(editedProject.data);
     }
@@ -161,7 +164,10 @@ const SubmissionArea = () => {
       </Modal>
 
       {isSubmitted && (
-        <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <Modal
+          confirmationModalOpen={confirmationModalOpen}
+          setConfirmationModalOpen={setConfirmationModalOpen}
+        >
           <sc.StyledModalBody>
             <sc.StyledConfirmationH1>
               Your project has been Submitted!
@@ -174,7 +180,7 @@ const SubmissionArea = () => {
             <StyledPurpleButton
               onClick={() => {
                 setIsSubmitted(false);
-                setModalOpen(!modalOpen);
+                setConfirmationModalOpen(!confirmationModalOpen);
               }}
             >
               Close

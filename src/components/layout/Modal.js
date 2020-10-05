@@ -22,17 +22,38 @@ const useClickOutside = (cb) => {
   return domNode;
 };
 
-const Modal = ({ children, modalOpen, setModalOpen }) => {
-  // const [modalOpen, setModalOpen] = useState(true);
+const Modal = ({
+  children,
+  modalOpen,
+  setModalOpen,
+  confirmationModalOpen,
+  setConfirmationModalOpen,
+}) => {
+  const modalRef = useClickOutside(() => setModalOpen(false));
 
-  const modalRef = useClickOutside(() => setModalOpen(!modalOpen));
+  const confirmationRef = useClickOutside(() => {
+    setConfirmationModalOpen(false);
+  });
 
-  return (
-    modalOpen && (
-      <StyledModal>
-        <StyledModalContent ref={modalRef}>{children}</StyledModalContent>
-      </StyledModal>
-    )
+  // if (confirmationModalOpen) {
+  //   return (
+  //     <StyledModal>
+  //       <StyledModalContent ref={confirmationRef}>
+  //         {children}
+  //       </StyledModalContent>
+  //     </StyledModal>
+  //   );
+  // }
+  return modalOpen ? (
+    <StyledModal>
+      <StyledModalContent ref={modalRef}>{children}</StyledModalContent>
+    </StyledModal>
+  ) : confirmationModalOpen ? (
+    <StyledModal>
+      <StyledModalContent ref={confirmationRef}>{children}</StyledModalContent>
+    </StyledModal>
+  ) : (
+    ""
   );
 };
 
