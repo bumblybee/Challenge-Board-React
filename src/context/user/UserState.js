@@ -3,7 +3,7 @@ import { getUser, signupUser, loginUser, logoutUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [userLoading, setUserLoading] = useState(false);
 
   useEffect(() => {

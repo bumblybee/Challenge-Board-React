@@ -5,7 +5,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
-  const { user, setUser, handleLogout } = useContext(UserContext);
+  const { user, handleLogout } = useContext(UserContext);
   const history = useHistory();
 
   const logout = () => {
