@@ -1,17 +1,15 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { logoutUser } from "../../api/userApi";
 import { UserContext } from "../../context/user/UserContext";
 
 import { Link } from "react-router-dom";
 
 const UserMenu = ({ handleClose }) => {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, handleLogout } = useContext(UserContext);
   const history = useHistory();
 
-  const logout = async () => {
-    await logoutUser();
-    setUser(null);
+  const logout = () => {
+    handleLogout();
     handleClose(false);
     history.replace("/challenge");
   };

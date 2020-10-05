@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUser } from "../../api/userApi";
-import { signupUser } from "../../api/userApi";
-import { loginUser } from "../../api/userApi";
+import { getUser, signupUser, loginUser, logoutUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
 
 const UserState = ({ children }) => {
@@ -36,8 +34,6 @@ const UserState = ({ children }) => {
     } else {
       setUser(userData.data);
     }
-
-    //TODO: change minlength of password before deploy
   };
 
   const handleLogin = async (userDetails) => {
@@ -51,6 +47,11 @@ const UserState = ({ children }) => {
     }
   };
 
+  const handleLogout = async () => {
+    await logoutUser();
+    setUser(null);
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -59,6 +60,7 @@ const UserState = ({ children }) => {
         getCurrentUser,
         handleSignup,
         handleLogin,
+        handleLogout,
         userLoading,
       }}
     >
