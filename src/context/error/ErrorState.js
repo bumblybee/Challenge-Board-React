@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 
 import { ErrorContext } from "./ErrorContext";
 
@@ -13,14 +13,10 @@ const ErrorState = ({ children }) => {
     }, 8000);
   };
 
-  const value = useMemo(
-    () => ({ errorMessage, setError }),
-    //eslint-disable-next-line
-    [errorMessage]
-  );
-
   return (
-    <ErrorContext.Provider value={value}>{children}</ErrorContext.Provider>
+    <ErrorContext.Provider value={{ errorMessage, setError }}>
+      {children}
+    </ErrorContext.Provider>
   );
 };
 

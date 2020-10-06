@@ -37,7 +37,7 @@ const QuestionState = ({ children }) => {
   const updateQuestion = async (question, data) => {
     const updatedQuestions = await editQuestion(question.id, data);
 
-    if (updatedQuestions.error) {
+    if (updatedQuestions && updatedQuestions.error) {
       return updatedQuestions;
     } else {
       setQuestions(updatedQuestions.data.questions);
