@@ -39,7 +39,11 @@ const QuestionsList = () => {
   });
 
   useEffect(() => {
-    fetchQuestions();
+    let mounted = true;
+
+    mounted && fetchQuestions();
+
+    return () => (mounted = false);
   }, [fetchQuestions]);
 
   const handleSubmitQuestion = async (e) => {
