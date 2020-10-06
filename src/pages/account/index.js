@@ -25,20 +25,6 @@ const Account = () => {
     //eslint-disable-next-line
   }, []);
 
-  const powerOff = (e) => {
-    const postList = document.querySelectorAll(".post-list");
-    //TODO: Maybe add conditional styles to props on postlists and handle styles in StyledAccount, so if power, display block, else display none
-    postList.forEach((list) => {
-      if (list.style.display === "block") {
-        list.style.display = "none";
-        setPower(false);
-      } else {
-        list.style.display = "block";
-        setPower(true);
-      }
-    });
-  };
-
   return (
     <div>
       <sc.StyledAccountDiv>
@@ -46,7 +32,7 @@ const Account = () => {
           <Fragment>
             <sc.StyledDashboardHeader>
               {user.username}'s Dashboard
-              <sc.StyledButton power={power} onClick={powerOff}>
+              <sc.StyledButton power={power} onClick={() => setPower(!power)}>
                 <sc.StyledPowerIcon
                   className="fas fa-power-off"
                   power={power}
@@ -54,7 +40,7 @@ const Account = () => {
               </sc.StyledButton>
             </sc.StyledDashboardHeader>
             <sc.StyledAccountPostsDiv className="account-div">
-              <sc.StyledPostList className="post-list">
+              <sc.StyledPostList className="post-list" power={power}>
                 <sc.StyledCategoryH3>Questions</sc.StyledCategoryH3>
                 {user.questions && user.questions.length ? (
                   user.questions.map((question) => (
@@ -81,7 +67,7 @@ const Account = () => {
                   </sc.StyledAccountPost>
                 )}
               </sc.StyledPostList>
-              <sc.StyledPostList className="post-list">
+              <sc.StyledPostList className="post-list" power={power}>
                 <sc.StyledCategoryH3>Comments</sc.StyledCategoryH3>
                 {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
@@ -108,7 +94,7 @@ const Account = () => {
                 )}
               </sc.StyledPostList>
 
-              <sc.StyledPostList className="post-list">
+              <sc.StyledPostList className="post-list" power={power}>
                 <sc.StyledCategoryH3>Projects</sc.StyledCategoryH3>
                 {user.projects && user.projects.length ? (
                   user.projects.map((project) => (

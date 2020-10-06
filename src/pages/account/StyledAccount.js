@@ -167,6 +167,7 @@ export const StyledPostList = styled.ul`
   border-bottom: 5px solid #809bffee;
   border-right: 5px solid #809bffee;
   box-shadow: 0 0 10px #809cff3b, -1px -1px 4px #809cff3b, 0 0 8px #809cff3b;
+  display: ${(props) => (props.power ? "block" : "none")};
 
   :not(:first-child) {
     border-top-left-radius: 0;
