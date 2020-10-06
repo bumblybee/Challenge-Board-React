@@ -35,7 +35,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
       body: questionBody,
       userId: question.userId,
     };
-    const updatedQuestions = updateQuestion(question, data);
+    updateQuestion(question, data);
 
     setModalOpen(!modalOpen);
     toggleMenu();

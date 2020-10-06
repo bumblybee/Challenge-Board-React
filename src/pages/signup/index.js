@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+  Fragment,
+} from "react";
 
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
@@ -19,6 +25,7 @@ const Signup = () => {
   });
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const history = useHistory();
+  const passwordRef = useRef();
 
   useEffect(() => {
     const fetchDiscordUrl = async () => {
@@ -38,6 +45,14 @@ const Signup = () => {
 
     const user = await handleSignup(data);
     user && user.error ? setError(user.error) : history.push("/challenge");
+  };
+
+  const handleShowPassword = () => {
+    if (passwordRef.current.type === "password") {
+      passwordRef.current.type = "text";
+    } else {
+      passwordRef.current.type = "password";
+    }
   };
 
   return (
@@ -79,6 +94,7 @@ const Signup = () => {
           <sc.StyledFormInputArea>
             <label htmlFor="signup-password">Password</label>
             <input
+              ref={passwordRef}
               onChange={(e) => {
                 setNewUser({ ...newUser, password: e.target.value });
               }}
@@ -89,6 +105,10 @@ const Signup = () => {
               minLength="8"
               required
             ></input>
+            <sc.StyledPasswordIcon
+              onClick={handleShowPassword}
+              className="fas fa-eye"
+            ></sc.StyledPasswordIcon>
           </sc.StyledFormInputArea>
 
           <sc.StyledPurpleButton type="submit">Submit</sc.StyledPurpleButton>

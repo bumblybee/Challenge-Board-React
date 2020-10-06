@@ -187,8 +187,9 @@ export const StyledFormHeader = styled.div`
     margin-bottom: 0.5rem;
     @media (max-width: 620px) {
       margin: 0;
-    padding: 0.5rem;
-    font-size: 1.7rem;
+      padding: 0.5rem;
+      font-size: 1.7rem;
+    }
   }
 `;
 
@@ -223,6 +224,7 @@ export const StyledFormBody = styled.div`
 export const StyledFormInputArea = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const StyledHr = styled.hr`
@@ -231,4 +233,11 @@ export const StyledHr = styled.hr`
   background: #202225;
   height: 1px;
   width: 80%;
+`;
+
+export const StyledPasswordIcon = styled.i`
+  position: absolute;
+  bottom: 30%;
+  right: 3%;
+  color: #7d8088;
 `;

@@ -1,4 +1,10 @@
-import React, { Fragment, useState, useContext, useEffect } from "react";
+import React, {
+  Fragment,
+  useState,
+  useContext,
+  useEffect,
+  useRef,
+} from "react";
 import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../context/user/UserContext";
@@ -13,6 +19,7 @@ const Login = () => {
   const { setError } = useContext(ErrorContext);
   const { handleLogin } = useContext(UserContext);
   const [discordUrl, setDiscordUrl] = useState(undefined);
+  const passwordRef = useRef();
 
   const history = useHistory();
 
@@ -31,6 +38,14 @@ const Login = () => {
     loginUser && loginUser.error
       ? setError(loginUser.error)
       : history.push("/challenge");
+  };
+
+  const handleShowPassword = () => {
+    if (passwordRef.current.type === "password") {
+      passwordRef.current.type = "text";
+    } else {
+      passwordRef.current.type = "password";
+    }
   };
 
   return (
@@ -58,6 +73,7 @@ const Login = () => {
           <sc.StyledFormInputArea>
             <label htmlFor="login-password">Password</label>
             <input
+              ref={passwordRef}
               onChange={(e) => {
                 setUserDetails({ ...userDetails, password: e.target.value });
               }}
@@ -68,6 +84,10 @@ const Login = () => {
               required
               title="Password is 8 or more characters"
             ></input>
+            <sc.StyledPasswordIcon
+              onClick={handleShowPassword}
+              className="fas fa-eye"
+            ></sc.StyledPasswordIcon>
           </sc.StyledFormInputArea>
 
           <sc.StyledPurpleButton type="submit">Log In</sc.StyledPurpleButton>

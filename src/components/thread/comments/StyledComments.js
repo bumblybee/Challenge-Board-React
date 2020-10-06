@@ -29,8 +29,9 @@ export const StyledCommentsContainer = styled.div`
   }
 
   @media (max-width: 1045px) {
-  ::-webkit-scrollbar {
-    width: 0px;
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
   }
 `;
 
