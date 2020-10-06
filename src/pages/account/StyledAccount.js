@@ -24,7 +24,7 @@ export const StyledButton = styled.div`
   border-radius: 50%;
 
   border-top: 1px solid #738ce4;
-  border-bottom: 1.3px solid #738ce4;
+  border-bottom: 3px solid #738ce4;
   border-left: 1.3px solid #738ce4;
   border-right: 1.3px solid #738ce4;
 
