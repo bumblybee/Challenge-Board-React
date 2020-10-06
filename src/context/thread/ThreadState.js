@@ -49,6 +49,8 @@ const ThreadState = ({ children }) => {
 
       if (deletedQuestion.error) {
         return deletedQuestion.error;
+      } else {
+        return deletedQuestion;
       }
     }
   };

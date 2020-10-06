@@ -55,6 +55,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           <TeacherMenu
             question={question}
             toggleMenu={toggleMenu}
+            threadQuestion={false}
           ></TeacherMenu>
         ) : menuOpen && user !== null && user.role === "Student" ? (
           <StudentMenu
