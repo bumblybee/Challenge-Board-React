@@ -40,7 +40,7 @@ const QuestionsList = () => {
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [fetchQuestions]);
 
   const handleSubmitQuestion = async (e) => {
     e.preventDefault();

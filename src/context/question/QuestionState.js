@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { QuestionContext } from "./QuestionContext";
 import {
   getQuestions,
@@ -10,7 +10,7 @@ import {
 const QuestionState = ({ children }) => {
   const [questions, setQuestions] = useState([]);
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = useCallback(async () => {
     const questionsArray = await getQuestions();
 
     if (questionsArray && questionsArray.error) {
@@ -18,7 +18,7 @@ const QuestionState = ({ children }) => {
     } else {
       setQuestions(questionsArray.data);
     }
-  };
+  }, []);
 
   const submitNewQuestion = async (data) => {
     const updatedQuestions = await createQuestion(data);
