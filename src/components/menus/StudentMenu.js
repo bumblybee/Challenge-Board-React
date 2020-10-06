@@ -1,6 +1,7 @@
 import React, { useState, useContext, Fragment } from "react";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
+import Modal from "../../components/layout/Modal";
 import { StyledStudentMenu } from "./StyledMenus";
 
 import {
@@ -9,7 +10,6 @@ import {
   StyledTextarea,
   StyledModalBody,
 } from "../../styles/GlobalStyledComponents";
-import Modal from "../../components/layout/Modal";
 
 const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
   const { updateComment, updateThreadQuestion } = useContext(ThreadContext);

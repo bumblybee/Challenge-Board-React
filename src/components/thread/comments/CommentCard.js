@@ -6,16 +6,7 @@ import { UserContext } from "../../../context/user/UserContext";
 
 import TeacherMenu from "../../menus/TeacherMenu";
 import StudentMenu from "../../menus/StudentMenu";
-import {
-  StyledCommentCard,
-  StyledIconsDiv,
-  StyledMenuIcon,
-  StyledTimeDiv,
-  StyledDateDiv,
-  StyledSpan,
-  StyledCommentText,
-  StyledTruncate,
-} from "./StyledComments";
+import * as sc from "./StyledComments";
 
 const CommentCard = ({ comment, answer }) => {
   const [isTruncated, setIsTruncated] = useState(true);
@@ -39,11 +30,11 @@ const CommentCard = ({ comment, answer }) => {
   const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === comment.userId) {
       return (
-        <StyledMenuIcon
+        <sc.StyledMenuIcon
           isOpen={isOpen}
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-        ></StyledMenuIcon>
+        ></sc.StyledMenuIcon>
       );
     } else {
       return null;
@@ -51,14 +42,18 @@ const CommentCard = ({ comment, answer }) => {
   };
 
   return (
-    <StyledCommentCard id={comment.id} className="comment-card" answer={answer}>
+    <sc.StyledCommentCard
+      id={comment.id}
+      className="comment-card"
+      answer={answer}
+    >
       <div className="comment-header">
         <div className="name">{comment.user.username}</div>
-        <StyledTimeDiv>{time}</StyledTimeDiv>
-        <StyledDateDiv>{date}</StyledDateDiv>
-        <StyledIconsDiv className="icons" isOpen={isOpen} answer={answer}>
+        <sc.StyledTimeDiv>{time}</sc.StyledTimeDiv>
+        <sc.StyledDateDiv>{date}</sc.StyledDateDiv>
+        <sc.StyledIconsDiv className="icons" isOpen={isOpen} answer={answer}>
           {user && renderMenuIcon()}
-        </StyledIconsDiv>
+        </sc.StyledIconsDiv>
         {isOpen && user !== null && user.role === "Teacher" ? (
           <TeacherMenu comment={comment} toggleMenu={toggleMenu}></TeacherMenu>
         ) : isOpen && (user !== null && user.role) === "Student" ? (
@@ -70,23 +65,23 @@ const CommentCard = ({ comment, answer }) => {
 
       <div className="comment-body">
         {isTruncated ? (
-          <StyledTruncate
+          <sc.StyledTruncate
             line={3}
             element="div"
             truncateText="..."
             text={sanitize(comment.body)}
             textTruncateChild={
-              <StyledSpan onClick={handleTruncate}>more</StyledSpan>
+              <sc.StyledSpan onClick={handleTruncate}>more</sc.StyledSpan>
             }
           />
         ) : (
-          <StyledCommentText>
+          <sc.StyledCommentText>
             {sanitize(comment.body)}
-            <StyledSpan onClick={handleTruncate}>less</StyledSpan>
-          </StyledCommentText>
+            <sc.StyledSpan onClick={handleTruncate}>less</sc.StyledSpan>
+          </sc.StyledCommentText>
         )}
       </div>
-    </StyledCommentCard>
+    </sc.StyledCommentCard>
   );
 };
 

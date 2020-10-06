@@ -9,15 +9,7 @@ import { QuestionContext } from "../../context/question/QuestionContext";
 import QuestionCard from "./QuestionCard";
 import Modal from "../../components/layout/Modal";
 
-import {
-  StyledHeading,
-  StyledPurpleButton,
-  StyledTransparentButton,
-  StyledTextarea,
-  StyledModalHeader,
-  StyledModalBody,
-  StyledModalFooter,
-} from "../../styles/GlobalStyledComponents";
+import * as sc from "../../styles/GlobalStyledComponents";
 
 import {
   StyledDiscussionHeaderContainer,
@@ -78,11 +70,11 @@ const QuestionsList = () => {
   return (
     <Fragment>
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <StyledModalHeader>
+        <sc.StyledModalHeader>
           <h1>Post a Question</h1>
           <p>Make sure to add enough detail to provide context for others.</p>
-        </StyledModalHeader>
-        <StyledModalBody>
+        </sc.StyledModalHeader>
+        <sc.StyledModalBody>
           <form id="question-form" onSubmit={handleSubmitQuestion}>
             <input
               onChange={(e) =>
@@ -100,7 +92,7 @@ const QuestionsList = () => {
               autoFocus
               required
             ></input>
-            <StyledTextarea
+            <sc.StyledTextarea
               onChange={(e) =>
                 setNewQuestion({
                   ...newQuestion,
@@ -113,25 +105,25 @@ const QuestionsList = () => {
               rows="8"
               placeholder="More Details"
               required
-            ></StyledTextarea>
-            <StyledModalFooter>
-              <StyledTransparentButton
+            ></sc.StyledTextarea>
+            <sc.StyledModalFooter>
+              <sc.StyledTransparentButton
                 className="close-modal"
                 onClick={() => setModalOpen(!modalOpen)}
               >
                 Cancel
-              </StyledTransparentButton>
-              <StyledPurpleButton id="post-question-button" type="submit">
+              </sc.StyledTransparentButton>
+              <sc.StyledPurpleButton id="post-question-button" type="submit">
                 Post
-              </StyledPurpleButton>
-            </StyledModalFooter>
+              </sc.StyledPurpleButton>
+            </sc.StyledModalFooter>
           </form>
-        </StyledModalBody>{" "}
+        </sc.StyledModalBody>{" "}
       </Modal>
 
       <StyledDiscussionHeaderContainer>
         <div className="discussion-header">
-          <StyledHeading>DISCUSSION</StyledHeading>
+          <sc.StyledHeading>DISCUSSION</sc.StyledHeading>
           {user && user.role === "Teacher" ? (
             <h1>Challenge Questions</h1>
           ) : (
@@ -141,19 +133,19 @@ const QuestionsList = () => {
         {user && user.role === "Teacher" ? (
           ""
         ) : user && user.role === "Student" ? (
-          <StyledPurpleButton
+          <sc.StyledPurpleButton
             className="modal-button"
             onClick={() => setModalOpen(!modalOpen)}
           >
             Post a Question
-          </StyledPurpleButton>
+          </sc.StyledPurpleButton>
         ) : (
-          <StyledPurpleButton
+          <sc.StyledPurpleButton
             className="modal-button"
             onClick={() => history.push("/login")}
           >
             Log In to Post a Question
-          </StyledPurpleButton>
+          </sc.StyledPurpleButton>
         )}
       </StyledDiscussionHeaderContainer>
       <StyledQuestionsContainer>

@@ -24,19 +24,7 @@ import {
   StyledThreadHeaderContainer,
 } from "./StyledThread";
 
-import {
-  StyledSpan,
-  StyledMenuIcon,
-  StyledThreadQuestion,
-  StyledQuestionHeader,
-  StyledQuestionTitle,
-  StyledQuestionBody,
-  StyledQuestionText,
-  StyledName,
-  StyledDate,
-  StyledTruncate,
-  StyledIconsDiv,
-} from "../questions/StyledQuestions";
+import * as sq from "../questions/StyledQuestions";
 
 const QuestionThread = () => {
   const sanitize = DOMPurify.sanitize;
@@ -72,12 +60,12 @@ const QuestionThread = () => {
   const renderMenuIcon = () => {
     if (user.role === "Teacher" || user.id === threadQuestion.userId) {
       return (
-        <StyledMenuIcon
+        <sq.StyledMenuIcon
           menuOpen={menuOpen}
           inList={false}
           onClick={toggleMenu}
           className="fas fa-ellipsis-h fa-lg"
-        ></StyledMenuIcon>
+        ></sq.StyledMenuIcon>
       );
     } else {
       return null;
@@ -104,14 +92,14 @@ const QuestionThread = () => {
       </StyledThreadHeaderContainer>
 
       <div>
-        <StyledThreadQuestion>
-          <StyledQuestionHeader>
-            <StyledName>
+        <sq.StyledThreadQuestion>
+          <sq.StyledQuestionHeader>
+            <sq.StyledName>
               {threadQuestion.user && threadQuestion.user.username}
-            </StyledName>
-            <StyledDate>{date}</StyledDate>
+            </sq.StyledName>
+            <sq.StyledDate>{date}</sq.StyledDate>
 
-            <StyledIconsDiv>{user && renderMenuIcon()}</StyledIconsDiv>
+            <sq.StyledIconsDiv>{user && renderMenuIcon()}</sq.StyledIconsDiv>
             {menuOpen && user !== null && user.role === "Teacher" ? (
               <TeacherMenu
                 question={threadQuestion}
@@ -127,31 +115,31 @@ const QuestionThread = () => {
             ) : (
               ""
             )}
-          </StyledQuestionHeader>
-          <StyledQuestionBody>
-            <StyledQuestionTitle>
+          </sq.StyledQuestionHeader>
+          <sq.StyledQuestionBody>
+            <sq.StyledQuestionTitle>
               {sanitize(threadQuestion.title)}
-            </StyledQuestionTitle>
+            </sq.StyledQuestionTitle>
             {isTruncated ? (
-              <StyledQuestionText>
-                <StyledTruncate
+              <sq.StyledQuestionText>
+                <sq.StyledTruncate
                   line={3}
                   element="div"
                   truncateText="..."
                   text={sanitize(threadQuestion.body)}
                   textTruncateChild={
-                    <StyledSpan onClick={handleTruncate}>more</StyledSpan>
+                    <sq.StyledSpan onClick={handleTruncate}>more</sq.StyledSpan>
                   }
                 />
-              </StyledQuestionText>
+              </sq.StyledQuestionText>
             ) : (
-              <StyledQuestionText>
+              <sq.StyledQuestionText>
                 {sanitize(threadQuestion.body)}{" "}
-                <StyledSpan onClick={handleTruncate}>less</StyledSpan>
-              </StyledQuestionText>
+                <sq.StyledSpan onClick={handleTruncate}>less</sq.StyledSpan>
+              </sq.StyledQuestionText>
             )}
-          </StyledQuestionBody>
-        </StyledThreadQuestion>
+          </sq.StyledQuestionBody>
+        </sq.StyledThreadQuestion>
         {comments &&
           comments.map((comment) => (
             <ThreadAnswer key={comment.id} comment={comment} />
