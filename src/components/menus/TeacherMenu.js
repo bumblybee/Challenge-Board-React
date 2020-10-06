@@ -29,12 +29,10 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
     const deletedQuestion = await deleteThreadQuestion(question);
     console.log(deletedQuestion);
     deletedQuestion && deletedQuestion.data && history.push("/challenge");
-    toggleMenu();
   };
 
   const handleDeleteUserQuestion = async (question) => {
     await deleteUserQuestion(question);
-    toggleMenu();
   };
 
   if (question) {

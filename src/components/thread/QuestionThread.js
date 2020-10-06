@@ -57,7 +57,11 @@ const QuestionThread = () => {
   const questionId = path[path.indexOf("question") + 1];
 
   useEffect(() => {
-    fetchThread(questionId);
+    let mounted = true;
+
+    mounted && fetchThread(questionId);
+
+    return () => (mounted = false);
     //eslint-disable-next-line
   }, []);
 

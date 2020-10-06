@@ -150,9 +150,10 @@ const QuestionsList = () => {
       </StyledDiscussionHeaderContainer>
       <StyledQuestionsContainer>
         <ul className="questions-thread">
-          {questions.map((question) => (
-            <QuestionCard question={question} key={question.id} />
-          ))}
+          {questions &&
+            questions.map((question) => (
+              <QuestionCard question={question} key={question.id} />
+            ))}
         </ul>
       </StyledQuestionsContainer>
     </Fragment>
