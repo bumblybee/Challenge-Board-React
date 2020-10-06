@@ -24,7 +24,7 @@ export const StyledButton = styled.div`
   border-radius: 50%;
 
   border-top: 1px solid #738ce4;
-  border-bottom: 3px solid #738ce4;
+  border-bottom: 1.3px solid #738ce4;
   border-left: 1.3px solid #738ce4;
   border-right: 1.3px solid #738ce4;
 
@@ -43,7 +43,7 @@ export const StyledButton = styled.div`
           font-size: 1.45rem;
         `
       : css`
-          box-shadow: inset 0 -3px 3px rgba(0, 0, 0, 0.3),
+          box-shadow: inset 0 -3px 2px rgba(0, 0, 0, 0.2),
             0 0 6px rgba(0, 0, 0, 0.2);
           background: #809bff;
           transform: scale(1);
@@ -55,11 +55,10 @@ export const StyledButton = styled.div`
   }
 
   :active {
-    /* transform: scale(0.98); */
     border: none;
-    /* background: #809bffee; */
-    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.4),
-      inset 0 2px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.4),
+      inset 0 -1px 2px rgba(0, 0, 0, 0.7);
+    font-size: 1.45rem;
   }
 
   :focus {
