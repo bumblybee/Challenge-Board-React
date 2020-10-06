@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QuestionContext } from "./QuestionContext";
 import {
   getQuestions,
@@ -9,6 +9,10 @@ import {
 
 const QuestionState = ({ children }) => {
   const [questions, setQuestions] = useState([]);
+
+  // useEffect(() => {
+  //   fetchQuestions();
+  // }, []);
 
   const fetchQuestions = async () => {
     const questionsArray = await getQuestions();

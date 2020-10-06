@@ -40,7 +40,6 @@ const QuestionsList = () => {
 
   useEffect(() => {
     fetchQuestions();
-    //eslint-disable-next-line
   }, []);
 
   const handleSubmitQuestion = async (e) => {
