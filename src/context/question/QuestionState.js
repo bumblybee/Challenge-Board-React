@@ -66,7 +66,7 @@ const QuestionState = ({ children }) => {
       deleteUserQuestion,
     }),
 
-    [questions, questionsLoading]
+    [questions, questionsLoading, fetchQuestions]
   );
 
   return (
