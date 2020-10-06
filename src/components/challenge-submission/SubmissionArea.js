@@ -119,7 +119,7 @@ const SubmissionArea = () => {
               title="Link must start with https://"
               id="githubLink"
               placeholder="Github Link"
-              value={projectDetails.githubLink}
+              value={projectDetails.githubLink || ""}
               required
               noValidate
               autoFocus
