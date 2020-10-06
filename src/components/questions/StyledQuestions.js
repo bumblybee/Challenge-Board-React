@@ -2,6 +2,13 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
 
+export const StyledQuestionsLoader = styled.img`
+  height: 120px;
+  width: 120px;
+  display: block;
+  margin: auto;
+`;
+
 export const StyledQuestionArea = styled.div`
   background: var(--secondary-background);
   padding: 0.5rem;

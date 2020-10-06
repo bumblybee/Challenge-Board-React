@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 
+import loader from "../../assets/loading.gif";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../context/user/UserContext";
 import { ErrorContext } from "../../context/error/ErrorContext";
@@ -21,6 +22,7 @@ import {
 import {
   StyledDiscussionHeaderContainer,
   StyledQuestionsContainer,
+  StyledQuestionsLoader,
 } from "./StyledQuestions";
 
 const QuestionsList = () => {
@@ -28,9 +30,12 @@ const QuestionsList = () => {
 
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
-  const { questions, submitNewQuestion, fetchQuestions } = useContext(
-    QuestionContext
-  );
+  const {
+    questions,
+    questionsLoading,
+    submitNewQuestion,
+    fetchQuestions,
+  } = useContext(QuestionContext);
   const [modalOpen, setModalOpen] = useState(false);
 
   const [newQuestion, setNewQuestion] = useState({
@@ -66,6 +71,9 @@ const QuestionsList = () => {
       questionDetails: "",
     });
   };
+
+  if (questionsLoading)
+    return <StyledQuestionsLoader src={loader} alt="loading" />;
 
   return (
     <Fragment>

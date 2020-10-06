@@ -9,14 +9,18 @@ import {
 
 const QuestionState = ({ children }) => {
   const [questions, setQuestions] = useState([]);
+  const [questionsLoading, setQuestionsLoading] = useState(false);
 
   const fetchQuestions = useCallback(async () => {
+    setQuestionsLoading(true);
     const questionsArray = await getQuestions();
 
     if (questionsArray && questionsArray.error) {
+      setQuestionsLoading(false);
       return;
     } else {
       setQuestions(questionsArray.data);
+      setQuestionsLoading(false);
     }
   }, []);
 
@@ -55,13 +59,14 @@ const QuestionState = ({ children }) => {
   const value = useMemo(
     () => ({
       questions,
+      questionsLoading,
       fetchQuestions,
       submitNewQuestion,
       updateQuestion,
       deleteUserQuestion,
     }),
 
-    [questions]
+    [questions, questionsLoading]
   );
 
   return (
