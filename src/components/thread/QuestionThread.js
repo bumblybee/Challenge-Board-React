@@ -19,7 +19,10 @@ import {
   StyledPurpleButton,
 } from "../../styles/GlobalStyledComponents";
 
-import { StyledThreadLoader } from "./StyledThread";
+import {
+  StyledThreadLoader,
+  StyledThreadHeaderContainer,
+} from "./StyledThread";
 
 import {
   StyledSpan,
@@ -85,7 +88,7 @@ const QuestionThread = () => {
 
   return (
     <Fragment>
-      <div className="discussion-header-container thread">
+      <StyledThreadHeaderContainer>
         <div>
           <StyledHeading>DISCUSSION</StyledHeading>
           <h1>Ask a Question</h1>
@@ -94,7 +97,7 @@ const QuestionThread = () => {
         <StyledPurpleButton onClick={() => history.push("/challenge")}>
           Back
         </StyledPurpleButton>
-      </div>
+      </StyledThreadHeaderContainer>
 
       <div>
         <StyledThreadQuestion>

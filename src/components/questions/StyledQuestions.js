@@ -2,6 +2,55 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import TextTruncate from "react-text-truncate";
 
+export const StyledQuestionArea = styled.div`
+  background: var(--secondary-background);
+  padding: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 900px;
+  flex-grow: 1;
+
+  @media (max-width: 1045px) {
+    overflow: visible;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 620px) {
+    margin: 0 0 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const StyledDiscussionHeaderContainer = styled.div`
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 3rem 1rem 0;
+
+  button {
+    margin-top: auto;
+    margin-left: auto;
+  }
+
+  @media (max-width: 900px) {
+    padding: 3rem 0.5rem 0;
+  }
+
+  @media (max-width: 620px) {
+    margin: 0 0 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0;
+  }
+`;
+
 export const StyledQuestionCard = styled.li`
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;

@@ -18,6 +18,8 @@ import {
   StyledModalFooter,
 } from "../../styles/GlobalStyledComponents";
 
+import { StyledDiscussionHeaderContainer } from "./StyledQuestions";
+
 const QuestionsList = () => {
   const history = useHistory();
 
@@ -112,7 +114,7 @@ const QuestionsList = () => {
         </StyledModalBody>{" "}
       </Modal>
 
-      <div className="discussion-header-container">
+      <StyledDiscussionHeaderContainer>
         <div className="discussion-header">
           <StyledHeading>DISCUSSION</StyledHeading>
           {user && user.role === "Teacher" ? (
@@ -138,7 +140,7 @@ const QuestionsList = () => {
             Log In to Post a Question
           </StyledPurpleButton>
         )}
-      </div>
+      </StyledDiscussionHeaderContainer>
       <div className="questions-container">
         <ul className="questions-thread">
           {questions.map((question) => (
