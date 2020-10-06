@@ -23,7 +23,7 @@ const CommentsList = ({ questionId }) => {
   };
 
   return (
-    <div className="comments-container">
+    <sc.StyledCommentsContainer>
       <sc.StyledCommentsThread className="comments-thread">
         {comments.map((comment) => (
           <CommentCard comment={comment} key={comment.id} />
@@ -56,7 +56,7 @@ const CommentsList = ({ questionId }) => {
           ></sc.StyledSubmitIcon>
         </sc.StyledSubmitButton>
       </sc.StyledCommentsForm>
-    </div>
+    </sc.StyledCommentsContainer>
   );
 };
 

@@ -18,7 +18,10 @@ import {
   StyledModalFooter,
 } from "../../styles/GlobalStyledComponents";
 
-import { StyledDiscussionHeaderContainer } from "./StyledQuestions";
+import {
+  StyledDiscussionHeaderContainer,
+  StyledQuestionsContainer,
+} from "./StyledQuestions";
 
 const QuestionsList = () => {
   const history = useHistory();
@@ -141,13 +144,13 @@ const QuestionsList = () => {
           </StyledPurpleButton>
         )}
       </StyledDiscussionHeaderContainer>
-      <div className="questions-container">
+      <StyledQuestionsContainer>
         <ul className="questions-thread">
           {questions.map((question) => (
             <QuestionCard question={question} key={question.id} />
           ))}
         </ul>
-      </div>
+      </StyledQuestionsContainer>
     </Fragment>
   );
 };

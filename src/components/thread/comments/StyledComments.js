@@ -6,6 +6,34 @@ export const StyledCommentsThread = styled.ul`
   background: #202225;
 `;
 
+export const StyledCommentsContainer = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  ::-webkit-scrollbar {
+    width: 1.32rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #18191b;
+    border-bottom-right-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--card-background);
+    border: 4px solid transparent;
+    border-radius: 10px;
+    background-clip: content-box;
+  }
+
+  @media (max-width: 1045px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+`;
+
 export const StyledCommentCard = styled.li`
   color: #dcddde;
   position: relative;
