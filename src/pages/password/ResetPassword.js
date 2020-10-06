@@ -3,7 +3,13 @@ import { useHistory, useLocation } from "react-router-dom";
 import { passwordReset } from "../../api/passwordApi";
 import { ErrorContext } from "../../context/error/ErrorContext";
 
-import { StyledPurpleButton } from "../../styles/GlobalStyledComponents";
+import {
+  StyledPurpleButton,
+  StyledFormContent,
+  StyledFormHeader,
+  StyledFormBody,
+  StyledFormInputArea,
+} from "../../styles/GlobalStyledComponents";
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -25,13 +31,13 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="login-form-content">
-      <div className="login-form-header">
+    <StyledFormContent>
+      <StyledFormHeader>
         <h1>Enter New Password</h1>
-      </div>
-      <div className="login-form-body">
+      </StyledFormHeader>
+      <StyledFormBody>
         <form id="login-form" onSubmit={handleSubmit}>
-          <div className="input-area">
+          <StyledFormInputArea>
             <label htmlFor="new-password">New Password</label>
             <input
               onChange={(e) => {
@@ -43,12 +49,12 @@ const ResetPassword = () => {
               minLength="8"
               required
             ></input>
-          </div>
+          </StyledFormInputArea>
 
           <StyledPurpleButton type="submit">Submit</StyledPurpleButton>
         </form>
-      </div>
-    </div>
+      </StyledFormBody>
+    </StyledFormContent>
   );
 };
 

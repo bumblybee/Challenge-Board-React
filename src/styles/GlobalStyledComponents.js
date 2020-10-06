@@ -144,7 +144,7 @@ export const StyledModalFooter = styled.div`
 `;
 
 export const StyledFormContent = styled.div`
-  background: var(--secondary-background);
+  background: #2f3136;
   position: absolute;
   left: 50%;
   top: 50%;
