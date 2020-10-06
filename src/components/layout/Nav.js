@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import UserMenu from "../menus/UserMenu";
 import { Link } from "react-router-dom";
-import { StyledNav, StyledNavHeader } from "./StyledLayout";
+import {
+  StyledNav,
+  StyledNavHeader,
+  StyledKnightIcon,
+  StyledUserIcon,
+} from "./StyledLayout";
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,16 +15,15 @@ const Nav = () => {
     <StyledNav>
       {menuOpen && <UserMenu handleClose={setMenuOpen} />}
       <Link to="/challenge">
-        <i className="fas fa-chess-knight fa-lg"></i>
+        <StyledKnightIcon className="fas fa-chess-knight fa-lg"></StyledKnightIcon>
       </Link>
 
       <StyledNavHeader to="/challenge">CHALLENGE BOARD</StyledNavHeader>
 
-      <i
-        id="user-menu-toggle"
+      <StyledUserIcon
         className="fas fa-user-circle fa-2x"
         onClick={() => setMenuOpen(!menuOpen)}
-      ></i>
+      ></StyledUserIcon>
     </StyledNav>
   );
 };

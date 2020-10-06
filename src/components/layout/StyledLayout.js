@@ -17,6 +17,27 @@ export const StyledNavHeader = styled(Link)`
   letter-spacing: 0.15rem;
 `;
 
+export const StyledKnightIcon = styled.i`
+  color: #2f3136;
+  background: var(--secondary-text);
+  padding: 8px 8px;
+  border-radius: 50%;
+
+  :hover {
+    background: #fff;
+    color: #2f3136;
+  }
+`;
+
+export const StyledUserIcon = styled.i`
+  color: #dcddde;
+
+  :hover {
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
 export const StyledModal = styled.div`
   position: fixed;
   z-index: 10;
