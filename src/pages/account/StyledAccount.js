@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const StyledDashboardHeader = styled.h1`
   padding: 1rem;
-  color: #fff;
+  color: #dcdddefb;
   /* text-shadow: 0 2px 14px #809bffee; */
   font-family: "Roboto Slab", serif;
   font-size: 1.9rem;
@@ -20,29 +20,44 @@ export const StyledDashboardHeader = styled.h1`
 export const StyledButton = styled.div`
   height: 40px;
   width: 40px;
-  background: #95acffee;
+
   border-radius: 50%;
-  box-shadow: 0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
+
   border-top: 1px solid #738ce4;
   border-bottom: 3px solid #738ce4;
-  border-left: 1.5px solid #738ce4;
-  border-right: 1.5px solid #738ce4;
-  font-size: 1.5rem;
+  border-left: 1.3px solid #738ce4;
+  border-right: 1.3px solid #738ce4;
+
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform ease-out;
   -webkit-tap-highlight-color: transparent;
 
+  ${(props) =>
+    props.power
+      ? css`
+          box-shadow: 0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2);
+          background: #95acffee;
+          transform: scale(0.98);
+          font-size: 1.45rem;
+        `
+      : css`
+          box-shadow: inset 0 -3px 3px rgba(0, 0, 0, 0.3),
+            0 0 6px rgba(0, 0, 0, 0.2);
+          background: #809bff;
+          transform: scale(1);
+          font-size: 1.5rem;
+        `}
+
   :hover {
     cursor: pointer;
   }
 
   :active {
-    transform: scale(0.98);
-    font-size: 1.45rem;
+    /* transform: scale(0.98); */
     border: none;
-    background: #809bffee;
+    /* background: #809bffee; */
     box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.4),
       inset 0 2px 3px rgba(0, 0, 0, 0.4);
   }
@@ -60,6 +75,10 @@ export const StyledButton = styled.div`
       font-size: 1.21rem;
     }
   }
+`;
+
+export const StyledPowerIcon = styled.i`
+  color: ${(props) => (props.power ? "#fff" : "#fffa")};
 `;
 
 export const StyledCategoryH3 = styled.h3`

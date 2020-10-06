@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, Fragment } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  Fragment,
+} from "react";
 import { useHistory } from "react-router-dom";
 
 import moment from "moment";
@@ -11,32 +17,26 @@ const Account = () => {
   const { user, getCurrentUser } = useContext(UserContext);
   const history = useHistory();
   !user && history.push("/");
+
+  const [power, setPower] = useState(true);
+
   useEffect(() => {
     getCurrentUser();
     //eslint-disable-next-line
   }, []);
 
   const powerOff = (e) => {
-    if (e.target.id === "powerBtn") {
-      const postList = document.querySelectorAll(".post-list");
-      const styledBtn = document.querySelector("#styled-btn");
-
-      postList.forEach((list) => {
-        if (list.style.display === "block") {
-          list.style.display = "none";
-          styledBtn.style.boxShadow = "inset 0 -1px 3px rgba(0, 0, 0, 0.2)";
-
-          styledBtn.style.background = "#809bff";
-          e.target.style.color = "#fffa";
-        } else {
-          list.style.display = "block";
-          styledBtn.style.boxShadow =
-            "0 -1px 12px #809bff8e, 0 1px 6px rgba(0, 0, 0, 0.2)";
-          styledBtn.style.background = "#95acffee";
-          e.target.style.color = "#fff";
-        }
-      });
-    }
+    const postList = document.querySelectorAll(".post-list");
+    //TODO: Maybe add conditional styles to props on postlists and handle styles in StyledAccount, so if power, display block, else display none
+    postList.forEach((list) => {
+      if (list.style.display === "block") {
+        list.style.display = "none";
+        setPower(false);
+      } else {
+        list.style.display = "block";
+        setPower(true);
+      }
+    });
   };
 
   return (
@@ -46,12 +46,11 @@ const Account = () => {
           <Fragment>
             <sc.StyledDashboardHeader>
               {user.username}'s Dashboard
-              <sc.StyledButton id="styled-btn">
-                <i
-                  onClick={powerOff}
-                  id="powerBtn"
+              <sc.StyledButton power={power} onClick={powerOff}>
+                <sc.StyledPowerIcon
                   className="fas fa-power-off"
-                ></i>
+                  power={power}
+                ></sc.StyledPowerIcon>
               </sc.StyledButton>
             </sc.StyledDashboardHeader>
             <sc.StyledAccountPostsDiv className="account-div">
