@@ -55,6 +55,7 @@ const QuestionsList = () => {
     getUpdatedQuestions &&
       getUpdatedQuestions.error &&
       setError(getUpdatedQuestions.error);
+
     setModalOpen(!modalOpen);
     setNewQuestion({
       question: "",

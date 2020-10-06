@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, Fragment } from "react";
+import React, { useContext, Fragment } from "react";
 import loader from "../../assets/loading.gif";
 
 import ChallengeArea from "../../components/challenge-submission/ChallengeArea";
@@ -11,8 +11,6 @@ import * as sc from "./StyledChallenge";
 
 const Challenge = () => {
   const { user, userLoading } = useContext(UserContext);
-
-  useEffect(() => {}, []);
 
   return (
     <Fragment>

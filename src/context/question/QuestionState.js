@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { QuestionContext } from "./QuestionContext";
 import {
   getQuestions,
@@ -9,10 +9,6 @@ import {
 
 const QuestionState = ({ children }) => {
   const [questions, setQuestions] = useState([]);
-
-  // useEffect(() => {
-  //   fetchQuestions();
-  // }, []);
 
   const fetchQuestions = async () => {
     const questionsArray = await getQuestions();
@@ -56,16 +52,20 @@ const QuestionState = ({ children }) => {
     }
   };
 
+  const value = useMemo(
+    () => ({
+      questions,
+      fetchQuestions,
+      submitNewQuestion,
+      updateQuestion,
+      deleteUserQuestion,
+    }),
+
+    [questions]
+  );
+
   return (
-    <QuestionContext.Provider
-      value={{
-        questions,
-        fetchQuestions,
-        submitNewQuestion,
-        updateQuestion,
-        deleteUserQuestion,
-      }}
-    >
+    <QuestionContext.Provider value={value}>
       {children}
     </QuestionContext.Provider>
   );
