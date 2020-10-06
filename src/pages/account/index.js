@@ -16,8 +16,7 @@ const Account = () => {
 
   useEffect(() => {
     getCurrentUser();
-    //eslint-disable-next-line
-  }, []);
+  }, [getCurrentUser]);
 
   return (
     <div>

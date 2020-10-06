@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { getUser, signupUser, loginUser, logoutUser } from "../../api/userApi";
 import { UserContext } from "./UserContext";
 
@@ -10,7 +10,7 @@ const UserState = ({ children }) => {
     getCurrentUser();
   }, []);
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     setUserLoading(true);
     const userData = await getUser();
     if (userData.error || !userData) {
@@ -20,7 +20,7 @@ const UserState = ({ children }) => {
       setUser(userData.data.user);
       setUserLoading(false);
     }
-  };
+  }, [setUser]);
 
   const handleSignup = async (userDetails) => {
     let userData = await signupUser(userDetails);
