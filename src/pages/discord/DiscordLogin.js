@@ -34,8 +34,7 @@ const DiscordLogin = () => {
     };
 
     postDiscordLogin();
-    // eslint-disable-next-line
-  }, [setUser]);
+  }, [setUser, history, location.search, setError]);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };
