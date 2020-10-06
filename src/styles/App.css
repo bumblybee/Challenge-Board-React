@@ -53,10 +53,6 @@ i:hover {
   cursor: pointer;
 }
 
-.account-div::-webkit-scrollbar {
-  display: none;
-}
-
 .questions-thread {
   display: flex;
   flex-direction: column;

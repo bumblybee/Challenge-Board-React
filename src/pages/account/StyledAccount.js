@@ -149,6 +149,10 @@ export const StyledAccountPostsDiv = styled.div`
   border-right-color: #3a3c42;
   border-bottom-color: #3a3c42;
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     padding: 0.4rem;
@@ -239,6 +243,10 @@ export const StyledAccountPost = styled.li`
       border-bottom: 0.5px inset #fff;
     }
   }
+`;
+
+export const StyledAnchorWrapper = styled.a`
+  color: #fff;
 `;
 
 export const StyledHr = styled.hr`

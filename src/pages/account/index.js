@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  Fragment,
-} from "react";
+import React, { useContext, useEffect, useState, Fragment } from "react";
 import { useHistory } from "react-router-dom";
 
 import moment from "moment";
@@ -39,8 +33,8 @@ const Account = () => {
                 ></sc.StyledPowerIcon>
               </sc.StyledButton>
             </sc.StyledDashboardHeader>
-            <sc.StyledAccountPostsDiv className="account-div">
-              <sc.StyledPostList className="post-list" power={power}>
+            <sc.StyledAccountPostsDiv>
+              <sc.StyledPostList power={power}>
                 <sc.StyledCategoryH3>Questions</sc.StyledCategoryH3>
                 {user.questions && user.questions.length ? (
                   user.questions.map((question) => (
@@ -67,7 +61,7 @@ const Account = () => {
                   </sc.StyledAccountPost>
                 )}
               </sc.StyledPostList>
-              <sc.StyledPostList className="post-list" power={power}>
+              <sc.StyledPostList power={power}>
                 <sc.StyledCategoryH3>Comments</sc.StyledCategoryH3>
                 {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
@@ -94,14 +88,13 @@ const Account = () => {
                 )}
               </sc.StyledPostList>
 
-              <sc.StyledPostList className="post-list" power={power}>
+              <sc.StyledPostList power={power}>
                 <sc.StyledCategoryH3>Projects</sc.StyledCategoryH3>
                 {user.projects && user.projects.length ? (
                   user.projects.map((project) => (
-                    <a
+                    <sc.StyledAnchorWrapper
                       key={project.id}
                       href={project.githubLink}
-                      style={whiteText}
                     >
                       <sc.StyledAccountPost>
                         <sc.StyledDate>
@@ -111,7 +104,7 @@ const Account = () => {
                         <p>{project.additionLink}</p>
                         <p>{project.comment}</p>
                       </sc.StyledAccountPost>
-                    </a>
+                    </sc.StyledAnchorWrapper>
                   ))
                 ) : (
                   <sc.StyledAccountPost noLength={true}>
@@ -127,10 +120,6 @@ const Account = () => {
       </sc.StyledAccountDiv>
     </div>
   );
-};
-
-const whiteText = {
-  color: "#fff",
 };
 
 export default Account;
