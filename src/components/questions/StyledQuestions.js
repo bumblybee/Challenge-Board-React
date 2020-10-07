@@ -31,7 +31,7 @@ export const StyledQuestionArea = styled.div`
     padding: 0.5rem;
     border-radius: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 `;
 
@@ -61,6 +61,7 @@ export const StyledDiscussionHeaderContainer = styled.div`
 export const StyledQuestionsContainer = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
+
   ::-webkit-scrollbar {
     width: 1.32rem;
   }

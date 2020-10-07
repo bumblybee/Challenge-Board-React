@@ -4,6 +4,11 @@ import TextareaAutosize from "react-autosize-textarea";
 
 export const StyledCommentsThread = styled.ul`
   background: #202225;
+  height: 900px;
+
+  @media (max-width: 1045px) {
+    height: auto;
+  }
 `;
 
 export const StyledCommentsContainer = styled.div`

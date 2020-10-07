@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 
 import CommentCard from "./CommentCard";
 import { UserContext } from "../../../context/user/UserContext";
@@ -21,6 +21,12 @@ const CommentsList = ({ questionId }) => {
       body: "",
     });
   };
+  const ulRef = useRef();
+  useEffect(() => {
+    if (comments.length === 0) {
+      ulRef.current.scrollIntoView();
+    }
+  });
 
   return (
     <sc.StyledCommentsContainer>
@@ -31,6 +37,7 @@ const CommentsList = ({ questionId }) => {
       </sc.StyledCommentsThread>
       <sc.StyledCommentsForm onSubmit={handleCommentSubmit}>
         <sc.StyledTextarea
+          ref={ulRef}
           onChange={(e) =>
             setNewComment({
               ...newComment,
