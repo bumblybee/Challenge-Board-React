@@ -26,6 +26,7 @@ const Signup = () => {
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const history = useHistory();
   const passwordRef = useRef();
+  const passwordIconRef = useRef();
 
   useEffect(() => {
     const fetchDiscordUrl = async () => {
@@ -50,8 +51,10 @@ const Signup = () => {
   const handleShowPassword = () => {
     if (passwordRef.current.type === "password") {
       passwordRef.current.type = "text";
+      passwordIconRef.current.style.color = "#fff";
     } else {
       passwordRef.current.type = "password";
+      passwordIconRef.current.style.color = "#7d8088";
     }
   };
 
@@ -106,6 +109,7 @@ const Signup = () => {
               required
             ></input>
             <sc.StyledPasswordIcon
+              ref={passwordIconRef}
               onClick={handleShowPassword}
               className="fas fa-eye"
             ></sc.StyledPasswordIcon>

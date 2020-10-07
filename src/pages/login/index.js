@@ -20,6 +20,7 @@ const Login = () => {
   const { handleLogin } = useContext(UserContext);
   const [discordUrl, setDiscordUrl] = useState(undefined);
   const passwordRef = useRef();
+  const passwordIconRef = useRef();
 
   const history = useHistory();
 
@@ -43,8 +44,10 @@ const Login = () => {
   const handleShowPassword = () => {
     if (passwordRef.current.type === "password") {
       passwordRef.current.type = "text";
+      passwordIconRef.current.style.color = "#fff";
     } else {
       passwordRef.current.type = "password";
+      passwordIconRef.current.style.color = "#7d8088";
     }
   };
 
@@ -85,6 +88,7 @@ const Login = () => {
               title="Password is 8 or more characters"
             ></input>
             <sc.StyledPasswordIcon
+              ref={passwordIconRef}
               onClick={handleShowPassword}
               className="fas fa-eye"
             ></sc.StyledPasswordIcon>
