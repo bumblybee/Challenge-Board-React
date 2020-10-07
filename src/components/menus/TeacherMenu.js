@@ -38,7 +38,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   if (question) {
     return (
       <Fragment>
-        <StyledTeacherMenu threadQuestion={threadQuestion}>
+        <StyledTeacherMenu>
           <StyledParagraph
             onClick={
               threadQuestion
@@ -56,7 +56,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   }
   return (
     <Fragment>
-      <StyledTeacherMenu>
+      <StyledTeacherMenu isComment={true}>
         {comment.isAnswer ? (
           <Fragment>
             <StyledParagraph

@@ -4,7 +4,7 @@ import TextareaAutosize from "react-autosize-textarea";
 
 export const StyledCommentsThread = styled.ul`
   background: #202225;
-  padding-bottom: 1rem;
+  /* padding: ${(props) => (props.hasComments ? "1rem 0" : "0")}; */
 `;
 
 export const StyledCommentsContainer = styled.div`

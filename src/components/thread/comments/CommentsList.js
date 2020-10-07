@@ -24,7 +24,7 @@ const CommentsList = ({ questionId }) => {
 
   return (
     <sc.StyledCommentsContainer>
-      <sc.StyledCommentsThread className="comments-thread">
+      <sc.StyledCommentsThread hasComments={comments.length > 0 ? true : false}>
         {comments.map((comment) => (
           <CommentCard comment={comment} key={comment.id} />
         ))}

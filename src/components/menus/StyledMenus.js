@@ -4,8 +4,7 @@ export const StyledTeacherMenu = styled.div`
   background: #18191b;
   font-size: 1rem;
   font-weight: 300;
-  padding: ${(props) =>
-    props.threadQuestion ? "0.6rem 1rem" : "0.35rem 1rem"};
+  padding: ${(props) => (props.isComment ? "0 1rem" : "0.3rem 1rem")};
   width: 30%;
   position: absolute;
   right: 0;
@@ -99,5 +98,5 @@ export const StyledStudentMenu = styled.div`
 `;
 
 export const StyledParagraph = styled.p`
-  padding: 0.8rem 0;
+  padding: 0.7rem 0;
 `;
