@@ -6,10 +6,6 @@ const UserState = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userLoading, setUserLoading] = useState(false);
 
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
-
   const getCurrentUser = useCallback(async () => {
     setUserLoading(true);
     const userData = await getUser();
@@ -20,7 +16,11 @@ const UserState = ({ children }) => {
       setUser(userData.data.user);
       setUserLoading(false);
     }
-  }, [setUser]);
+  }, []);
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [getCurrentUser]);
 
   const handleSignup = async (userDetails) => {
     let userData = await signupUser(userDetails);
@@ -43,6 +43,7 @@ const UserState = ({ children }) => {
       return userData;
     } else {
       setUser(userData.data);
+
       return userData;
     }
   };

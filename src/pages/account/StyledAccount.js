@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 export const StyledDashboardHeader = styled.h1`
   padding: 1rem;
@@ -102,7 +103,7 @@ export const StyledLink = styled(Link)`
   color: #fff;
 `;
 
-export const StyledHashLink = styled(Link)`
+export const StyledHashLink = styled(HashLink)`
   color: #fff;
 `;
 

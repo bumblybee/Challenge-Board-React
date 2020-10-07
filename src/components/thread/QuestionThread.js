@@ -50,8 +50,7 @@ const QuestionThread = () => {
     mounted && fetchThread(questionId);
 
     return () => (mounted = false);
-    //eslint-disable-next-line
-  }, []);
+  }, [questionId, fetchThread]);
 
   const handleTruncate = () => {
     setIsTruncated(!isTruncated);

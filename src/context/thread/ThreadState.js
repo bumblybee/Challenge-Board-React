@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { ThreadContext } from "./ThreadContext";
 
 import {
@@ -22,7 +22,7 @@ const ThreadState = ({ children }) => {
   const [comments, setComments] = useState([]);
   const [threadLoading, setThreadLoading] = useState(false);
 
-  const fetchThread = async (questionId) => {
+  const fetchThread = useCallback(async (questionId) => {
     setThreadLoading(true);
     const data = await getQuestionThread(questionId);
 
@@ -31,7 +31,7 @@ const ThreadState = ({ children }) => {
     setComments(data.question.comments);
 
     setThreadLoading(false);
-  };
+  }, []);
 
   const updateThreadQuestion = async (question, data) => {
     const updatedQuestion = await editThreadQuestion(question.id, data);
