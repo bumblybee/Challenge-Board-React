@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 import { useHistory } from "react-router-dom";
+import DOMPurify from "dompurify";
+
 import moment from "moment";
 
 import { submitProject, editProject, getProject } from "../../api/projectsApi";
@@ -22,6 +24,7 @@ const SubmissionArea = () => {
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const history = useHistory();
+  const sanitize = DOMPurify.sanitize;
 
   //Handles modal
   const [modalOpen, setModalOpen] = useState(false);
@@ -116,10 +119,11 @@ const SubmissionArea = () => {
                 })
               }
               type="url"
-              title="Link must start with https://"
+              title="Link must start with https://github.com"
               id="githubLink"
               placeholder="Github Link"
               value={projectDetails.githubLink || ""}
+              pattern="https:\/\/github.com\/[^\/]+\/[^\/]+"
               required
               noValidate
               autoFocus
