@@ -24,11 +24,6 @@ export const StyledButton = styled.div`
 
   border-radius: 50%;
 
-  border-top: 1px solid #738ce4;
-  border-bottom: 3px solid #738ce4;
-  border-left: 1.3px solid #738ce4;
-  border-right: 1.3px solid #738ce4;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,13 +37,21 @@ export const StyledButton = styled.div`
           background: #95acffee;
           transform: scale(0.98);
           font-size: 1.45rem;
+          border-top: 1px solid #738ce4;
+          border-bottom: 3px solid #738ce4;
+          border-left: 1.3px solid #738ce4;
+          border-right: 1.3px solid #738ce4;
         `
       : css`
-          box-shadow: inset 0 -3px 2px rgba(0, 0, 0, 0.2),
+          box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2),
             0 0 6px rgba(0, 0, 0, 0.2);
           background: #809bff;
           transform: scale(1);
           font-size: 1.5rem;
+          border-top: 1px solid rgba(0, 0, 0, 0.2);
+          border-bottom: 4px solid rgba(0, 0, 0, 0.3);
+          border-left: 1.5px solid rgba(0, 0, 0, 0.25);
+          border-right: 1.5px solid rgba(0, 0, 0, 0.25);
         `}
 
   :hover {

@@ -81,7 +81,7 @@ const Account = () => {
                 ) : (
                   <sc.StyledAccountPost noLength={true}>
                     <p>
-                      <em>Do some mingling!</em>
+                      <em>Nothing to see here!</em>
                     </p>
                   </sc.StyledAccountPost>
                 )}
