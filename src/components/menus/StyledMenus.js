@@ -4,7 +4,8 @@ export const StyledTeacherMenu = styled.div`
   background: #18191b;
   font-size: 1rem;
   font-weight: 300;
-  padding: 0.35rem 1rem;
+  padding: ${(props) =>
+    props.threadQuestion ? "0.6rem 1rem" : "0.35rem 1rem"};
   width: 30%;
   position: absolute;
   right: 0;

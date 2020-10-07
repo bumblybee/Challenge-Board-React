@@ -56,7 +56,7 @@ const CommentCard = ({ comment, answer }) => {
         </sc.StyledIconsDiv>
         {isOpen && user !== null && user.role === "Teacher" ? (
           <TeacherMenu comment={comment} toggleMenu={toggleMenu}></TeacherMenu>
-        ) : isOpen && (user !== null && user.role) === "Student" ? (
+        ) : isOpen && user !== null && user.role === "Student" ? (
           <StudentMenu comment={comment} toggleMenu={toggleMenu} />
         ) : (
           ""
