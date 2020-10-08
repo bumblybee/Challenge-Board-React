@@ -1,4 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
+import { useClickOutside } from "../../hooks/clickOutside";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 import Modal from "../../components/layout/Modal";
@@ -12,6 +13,7 @@ import {
 } from "../../styles/GlobalStyledComponents";
 
 const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
+  const menuRef = useClickOutside(() => toggleMenu());
   const { updateComment, updateThreadQuestion } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
 
@@ -88,7 +90,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
           </StyledModalBody>
         </Modal>
 
-        <StyledStudentMenu>
+        <StyledStudentMenu ref={menuRef}>
           <p onClick={() => setModalOpen(!modalOpen)}>Edit Comment</p>
         </StyledStudentMenu>
       </Fragment>
@@ -135,7 +137,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
         </StyledModalBody>
       </Modal>
 
-      <StyledStudentMenu>
+      <StyledStudentMenu ref={menuRef}>
         <p onClick={() => setModalOpen(!modalOpen)}>Edit Question</p>
       </StyledStudentMenu>
     </Fragment>
