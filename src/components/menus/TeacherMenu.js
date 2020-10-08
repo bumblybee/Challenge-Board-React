@@ -58,7 +58,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   }
   return (
     <Fragment>
-      <StyledTeacherMenu ref={menuRef} isComment={true}>
+      <StyledTeacherMenu menuREf={menuRef} isComment={true}>
         {comment.isAnswer ? (
           <Fragment>
             <StyledParagraph

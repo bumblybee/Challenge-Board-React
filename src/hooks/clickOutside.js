@@ -5,7 +5,11 @@ export const useClickOutside = (cb) => {
 
   useEffect(() => {
     const handler = (e) => {
-      if (domNode.current && !domNode.current.contains(e.target)) {
+      if (
+        domNode.current &&
+        !domNode.current.contains(e.target) &&
+        !e.target.classList.contains("menu-icon")
+      ) {
         cb();
       }
     };

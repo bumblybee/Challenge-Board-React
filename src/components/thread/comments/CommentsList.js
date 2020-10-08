@@ -12,7 +12,7 @@ const CommentsList = ({ questionId }) => {
   const [newComment, setNewComment] = useState({
     body: "",
   });
-  console.log(comments[comments.length - 1]);
+
   const handleCommentSubmit = (e) => {
     e.preventDefault();
     submitComment(questionId, newComment);

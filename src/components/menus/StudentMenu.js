@@ -13,7 +13,6 @@ import {
 } from "../../styles/GlobalStyledComponents";
 
 const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
-  const menuRef = useClickOutside(() => toggleMenu());
   const { updateComment, updateThreadQuestion } = useContext(ThreadContext);
   const { updateQuestion } = useContext(QuestionContext);
 
@@ -25,6 +24,8 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
     question ? question.body : ""
   );
   const [commentBody, setCommentBody] = useState(comment && comment.body);
+
+  const menuRef = useClickOutside(() => !modalOpen && toggleMenu());
 
   const handleCancel = () => {
     setModalOpen(!modalOpen);
@@ -90,7 +91,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
           </StyledModalBody>
         </Modal>
 
-        <StyledStudentMenu ref={menuRef}>
+        <StyledStudentMenu>
           <p onClick={() => setModalOpen(!modalOpen)}>Edit Comment</p>
         </StyledStudentMenu>
       </Fragment>
@@ -118,12 +119,14 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
               onChange={(e) => setQuestionTitle(e.target.value)}
               type="text"
               id="title"
+              placeholder="Question"
               value={questionTitle}
               autoFocus
             />
             <StyledTextarea
               onChange={(e) => setQuestionBody(e.target.value)}
               id="body"
+              placeholder="More Details"
               rows="6"
               value={questionBody}
             ></StyledTextarea>

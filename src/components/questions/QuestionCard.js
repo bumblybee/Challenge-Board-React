@@ -6,7 +6,6 @@ import { UserContext } from "../../context/user/UserContext";
 
 import TeacherMenu from "../menus/TeacherMenu";
 import StudentMenu from "../menus/StudentMenu";
-
 import * as sc from "./StyledQuestions";
 
 const QuestionCard = ({ question, reRenderList }) => {
@@ -26,7 +25,7 @@ const QuestionCard = ({ question, reRenderList }) => {
       return (
         <sc.StyledMenuIcon
           onClick={toggleMenu}
-          className="fas fa-ellipsis-h fa-lg"
+          className="fas fa-ellipsis-h fa-lg menu-icon"
           menuOpen={menuOpen}
           inList={true}
         ></sc.StyledMenuIcon>

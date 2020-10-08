@@ -35,7 +35,7 @@ const ThreadState = ({ children }) => {
 
   const updateThreadQuestion = async (question, data) => {
     const updatedQuestion = await editThreadQuestion(question.id, data);
-    console.log(updatedQuestion);
+
     if (updatedQuestion.error) {
       return updatedQuestion;
     } else {
