@@ -23,7 +23,7 @@ export const StyledButton = styled.div`
   width: 40px;
 
   border-radius: 50%;
-
+  transition: transform 0.5s linear;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +43,7 @@ export const StyledButton = styled.div`
           border-right: 1.3px solid #738ce4;
         `
       : css`
-          box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+          box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.2),
             0 0 6px rgba(0, 0, 0, 0.2);
           background: #809bff;
           transform: scale(1);
