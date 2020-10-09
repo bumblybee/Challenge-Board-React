@@ -2,7 +2,7 @@ import React from "react";
 
 import { StyledModal, StyledModalContent } from "./StyledLayout";
 
-import { useClickOutside } from "../../hooks/clickOutside";
+import { useClickOutsideModal } from "../../hooks/useClickOutsideModal";
 
 const Modal = ({
   children,
@@ -11,9 +11,9 @@ const Modal = ({
   confirmationModalOpen,
   setConfirmationModalOpen,
 }) => {
-  const modalRef = useClickOutside(() => setModalOpen(false));
+  const modalRef = useClickOutsideModal(() => setModalOpen(false));
 
-  const confirmationRef = useClickOutside(() => {
+  const confirmationRef = useClickOutsideModal(() => {
     setConfirmationModalOpen(false);
   });
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import moment from "moment";
 import DOMPurify from "dompurify";
 
@@ -14,9 +14,11 @@ const QuestionCard = ({ question, reRenderList }) => {
   const sanitize = DOMPurify.sanitize;
   const { user } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    setClicked(!clicked);
   };
 
   // If user is teacher or if user.id matches question.userId, render menu icon
@@ -25,7 +27,7 @@ const QuestionCard = ({ question, reRenderList }) => {
       return (
         <sc.StyledMenuIcon
           onClick={toggleMenu}
-          className="fas fa-ellipsis-h fa-lg menu-icon"
+          className="fas fa-ellipsis-h fa-lg"
           menuOpen={menuOpen}
           inList={true}
         ></sc.StyledMenuIcon>
@@ -50,7 +52,7 @@ const QuestionCard = ({ question, reRenderList }) => {
           {user && renderMenuIcon()}
         </sc.StyledIconsDiv>
 
-        {menuOpen && user !== null && user.role === "Teacher" ? (
+        {menuOpen && clicked && user !== null && user.role === "Teacher" ? (
           <TeacherMenu
             question={question}
             toggleMenu={toggleMenu}

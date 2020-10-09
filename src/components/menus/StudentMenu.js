@@ -1,5 +1,5 @@
 import React, { useState, useContext, Fragment } from "react";
-import { useClickOutside } from "../../hooks/clickOutside";
+import { useClickOutsideMenu } from "../../hooks/useClickOutsideMenu";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 import Modal from "../../components/layout/Modal";
@@ -25,7 +25,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
   );
   const [commentBody, setCommentBody] = useState(comment && comment.body);
 
-  const menuRef = useClickOutside(() => !modalOpen && toggleMenu());
+  const menuRef = useClickOutsideMenu(() => !modalOpen && toggleMenu());
 
   const handleCancel = () => {
     setModalOpen(!modalOpen);
@@ -91,7 +91,7 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
           </StyledModalBody>
         </Modal>
 
-        <StyledStudentMenu>
+        <StyledStudentMenu ref={menuRef}>
           <p onClick={() => setModalOpen(!modalOpen)}>Edit Comment</p>
         </StyledStudentMenu>
       </Fragment>

@@ -63,7 +63,7 @@ const QuestionThread = () => {
           menuOpen={menuOpen}
           inList={false}
           onClick={toggleMenu}
-          className="fas fa-ellipsis-h fa-lg menu-icon"
+          className="fas fa-ellipsis-h fa-lg"
         ></sq.StyledMenuIcon>
       );
     } else {

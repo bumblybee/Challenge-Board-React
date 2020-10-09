@@ -1,13 +1,13 @@
 import React, { Fragment, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { useClickOutside } from "../../hooks/clickOutside";
+import { useClickOutsideMenu } from "../../hooks/useClickOutsideMenu";
 import { ErrorContext } from "../../context/error/ErrorContext";
 import { ThreadContext } from "../../context/thread/ThreadContext";
 import { QuestionContext } from "../../context/question/QuestionContext";
 import { StyledTeacherMenu, StyledParagraph } from "./StyledMenus";
 
 const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
-  const menuRef = useClickOutside(() => toggleMenu());
+  const menuRef = useClickOutsideMenu(() => toggleMenu());
   const history = useHistory();
   const { setError } = useContext(ErrorContext);
   const {
@@ -58,7 +58,7 @@ const TeacherMenu = ({ question, comment, threadQuestion, toggleMenu }) => {
   }
   return (
     <Fragment>
-      <StyledTeacherMenu menuREf={menuRef} isComment={true}>
+      <StyledTeacherMenu ref={menuRef} isComment={true}>
         {comment.isAnswer ? (
           <Fragment>
             <StyledParagraph

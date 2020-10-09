@@ -33,7 +33,7 @@ const handleErrors = (errorCode) => {
       error: errorMessage,
     };
   }
-  return { error: "Unexpected error. Contact support." };
+  return { error: "Unexpected error. Please contact support." };
 };
 
 export { handleErrors, handleErrorsArray };
