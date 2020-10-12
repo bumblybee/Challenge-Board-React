@@ -166,7 +166,6 @@ const SubmissionArea = () => {
           </form>
         </StyledModalBody>
       </Modal>
-
       {isSubmitted && (
         <Modal
           confirmationModalOpen={confirmationModalOpen}
@@ -193,67 +192,77 @@ const SubmissionArea = () => {
         </Modal>
       )}
 
-      {hasPriorProject && user ? (
-        <sc.StyledSubmissionContent>
-          <StyledHeading>SUBMISSION</StyledHeading>
-          <sc.StyledH1>Submit Your Project</sc.StyledH1>
-          <p>When you're ready, submit your Github link here for review.</p>
-          <sc.StyledEditSubmission>
-            <StyledPurpleButton
-              onClick={() => setModalOpen(!modalOpen)}
-              className="modal-button edit-submission-button"
-              id="submit-button"
-              editButton={true}
-            >
-              Edit Submission
-            </StyledPurpleButton>
-            <sc.StyledTimestampParagraph>
-              Project submitted at{" "}
-              {moment(projectDetails.updatedAt).format("h:mm")} on{" "}
-              {moment(projectDetails.updatedAt).format("L")}
-            </sc.StyledTimestampParagraph>
-          </sc.StyledEditSubmission>
-        </sc.StyledSubmissionContent>
-      ) : (
-        <sc.StyledSubmissionContent>
-          <StyledHeading>SUBMISSION</StyledHeading>
-          {user && user.role === "Teacher" ? (
-            <Fragment>
-              <h1>View Student Submissions</h1>
-              <p>Project submissions page</p>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <h1>Submit Your Project</h1>
-              <p>When you're ready, submit your Github link here for review.</p>
-            </Fragment>
-          )}
+      {
+        //Has prior project, show timestamp and edit button
+        hasPriorProject && user ? (
+          <sc.StyledSubmissionContent>
+            <StyledHeading>SUBMISSION</StyledHeading>
+            <sc.StyledH1>Submit Your Project</sc.StyledH1>
+            <p>When you're ready, submit your Github link here for review.</p>
+            <sc.StyledEditSubmission>
+              <StyledPurpleButton
+                onClick={() => setModalOpen(!modalOpen)}
+                className="modal-button edit-submission-button"
+                id="submit-button"
+                editButton={true}
+              >
+                Edit Submission
+              </StyledPurpleButton>
+              <sc.StyledTimestampParagraph>
+                Project submitted at{" "}
+                {moment(projectDetails.updatedAt).format("h:mm")} on{" "}
+                {moment(projectDetails.updatedAt).format("L")}
+              </sc.StyledTimestampParagraph>
+            </sc.StyledEditSubmission>
+          </sc.StyledSubmissionContent>
+        ) : (
+          //If teacher, show teacher heading and button
+          <sc.StyledSubmissionContent>
+            <StyledHeading>SUBMISSION</StyledHeading>
+            {user &&
+              (user.role === "Teacher" ? (
+                <Fragment>
+                  <h1>View Student Submissions</h1>
+                  <p>Project submissions page</p>
+                  <StyledPurpleButton
+                    onClick={(e) => e.preventDefault()}
+                    className="modal-button"
+                  >
+                    View Submissions
+                  </StyledPurpleButton>
+                </Fragment>
+              ) : (
+                //Not teacher and no prior project
+                <Fragment>
+                  <h1>Submit Your Project</h1>
+                  <p>
+                    When you're ready, submit your Github link here for review.
+                  </p>
+                  <StyledPurpleButton
+                    onClick={() => setModalOpen(!modalOpen)}
+                    className="modal-button"
+                    id="submit-button"
+                  >
+                    Submit Project
+                  </StyledPurpleButton>
+                </Fragment>
+              ))}
 
-          {user && user.role === "Student" ? (
-            <StyledPurpleButton
-              onClick={() => setModalOpen(!modalOpen)}
-              className="modal-button"
-              id="submit-button"
-            >
-              Submit Project
-            </StyledPurpleButton>
-          ) : user && user.role === "Teacher" ? (
-            <StyledPurpleButton
-              onClick={(e) => e.preventDefault()}
-              className="modal-button"
-            >
-              View Submissions
-            </StyledPurpleButton>
-          ) : (
-            <StyledPurpleButton
-              className="modal-button"
-              onClick={() => history.push("/login")}
-            >
-              Log In to Submit Project
-            </StyledPurpleButton>
-          )}
-        </sc.StyledSubmissionContent>
-      )}
+            {
+              //Not logged in, show button to direct login
+
+              !user && (
+                <StyledPurpleButton
+                  className="modal-button"
+                  onClick={() => history.push("/login")}
+                >
+                  Log In to Submit Project
+                </StyledPurpleButton>
+              )
+            }
+          </sc.StyledSubmissionContent>
+        )
+      }
     </sc.StyledSubmissionContainer>
   );
 };
