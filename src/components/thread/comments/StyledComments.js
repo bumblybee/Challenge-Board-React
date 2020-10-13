@@ -42,6 +42,18 @@ export const StyledCommentCard = styled.li`
   padding: ${(props) => (props.answer ? "1rem 1rem 1rem 2rem" : "1rem")};
 `;
 
+export const StyledCommentHeader = styled.div`
+  display: flex;
+  font-size: 0.9rem;
+`;
+
+export const StyledName = styled.div`
+  margin-right: 1rem;
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: #dcddde;
+`;
+
 export const StyledIconsDiv = styled.div`
   ${(props) =>
     props.isOpen
@@ -90,6 +102,12 @@ export const StyledSpan = styled.span`
   :hover {
     cursor: pointer;
   }
+`;
+
+export const StyledCommentBody = styled.div`
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  word-spacing: 0.03rem;
 `;
 
 export const StyledCommentText = styled.div`

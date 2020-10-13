@@ -86,6 +86,11 @@ export const StyledQuestionsContainer = styled.div`
   }
 `;
 
+export const StyledQuestionList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const StyledQuestionCard = styled.li`
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;

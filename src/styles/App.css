@@ -53,48 +53,6 @@ i:hover {
   cursor: pointer;
 }
 
-.questions-thread {
-  display: flex;
-  flex-direction: column;
-}
-
-.comment-header {
-  display: flex;
-  font-size: 0.9rem;
-}
-
-.name {
-  margin-right: 1rem;
-  font-weight: 300;
-  font-size: 0.92rem;
-  color: var(--secondary-text);
-}
-
-.created-at {
-  color: var(--tertiary-text);
-}
-
-.icons {
-  margin-left: auto;
-}
-
-.comment-body {
-  padding: 0.5rem 0;
-  font-size: 1rem;
-  word-spacing: 0.03rem;
-}
-
-.view-thread {
-  margin-left: auto;
-}
-
-.view-thread a {
-  color: #809bff;
-  font-size: 0.9rem;
-  font-family: "Roboto Slab", Times, serif;
-  font-weight: 500;
-}
-
 @media all and (max-width: 620px) {
   h1 {
     font-size: 1.3rem;

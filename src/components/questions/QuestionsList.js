@@ -14,6 +14,7 @@ import * as sc from "../../styles/GlobalStyledComponents";
 import {
   StyledDiscussionHeaderContainer,
   StyledQuestionsContainer,
+  StyledQuestionList,
   StyledQuestionsLoader,
 } from "./StyledQuestions";
 
@@ -149,12 +150,12 @@ const QuestionsList = () => {
         )}
       </StyledDiscussionHeaderContainer>
       <StyledQuestionsContainer>
-        <ul className="questions-thread">
+        <StyledQuestionList>
           {questions &&
             questions.map((question) => (
               <QuestionCard question={question} key={question.id} />
             ))}
-        </ul>
+        </StyledQuestionList>
       </StyledQuestionsContainer>
     </Fragment>
   );

@@ -47,11 +47,11 @@ const CommentCard = ({ comment, answer }) => {
       className="comment-card"
       answer={answer}
     >
-      <div className="comment-header">
-        <div className="name">{comment.user.username}</div>
+      <sc.StyledCommentHeader>
+        <sc.StyledName>{comment.user.username}</sc.StyledName>
         <sc.StyledTimeDiv>{time}</sc.StyledTimeDiv>
         <sc.StyledDateDiv>{date}</sc.StyledDateDiv>
-        <sc.StyledIconsDiv className="icons" isOpen={isOpen} answer={answer}>
+        <sc.StyledIconsDiv isOpen={isOpen} answer={answer}>
           {user && renderMenuIcon()}
         </sc.StyledIconsDiv>
         {isOpen && user !== null && user.role === "Teacher" ? (
@@ -61,9 +61,9 @@ const CommentCard = ({ comment, answer }) => {
         ) : (
           ""
         )}
-      </div>
+      </sc.StyledCommentHeader>
 
-      <div className="comment-body">
+      <sc.StyledCommentBody>
         {isTruncated ? (
           <sc.StyledTruncate
             line={3}
@@ -80,7 +80,7 @@ const CommentCard = ({ comment, answer }) => {
             <sc.StyledSpan onClick={handleTruncate}>less</sc.StyledSpan>
           </sc.StyledCommentText>
         )}
-      </div>
+      </sc.StyledCommentBody>
     </sc.StyledCommentCard>
   );
 };
