@@ -49,9 +49,6 @@ export const StyledPurpleButton = styled.button`
 
 export const StyledTextarea = styled.textarea`
   resize: none;
-  :focus {
-    outline: none;
-  }
 `;
 
 export const StyledSpan = styled.span`
@@ -128,11 +125,6 @@ export const StyledModalBody = styled.div`
     color: #fff;
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
-  }
-
-  input:focus,
-  textarea:focus {
-    outline: none;
   }
 `;
 
