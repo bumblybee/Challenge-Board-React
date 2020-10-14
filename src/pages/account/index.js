@@ -64,7 +64,6 @@ const Account = () => {
                 <sc.StyledCategoryH3>Comments</sc.StyledCategoryH3>
                 {user.comments && user.comments.length ? (
                   user.comments.map((comment) => (
-                    //TODO: styled component for links
                     <sc.StyledHashLink
                       key={comment.id}
                       to={`/challenge/question/${comment.questionId}#${comment.id}`}
