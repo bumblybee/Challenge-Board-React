@@ -4,7 +4,7 @@ import { handleErrors, handleErrorsArray } from "../handlers/errorHandler";
 const URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:9000"
-    : "https://challenge-board-server.vercel.app";
+    : "http://api.challengeboard.xyz";
 
 const instance = axios.create({
   baseURL: URL,
