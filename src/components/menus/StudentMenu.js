@@ -10,6 +10,7 @@ import {
   StyledPurpleButton,
   StyledTextarea,
   StyledModalBody,
+  StyledModalFooter,
 } from "../../styles/GlobalStyledComponents";
 
 const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
@@ -81,12 +82,12 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
                 value={commentBody}
                 autoFocus
               ></StyledTextarea>
-              <div className="modal-footer">
+              <StyledModalFooter>
                 <StyledTransparentButton onClick={handleCancel}>
                   Cancel
                 </StyledTransparentButton>
                 <StyledPurpleButton>Submit</StyledPurpleButton>
-              </div>
+              </StyledModalFooter>
             </form>
           </StyledModalBody>
         </Modal>
@@ -130,12 +131,12 @@ const StudentMenu = ({ question, comment, toggleMenu, threadQuestion }) => {
               rows="6"
               value={questionBody}
             ></StyledTextarea>
-            <div className="modal-footer">
+            <StyledModalFooter>
               <StyledTransparentButton onClick={handleCancel}>
                 Cancel
               </StyledTransparentButton>
               <StyledPurpleButton>Submit</StyledPurpleButton>
-            </div>
+            </StyledModalFooter>
           </form>
         </StyledModalBody>
       </Modal>
