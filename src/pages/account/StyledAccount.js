@@ -127,6 +127,12 @@ export const StyledAccountDiv = styled.div`
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035);
 
+  @media (max-width: 900px) and (orientation: landscape) {
+    width: 96%;
+    margin: 1rem auto;
+    height: 100vh;
+  }
+
   @media (max-width: 620px) {
     width: 96%;
     margin: 1rem auto;
