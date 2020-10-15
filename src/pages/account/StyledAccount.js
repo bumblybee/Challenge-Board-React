@@ -37,10 +37,10 @@ export const StyledButton = styled.div`
           background: #95acffee;
           transform: scale(0.98);
           font-size: 1.45rem;
-          border-top: 1px solid #738ce4;
+          border-top: 0.5px solid #738ce466;
           border-bottom: 3px solid #738ce4;
-          border-left: 1.3px solid #738ce4;
-          border-right: 1.3px solid #738ce4;
+          border-left: 1.2px solid #738ce4;
+          border-right: 1.2px solid #738ce4;
         `
       : css`
           box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.2),
@@ -48,10 +48,10 @@ export const StyledButton = styled.div`
           background: #809bff;
           transform: scale(1);
           font-size: 1.5rem;
-          border-top: 1px solid rgba(0, 0, 0, 0.2);
-          border-bottom: 4px solid rgba(0, 0, 0, 0.3);
-          border-left: 1.5px solid rgba(0, 0, 0, 0.25);
-          border-right: 1.5px solid rgba(0, 0, 0, 0.25);
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+          border-left: 1.5px solid rgba(0, 0, 0, 0.18);
+          border-right: 1.5px solid rgba(0, 0, 0, 0.18);
         `}
 
   :hover {
@@ -70,8 +70,8 @@ export const StyledButton = styled.div`
   }
 
   @media (max-width: 620px) {
-    height: 34px;
-    width: 34px;
+    height: 36px;
+    width: 36px;
     font-size: 1.25rem;
 
     :active {
