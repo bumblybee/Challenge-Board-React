@@ -252,12 +252,18 @@ const SubmissionArea = () => {
               //Not logged in, show button to direct login
 
               !user && (
-                <StyledPurpleButton
-                  className="modal-button"
-                  onClick={() => history.push("/login")}
-                >
-                  Log In to Submit Project
-                </StyledPurpleButton>
+                <Fragment>
+                  <h1>Submit Your Project</h1>
+                  <p>
+                    When you're ready, submit your Github link here for review.
+                  </p>
+                  <StyledPurpleButton
+                    className="modal-button"
+                    onClick={() => history.push("/login")}
+                  >
+                    Log In to Submit Project
+                  </StyledPurpleButton>
+                </Fragment>
               )
             }
           </sc.StyledSubmissionContent>
