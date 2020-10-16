@@ -130,7 +130,7 @@ export const StyledAccountDiv = styled.div`
   @media (max-width: 900px) and (orientation: landscape) {
     width: 96%;
     margin: 1rem auto;
-    height: 100vh;
+    height: 100%;
   }
 
   @media (max-width: 620px) {
@@ -166,6 +166,7 @@ export const StyledAccountPostsDiv = styled.div`
     grid-template-columns: 1fr;
     padding: 0.4rem;
     border-width: 8px;
+    display: block;
   }
 `;
 
@@ -228,8 +229,7 @@ export const StyledPostList = styled.ul`
 export const StyledAccountPost = styled.li`
   margin: 0 auto;
   padding: 1rem;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
+
   text-align: ${(props) => (props.noLength ? "center" : "left")};
 
   transition: transform 0.1s ease-in;
@@ -243,6 +243,8 @@ export const StyledAccountPost = styled.li`
 
   p {
     font-weight: 300;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
 
   @media (max-width: 620px) {
