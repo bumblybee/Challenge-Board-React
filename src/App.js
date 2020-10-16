@@ -28,7 +28,7 @@ function App() {
   return (
     <Router>
       <UserState>
-        <div role="main" className="App">
+        <div role="main">
           <ErrorState>
             <Nav />
             <Error />

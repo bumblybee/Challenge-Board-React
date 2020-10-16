@@ -153,7 +153,6 @@ const SubmissionArea = () => {
             ></textarea>
             <StyledModalFooter>
               <StyledTransparentButton
-                className="close-modal"
                 href="#"
                 onClick={() => setModalOpen(!modalOpen)}
               >
@@ -202,8 +201,6 @@ const SubmissionArea = () => {
             <sc.StyledEditSubmission>
               <StyledPurpleButton
                 onClick={() => setModalOpen(!modalOpen)}
-                className="modal-button edit-submission-button"
-                id="submit-button"
                 editButton={true}
               >
                 Edit Submission

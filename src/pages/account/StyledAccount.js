@@ -229,6 +229,7 @@ export const StyledAccountPost = styled.li`
   margin: 0 auto;
   padding: 1rem;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
   text-align: ${(props) => (props.noLength ? "center" : "left")};
 
   transition: transform 0.1s ease-in;

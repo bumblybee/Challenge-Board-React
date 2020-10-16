@@ -114,6 +114,7 @@ export const StyledCommentText = styled.div`
   color: #dcddde;
   font-weight: 300;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
 `;
 
 export const StyledCommentsForm = styled.form`
@@ -173,4 +174,5 @@ export const StyledTruncate = styled(TextTruncate)`
   color: #dcddde;
   font-weight: 300;
   white-space: pre-wrap;
+  overflow-wrap: break-word;
 `;

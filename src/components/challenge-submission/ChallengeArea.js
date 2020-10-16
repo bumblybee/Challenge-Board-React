@@ -11,7 +11,7 @@ const ChallengeArea = () => {
         <StyledHeading>CHALLENGE #1</StyledHeading>
         <h1>Turn any Design into HTML</h1>
       </sc.StyledChallengeHeader>
-      <div className="challenge-video-area">
+      <div>
         <sc.StyledVideo
           src="https://www.youtube.com/embed/mcw4AViN7jw"
           frameBorder="0"

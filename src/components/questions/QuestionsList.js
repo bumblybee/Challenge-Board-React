@@ -109,7 +109,6 @@ const QuestionsList = () => {
             ></sc.StyledTextarea>
             <sc.StyledModalFooter>
               <sc.StyledTransparentButton
-                className="close-modal"
                 onClick={() => setModalOpen(!modalOpen)}
               >
                 Cancel
