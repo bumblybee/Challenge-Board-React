@@ -59,7 +59,7 @@ function App() {
                   <Route path="/challenge">
                     <Challenge />
                   </Route>
-                  <Route path="/" exact>
+                  <Route path="/">
                     <Redirect to="/challenge" />
                   </Route>
                 </QuestionState>

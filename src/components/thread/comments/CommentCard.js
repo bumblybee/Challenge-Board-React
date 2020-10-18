@@ -67,7 +67,7 @@ const CommentCard = ({ comment, answer }) => {
         {isTruncated ? (
           <sc.StyledTruncate
             line={3}
-            element="div"
+            element="span"
             truncateText="..."
             text={sanitize(comment.body)}
             textTruncateChild={
