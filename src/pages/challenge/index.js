@@ -11,15 +11,7 @@ import * as sc from "./StyledChallenge";
 
 const Challenge = () => {
   const { user, userLoading } = useContext(UserContext);
-  const activeApi = async () => {
-    const res = await fetch(
-      "https://api.amp.active.com/camping/campgrounds?pstate=CO&siteType=2001&expwith=1&amenity=4005&pets=3010&api_key=2YC5EFPDCJ6XJE8B5NQAK5SR"
-    );
-    const data = await res.json();
-    console.log(`Active: ${data}`);
-  };
 
-  activeApi();
   return (
     <Fragment>
       {userLoading ? (
