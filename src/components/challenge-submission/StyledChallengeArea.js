@@ -12,8 +12,8 @@ export const StyledChallengeContainer = styled.div`
   flex-grow: 1;
 
   p:not(:last-child) {
-    line-height: 1.3;
-    margin-bottom: 1rem;
+    line-height: 1.4rem;
+    margin-bottom: 0.9rem;
   }
 
   @media (max-width: 1045px) {

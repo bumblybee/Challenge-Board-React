@@ -31,11 +31,8 @@ const ChallengeArea = () => {
           </p>
           <p>
             The details and a general design to base your project off of are in
-            the video.
-          </p>
-          <p>
-            Deploy your project when it's done and submit both the link to the
-            deployed project and your GitHub for it.
+            the video. Deploy your project when it's done and submit both the
+            link to the deployed project and your GitHub for it.
           </p>
           <p>
             Feel free to ask any question you want on this page, and it'll be
