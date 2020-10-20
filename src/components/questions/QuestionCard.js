@@ -75,9 +75,7 @@ const QuestionCard = ({ question, reRenderList }) => {
       <sc.StyledQuestionFooter>
         <sc.StyledCommentCount>
           {question.comments.length}
-          {question.comments.length > 1 || question.comments.length === 0
-            ? " Comments"
-            : " Comment"}
+          {question.comments.length === 1 ? " Comment" : " Comments"}
         </sc.StyledCommentCount>
 
         <sc.StyledViewThreadDiv>
