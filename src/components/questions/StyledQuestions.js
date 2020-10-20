@@ -26,7 +26,7 @@ export const StyledQuestionArea = styled.div`
   }
 
   @media (max-width: 620px) {
-    margin: 0 0 0.5rem;
+    margin: 0;
     padding: 0.5rem;
     border-radius: 0;
     width: 100%;
