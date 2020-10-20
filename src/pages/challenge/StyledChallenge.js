@@ -11,7 +11,6 @@ export const StyledChallengeLoader = styled.img`
 export const StyledContainer = styled.div`
   width: 80%;
   margin: 3rem auto;
-  height: 900px;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 
@@ -34,7 +33,7 @@ export const StyledChallengeSubmissionArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  max-height: 900px;
+  ${"" /* max-height: 900px; */}
 
   > div:first-child {
     margin-bottom: 1rem;

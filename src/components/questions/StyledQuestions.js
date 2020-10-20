@@ -18,7 +18,6 @@ export const StyledQuestionArea = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  max-height: 900px;
   flex-grow: 1;
 
   @media (max-width: 1045px) {

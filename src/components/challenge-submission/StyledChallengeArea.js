@@ -11,6 +11,11 @@ export const StyledChallengeContainer = styled.div`
   font-weight: 300;
   flex-grow: 1;
 
+  p:not(:last-child) {
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
   @media (max-width: 1045px) {
     margin-right: 0;
     margin-bottom: 1rem;
@@ -31,16 +36,10 @@ export const StyledChallengeHeader = styled.div`
 
 export const StyledVideo = styled.iframe`
   margin: 1.5rem 0 1rem;
+  display: block;
   width: 100%;
   height: 400px;
 
-  @media (max-width: 1540px) {
-    height: 395px;
-  }
-
-  @media (max-width: 1540px) {
-    height: 360px;
-  }
   @media (max-width: 620px) {
     height: 220px;
     margin-bottom: 0.5rem;

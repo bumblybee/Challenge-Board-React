@@ -28,45 +28,43 @@ function App() {
   return (
     <Router>
       <UserState>
-        <div role="main">
-          <ErrorState>
-            <Nav />
-            <Error />
-            <Switch>
-              <Route path="/signup">
-                <Signup />
-              </Route>
-              <Route path="/discord-signup" exact>
-                <DiscordSignup />
-              </Route>
-              <Route path="/discord-login">
-                <DiscordLogin />
-              </Route>
-              <Route path="/login" exact>
-                <Login />
-              </Route>
-              <Route path="/account">
-                <Account />
-              </Route>
-              <Route path="/reset-password-request">
-                <ResetPasswordRequest />
-              </Route>
-              <Route path="/reset-password/:token">
-                <ResetPassword />
-              </Route>
-              <ThreadState>
-                <QuestionState>
-                  <Route path="/challenge">
-                    <Challenge />
-                  </Route>
-                  <Route path="/">
-                    <Redirect to="/challenge" />
-                  </Route>
-                </QuestionState>
-              </ThreadState>
-            </Switch>
-          </ErrorState>
-        </div>
+        <ErrorState>
+          <Nav />
+          <Error />
+          <Switch>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/discord-signup" exact>
+              <DiscordSignup />
+            </Route>
+            <Route path="/discord-login">
+              <DiscordLogin />
+            </Route>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
+            <Route path="/account">
+              <Account />
+            </Route>
+            <Route path="/reset-password-request">
+              <ResetPasswordRequest />
+            </Route>
+            <Route path="/reset-password/:token">
+              <ResetPassword />
+            </Route>
+            <ThreadState>
+              <QuestionState>
+                <Route path="/challenge">
+                  <Challenge />
+                </Route>
+                <Route path="/">
+                  <Redirect to="/challenge" />
+                </Route>
+              </QuestionState>
+            </ThreadState>
+          </Switch>
+        </ErrorState>
       </UserState>
     </Router>
   );
