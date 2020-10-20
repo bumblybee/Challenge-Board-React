@@ -41,7 +41,9 @@ const ChallengeArea = () => {
             Feel free to ask any question you want on this page, and it'll be
             answered either by me or my apprentice who built it.
           </p>
-          <p>Good luck!</p>
+          <p>
+            <strong>Good luck!</strong>
+          </p>
         </div>
       </div>
     </sc.StyledChallengeContainer>
