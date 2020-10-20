@@ -34,14 +34,17 @@ export const StyledChallengeHeader = styled.div`
   }
 `;
 
-export const StyledVideo = styled.iframe`
-  margin: 1.5rem 0 1rem;
-  display: block;
-  width: 100%;
-  height: 400px;
+export const StyledVideoWrapper = styled.div`
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin: 1rem 0;
+`;
 
-  @media (max-width: 620px) {
-    height: 220px;
-    margin-bottom: 0.5rem;
-  }
+export const StyledVideo = styled.iframe`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;

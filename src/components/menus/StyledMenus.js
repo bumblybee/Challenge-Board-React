@@ -44,6 +44,10 @@ export const StyledUserMenuContainer = styled.div`
   width: 12rem;
   z-index: 100;
 
+  @media (max-width: 620px) {
+    width: 9rem;
+  }
+
   p {
     :hover {
       cursor: pointer;

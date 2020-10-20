@@ -44,6 +44,10 @@ export const StyledSubmissionContent = styled.div`
 
 export const StyledH1 = styled.h1`
   margin-bottom: 0.2rem;
+
+  @media (max-width: 620px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 export const StyledTimestampParagraph = styled.p`

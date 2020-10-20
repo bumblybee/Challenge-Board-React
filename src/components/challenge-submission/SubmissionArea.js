@@ -219,7 +219,7 @@ const SubmissionArea = () => {
             {user &&
               (user.role === "Teacher" ? (
                 <Fragment>
-                  <h1>View Student Submissions</h1>
+                  <sc.StyledH1>View Student Submissions</sc.StyledH1>
                   <p>Project submissions page</p>
                   <StyledPurpleButton
                     onClick={(e) => e.preventDefault()}
@@ -231,7 +231,7 @@ const SubmissionArea = () => {
               ) : (
                 //Not teacher and no prior project
                 <Fragment>
-                  <h1>Submit Your Project</h1>
+                  <sc.StyledH1>Submit Your Project</sc.StyledH1>
                   <p>
                     When you're ready, submit your Github link here for review.
                   </p>
@@ -250,7 +250,7 @@ const SubmissionArea = () => {
 
               !user && (
                 <Fragment>
-                  <h1>Submit Your Project</h1>
+                  <sc.StyledH1>Submit Your Project</sc.StyledH1>
                   <p>
                     When you're ready, submit your Github link here for review.
                   </p>

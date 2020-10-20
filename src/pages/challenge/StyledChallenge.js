@@ -11,6 +11,7 @@ export const StyledChallengeLoader = styled.img`
 export const StyledContainer = styled.div`
   width: 80%;
   margin: 3rem auto;
+  min-height: 800px;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
 
@@ -26,6 +27,7 @@ export const StyledContainer = styled.div`
   @media (max-width: 620px) {
     margin: 1rem 0 0;
     width: 100%;
+    min-height: auto;
   }
 `;
 

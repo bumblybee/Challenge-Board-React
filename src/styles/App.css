@@ -53,6 +53,10 @@ i:hover {
   cursor: pointer;
 }
 
+/* .player {
+  max-width: 100%;
+} */
+
 @media all and (max-width: 620px) {
   h1 {
     font-size: 1.3rem;
