@@ -19,6 +19,9 @@ const errorCodeToMessage = {
   "server.failed": "Uh-oh, something went wrong. Please try again.",
 
   "server.notFound": "Oops, looks like that doesn't exist.",
+
+  "DiscordHTTPError: 400 Bad Request on POST /api/v7/oauth2/token":
+    "Uh-oh, something went wrong. Check your credentials and try again.",
 };
 
 const handleErrorsArray = (array) => {
