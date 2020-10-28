@@ -258,7 +258,7 @@ const SubmissionArea = () => {
                     className="modal-button"
                     onClick={() => history.push("/login")}
                   >
-                    Log In to Submit Project
+                    Log in to Submit Project
                   </StyledPurpleButton>
                 </Fragment>
               )

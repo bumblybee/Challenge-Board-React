@@ -144,7 +144,7 @@ const QuestionsList = () => {
             className="modal-button"
             onClick={() => history.push("/login")}
           >
-            Log In to Post a Question
+            Log in to Post a Question
           </sc.StyledPurpleButton>
         )}
       </StyledDiscussionHeaderContainer>
