@@ -35,13 +35,13 @@ function App() {
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route path="/discord-signup" exact>
+            <Route path="/discord-signup">
               <DiscordSignup />
             </Route>
             <Route path="/discord-login">
               <DiscordLogin />
             </Route>
-            <Route path="/login" exact>
+            <Route path="/login">
               <Login />
             </Route>
             <Route path="/account">
@@ -58,7 +58,7 @@ function App() {
                 <Route path="/challenge">
                   <Challenge />
                 </Route>
-                <Route path="/">
+                <Route path="/" exact>
                   <Redirect to="/challenge" />
                 </Route>
               </QuestionState>
