@@ -60,7 +60,7 @@ export const StyledSpan = styled.span`
 
 export const StyledFormLink = styled(Link)`
   color: #809bff;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-family: "Roboto Slab", Times, serif;
   font-weight: 400;
   text-align: center;

@@ -65,6 +65,9 @@ const Signup = () => {
         <p>Sign up with your email and password</p>
       </sc.StyledFormHeader>
 
+      <sc.StyledFormLink to="/login">
+        Already have an account?
+      </sc.StyledFormLink>
       <sc.StyledFormBody>
         <form id="submit-form" onSubmit={handleSubmit}>
           <sc.StyledFormInputArea>
@@ -127,10 +130,6 @@ const Signup = () => {
             </sc.StyledDiscordButton>
           </Fragment>
         )}
-
-        <sc.StyledFormLink to="/login">
-          Already have an account?
-        </sc.StyledFormLink>
       </sc.StyledFormBody>
     </sc.StyledFormContent>
   );

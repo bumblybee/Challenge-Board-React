@@ -6,7 +6,8 @@ const errorCodeToMessage = {
   "auth.discordLoginError":
     "Discord sign in unsuccessful. If you haven't already, please sign up with Discord before logging in.",
 
-  "auth.discordSignupError": "Discord sign in unsuccessful, please try again.",
+  "auth.discordSignupError":
+    "Discord sign in unsuccessful. If you've already signed up with Discord, please log in.",
 
   "auth.invalidCredentials": "Invalid credentials, please try again.",
 

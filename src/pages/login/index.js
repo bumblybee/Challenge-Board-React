@@ -57,6 +57,8 @@ const Login = () => {
         <h1>Log In</h1>
         <p>Log in with your email and password</p>
       </sc.StyledFormHeader>
+
+      <sc.StyledFormLink to="/signup">Need to sign up?</sc.StyledFormLink>
       <sc.StyledFormBody>
         <form id="login-form" onSubmit={handleLoginUser}>
           <sc.StyledFormInputArea>
@@ -108,7 +110,6 @@ const Login = () => {
         <sc.StyledFormLink to="/reset-password-request">
           Forgot your password?
         </sc.StyledFormLink>
-        <sc.StyledFormLink to="/signup">Need to sign up?</sc.StyledFormLink>
       </sc.StyledFormBody>
     </sc.StyledFormContent>
   );
