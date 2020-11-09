@@ -39,7 +39,7 @@ const DiscordSignup = () => {
     };
 
     postDiscordSignup();
-  }, [history, location.search, setError, setUser]);
+  }, []);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };

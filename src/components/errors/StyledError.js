@@ -6,10 +6,15 @@ const StyledError = styled.div`
   font-size: 1.5rem;
   padding-top: 0.5rem;
   border-radius: 6px;
-  width: 100%;
+  width: 60%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
+  @media (max-width: 620px) {
+    width: 100%;
+    font-size: 1.3rem;
+  }
 `;
 
 export { StyledError };

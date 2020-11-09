@@ -34,7 +34,7 @@ const DiscordLogin = () => {
     };
 
     postDiscordLogin();
-  }, [setUser, history, location.search, setError]);
+  }, []);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };
