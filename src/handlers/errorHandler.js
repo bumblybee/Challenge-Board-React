@@ -1,8 +1,6 @@
 const errorCodeToMessage = {
   "auth.existingCredentials": "User credentials already in use. Please log in.",
 
-  "auth.discordError": "Discord sign in unsuccessful, please try again.",
-
   "auth.discordLoginError":
     "Discord sign in unsuccessful. If you haven't already, please sign up with Discord before logging in.",
 
@@ -14,13 +12,9 @@ const errorCodeToMessage = {
   "auth.noToken":
     "Token not found or has expired. Try resetting your password again.",
 
+  "auth.unauthorized": "You have to be logged in to do that.",
+
   "signup.invalidEmail": "Please enter a valid email address",
-
-  "post.failed": "Uh-oh, something went wrong. Please try again.",
-
-  "delete.failed": "Oops, something went wrong. Please try again.",
-
-  "server.failed": "Uh-oh, something went wrong. Please try again.",
 
   "server.notFound": "Oops, looks like that doesn't exist.",
 };
