@@ -256,7 +256,7 @@ const SubmissionArea = () => {
                   </p>
                   <StyledPurpleButton
                     className="modal-button"
-                    onClick={() => history.push("/login")}
+                    onClick={() => history.push("/signup")}
                   >
                     Log in to Submit Project
                   </StyledPurpleButton>
