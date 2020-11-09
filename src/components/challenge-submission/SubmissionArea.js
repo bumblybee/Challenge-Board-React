@@ -24,7 +24,6 @@ const SubmissionArea = () => {
   const { user } = useContext(UserContext);
   const { setError } = useContext(ErrorContext);
   const history = useHistory();
-  const sanitize = DOMPurify.sanitize;
 
   //Handles modal
   const [modalOpen, setModalOpen] = useState(false);

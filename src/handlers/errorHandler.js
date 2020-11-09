@@ -3,7 +3,8 @@ const errorCodeToMessage = {
 
   "auth.discordError": "Discord sign in unsuccessful, please try again.",
 
-  "auth.discordLoginError": "Discord sign in unsuccessful, please try again.",
+  "auth.discordLoginError":
+    "Discord sign in unsuccessful. If you haven't already, please sign up with Discord before logging in.",
 
   "auth.discordSignupError": "Discord sign in unsuccessful, please try again.",
 
@@ -21,7 +22,7 @@ const errorCodeToMessage = {
   "server.notFound": "Oops, looks like that doesn't exist.",
 
   "DiscordHTTPError: 400 Bad Request on POST /api/v7/oauth2/token":
-    "Uh-oh, something went wrong. Check your credentials and try again.",
+    "Discord sign in unsuccessful. If you haven't already, please sign up with Discord before logging in.",
 };
 
 const handleErrorsArray = (array) => {
