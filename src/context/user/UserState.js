@@ -24,6 +24,7 @@ const UserState = ({ children }) => {
 
   const handleSignup = async (userDetails) => {
     let userData = await signupUser(userDetails);
+
     //if length, returning array of errors from sequelize email validation
     if (userData.length) {
       userData = userData[0];

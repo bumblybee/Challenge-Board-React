@@ -8,6 +8,7 @@ import { UserContext } from "../../context/user/UserContext";
 import * as sc from "./StyledAccount";
 
 const Account = () => {
+  //TODO: v2 - avatars
   const { user, getCurrentUser } = useContext(UserContext);
   const history = useHistory();
   !user && history.push("/");

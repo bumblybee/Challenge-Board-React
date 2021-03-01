@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import queryString from "query-string";
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -15,31 +15,31 @@ const DiscordSignup = () => {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
-    const values = queryString.parse(location.search);
-    const state = values.state;
-    const code = values.code;
+  const values = queryString.parse(location.search);
+  const state = values.state;
+  const code = values.code;
 
-    const postDiscordSignup = async () => {
-      const user = await discordSignup(code, state);
+  const postDiscordSignup = useCallback(async () => {
+    const user = await discordSignup(code, state);
 
-      if (user.error) {
-        setUser(null);
-        setError(user.error);
+    if (user.error) {
+      setUser(null);
+      setError(user.error);
 
-        if (user.error === "User credentials already in use. Please log in.") {
-          history.push("/login");
-        } else {
-          history.push("/signup");
-        }
-      } else if (user.data.id) {
-        setUser(user.data);
-        history.push("/challenge");
+      if (user.error === "User credentials already in use. Please log in.") {
+        history.push("/login");
+      } else {
+        history.push("/signup");
       }
-    };
-
-    postDiscordSignup();
+    } else if (user.data.id) {
+      setUser(user.data);
+      history.push("/challenge");
+    }
   }, []);
+
+  useEffect(() => {
+    postDiscordSignup();
+  }, [postDiscordSignup]);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };

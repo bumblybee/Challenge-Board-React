@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import queryString from "query-string";
 import { useHistory, useLocation } from "react-router-dom";
 import { discordLogin } from "../../api/discordApi";
@@ -14,27 +14,27 @@ const DiscordLogin = () => {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
-    const values = queryString.parse(location.search);
-    const state = values.state;
-    const code = values.code;
+  const values = queryString.parse(location.search);
+  const state = values.state;
+  const code = values.code;
 
-    const postDiscordLogin = async () => {
-      const user = await discordLogin(code, state);
+  const postDiscordLogin = useCallback(async () => {
+    const user = await discordLogin(code, state);
 
-      if (user.error) {
-        setUser(null);
-        setError(user.error);
-        history.push("/login");
-      } else if (user.data.id) {
-        setUser(user.data);
+    if (user.error) {
+      setUser(null);
+      setError(user.error);
+      history.push("/login");
+    } else if (user.data.id) {
+      setUser(user.data);
 
-        history.push("/challenge");
-      }
-    };
-
-    postDiscordLogin();
+      history.push("/challenge");
+    }
   }, []);
+
+  useEffect(() => {
+    postDiscordLogin();
+  }, [postDiscordLogin]);
 
   return <StyledDiscordDiv></StyledDiscordDiv>;
 };
