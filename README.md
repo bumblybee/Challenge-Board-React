@@ -1,7 +1,7 @@
 
 # Challenge Board
 
-A React app for that allows web development students to view challenges and submit their projects for review.
+A React app that allows web development students to view challenges and submit their projects for review.
 
 
 ## Tech Stack
