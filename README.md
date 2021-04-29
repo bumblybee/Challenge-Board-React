@@ -21,5 +21,5 @@ A React app that allows web development students to view challenges and submit t
   
 ## Screenshots
 
-![App_Screenshot](https://user-images.githubusercontent.com/47286930/116500317-e9abfc00-a873-11eb-9fac-4901bf0676d3.png)
-![App_Screenshot](https://user-images.githubusercontent.com/47286930/116500308-e4e74800-a873-11eb-92c7-1583c12e089e.png)
+![App_Screenshot](https://user-images.githubusercontent.com/47286930/116500859-0dbc0d00-a875-11eb-9b18-c929b461e030.png)
+![App_Screenshot](https://user-images.githubusercontent.com/47286930/116500865-11e82a80-a875-11eb-844b-850a33bbea2e.png)
